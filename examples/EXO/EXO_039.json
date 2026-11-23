@@ -1,0 +1,1409 @@
+{
+ "book": "EXO",
+ "chapter": 39,
+ "edition": "BSB",
+ "setting": "prose",
+ "profile": {
+  "name": "folk",
+  "lead": "male",
+  "persona": null,
+  "style": "acoustic folk ballad, 90 BPM, fingerpicked guitar, soft strings, storytelling, earnest",
+  "tags": {
+   "narrator": "[Lead Vocal]",
+   "female": "[Female Vocal]",
+   "male": "[Male Vocal]",
+   "group": "[Choir]",
+   "female_group": "[Female Choir]",
+   "divine": "[Deep Male Vocal]",
+   "refrain": "[Choir]"
+  }
+ },
+ "style": "acoustic folk ballad, 90 BPM, fingerpicked guitar, soft strings, storytelling, earnest",
+ "own_style": false,
+ "mood": null,
+ "text_fingerprint": "38a5c52ab47ca485bcc76e50d9a9b505d1f8e08f7b4fde6e4c2796098fcc80e4",
+ "superscription": null,
+ "alignment": {
+  "kind": "full",
+  "layer": "eng_BSB+manual+bsb-tables",
+  "file": "e/eng/eng_BSB+manual+bsb-tables/EXO_02137cc2.json"
+ },
+ "pins": {
+  "hebrew-clause-lines": {
+   "repo": "bcv-commons/hebrew-clause-lines",
+   "tag": "v0.2",
+   "revision": "83a96640ea45aa410c7cfbca62d2fc84b76f19be",
+   "licence": "CC BY-SA 4.0"
+  },
+  "greek-nt-clause-lines": {
+   "repo": "bcv-commons/greek-nt-clause-lines",
+   "tag": "v0.2",
+   "revision": "6c76d7b2b95782ad8e250f53a4fcf5b54fe8385b",
+   "licence": "CC BY-SA 4.0"
+  },
+  "clause-connectives": {
+   "repo": "bcv-commons/clause-connectives",
+   "tag": "v0.1",
+   "revision": "c26a84be0262b9fd9470fc8b4bca766d1e8bf4ab",
+   "licence": "CC BY-SA 4.0"
+  },
+  "clause-columns": {
+   "repo": "bcv-commons/clause-columns",
+   "tag": "v1.2",
+   "revision": "32beff0b50e54dfde2d5d10d19ea5a0d8cc80e94",
+   "licence": "CC BY-SA 4.0"
+  },
+  "passage-facts": {
+   "repo": "bcv-commons/passage-facts",
+   "tag": "v0.3.3",
+   "revision": "7e147a06b0cccf0b6e544912834a8da8f6d8ffbc",
+   "licence": "CC BY-SA 4.0"
+  },
+  "full-alignments-manual": {
+   "repo": "bcv-commons/full-alignments-manual",
+   "tag": "v1.1",
+   "revision": "b305c7b49e02ab911f264c8e6537f115b0f930ca",
+   "licence": "CC BY 4.0 (BSB tables layer: CC0)"
+  },
+  "compact-alignments": {
+   "repo": "bcv-commons/compact-alignments",
+   "tag": null,
+   "revision": "115830822e155b5cce71f902481aa9092fa9670e",
+   "licence": "CC0 1.0"
+  },
+  "compact-alignments-meta": {
+   "repo": "bcv-commons/compact-alignments-meta",
+   "tag": null,
+   "revision": "96d0a2295d1729c589ac6df67b56d0e88e4defe8",
+   "licence": "CC0 1.0",
+   "_use": "_fingerprints.txt: the aligned text's chapter fingerprints"
+  },
+  "passage-moods-model": {
+   "repo": "bcv-commons/passage-moods-model",
+   "tag": "v0.1",
+   "revision": "db4ad9173bee9371a983aa105fa1f647e9a6d24a",
+   "licence": "CC BY-SA 4.0 (model output, claude-opus-5-5, no human check)"
+  },
+  "hebrew-commentary-terms": {
+   "repo": "bcv-commons/hebrew-commentary-terms",
+   "tag": "v0.1",
+   "revision": "797e20cd29c97abaeceb7ba6bbd47272153ddc21",
+   "licence": "CC BY-SA 4.0"
+  },
+  "hebrew-commentary-terms-model": {
+   "repo": "bcv-commons/hebrew-commentary-terms-model",
+   "tag": "v0.1",
+   "revision": "965909b57f77b1001a6f3bf34c25231a93c63b3d",
+   "licence": "CC BY-SA 4.0 (model output, claude-opus-5-5, no human check)"
+  }
+ },
+ "bible-song-builder": "0.1.0",
+ "sections": [
+  {
+   "label": "Verse 1",
+   "sung": false,
+   "mood": null,
+   "verses": [
+    "39:1"
+   ],
+   "lines": [
+    {
+     "verse": "39:1",
+     "token": 0,
+     "text": "From the blue, purple, and scarlet yarn they made specially woven garments",
+     "quote": null,
+     "speaker": null,
+     "segment": 1,
+     "refrain": null,
+     "acrostic": null,
+     "selah": false
+    },
+    {
+     "verse": "39:1",
+     "token": 12,
+     "text": "for ministry in the sanctuary,",
+     "quote": null,
+     "speaker": null,
+     "segment": 2,
+     "refrain": null,
+     "acrostic": null,
+     "selah": false
+    },
+    {
+     "verse": "39:1",
+     "token": 17,
+     "text": "as well as the holy garments",
+     "quote": null,
+     "speaker": null,
+     "segment": 3,
+     "refrain": null,
+     "acrostic": null,
+     "selah": false
+    },
+    {
+     "verse": "39:1",
+     "token": 23,
+     "text": "for Aaron, just as",
+     "quote": null,
+     "speaker": null,
+     "segment": 4,
+     "refrain": null,
+     "acrostic": null,
+     "selah": false
+    }
+   ],
+   "starts": "start"
+  },
+  {
+   "label": "Chorus",
+   "sung": true,
+   "mood": null,
+   "verses": [
+    "39:1"
+   ],
+   "lines": [
+    {
+     "verse": "39:1",
+     "token": 27,
+     "text": "the LORD had commanded Moses.",
+     "quote": null,
+     "speaker": null,
+     "segment": 5,
+     "refrain": "EXO.02081#1",
+     "acrostic": null,
+     "selah": false
+    }
+   ],
+   "starts": "midverse"
+  },
+  {
+   "label": "Verse 2",
+   "sung": false,
+   "mood": null,
+   "verses": [
+    "39:2",
+    "39:3",
+    "39:4",
+    "39:5"
+   ],
+   "lines": [
+    {
+     "verse": "39:2",
+     "token": 0,
+     "text": "Bezalel made the ephod of finely spun linen embroidered with gold, and with blue, purple, and scarlet yarn.",
+     "quote": null,
+     "speaker": null,
+     "segment": 6,
+     "refrain": null,
+     "acrostic": null,
+     "selah": false
+    },
+    {
+     "verse": "39:3",
+     "token": 0,
+     "text": "They hammered out thin sheets of gold",
+     "quote": null,
+     "speaker": null,
+     "segment": 7,
+     "refrain": null,
+     "acrostic": null,
+     "selah": false
+    },
+    {
+     "verse": "39:3",
+     "token": 7,
+     "text": "and cut threads from them",
+     "quote": null,
+     "speaker": null,
+     "segment": 8,
+     "refrain": null,
+     "acrostic": null,
+     "selah": false
+    },
+    {
+     "verse": "39:3",
+     "token": 12,
+     "text": "to interweave with the blue, purple, and scarlet yarn, and fine linen —",
+     "quote": null,
+     "speaker": null,
+     "segment": 9,
+     "refrain": null,
+     "acrostic": null,
+     "selah": false
+    },
+    {
+     "verse": "39:3",
+     "token": 24,
+     "text": "the work of a skilled craftsman.",
+     "quote": null,
+     "speaker": null,
+     "segment": 10,
+     "refrain": null,
+     "acrostic": null,
+     "selah": false
+    },
+    {
+     "verse": "39:4",
+     "token": 0,
+     "text": "They made shoulder pieces for the ephod, which were attached",
+     "quote": null,
+     "speaker": null,
+     "segment": 11,
+     "refrain": null,
+     "acrostic": null,
+     "selah": false
+    },
+    {
+     "verse": "39:4",
+     "token": 10,
+     "text": "at two of its corners, so it could be fastened.",
+     "quote": null,
+     "speaker": null,
+     "segment": 12,
+     "refrain": null,
+     "acrostic": null,
+     "selah": false
+    },
+    {
+     "verse": "39:5",
+     "token": 0,
+     "text": "And the skillfully woven waistband",
+     "quote": null,
+     "speaker": null,
+     "segment": 13,
+     "refrain": null,
+     "acrostic": null,
+     "selah": false
+    },
+    {
+     "verse": "39:5",
+     "token": 5,
+     "text": "of the ephod",
+     "quote": null,
+     "speaker": null,
+     "segment": 14,
+     "refrain": null,
+     "acrostic": null,
+     "selah": false
+    },
+    {
+     "verse": "39:5",
+     "token": 8,
+     "text": "was of one piece with the ephod,",
+     "quote": null,
+     "speaker": null,
+     "segment": 15,
+     "refrain": null,
+     "acrostic": null,
+     "selah": false
+    },
+    {
+     "verse": "39:5",
+     "token": 15,
+     "text": "of the same workmanship — with gold, with blue, purple, and scarlet yarn, and with finely spun linen,",
+     "quote": null,
+     "speaker": null,
+     "segment": 16,
+     "refrain": null,
+     "acrostic": null,
+     "selah": false
+    }
+   ],
+   "starts": "para"
+  },
+  {
+   "label": "Chorus",
+   "sung": true,
+   "mood": null,
+   "verses": [
+    "39:5"
+   ],
+   "lines": [
+    {
+     "verse": "39:5",
+     "token": 32,
+     "text": "just as the LORD had commanded Moses.",
+     "quote": null,
+     "speaker": null,
+     "segment": 17,
+     "refrain": "EXO.02082#1",
+     "acrostic": null,
+     "selah": false
+    }
+   ],
+   "starts": "midverse"
+  },
+  {
+   "label": "Verse 3",
+   "sung": false,
+   "mood": null,
+   "verses": [
+    "39:6",
+    "39:7"
+   ],
+   "lines": [
+    {
+     "verse": "39:6",
+     "token": 0,
+     "text": "They mounted the onyx stones",
+     "quote": null,
+     "speaker": null,
+     "segment": 18,
+     "refrain": null,
+     "acrostic": null,
+     "selah": false
+    },
+    {
+     "verse": "39:6",
+     "token": 5,
+     "text": "in gold filigree settings,",
+     "quote": null,
+     "speaker": null,
+     "segment": 19,
+     "refrain": null,
+     "acrostic": null,
+     "selah": false
+    },
+    {
+     "verse": "39:6",
+     "token": 9,
+     "text": "engraved like a seal with the names of the sons of Israel.",
+     "quote": null,
+     "speaker": null,
+     "segment": 20,
+     "refrain": null,
+     "acrostic": null,
+     "selah": false
+    },
+    {
+     "verse": "39:7",
+     "token": 0,
+     "text": "Then they fastened them on the shoulder pieces of the ephod as memorial stones for the sons of Israel,",
+     "quote": null,
+     "speaker": null,
+     "segment": 21,
+     "refrain": null,
+     "acrostic": null,
+     "selah": false
+    }
+   ],
+   "starts": "para"
+  },
+  {
+   "label": "Chorus",
+   "sung": true,
+   "mood": null,
+   "verses": [
+    "39:7"
+   ],
+   "lines": [
+    {
+     "verse": "39:7",
+     "token": 19,
+     "text": "as the LORD had commanded Moses.",
+     "quote": null,
+     "speaker": null,
+     "segment": 22,
+     "refrain": "EXO.02081#2",
+     "acrostic": null,
+     "selah": false
+    }
+   ],
+   "starts": "midverse"
+  },
+  {
+   "label": "Verse 4",
+   "sung": false,
+   "mood": null,
+   "verses": [
+    "39:8",
+    "39:9",
+    "39:10",
+    "39:11",
+    "39:12"
+   ],
+   "lines": [
+    {
+     "verse": "39:8",
+     "token": 0,
+     "text": "He made the breastpiece with the same workmanship as the ephod, with gold, with blue, purple, and scarlet yarn, and with finely spun linen.",
+     "quote": null,
+     "speaker": null,
+     "segment": 23,
+     "refrain": null,
+     "acrostic": null,
+     "selah": false
+    },
+    {
+     "verse": "39:9",
+     "token": 0,
+     "text": "It was square when folded over double,",
+     "quote": null,
+     "speaker": null,
+     "segment": 25,
+     "refrain": null,
+     "acrostic": null,
+     "selah": false
+    },
+    {
+     "verse": "39:9",
+     "token": 7,
+     "text": "a span long",
+     "quote": null,
+     "speaker": null,
+     "segment": 26,
+     "refrain": null,
+     "acrostic": null,
+     "selah": false
+    },
+    {
+     "verse": "39:9",
+     "token": 10,
+     "text": "and a span wide.",
+     "quote": null,
+     "speaker": null,
+     "segment": 27,
+     "refrain": null,
+     "acrostic": null,
+     "selah": false
+    },
+    {
+     "verse": "39:10",
+     "token": 0,
+     "text": "And they mounted on it four rows of gemstones:",
+     "quote": null,
+     "speaker": null,
+     "segment": 29,
+     "refrain": null,
+     "acrostic": null,
+     "selah": false
+    },
+    {
+     "verse": "39:10",
+     "token": 9,
+     "text": "The first row had a ruby, a topaz, and an emerald;",
+     "quote": null,
+     "speaker": null,
+     "segment": 30,
+     "refrain": null,
+     "acrostic": null,
+     "selah": false
+    },
+    {
+     "verse": "39:11",
+     "token": 0,
+     "text": "the second row had a turquoise, a sapphire, and a diamond;",
+     "quote": null,
+     "speaker": null,
+     "segment": 31,
+     "refrain": null,
+     "acrostic": null,
+     "selah": false
+    },
+    {
+     "verse": "39:12",
+     "token": 0,
+     "text": "the third row had a jacinth, an agate, and an amethyst;",
+     "quote": null,
+     "speaker": null,
+     "segment": 32,
+     "refrain": null,
+     "acrostic": null,
+     "selah": false
+    }
+   ],
+   "starts": "para"
+  },
+  {
+   "label": "Verse 5",
+   "sung": false,
+   "mood": null,
+   "verses": [
+    "39:13",
+    "39:14",
+    "39:15",
+    "39:16",
+    "39:17",
+    "39:18"
+   ],
+   "lines": [
+    {
+     "verse": "39:13",
+     "token": 0,
+     "text": "and the fourth row had a beryl, an onyx, and a jasper.",
+     "quote": null,
+     "speaker": null,
+     "segment": 33,
+     "refrain": null,
+     "acrostic": null,
+     "selah": false
+    },
+    {
+     "verse": "39:13",
+     "token": 12,
+     "text": "These stones were mounted in gold filigree settings.",
+     "quote": null,
+     "speaker": null,
+     "segment": 34,
+     "refrain": null,
+     "acrostic": null,
+     "selah": false
+    },
+    {
+     "verse": "39:14",
+     "token": 0,
+     "text": "The twelve stones corresponded to the names of the sons of Israel.",
+     "quote": null,
+     "speaker": null,
+     "segment": 36,
+     "refrain": null,
+     "acrostic": null,
+     "selah": false
+    },
+    {
+     "verse": "39:14",
+     "token": 12,
+     "text": "Each stone was engraved like a seal with the name of one of the twelve tribes.",
+     "quote": null,
+     "speaker": null,
+     "segment": 37,
+     "refrain": null,
+     "acrostic": null,
+     "selah": false
+    },
+    {
+     "verse": "39:15",
+     "token": 0,
+     "text": "For the breastpiece they made braided chains like cords of pure gold.",
+     "quote": null,
+     "speaker": null,
+     "segment": 38,
+     "refrain": null,
+     "acrostic": null,
+     "selah": false
+    },
+    {
+     "verse": "39:16",
+     "token": 0,
+     "text": "They also made two gold filigree settings and two gold rings,",
+     "quote": null,
+     "speaker": null,
+     "segment": 39,
+     "refrain": null,
+     "acrostic": null,
+     "selah": false
+    },
+    {
+     "verse": "39:16",
+     "token": 11,
+     "text": "and fastened the two rings to the two corners of the breastpiece.",
+     "quote": null,
+     "speaker": null,
+     "segment": 40,
+     "refrain": null,
+     "acrostic": null,
+     "selah": false
+    },
+    {
+     "verse": "39:17",
+     "token": 0,
+     "text": "Then they fastened the two gold chains to the two gold rings at the corners of the breastpiece,",
+     "quote": null,
+     "speaker": null,
+     "segment": 41,
+     "refrain": null,
+     "acrostic": null,
+     "selah": false
+    },
+    {
+     "verse": "39:18",
+     "token": 0,
+     "text": "and they fastened the other ends of the two chains to the two filigree settings,",
+     "quote": null,
+     "speaker": null,
+     "segment": 42,
+     "refrain": null,
+     "acrostic": null,
+     "selah": false
+    },
+    {
+     "verse": "39:18",
+     "token": 15,
+     "text": "attaching them to the shoulder pieces of the ephod at the front.",
+     "quote": null,
+     "speaker": null,
+     "segment": 43,
+     "refrain": null,
+     "acrostic": null,
+     "selah": false
+    }
+   ],
+   "starts": "split"
+  },
+  {
+   "label": "Verse 6",
+   "sung": false,
+   "mood": null,
+   "verses": [
+    "39:19",
+    "39:20",
+    "39:21"
+   ],
+   "lines": [
+    {
+     "verse": "39:19",
+     "token": 0,
+     "text": "They made two more gold rings",
+     "quote": null,
+     "speaker": null,
+     "segment": 44,
+     "refrain": null,
+     "acrostic": null,
+     "selah": false
+    },
+    {
+     "verse": "39:19",
+     "token": 6,
+     "text": "and attached them to the other two corners of the breastpiece, on",
+     "quote": null,
+     "speaker": null,
+     "segment": 45,
+     "refrain": null,
+     "acrostic": null,
+     "selah": false
+    },
+    {
+     "verse": "39:19",
+     "token": 18,
+     "text": "the inside edge next to the ephod.",
+     "quote": null,
+     "speaker": null,
+     "segment": 46,
+     "refrain": null,
+     "acrostic": null,
+     "selah": false
+    },
+    {
+     "verse": "39:20",
+     "token": 0,
+     "text": "They made two additional gold rings",
+     "quote": null,
+     "speaker": null,
+     "segment": 47,
+     "refrain": null,
+     "acrostic": null,
+     "selah": false
+    },
+    {
+     "verse": "39:20",
+     "token": 6,
+     "text": "and attached them to the bottom of the two shoulder pieces of the ephod, on its front, near the seam just above its woven waistband.",
+     "quote": null,
+     "speaker": null,
+     "segment": 48,
+     "refrain": null,
+     "acrostic": null,
+     "selah": false
+    },
+    {
+     "verse": "39:21",
+     "token": 0,
+     "text": "Then they tied the rings of the breastpiece to the rings of the ephod with a cord of blue yarn,",
+     "quote": null,
+     "speaker": null,
+     "segment": 49,
+     "refrain": null,
+     "acrostic": null,
+     "selah": false
+    },
+    {
+     "verse": "39:21",
+     "token": 20,
+     "text": "so that the breastpiece",
+     "quote": null,
+     "speaker": null,
+     "segment": 51,
+     "refrain": null,
+     "acrostic": null,
+     "selah": false
+    },
+    {
+     "verse": "39:21",
+     "token": 24,
+     "text": "was above the waistband of the ephod and would not swing out from the ephod,",
+     "quote": null,
+     "speaker": null,
+     "segment": 50,
+     "refrain": null,
+     "acrostic": null,
+     "selah": false
+    }
+   ],
+   "starts": "split"
+  },
+  {
+   "label": "Chorus",
+   "sung": true,
+   "mood": null,
+   "verses": [
+    "39:21"
+   ],
+   "lines": [
+    {
+     "verse": "39:21",
+     "token": 39,
+     "text": "just as the LORD had commanded Moses.",
+     "quote": null,
+     "speaker": null,
+     "segment": 52,
+     "refrain": "EXO.02081#3",
+     "acrostic": null,
+     "selah": false
+    }
+   ],
+   "starts": "midverse"
+  },
+  {
+   "label": "Verse 7",
+   "sung": false,
+   "mood": null,
+   "verses": [
+    "39:22",
+    "39:23",
+    "39:24",
+    "39:25",
+    "39:26"
+   ],
+   "lines": [
+    {
+     "verse": "39:22",
+     "token": 0,
+     "text": "They made the robe of the ephod entirely of blue cloth, the work of a weaver,",
+     "quote": null,
+     "speaker": null,
+     "segment": 53,
+     "refrain": null,
+     "acrostic": null,
+     "selah": false
+    },
+    {
+     "verse": "39:23",
+     "token": 0,
+     "text": "with an opening in the center of the robe like that of a garment,",
+     "quote": null,
+     "speaker": null,
+     "segment": 54,
+     "refrain": null,
+     "acrostic": null,
+     "selah": false
+    },
+    {
+     "verse": "39:23",
+     "token": 14,
+     "text": "with a collar around the opening",
+     "quote": null,
+     "speaker": null,
+     "segment": 55,
+     "refrain": null,
+     "acrostic": null,
+     "selah": false
+    },
+    {
+     "verse": "39:23",
+     "token": 20,
+     "text": "so that it would not tear.",
+     "quote": null,
+     "speaker": null,
+     "segment": 56,
+     "refrain": null,
+     "acrostic": null,
+     "selah": false
+    },
+    {
+     "verse": "39:24",
+     "token": 0,
+     "text": "They made pomegranates of blue, purple, and scarlet yarn and finely spun linen on the lower hem of the robe.",
+     "quote": null,
+     "speaker": null,
+     "segment": 57,
+     "refrain": null,
+     "acrostic": null,
+     "selah": false
+    },
+    {
+     "verse": "39:25",
+     "token": 0,
+     "text": "They also made bells of pure gold",
+     "quote": null,
+     "speaker": null,
+     "segment": 58,
+     "refrain": null,
+     "acrostic": null,
+     "selah": false
+    },
+    {
+     "verse": "39:25",
+     "token": 7,
+     "text": "and attached them around the hem",
+     "quote": null,
+     "speaker": null,
+     "segment": 59,
+     "refrain": null,
+     "acrostic": null,
+     "selah": false
+    },
+    {
+     "verse": "39:25",
+     "token": 13,
+     "text": "between the pomegranates,",
+     "quote": null,
+     "speaker": null,
+     "segment": 60,
+     "refrain": null,
+     "acrostic": null,
+     "selah": false
+    },
+    {
+     "verse": "39:26",
+     "token": 0,
+     "text": "alternating the bells and pomegranates around the lower hem of the robe",
+     "quote": null,
+     "speaker": null,
+     "segment": 61,
+     "refrain": null,
+     "acrostic": null,
+     "selah": false
+    },
+    {
+     "verse": "39:26",
+     "token": 12,
+     "text": "to be worn for ministry,",
+     "quote": null,
+     "speaker": null,
+     "segment": 62,
+     "refrain": null,
+     "acrostic": null,
+     "selah": false
+    }
+   ],
+   "starts": "para"
+  },
+  {
+   "label": "Chorus",
+   "sung": true,
+   "mood": null,
+   "verses": [
+    "39:26"
+   ],
+   "lines": [
+    {
+     "verse": "39:26",
+     "token": 17,
+     "text": "just as the LORD had commanded Moses.",
+     "quote": null,
+     "speaker": null,
+     "segment": 63,
+     "refrain": "EXO.02082#2",
+     "acrostic": null,
+     "selah": false
+    }
+   ],
+   "starts": "midverse"
+  },
+  {
+   "label": "Verse 8",
+   "sung": false,
+   "mood": null,
+   "verses": [
+    "39:27",
+    "39:28",
+    "39:29"
+   ],
+   "lines": [
+    {
+     "verse": "39:27",
+     "token": 0,
+     "text": "For Aaron and his sons they made tunics of fine linen, the work of a weaver,",
+     "quote": null,
+     "speaker": null,
+     "segment": 64,
+     "refrain": null,
+     "acrostic": null,
+     "selah": false
+    },
+    {
+     "verse": "39:28",
+     "token": 0,
+     "text": "as well as the turban of fine linen,",
+     "quote": null,
+     "speaker": null,
+     "segment": 65,
+     "refrain": null,
+     "acrostic": null,
+     "selah": false
+    },
+    {
+     "verse": "39:28",
+     "token": 8,
+     "text": "the ornate headbands",
+     "quote": null,
+     "speaker": null,
+     "segment": 66,
+     "refrain": null,
+     "acrostic": null,
+     "selah": false
+    },
+    {
+     "verse": "39:28",
+     "token": 11,
+     "text": "and undergarments of finely spun linen,",
+     "quote": null,
+     "speaker": null,
+     "segment": 67,
+     "refrain": null,
+     "acrostic": null,
+     "selah": false
+    },
+    {
+     "verse": "39:29",
+     "token": 0,
+     "text": "and the sash of finely spun linen, embroidered with blue, purple, and scarlet yarn,",
+     "quote": null,
+     "speaker": null,
+     "segment": 68,
+     "refrain": null,
+     "acrostic": null,
+     "selah": false
+    }
+   ],
+   "starts": "para"
+  },
+  {
+   "label": "Chorus",
+   "sung": true,
+   "mood": null,
+   "verses": [
+    "39:29"
+   ],
+   "lines": [
+    {
+     "verse": "39:29",
+     "token": 14,
+     "text": "just as the LORD had commanded Moses.",
+     "quote": null,
+     "speaker": null,
+     "segment": 69,
+     "refrain": "EXO.02082#3",
+     "acrostic": null,
+     "selah": false
+    }
+   ],
+   "starts": "midverse"
+  },
+  {
+   "label": "Verse 9",
+   "sung": false,
+   "mood": null,
+   "verses": [
+    "39:30",
+    "39:31"
+   ],
+   "lines": [
+    {
+     "verse": "39:30",
+     "token": 0,
+     "text": "They also made the plate of the holy crown of pure gold,",
+     "quote": null,
+     "speaker": null,
+     "segment": 70,
+     "refrain": null,
+     "acrostic": null,
+     "selah": false
+    },
+    {
+     "verse": "39:30",
+     "token": 12,
+     "text": "and they engraved on it, like an inscription on a seal: HOLY TO THE LORD.",
+     "quote": null,
+     "speaker": null,
+     "segment": 71,
+     "refrain": null,
+     "acrostic": null,
+     "selah": false
+    },
+    {
+     "verse": "39:31",
+     "token": 0,
+     "text": "Then they fastened to it a blue cord",
+     "quote": null,
+     "speaker": null,
+     "segment": 72,
+     "refrain": null,
+     "acrostic": null,
+     "selah": false
+    },
+    {
+     "verse": "39:31",
+     "token": 8,
+     "text": "to mount it on the turban,",
+     "quote": null,
+     "speaker": null,
+     "segment": 73,
+     "refrain": null,
+     "acrostic": null,
+     "selah": false
+    },
+    {
+     "verse": "39:31",
+     "token": 14,
+     "text": "just as the LORD had commanded Moses.",
+     "quote": null,
+     "speaker": null,
+     "segment": 74,
+     "refrain": null,
+     "acrostic": null,
+     "selah": false
+    }
+   ],
+   "starts": "para"
+  },
+  {
+   "label": "Verse 10",
+   "sung": false,
+   "mood": null,
+   "verses": [
+    "39:32"
+   ],
+   "lines": [
+    {
+     "verse": "39:32",
+     "token": 0,
+     "text": "So all the work for the tabernacle, the Tent of Meeting, was completed.",
+     "quote": null,
+     "speaker": null,
+     "segment": 75,
+     "refrain": null,
+     "acrostic": null,
+     "selah": false
+    },
+    {
+     "verse": "39:32",
+     "token": 13,
+     "text": "The Israelites did",
+     "quote": null,
+     "speaker": null,
+     "segment": 76,
+     "refrain": null,
+     "acrostic": null,
+     "selah": false
+    }
+   ],
+   "starts": "para"
+  },
+  {
+   "label": "Chorus",
+   "sung": true,
+   "mood": null,
+   "verses": [
+    "39:32"
+   ],
+   "lines": [
+    {
+     "verse": "39:32",
+     "token": 16,
+     "text": "everything just as the LORD had commanded Moses.",
+     "quote": null,
+     "speaker": null,
+     "segment": 77,
+     "refrain": "EXO.02083#1",
+     "acrostic": null,
+     "selah": false
+    }
+   ],
+   "starts": "midverse"
+  },
+  {
+   "label": "Verse 11",
+   "sung": false,
+   "mood": null,
+   "verses": [
+    "39:33",
+    "39:34",
+    "39:35",
+    "39:36",
+    "39:37",
+    "39:38",
+    "39:39",
+    "39:40"
+   ],
+   "lines": [
+    {
+     "verse": "39:33",
+     "token": 0,
+     "text": "Then they brought the tabernacle to Moses: the tent with all its furnishings, its clasps, its frames, its crossbars, and its posts and bases;",
+     "quote": null,
+     "speaker": null,
+     "segment": 80,
+     "refrain": null,
+     "acrostic": null,
+     "selah": false
+    },
+    {
+     "verse": "39:34",
+     "token": 0,
+     "text": "the covering of ram skins dyed red, the covering of fine leather, and the veil of the covering;",
+     "quote": null,
+     "speaker": null,
+     "segment": 81,
+     "refrain": null,
+     "acrostic": null,
+     "selah": false
+    },
+    {
+     "verse": "39:35",
+     "token": 0,
+     "text": "the ark of the Testimony with its poles and the mercy seat;",
+     "quote": null,
+     "speaker": null,
+     "segment": 82,
+     "refrain": null,
+     "acrostic": null,
+     "selah": false
+    },
+    {
+     "verse": "39:36",
+     "token": 0,
+     "text": "the table with all its utensils and the Bread of the Presence;",
+     "quote": null,
+     "speaker": null,
+     "segment": 83,
+     "refrain": null,
+     "acrostic": null,
+     "selah": false
+    },
+    {
+     "verse": "39:37",
+     "token": 0,
+     "text": "the pure gold lampstand with its row of lamps and all its utensils, as well as the oil for the light;",
+     "quote": null,
+     "speaker": null,
+     "segment": 84,
+     "refrain": null,
+     "acrostic": null,
+     "selah": false
+    },
+    {
+     "verse": "39:38",
+     "token": 0,
+     "text": "the gold altar, the anointing oil, the fragrant incense, and the curtain for the entrance to the tent;",
+     "quote": null,
+     "speaker": null,
+     "segment": 85,
+     "refrain": null,
+     "acrostic": null,
+     "selah": false
+    },
+    {
+     "verse": "39:39",
+     "token": 0,
+     "text": "the bronze altar with its bronze grating,",
+     "quote": null,
+     "speaker": null,
+     "segment": 86,
+     "refrain": null,
+     "acrostic": null,
+     "selah": false
+    },
+    {
+     "verse": "39:39",
+     "token": 7,
+     "text": "its poles, and all its utensils; the basin with its stand;",
+     "quote": null,
+     "speaker": null,
+     "segment": 88,
+     "refrain": null,
+     "acrostic": null,
+     "selah": false
+    },
+    {
+     "verse": "39:40",
+     "token": 0,
+     "text": "the curtains of the courtyard with its posts and bases; the curtain for the gate of the courtyard, its ropes and tent pegs, and all the equipment for the service of the tabernacle, the Tent of Meeting;",
+     "quote": null,
+     "speaker": null,
+     "segment": 89,
+     "refrain": null,
+     "acrostic": null,
+     "selah": false
+    }
+   ],
+   "starts": "para"
+  },
+  {
+   "label": "Verse 12",
+   "sung": false,
+   "mood": null,
+   "verses": [
+    "39:41",
+    "39:42"
+   ],
+   "lines": [
+    {
+     "verse": "39:41",
+     "token": 0,
+     "text": "and the woven garments",
+     "quote": null,
+     "speaker": null,
+     "segment": 90,
+     "refrain": null,
+     "acrostic": null,
+     "selah": false
+    },
+    {
+     "verse": "39:41",
+     "token": 4,
+     "text": "for ministering in the sanctuary,",
+     "quote": null,
+     "speaker": null,
+     "segment": 91,
+     "refrain": null,
+     "acrostic": null,
+     "selah": false
+    },
+    {
+     "verse": "39:41",
+     "token": 9,
+     "text": "both the holy garments for Aaron the priest and the garments for his sons",
+     "quote": null,
+     "speaker": null,
+     "segment": 92,
+     "refrain": null,
+     "acrostic": null,
+     "selah": false
+    },
+    {
+     "verse": "39:41",
+     "token": 23,
+     "text": "to serve as priests.",
+     "quote": null,
+     "speaker": null,
+     "segment": 93,
+     "refrain": null,
+     "acrostic": null,
+     "selah": false
+    },
+    {
+     "verse": "39:42",
+     "token": 0,
+     "text": "The Israelites",
+     "quote": null,
+     "speaker": null,
+     "segment": 96,
+     "refrain": null,
+     "acrostic": null,
+     "selah": false
+    }
+   ],
+   "starts": "split"
+  },
+  {
+   "label": "Chorus",
+   "sung": true,
+   "mood": null,
+   "verses": [
+    "39:42"
+   ],
+   "lines": [
+    {
+     "verse": "39:42",
+     "token": 2,
+     "text": "had done all the work just as",
+     "quote": null,
+     "speaker": null,
+     "segment": 96,
+     "refrain": "EXO.02083#2",
+     "acrostic": null,
+     "selah": false
+    },
+    {
+     "verse": "39:42",
+     "token": 9,
+     "text": "the LORD had commanded Moses.",
+     "quote": null,
+     "speaker": null,
+     "segment": 95,
+     "refrain": "EXO.02083#2",
+     "acrostic": null,
+     "selah": false
+    }
+   ],
+   "starts": "midverse"
+  },
+  {
+   "label": "Verse 13",
+   "sung": false,
+   "mood": null,
+   "verses": [
+    "39:43"
+   ],
+   "lines": [
+    {
+     "verse": "39:43",
+     "token": 0,
+     "text": "And Moses inspected all the work",
+     "quote": null,
+     "speaker": null,
+     "segment": 97,
+     "refrain": null,
+     "acrostic": null,
+     "selah": false
+    },
+    {
+     "verse": "39:43",
+     "token": 6,
+     "text": "and saw that",
+     "quote": null,
+     "speaker": null,
+     "segment": 98,
+     "refrain": null,
+     "acrostic": null,
+     "selah": false
+    },
+    {
+     "verse": "39:43",
+     "token": 9,
+     "text": "they had accomplished it",
+     "quote": null,
+     "speaker": null,
+     "segment": 99,
+     "refrain": null,
+     "acrostic": null,
+     "selah": false
+    },
+    {
+     "verse": "39:43",
+     "token": 13,
+     "text": "just as the LORD had commanded.",
+     "quote": null,
+     "speaker": null,
+     "segment": 100,
+     "refrain": null,
+     "acrostic": null,
+     "selah": false
+    },
+    {
+     "verse": "39:43",
+     "token": 19,
+     "text": "So Moses blessed them.",
+     "quote": null,
+     "speaker": null,
+     "segment": 102,
+     "refrain": null,
+     "acrostic": null,
+     "selah": false
+    }
+   ],
+   "starts": "chorus"
+  }
+ ]
+}

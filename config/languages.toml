@@ -1,0 +1,61 @@
+# Words that depend on the language of an edition, one section per language
+# (the ISO 639-3 code of the edition in pins.json, e.g. eng, spa, fra).
+#
+# label_edge_words    words cut off the ends of a speaker's name as read from the text
+#                     ("But Naomi" -> "Naomi"). Names only appear in the notes file.
+# label_group         words that show a speaker is a group ("the Levites", "his brothers")
+# label_female_group  words that show a group of women ("the women", "daughters")
+#
+# label_strip_endings endings cut off a speaker's name ("Naomi’s" -> "Naomi")
+# hebrew_letters      names of the Hebrew letters, for acrostics in the notes file (Psalm 119)
+# [<iso>.layout.*]    any setting of layout.toml, for every edition in this language, e.g.
+#                       [zho.layout.text]
+#                       count = "characters"
+#
+# The two label_ lists are only used by scripts/build_cast.py, which saves the result in
+# cast.csv by speaker, so other editions get it without needing their own lists.
+
+[eng]
+label_strip_endings = ["’s", "'s"]
+label_edge_words = [
+  "and", "but", "then", "so", "now", "for", "yet", "or", "to", "of",
+  "from", "with", "by", "in", "her", "his", "their", "my", "your", "our",
+  "its", "said", "replied", "answered", "s", "when", "at", "that", "time", "was",
+  "were", "is", "one", "day", "nevertheless", "however", ",",
+]
+label_group = [
+  "people", "men", "crowd", "crowds", "brothers", "sons", "Levites", "Israelites",
+  "Jews", "elders", "priests", "servants", "disciples", "officials", "Pharisees", "scribes",
+  "soldiers", "prophets", "Philistines", "Egyptians", "Gibeonites", "Ammonites", "Moabites", "enemies",
+  "nations", "all", "both", "two", "three", "four", "five", "seven",
+  "ten", "twelve", "everyone", "others", "many", "they", "we", "leaders",
+  "apostles", "chiefs", "messengers", "guards", "watchmen", "Chaldeans", "astrologers", "magicians",
+  "counselors", "heads", "survivors", "inhabitants", "children",
+]
+label_female_group = [
+  "women", "daughters", "girls", "daughters-in-law", "maidens", "virgins", "sisters",
+]
+
+[eng.hebrew_letters]
+"א" = "Aleph"
+"ב" = "Beth"
+"ג" = "Gimel"
+"ד" = "Daleth"
+"ה" = "He"
+"ו" = "Waw"
+"ז" = "Zayin"
+"ח" = "Heth"
+"ט" = "Teth"
+"י" = "Yodh"
+"כ" = "Kaph"
+"ל" = "Lamedh"
+"מ" = "Mem"
+"נ" = "Nun"
+"ס" = "Samekh"
+"ע" = "Ayin"
+"פ" = "Pe"
+"צ" = "Tsadhe"
+"ק" = "Qoph"
+"ר" = "Resh"
+"ש" = "Shin"
+"ת" = "Taw"

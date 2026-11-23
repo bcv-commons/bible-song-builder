@@ -1,0 +1,29 @@
+Exodus 39 · BSB · setting: prose
+Profile: folk, male lead · Suno persona: (not set: profiles.toml [profiles.folk] persona.male)
+Style: the book's (EXO.style.txt, profile folk). To change: config/books/EXO.toml, [chapters.39] (mood or style)
+[Verse 1] 39:1
+[Chorus] 39:1
+[Verse 2] 39:2-5
+[Chorus] 39:5
+[Verse 3] 39:6-7
+[Chorus] 39:7
+[Verse 4] 39:8-12
+[Verse 5] 39:13-18
+[Verse 6] 39:19-21
+[Chorus] 39:21
+[Verse 7] 39:22-26
+[Chorus] 39:26
+[Verse 8] 39:27-29
+[Chorus] 39:29
+[Verse 9] 39:30-31
+[Verse 10] 39:32
+[Chorus] 39:32
+[Verse 11] 39:33-40
+[Verse 12] 39:41-42
+[Chorus] 39:42
+[Verse 13] 39:43
+Shortened or paraphrased: nothing; every line is the edition's text, verbatim.
+Length: 5351 characters, over 5000; shorten before use and list the cuts here.
+Text: BSB, Public Domain (berean.bible, 2023-04-30).
+Structure: bcv-commons/hebrew-clause-lines v0.2, passage-facts v0.3.3, clause-connectives v0.1 and clause-columns v1.2, CC BY-SA 4.0 (bcv-commons; MACULA, Clear Bible / Biblica, CC BY 4.0; MAM, unfoldingWord ULT, UBS dictionaries, CC BY-SA 4.0).
+Alignment: bcv-commons/full-alignments-manual v1.1, layer eng_BSB+manual+bsb-tables (BSB translation tables, CC0).

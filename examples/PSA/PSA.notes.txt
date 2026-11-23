@@ -1,0 +1,139 @@
+PSA · profile hymn, female lead · settings: config/books/PSA.toml
+Style for every chapter: PSA.style.txt — except the chapters below, which have their own
+<chapter>.style.txt (the same style with a mood the Hebrew/Greek gives the chapter).
+
+PSA 1: wisdom (+ "thoughtful, measured"), from type: Tyndale Open Study Notes: chokhmah חָכְמָה over 6 of 6 verses; Scriptura: musar מוּסָר over 6 of 6 verses; Hebrew commentators: Meiri (model-read): לשבח
+PSA 2: royal (+ "stately, majestic"), from type: Tyndale Open Study Notes: melekh מֶלֶךְ over 12 of 12 verses; Scriptura: musar מוּסָר over 12 of 12 verses; Hebrew commentators: Meiri (model-read): שבח את האל
+PSA 3: prayer (+ "slower, intimate, prayerful"), from purpose: Scriptura: tefillah תְּפִלָּה over 9 of 9 verses
+PSA 4: lament (+ "slower, minor key, sparse, sorrowful, with harp and strings"), from type: Tyndale Open Study Notes: tefillah_tsarah תְּפִלָּה בְּצָרָה over 9 of 9 verses; with stringed instruments (בנגינות); Scriptura: tehillah תְּהִלָּה over 9 of 9 verses
+PSA 5: prayer (+ "slower, intimate, prayerful, with flutes"), from type: Tyndale Open Study Notes: tefillah תְּפִלָּה over 13 of 13 verses; for the flutes (אל הנחילות); Scriptura: tefillah תְּפִלָּה over 13 of 13 verses; Hebrew commentators: Rashi (model-read): תפלה
+PSA 6: lament (+ "slower, minor key, sparse, sorrowful, with harp and strings"), from type: Tyndale Open Study Notes: tefillah_tsarah תְּפִלָּה בְּצָרָה over 11 of 11 verses; with stringed instruments (בנגינות); Scriptura: tefillah תְּפִלָּה over 11 of 11 verses; Hebrew commentators: Radak (model-read): תפלה ובקשה, Meiri (model-read): ענין התפלה, Malbim (model-read): התפלל
+PSA 7: prayer (+ "slower, intimate, prayerful"), from purpose: Scriptura: tefillah תְּפִלָּה over 18 of 18 verses; Hebrew commentators: Rashi (model-read): שנתודה ונתפלל, Metzudat David (model-read): התפלל
+PSA 8: praise (+ "uplifting, joyful, fuller sound"), from purpose: Scriptura: tehillah תְּהִלָּה over 10 of 10 verses
+PSA 9: prayer (+ "slower, intimate, prayerful"), from purpose: Scriptura: tefillah תְּפִלָּה over 21 of 21 verses
+PSA 10: prayer (+ "slower, intimate, prayerful"), from purpose: Scriptura: tefillah תְּפִלָּה over 18 of 18 verses; Hebrew commentators: Radak (model-read): תפלה
+PSA 11: wisdom (+ "thoughtful, measured"), from purpose: Scriptura: musar מוּסָר over 7 of 7 verses
+PSA 12: lament (+ "slower, minor key, sparse, sorrowful"), from type: Tyndale Open Study Notes: tefillat_tsibbur תְּפִלַּת צִבּוּר over 9 of 9 verses; Scriptura: tefillah תְּפִלָּה over 9 of 9 verses
+PSA 13: prayer (+ "slower, intimate, prayerful"), from purpose: Scriptura: tefillah תְּפִלָּה over 6 of 6 verses; Hebrew commentators: Malbim (model-read): תפלה
+PSA 14: wisdom (+ "thoughtful, measured"), from type: Tyndale Open Study Notes: chokhmah חָכְמָה over 7 of 7 verses; Scriptura: tefillah_tsarah תְּפִלָּה בְּצָרָה over 7 of 7 verses; Hebrew commentators: Malbim (model-read): להודות
+PSA 15: wisdom (+ "thoughtful, measured"), from purpose: Scriptura: musar מוּסָר over 5 of 5 verses
+PSA 16: trust (+ "calm, steady, confident"), from type: Tyndale Open Study Notes: mivtach מִבְטָח over 11 of 11 verses; Scriptura: tehillah תְּהִלָּה over 11 of 11 verses; Hebrew commentators: Meiri (model-read): הודאתו
+PSA 17: prayer (+ "slower, intimate, prayerful"), from heading: a prayer (תפלה); Scriptura: tefillah תְּפִלָּה over 15 of 15 verses; Hebrew commentators: Radak (model-read): התפלה הזאת, Meiri (model-read): דרך תפלה, Malbim (model-read): תפלה
+PSA 18: royal (+ "stately, majestic"), from type: Tyndale Open Study Notes: melekh מֶלֶךְ over 51 of 51 verses; Scriptura: mivtach מִבְטָח over 51 of 51 verses; Hebrew commentators: Meiri (model-read): והודה לאל, Malbim (model-read): הודאה
+PSA 19: praise (+ "uplifting, joyful, fuller sound"), from type: Tyndale Open Study Notes: tehillah תְּהִלָּה over 15 of 15 verses; Scriptura: tefillah תְּפִלָּה over 15 of 15 verses; Hebrew commentators: Meiri (model-read): בשבח האל
+PSA 20: royal (+ "stately, majestic"), from type: Tyndale Open Study Notes: melekh מֶלֶךְ over 10 of 10 verses; Tyndale Open Study Notes: tefillah תְּפִלָּה over 5 of 10 verses; Scriptura: tefillah תְּפִלָּה over 10 of 10 verses; Hebrew commentators: Malbim (model-read): התפלה
+PSA 21: prayer (+ "slower, intimate, prayerful"), from commentary: Hebrew commentators: Meiri (model-read): והתפלל
+PSA 22: lament (+ "slower, minor key, sparse, sorrowful"), from type: Tyndale Open Study Notes: tefillah_tsarah תְּפִלָּה בְּצָרָה over 21 of 32 verses; Hebrew commentators: Rashi (model-read): תפלה
+PSA 23: trust (+ "calm, steady, confident"), from type: Tyndale Open Study Notes: mivtach מִבְטָח over 6 of 6 verses; Scriptura: mivtach מִבְטָח over 6 of 6 verses
+PSA 25: lament (+ "slower, minor key, sparse, sorrowful"), from type: Tyndale Open Study Notes: tefillat_tsibbur תְּפִלַּת צִבּוּר over 22 of 22 verses; Tyndale Open Study Notes: tefillah_tsarah תְּפִלָּה בְּצָרָה over 22 of 22 verses; Scriptura: tefillah תְּפִלָּה over 22 of 22 verses; Hebrew commentators: Meiri (model-read): הפליג בתפלה
+PSA 26: lament (+ "slower, minor key, sparse, sorrowful"), from type: Tyndale Open Study Notes: tefillah_tsarah תְּפִלָּה בְּצָרָה over 12 of 12 verses; Hebrew commentators: Malbim (model-read): בתפלה זו
+PSA 27: lament (+ "slower, minor key, sparse, sorrowful"), from type: Tyndale Open Study Notes: tefillah_tsarah תְּפִלָּה בְּצָרָה over 8 of 14 verses; Hebrew commentators: Meiri: תפלה, Meiri (model-read): תפלה, Malbim (model-read): מתפלל
+PSA 28: lament (+ "slower, minor key, sparse, sorrowful"), from type: Tyndale Open Study Notes: tefillah_tsarah תְּפִלָּה בְּצָרָה over 9 of 9 verses; Scriptura: tefillah תְּפִלָּה over 9 of 9 verses; Hebrew commentators: Malbim (model-read): התפלה
+PSA 29: praise (+ "uplifting, joyful, fuller sound"), from type: Tyndale Open Study Notes: tehillah תְּהִלָּה over 11 of 11 verses; Scriptura: tehillah תְּהִלָּה over 11 of 11 verses
+PSA 30: thanksgiving (+ "warm, grateful, uplifting"), from type: Tyndale Open Study Notes: todah תּוֹדָה over 13 of 13 verses; Scriptura: tehillah תְּהִלָּה over 13 of 13 verses
+PSA 31: wisdom (+ "thoughtful, measured"), from purpose: Scriptura: musar מוּסָר over 25 of 25 verses
+PSA 32: wisdom (+ "thoughtful, measured"), from purpose: Scriptura: musar מוּסָר over 11 of 11 verses
+PSA 33: praise (+ "uplifting, joyful, fuller sound"), from type: Tyndale Open Study Notes: tehillah תְּהִלָּה over 22 of 22 verses; Hebrew commentators: Radak (model-read): השבח
+PSA 34: thanksgiving (+ "warm, grateful, uplifting"), from type: Tyndale Open Study Notes: todah תּוֹדָה over 23 of 23 verses; Tyndale Open Study Notes: chokhmah חָכְמָה over 23 of 23 verses; Scriptura: musar מוּסָר over 23 of 23 verses; Hebrew commentators: Radak (model-read): הודה לאל, Meiri (model-read): לתהלה ולהודאה
+PSA 35: lament (+ "slower, minor key, sparse, sorrowful"), from type: Tyndale Open Study Notes: tefillah_tsarah תְּפִלָּה בְּצָרָה over 28 of 28 verses; Hebrew commentators: Malbim (model-read): תפלה
+PSA 36: lament (+ "slower, minor key, sparse, sorrowful"), from type: Tyndale Open Study Notes: tefillah_tsarah תְּפִלָּה בְּצָרָה over 13 of 13 verses; Scriptura: mivtach מִבְטָח over 13 of 13 verses
+PSA 37: wisdom (+ "thoughtful, measured"), from purpose: Scriptura: musar מוּסָר over 40 of 40 verses
+PSA 38: prayer (+ "slower, intimate, prayerful"), from type: Tyndale Open Study Notes: tefillah תְּפִלָּה over 23 of 23 verses; Tyndale Open Study Notes: tefillah_tsarah תְּפִלָּה בְּצָרָה over 23 of 23 verses; Scriptura: tefillah תְּפִלָּה over 23 of 23 verses; Hebrew commentators: Radak (model-read): להתפלל בו, Meiri (model-read): ומתפלל, Metzudat David (model-read): להתפלל
+PSA 39: prayer (+ "slower, intimate, prayerful"), from type: Tyndale Open Study Notes: tefillah תְּפִלָּה over 14 of 14 verses; Hebrew commentators: Meiri (model-read): ותפלה
+PSA 40: thanksgiving (+ "warm, grateful, uplifting"), from type: Tyndale Open Study Notes: todah תּוֹדָה over 10 of 18 verses; Hebrew commentators: Meiri (model-read): תפלת, Malbim (model-read): תפלה
+PSA 41: wisdom (+ "thoughtful, measured"), from type: Tyndale Open Study Notes: chokhmah חָכְמָה over 14 of 14 verses; Hebrew commentators: Meiri (model-read): ולהתפלל לאל
+PSA 42: prayer (+ "slower, intimate, prayerful"), from commentary: Hebrew commentators: Metzudat David (model-read): להתפלל על הגאולה
+PSA 43: prayer (+ "slower, intimate, prayerful"), from commentary: Hebrew commentators: Malbim (model-read): יתפלל
+PSA 44: lament (+ "slower, minor key, sparse, sorrowful"), from type: Tyndale Open Study Notes: tefillat_tsibbur תְּפִלַּת צִבּוּר over 27 of 27 verses; Hebrew commentators: Meiri (model-read): ותפלה, Malbim (model-read): התפלה
+PSA 45: love_song (+ "tender, romantic"), from heading: a song of love (שיר ידידת); Tyndale Open Study Notes: melekh מֶלֶךְ over 18 of 18 verses; Scriptura: tehillah תְּהִלָּה over 18 of 18 verses; Hebrew commentators: Rashi (model-read): שיר של שבח
+PSA 46: praise (+ "uplifting, joyful, fuller sound"), from type: Tyndale Open Study Notes: tsiyyon צִיּוֹן over 12 of 12 verses; Scriptura: musar מוּסָר over 12 of 12 verses
+PSA 47: royal (+ "stately, majestic"), from type: Tyndale Open Study Notes: malkhut מַלְכוּת over 10 of 10 verses
+PSA 48: praise (+ "uplifting, joyful, fuller sound"), from type: Tyndale Open Study Notes: tsiyyon צִיּוֹן over 15 of 15 verses; Hebrew commentators: Radak (model-read): שבח ירושלים, Ibn Ezra (model-read): שבח ירושלם
+PSA 49: wisdom (+ "thoughtful, measured"), from type: Tyndale Open Study Notes: chokhmah חָכְמָה over 21 of 21 verses
+PSA 51: prayer (+ "slower, intimate, prayerful"), from commentary: Hebrew commentators: Meiri (model-read): לתפלה
+PSA 54: lament (+ "slower, minor key, sparse, sorrowful, with harp and strings"), from type: Tyndale Open Study Notes: tefillah_tsarah תְּפִלָּה בְּצָרָה over 9 of 9 verses; with stringed instruments (בנגינות); Hebrew commentators: Meiri (model-read): לתפלה ולהודות
+PSA 55: instruments (+ "with harp and strings"), from heading: with stringed instruments (בנגינות)
+PSA 56: lament (+ "slower, minor key, sparse, sorrowful"), from type: Tyndale Open Study Notes: tefillah_tsarah תְּפִלָּה בְּצָרָה over 14 of 14 verses
+PSA 57: prayer (+ "slower, intimate, prayerful"), from commentary: Hebrew commentators: Metzudat David (model-read): התפלל, Malbim (model-read): תפלה
+PSA 59: lament (+ "slower, minor key, sparse, sorrowful"), from type: Tyndale Open Study Notes: tefillah_tsarah תְּפִלָּה בְּצָרָה over 18 of 18 verses; Hebrew commentators: Malbim (model-read): ומתפלל
+PSA 60: lament (+ "slower, minor key, sparse, sorrowful"), from type: Tyndale Open Study Notes: tefillah_tsarah תְּפִלָּה בְּצָרָה over 14 of 14 verses
+PSA 61: prayer (+ "slower, intimate, prayerful, with harp and strings"), from commentary: Hebrew commentators: Meiri (model-read): מתפלל, Malbim (model-read): מתפלל; with stringed instruments (בנגינות)
+PSA 63: prayer (+ "slower, intimate, prayerful"), from commentary: Hebrew commentators: Meiri (model-read): מתפלל
+PSA 64: lament (+ "slower, minor key, sparse, sorrowful"), from type: Tyndale Open Study Notes: tefillah_tsarah תְּפִלָּה בְּצָרָה over 11 of 11 verses; Hebrew commentators: Meiri (model-read): מתפלל ומתחנן, Rashi (model-read): והתפלל עליו
+PSA 66: praise (+ "uplifting, joyful, fuller sound"), from type: Tyndale Open Study Notes: tehillah תְּהִלָּה over 20 of 20 verses; Hebrew commentators: Malbim (model-read): תפלתו
+PSA 67: prayer (+ "slower, intimate, prayerful, with harp and strings"), from type: Tyndale Open Study Notes: tefillah תְּפִלָּה over 8 of 8 verses; with stringed instruments (בנגינות); Scriptura: tefillah תְּפִלָּה over 8 of 8 verses
+PSA 68: prayer (+ "slower, intimate, prayerful"), from type: Tyndale Open Study Notes: tefillah תְּפִלָּה over 36 of 36 verses; Scriptura: tehillah תְּהִלָּה over 36 of 36 verses
+PSA 69: lament (+ "slower, minor key, sparse, sorrowful"), from type: Tyndale Open Study Notes: tefillah_tsarah תְּפִלָּה בְּצָרָה over 37 of 37 verses; Hebrew commentators: Radak (model-read): מתפלל ובוכה, Meiri (model-read): להתפלל, Rashi (model-read): והתפלל עליהם
+PSA 70: prayer (+ "slower, intimate, prayerful"), from commentary: Hebrew commentators: Rashi (model-read): לשון תפלה, Malbim (model-read): התפלל
+PSA 71: lament (+ "slower, minor key, sparse, sorrowful"), from type: Tyndale Open Study Notes: tefillah_tsarah תְּפִלָּה בְּצָרָה over 24 of 24 verses
+PSA 72: royal (+ "stately, majestic"), from type: Tyndale Open Study Notes: melekh מֶלֶךְ over 20 of 20 verses; Hebrew commentators: Radak (model-read): תפלת דוד, Meiri (model-read): תפלות, Rashi (model-read): תפלה, Metzudat David (model-read): התפלה, Malbim (model-read): תפלה
+PSA 73: wisdom (+ "thoughtful, measured"), from type: Tyndale Open Study Notes: chokhmah חָכְמָה over 28 of 28 verses
+PSA 74: lament (+ "slower, minor key, sparse, sorrowful"), from type: Tyndale Open Study Notes: tefillah_tsarah תְּפִלָּה בְּצָרָה over 23 of 23 verses
+PSA 75: thanksgiving (+ "warm, grateful, uplifting"), from type: Tyndale Open Study Notes: todah תּוֹדָה over 11 of 11 verses; Hebrew commentators: Meiri (model-read): תפלה ותחנה
+PSA 76: praise (+ "uplifting, joyful, fuller sound, with harp and strings"), from commentary: Hebrew commentators: Meiri (model-read): בשבח האל; with stringed instruments (בנגינות)
+PSA 77: lament (+ "slower, minor key, sparse, sorrowful"), from type: Tyndale Open Study Notes: tefillah_tsarah תְּפִלָּה בְּצָרָה over 21 of 21 verses; Hebrew commentators: Meiri (model-read): כמתפללים
+PSA 78: wisdom (+ "thoughtful, measured"), from type: Tyndale Open Study Notes: chokhmah חָכְמָה over 72 of 72 verses
+PSA 79: lament (+ "slower, minor key, sparse, sorrowful"), from type: Tyndale Open Study Notes: tefillah_tsarah תְּפִלָּה בְּצָרָה over 13 of 13 verses; Hebrew commentators: Ibn Ezra (model-read): קינות, Rashi (model-read): קינה
+PSA 80: lament (+ "slower, minor key, sparse, sorrowful"), from type: Tyndale Open Study Notes: tefillah_tsarah תְּפִלָּה בְּצָרָה over 20 of 20 verses; Hebrew commentators: Rashi (model-read): והתפלל עליהם, Malbim (model-read): מתפלל
+PSA 83: lament (+ "slower, minor key, sparse, sorrowful"), from type: Tyndale Open Study Notes: tefillat_tsibbur תְּפִלַּת צִבּוּר over 19 of 19 verses
+PSA 85: lament (+ "slower, minor key, sparse, sorrowful"), from type: Tyndale Open Study Notes: tefillah_tsarah תְּפִלָּה בְּצָרָה over 14 of 14 verses; Hebrew commentators: Meiri (model-read): תפלה, Malbim (model-read): והתפלל
+PSA 86: prayer (+ "slower, intimate, prayerful"), from heading: a prayer (תפלה); Tyndale Open Study Notes: tefillah_tsarah תְּפִלָּה בְּצָרָה over 17 of 17 verses; Hebrew commentators: Radak (model-read): תפלה, Meiri (model-read): ומתפלל, Ibn Ezra (model-read): זאת התפלה, Malbim (model-read): תפלה
+PSA 87: praise (+ "uplifting, joyful, fuller sound"), from commentary: Hebrew commentators: Radak: שבח, Radak (model-read): שבח ציון, Meiri (model-read): לשבח ירושלם, Metzudat David (model-read): במהללי הררי קדש, Malbim (model-read): בשבח ציון
+PSA 88: lament (+ "slower, minor key, sparse, sorrowful"), from type: Tyndale Open Study Notes: tefillah_tsarah תְּפִלָּה בְּצָרָה over 19 of 19 verses; Scriptura: tefillah_tsarah תְּפִלָּה בְּצָרָה over 19 of 19 verses; Hebrew commentators: Malbim (model-read): תפלה הזאת
+PSA 89: lament (+ "slower, minor key, sparse, sorrowful"), from purpose: Scriptura: tefillah_tsarah תְּפִלָּה בְּצָרָה over 53 of 53 verses; Scriptura: tehillah תְּהִלָּה over 53 of 53 verses
+PSA 90: prayer (+ "slower, intimate, prayerful"), from heading: a prayer (תפלה); Hebrew commentators: Radak (model-read): תפלה, Meiri (model-read): תפלה, Ibn Ezra (model-read): התפלה, Malbim (model-read): התפלל
+PSA 91: wisdom (+ "thoughtful, measured"), from type: Tyndale Open Study Notes: chokhmah חָכְמָה over 16 of 16 verses; Scriptura: mivtach מִבְטָח over 16 of 16 verses
+PSA 92: sabbath (+ "peaceful, restful"), from heading: for the sabbath day (ליום השבת)
+PSA 93: praise (+ "uplifting, joyful, fuller sound"), from purpose: Scriptura: tehillah תְּהִלָּה over 5 of 5 verses
+PSA 94: lament (+ "slower, minor key, sparse, sorrowful"), from type: Tyndale Open Study Notes: tefillat_tsibbur תְּפִלַּת צִבּוּר over 23 of 23 verses; Tyndale Open Study Notes: tefillah_tsarah תְּפִלָּה בְּצָרָה over 23 of 23 verses; Hebrew commentators: Radak (model-read): מתפלל, Meiri (model-read): ולהתפלל
+PSA 95: wisdom (+ "thoughtful, measured"), from purpose: Scriptura: musar מוּסָר over 11 of 11 verses
+PSA 96: royal (+ "stately, majestic"), from type: Tyndale Open Study Notes: malkhut מַלְכוּת over 13 of 13 verses
+PSA 98: royal (+ "stately, majestic"), from type: Tyndale Open Study Notes: malkhut מַלְכוּת over 9 of 9 verses; Scriptura: musar מוּסָר over 9 of 9 verses
+PSA 100: thanksgiving (+ "warm, grateful, uplifting"), from heading: for the thank offering (לתודה); Hebrew commentators: Meiri (model-read): להודות לו, Malbim (model-read): הודאה של נס
+PSA 101: praise (+ "uplifting, joyful, fuller sound"), from type: Tyndale Open Study Notes: tehillah תְּהִלָּה over 8 of 8 verses
+PSA 102: prayer (+ "slower, intimate, prayerful"), from heading: a prayer (תפלה); Hebrew commentators: Radak (model-read): תפלתו, Meiri (model-read): תפלה, Ibn Ezra (model-read): התפלה, Malbim (model-read): תפלה
+PSA 103: thanksgiving (+ "warm, grateful, uplifting"), from commentary: Hebrew commentators: Radak (model-read): שבח והודאה, Meiri (model-read): שבח והודאה
+PSA 104: praise (+ "uplifting, joyful, fuller sound"), from heading: praise the LORD (הללו יה); Tyndale Open Study Notes: tehillah תְּהִלָּה over 35 of 35 verses
+PSA 105: praise (+ "uplifting, joyful, fuller sound"), from heading: praise the LORD (הללו יה); Tyndale Open Study Notes: tehillah תְּהִלָּה over 45 of 45 verses; Hebrew commentators: Meiri: הודאה, Meiri (model-read): הודאה לאל, Malbim (model-read): הודאה
+PSA 106: praise (+ "uplifting, joyful, fuller sound"), from heading: praise the LORD (הללו יה); Hebrew commentators: Radak (model-read): שיהללו יה, Ibn Ezra (model-read): הללו את השם והודוהו
+PSA 107: praise (+ "uplifting, joyful, fuller sound"), from type: Tyndale Open Study Notes: tehillah תְּהִלָּה over 43 of 43 verses; Hebrew commentators: Radak (model-read): להודות
+PSA 109: lament (+ "slower, minor key, sparse, sorrowful"), from type: Tyndale Open Study Notes: tefillah_tsarah תְּפִלָּה בְּצָרָה over 31 of 31 verses
+PSA 110: trust (+ "calm, steady, confident"), from purpose: Scriptura: mivtach מִבְטָח over 7 of 7 verses
+PSA 111: praise (+ "uplifting, joyful, fuller sound"), from heading: praise the LORD (הללו יה); Tyndale Open Study Notes: chokhmah חָכְמָה over 10 of 10 verses; Scriptura: tehillah תְּהִלָּה over 10 of 10 verses; Hebrew commentators: Rashi (model-read): בשבחו
+PSA 112: praise (+ "uplifting, joyful, fuller sound"), from heading: praise the LORD (הללו יה); Tyndale Open Study Notes: chokhmah חָכְמָה over 10 of 10 verses; Scriptura: tehillah תְּהִלָּה over 10 of 10 verses
+PSA 113: praise (+ "uplifting, joyful, fuller sound"), from heading: praise the LORD (הללו יה); Tyndale Open Study Notes: tehillah תְּהִלָּה over 9 of 9 verses
+PSA 115: praise (+ "uplifting, joyful, fuller sound"), from heading: praise the LORD (הללו יה); Tyndale Open Study Notes: todah תּוֹדָה over 18 of 18 verses; Hebrew commentators: Meiri (model-read): והתפלל לאל
+PSA 116: praise (+ "uplifting, joyful, fuller sound"), from heading: praise the LORD (הללו יה); Tyndale Open Study Notes: todah תּוֹדָה over 19 of 19 verses
+PSA 117: praise (+ "uplifting, joyful, fuller sound"), from heading: praise the LORD (הללו יה)
+PSA 119: prayer (+ "slower, intimate, prayerful"), from commentary: Hebrew commentators: Meiri (model-read): תפלה, Malbim (model-read): התפלה
+PSA 120: pilgrimage (+ "walking pace, hopeful, communal"), from heading: a song of ascents (שיר המעלות); Tyndale Open Study Notes: tefillah_tsarah תְּפִלָּה בְּצָרָה over 7 of 7 verses; Hebrew commentators: Malbim (model-read): התפלל
+PSA 121: pilgrimage (+ "walking pace, hopeful, communal"), from heading: a song of ascents (שיר המעלות); Scriptura: musar מוּסָר over 8 of 8 verses
+PSA 122: pilgrimage (+ "walking pace, hopeful, communal"), from heading: a song of ascents (שיר המעלות); Tyndale Open Study Notes: aliyah עֲלִיָּה לָרֶגֶל over 9 of 9 verses; Hebrew commentators: Malbim (model-read): בשבח ירושלים
+PSA 123: pilgrimage (+ "walking pace, hopeful, communal"), from heading: a song of ascents (שיר המעלות); Tyndale Open Study Notes: tefillah_tsarah תְּפִלָּה בְּצָרָה over 4 of 4 verses
+PSA 124: pilgrimage (+ "walking pace, hopeful, communal"), from heading: a song of ascents (שיר המעלות); Tyndale Open Study Notes: todah תּוֹדָה over 8 of 8 verses
+PSA 125: pilgrimage (+ "walking pace, hopeful, communal"), from heading: a song of ascents (שיר המעלות)
+PSA 126: pilgrimage (+ "walking pace, hopeful, communal"), from heading: a song of ascents (שיר המעלות); Tyndale Open Study Notes: tehillah תְּהִלָּה over 6 of 6 verses
+PSA 127: pilgrimage (+ "walking pace, hopeful, communal"), from heading: a song of ascents (שיר המעלות)
+PSA 128: pilgrimage (+ "walking pace, hopeful, communal"), from heading: a song of ascents (שיר המעלות); Hebrew commentators: Radak (model-read): שבח, Meiri (model-read): שבח
+PSA 129: pilgrimage (+ "walking pace, hopeful, communal"), from heading: a song of ascents (שיר המעלות)
+PSA 130: pilgrimage (+ "walking pace, hopeful, communal"), from heading: a song of ascents (שיר המעלות); Hebrew commentators: Meiri (model-read): תפלה, Malbim (model-read): תפלה על סליחת העון
+PSA 131: pilgrimage (+ "walking pace, hopeful, communal"), from heading: a song of ascents (שיר המעלות)
+PSA 132: pilgrimage (+ "walking pace, hopeful, communal"), from heading: a song of ascents (שיר המעלות); Scriptura: tefillah תְּפִלָּה over 18 of 18 verses; Hebrew commentators: Metzudat David (model-read): התפלל
+PSA 133: pilgrimage (+ "walking pace, hopeful, communal"), from heading: a song of ascents (שיר המעלות); Tyndale Open Study Notes: chokhmah חָכְמָה over 3 of 3 verses; Scriptura: tehillah תְּהִלָּה over 3 of 3 verses
+PSA 134: pilgrimage (+ "walking pace, hopeful, communal"), from heading: a song of ascents (שיר המעלות); Tyndale Open Study Notes: aliyah עֲלִיָּה לָרֶגֶל over 3 of 3 verses; Scriptura: tefillah תְּפִלָּה over 3 of 3 verses
+PSA 135: praise (+ "uplifting, joyful, fuller sound"), from heading: praise the LORD (הללו יה)
+PSA 136: praise (+ "uplifting, joyful, fuller sound"), from type: Tyndale Open Study Notes: tehillah תְּהִלָּה over 26 of 26 verses; Hebrew commentators: Malbim (model-read): ההודאה
+PSA 137: anger (+ "intense, urgent"), from type: Tyndale Open Study Notes: qelalah קְלָלָה over 9 of 9 verses; Hebrew commentators: Meiri (model-read): הקינה
+PSA 138: wisdom (+ "thoughtful, measured"), from type: Tyndale Open Study Notes: chokhmah חָכְמָה over 8 of 8 verses; Hebrew commentators: Meiri (model-read): הודאה לאל
+PSA 139: wisdom (+ "thoughtful, measured"), from type: Tyndale Open Study Notes: chokhmah חָכְמָה over 24 of 24 verses
+PSA 140: lament (+ "slower, minor key, sparse, sorrowful"), from type: Tyndale Open Study Notes: tefillah_tsarah תְּפִלָּה בְּצָרָה over 14 of 14 verses; Hebrew commentators: Meiri (model-read): והתפלל
+PSA 141: prayer (+ "slower, intimate, prayerful"), from commentary: Hebrew commentators: Meiri (model-read): תפלה, Malbim (model-read): שהתפלל
+PSA 142: prayer (+ "slower, intimate, prayerful"), from heading: a prayer (תפלה); Hebrew commentators: Meiri (model-read): התפלה, Metzudat David (model-read): התפלה
+PSA 143: lament (+ "slower, minor key, sparse, sorrowful"), from type: Tyndale Open Study Notes: tefillah_tsarah תְּפִלָּה בְּצָרָה over 12 of 12 verses; Hebrew commentators: Meiri (model-read): תפלה
+PSA 144: lament (+ "slower, minor key, sparse, sorrowful"), from type: Tyndale Open Study Notes: tefillah_tsarah תְּפִלָּה בְּצָרָה over 15 of 15 verses; Hebrew commentators: Meiri (model-read): והתפלל, Malbim (model-read): בתפלה זו
+PSA 145: praise (+ "uplifting, joyful, fuller sound"), from heading: a song of praise (תהלה); Tyndale Open Study Notes: tehillah תְּהִלָּה over 21 of 21 verses
+PSA 146: praise (+ "uplifting, joyful, fuller sound"), from heading: praise the LORD (הללו יה)
+PSA 147: praise (+ "uplifting, joyful, fuller sound"), from heading: praise the LORD (הללו יה); Hebrew commentators: Ibn Ezra (model-read): ישבח השם
+PSA 148: praise (+ "uplifting, joyful, fuller sound"), from heading: praise the LORD (הללו יה); Hebrew commentators: Meiri (model-read): שבח והודאה
+PSA 149: praise (+ "uplifting, joyful, fuller sound"), from heading: praise the LORD (הללו יה); Tyndale Open Study Notes: tehillah תְּהִלָּה over 9 of 9 verses
+PSA 150: praise (+ "uplifting, joyful, fuller sound"), from heading: praise the LORD (הללו יה)

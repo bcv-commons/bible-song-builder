@@ -1,0 +1,1322 @@
+{
+ "book": "PSA",
+ "chapter": 22,
+ "edition": "BSB",
+ "setting": "poetry",
+ "profile": {
+  "name": "hymn",
+  "lead": "female",
+  "persona": null,
+  "style": "hymn, 72 BPM, piano and warm choir pads, reverent, contemplative",
+  "tags": {
+   "narrator": "[Lead Vocal]",
+   "female": "[Female Vocal]",
+   "male": "[Male Vocal]",
+   "group": "[Choir]",
+   "female_group": "[Female Choir]",
+   "divine": "[Deep Male Vocal]",
+   "refrain": "[Choir]"
+  }
+ },
+ "style": "hymn, 72 BPM, piano and warm choir pads, reverent, contemplative, slower, minor key, sparse, sorrowful",
+ "own_style": true,
+ "mood": {
+  "mood": "lament",
+  "basis": "type",
+  "evidence": "Tyndale Open Study Notes: tefillah_tsarah תְּפִלָּה בְּצָרָה over 21 of 32 verses; Hebrew commentators: Rashi (model-read): תפלה",
+  "instruments": []
+ },
+ "text_fingerprint": "c867de4b767d66eb71bf1c03510730abb8478c9baf43bb75d65380afb6fd86c0",
+ "superscription": "For the choirmaster. To the tune of “The Doe of the Dawn.” A Psalm of David.",
+ "alignment": {
+  "kind": "full",
+  "layer": "eng_BSB+manual+bsb-tables",
+  "file": "e/eng/eng_BSB+manual+bsb-tables/PSA_c867de4b.json"
+ },
+ "pins": {
+  "hebrew-clause-lines": {
+   "repo": "bcv-commons/hebrew-clause-lines",
+   "tag": "v0.2",
+   "revision": "83a96640ea45aa410c7cfbca62d2fc84b76f19be",
+   "licence": "CC BY-SA 4.0"
+  },
+  "greek-nt-clause-lines": {
+   "repo": "bcv-commons/greek-nt-clause-lines",
+   "tag": "v0.2",
+   "revision": "6c76d7b2b95782ad8e250f53a4fcf5b54fe8385b",
+   "licence": "CC BY-SA 4.0"
+  },
+  "clause-connectives": {
+   "repo": "bcv-commons/clause-connectives",
+   "tag": "v0.1",
+   "revision": "c26a84be0262b9fd9470fc8b4bca766d1e8bf4ab",
+   "licence": "CC BY-SA 4.0"
+  },
+  "clause-columns": {
+   "repo": "bcv-commons/clause-columns",
+   "tag": "v1.2",
+   "revision": "32beff0b50e54dfde2d5d10d19ea5a0d8cc80e94",
+   "licence": "CC BY-SA 4.0"
+  },
+  "passage-facts": {
+   "repo": "bcv-commons/passage-facts",
+   "tag": "v0.3.3",
+   "revision": "7e147a06b0cccf0b6e544912834a8da8f6d8ffbc",
+   "licence": "CC BY-SA 4.0"
+  },
+  "full-alignments-manual": {
+   "repo": "bcv-commons/full-alignments-manual",
+   "tag": "v1.1",
+   "revision": "b305c7b49e02ab911f264c8e6537f115b0f930ca",
+   "licence": "CC BY 4.0 (BSB tables layer: CC0)"
+  },
+  "compact-alignments": {
+   "repo": "bcv-commons/compact-alignments",
+   "tag": null,
+   "revision": "115830822e155b5cce71f902481aa9092fa9670e",
+   "licence": "CC0 1.0"
+  },
+  "compact-alignments-meta": {
+   "repo": "bcv-commons/compact-alignments-meta",
+   "tag": null,
+   "revision": "96d0a2295d1729c589ac6df67b56d0e88e4defe8",
+   "licence": "CC0 1.0",
+   "_use": "_fingerprints.txt: the aligned text's chapter fingerprints"
+  },
+  "passage-moods-model": {
+   "repo": "bcv-commons/passage-moods-model",
+   "tag": "v0.1",
+   "revision": "db4ad9173bee9371a983aa105fa1f647e9a6d24a",
+   "licence": "CC BY-SA 4.0 (model output, claude-opus-5-5, no human check)"
+  },
+  "hebrew-commentary-terms": {
+   "repo": "bcv-commons/hebrew-commentary-terms",
+   "tag": "v0.1",
+   "revision": "797e20cd29c97abaeceb7ba6bbd47272153ddc21",
+   "licence": "CC BY-SA 4.0"
+  },
+  "hebrew-commentary-terms-model": {
+   "repo": "bcv-commons/hebrew-commentary-terms-model",
+   "tag": "v0.1",
+   "revision": "965909b57f77b1001a6f3bf34c25231a93c63b3d",
+   "licence": "CC BY-SA 4.0 (model output, claude-opus-5-5, no human check)"
+  }
+ },
+ "bible-song-builder": "0.1.0",
+ "sections": [
+  {
+   "label": "Verse 1",
+   "sung": true,
+   "mood": {
+    "family": "md.tsarah",
+    "head": "צָרָה",
+    "tag": "[Mood: anguished]",
+    "evidence": "passage-facts PSA 22:3-10; passage-moods-model PSA 22:1-2",
+    "model": true
+   },
+   "verses": [
+    "22:1",
+    "22:2",
+    "22:3"
+   ],
+   "lines": [
+    {
+     "verse": "22:1",
+     "token": 0,
+     "text": "My God, my God,",
+     "quote": null,
+     "speaker": null,
+     "segment": 4,
+     "refrain": null,
+     "acrostic": null,
+     "selah": false
+    },
+    {
+     "verse": "22:1",
+     "token": 4,
+     "text": "why have You forsaken me?",
+     "quote": null,
+     "speaker": null,
+     "segment": 6,
+     "refrain": null,
+     "acrostic": null,
+     "selah": false
+    },
+    {
+     "verse": "22:1",
+     "token": 9,
+     "text": "Why are You so far from saving me, so far from my words of groaning?",
+     "quote": null,
+     "speaker": null,
+     "segment": 7,
+     "refrain": null,
+     "acrostic": null,
+     "selah": false
+    },
+    {
+     "verse": "22:2",
+     "token": 0,
+     "text": "I cry out by day,",
+     "quote": null,
+     "speaker": null,
+     "segment": 9,
+     "refrain": null,
+     "acrostic": null,
+     "selah": false
+    },
+    {
+     "verse": "22:2",
+     "token": 5,
+     "text": "O my God,",
+     "quote": null,
+     "speaker": null,
+     "segment": 8,
+     "refrain": null,
+     "acrostic": null,
+     "selah": false
+    },
+    {
+     "verse": "22:2",
+     "token": 8,
+     "text": "but You do not answer,",
+     "quote": null,
+     "speaker": null,
+     "segment": 10,
+     "refrain": null,
+     "acrostic": null,
+     "selah": false
+    },
+    {
+     "verse": "22:2",
+     "token": 13,
+     "text": "and by night,",
+     "quote": null,
+     "speaker": null,
+     "segment": 11,
+     "refrain": null,
+     "acrostic": null,
+     "selah": false
+    },
+    {
+     "verse": "22:2",
+     "token": 16,
+     "text": "but I have no rest.",
+     "quote": null,
+     "speaker": null,
+     "segment": 12,
+     "refrain": null,
+     "acrostic": null,
+     "selah": false
+    },
+    {
+     "verse": "22:3",
+     "token": 0,
+     "text": "Yet You are holy,",
+     "quote": null,
+     "speaker": null,
+     "segment": 13,
+     "refrain": null,
+     "acrostic": null,
+     "selah": false
+    },
+    {
+     "verse": "22:3",
+     "token": 4,
+     "text": "enthroned on the praises of Israel.",
+     "quote": null,
+     "speaker": null,
+     "segment": 14,
+     "refrain": null,
+     "acrostic": null,
+     "selah": false
+    }
+   ],
+   "starts": "start"
+  },
+  {
+   "label": "Verse 2",
+   "sung": true,
+   "mood": {
+    "family": "md.sane",
+    "head": "שָׂנֵא",
+    "tag": "[Mood: harsh, scornful]",
+    "evidence": "passage-moods-model PSA 22:3-10; passage-moods-model PSA 22:5-9",
+    "model": true
+   },
+   "verses": [
+    "22:4",
+    "22:5",
+    "22:6",
+    "22:7"
+   ],
+   "lines": [
+    {
+     "verse": "22:4",
+     "token": 0,
+     "text": "In You our fathers trusted;",
+     "quote": null,
+     "speaker": null,
+     "segment": 15,
+     "refrain": null,
+     "acrostic": null,
+     "selah": false
+    },
+    {
+     "verse": "22:4",
+     "token": 5,
+     "text": "they trusted and You delivered them.",
+     "quote": null,
+     "speaker": null,
+     "segment": 16,
+     "refrain": null,
+     "acrostic": null,
+     "selah": false
+    },
+    {
+     "verse": "22:5",
+     "token": 0,
+     "text": "They cried out to You",
+     "quote": null,
+     "speaker": null,
+     "segment": 18,
+     "refrain": null,
+     "acrostic": null,
+     "selah": false
+    },
+    {
+     "verse": "22:5",
+     "token": 5,
+     "text": "and were set free;",
+     "quote": null,
+     "speaker": null,
+     "segment": 19,
+     "refrain": null,
+     "acrostic": null,
+     "selah": false
+    },
+    {
+     "verse": "22:5",
+     "token": 9,
+     "text": "they trusted in You",
+     "quote": null,
+     "speaker": null,
+     "segment": 20,
+     "refrain": null,
+     "acrostic": null,
+     "selah": false
+    },
+    {
+     "verse": "22:5",
+     "token": 13,
+     "text": "and were not disappointed.",
+     "quote": null,
+     "speaker": null,
+     "segment": 21,
+     "refrain": null,
+     "acrostic": null,
+     "selah": false
+    },
+    {
+     "verse": "22:6",
+     "token": 0,
+     "text": "But I am a worm",
+     "quote": null,
+     "speaker": null,
+     "segment": 22,
+     "refrain": null,
+     "acrostic": null,
+     "selah": false
+    },
+    {
+     "verse": "22:6",
+     "token": 5,
+     "text": "and not a man,",
+     "quote": null,
+     "speaker": null,
+     "segment": 23,
+     "refrain": null,
+     "acrostic": null,
+     "selah": false
+    },
+    {
+     "verse": "22:6",
+     "token": 9,
+     "text": "scorned by men and despised by the people.",
+     "quote": null,
+     "speaker": null,
+     "segment": 24,
+     "refrain": null,
+     "acrostic": null,
+     "selah": false
+    },
+    {
+     "verse": "22:7",
+     "token": 0,
+     "text": "All who see me mock me;",
+     "quote": null,
+     "speaker": null,
+     "segment": 25,
+     "refrain": null,
+     "acrostic": null,
+     "selah": false
+    },
+    {
+     "verse": "22:7",
+     "token": 6,
+     "text": "they sneer and shake their heads:",
+     "quote": null,
+     "speaker": null,
+     "segment": 26,
+     "refrain": null,
+     "acrostic": null,
+     "selah": false
+    }
+   ],
+   "starts": "split"
+  },
+  {
+   "label": "Verse 3",
+   "sung": true,
+   "mood": {
+    "family": "md.batach",
+    "head": "בָּטַח",
+    "tag": "[Mood: confident, hopeful]",
+    "evidence": "passage-moods-model PSA 22:3-10; passage-moods-model PSA 22:5-9",
+    "model": true
+   },
+   "verses": [
+    "22:8",
+    "22:9",
+    "22:10"
+   ],
+   "lines": [
+    {
+     "verse": "22:8",
+     "token": 0,
+     "text": "“He trusts in the LORD,",
+     "quote": "q03122",
+     "speaker": {
+      "id": "c0560",
+      "label": "men",
+      "voice": "group"
+     },
+     "segment": 28,
+     "refrain": null,
+     "acrostic": null,
+     "selah": false
+    },
+    {
+     "verse": "22:8",
+     "token": 5,
+     "text": "let the LORD deliver him;",
+     "quote": "q03122",
+     "speaker": {
+      "id": "c0560",
+      "label": "men",
+      "voice": "group"
+     },
+     "segment": 29,
+     "refrain": null,
+     "acrostic": null,
+     "selah": false
+    },
+    {
+     "verse": "22:8",
+     "token": 10,
+     "text": "let the LORD rescue him,",
+     "quote": "q03122",
+     "speaker": {
+      "id": "c0560",
+      "label": "men",
+      "voice": "group"
+     },
+     "segment": 30,
+     "refrain": null,
+     "acrostic": null,
+     "selah": false
+    },
+    {
+     "verse": "22:8",
+     "token": 15,
+     "text": "since He delights in him.”",
+     "quote": "q03122",
+     "speaker": {
+      "id": "c0560",
+      "label": "men",
+      "voice": "group"
+     },
+     "segment": 31,
+     "refrain": null,
+     "acrostic": null,
+     "selah": false
+    },
+    {
+     "verse": "22:9",
+     "token": 0,
+     "text": "Yet You brought me forth from the womb;",
+     "quote": null,
+     "speaker": null,
+     "segment": 32,
+     "refrain": null,
+     "acrostic": null,
+     "selah": false
+    },
+    {
+     "verse": "22:9",
+     "token": 8,
+     "text": "You made me secure at my mother’s breast.",
+     "quote": null,
+     "speaker": null,
+     "segment": 34,
+     "refrain": null,
+     "acrostic": null,
+     "selah": false
+    },
+    {
+     "verse": "22:10",
+     "token": 0,
+     "text": "From birth I was cast upon You;",
+     "quote": null,
+     "speaker": null,
+     "segment": 35,
+     "refrain": null,
+     "acrostic": null,
+     "selah": false
+    },
+    {
+     "verse": "22:10",
+     "token": 7,
+     "text": "from my mother’s womb You have been my God.",
+     "quote": null,
+     "speaker": null,
+     "segment": 36,
+     "refrain": null,
+     "acrostic": null,
+     "selah": false
+    }
+   ],
+   "starts": "split"
+  },
+  {
+   "label": "Verse 4",
+   "sung": true,
+   "mood": {
+    "family": "md.yare",
+    "head": "יָרֵא",
+    "tag": "[Mood: fearful, in awe]",
+    "evidence": "passage-facts PSA 22:11-18",
+    "model": false
+   },
+   "verses": [
+    "22:11",
+    "22:12",
+    "22:13",
+    "22:14"
+   ],
+   "lines": [
+    {
+     "verse": "22:11",
+     "token": 0,
+     "text": "Be not far from me,",
+     "quote": null,
+     "speaker": null,
+     "segment": 37,
+     "refrain": null,
+     "acrostic": null,
+     "selah": false
+    },
+    {
+     "verse": "22:11",
+     "token": 5,
+     "text": "for trouble is near",
+     "quote": null,
+     "speaker": null,
+     "segment": 38,
+     "refrain": null,
+     "acrostic": null,
+     "selah": false
+    },
+    {
+     "verse": "22:11",
+     "token": 9,
+     "text": "and there is no one to help.",
+     "quote": null,
+     "speaker": null,
+     "segment": 39,
+     "refrain": null,
+     "acrostic": null,
+     "selah": false
+    },
+    {
+     "verse": "22:12",
+     "token": 0,
+     "text": "Many bulls surround me;",
+     "quote": null,
+     "speaker": null,
+     "segment": 40,
+     "refrain": null,
+     "acrostic": null,
+     "selah": false
+    },
+    {
+     "verse": "22:12",
+     "token": 4,
+     "text": "strong bulls of Bashan encircle me.",
+     "quote": null,
+     "speaker": null,
+     "segment": 41,
+     "refrain": null,
+     "acrostic": null,
+     "selah": false
+    },
+    {
+     "verse": "22:13",
+     "token": 0,
+     "text": "They open their jaws against me",
+     "quote": null,
+     "speaker": null,
+     "segment": 42,
+     "refrain": null,
+     "acrostic": null,
+     "selah": false
+    },
+    {
+     "verse": "22:13",
+     "token": 6,
+     "text": "like lions that roar and maul.",
+     "quote": null,
+     "speaker": null,
+     "segment": 43,
+     "refrain": null,
+     "acrostic": null,
+     "selah": false
+    },
+    {
+     "verse": "22:14",
+     "token": 0,
+     "text": "I am poured out like water,",
+     "quote": null,
+     "speaker": null,
+     "segment": 44,
+     "refrain": null,
+     "acrostic": null,
+     "selah": false
+    },
+    {
+     "verse": "22:14",
+     "token": 6,
+     "text": "and all my bones are disjointed.",
+     "quote": null,
+     "speaker": null,
+     "segment": 45,
+     "refrain": null,
+     "acrostic": null,
+     "selah": false
+    },
+    {
+     "verse": "22:14",
+     "token": 12,
+     "text": "My heart is like wax;",
+     "quote": null,
+     "speaker": null,
+     "segment": 46,
+     "refrain": null,
+     "acrostic": null,
+     "selah": false
+    },
+    {
+     "verse": "22:14",
+     "token": 17,
+     "text": "it melts away within me.",
+     "quote": null,
+     "speaker": null,
+     "segment": 47,
+     "refrain": null,
+     "acrostic": null,
+     "selah": false
+    }
+   ],
+   "starts": "split"
+  },
+  {
+   "label": "Verse 5",
+   "sung": true,
+   "mood": {
+    "family": "md.yare",
+    "head": "יָרֵא",
+    "tag": "[Mood: fearful, in awe]",
+    "evidence": "passage-facts PSA 22:11-18",
+    "model": false
+   },
+   "verses": [
+    "22:15",
+    "22:16",
+    "22:17",
+    "22:18"
+   ],
+   "lines": [
+    {
+     "verse": "22:15",
+     "token": 0,
+     "text": "My strength is dried up like a potsherd,",
+     "quote": null,
+     "speaker": null,
+     "segment": 48,
+     "refrain": null,
+     "acrostic": null,
+     "selah": false
+    },
+    {
+     "verse": "22:15",
+     "token": 8,
+     "text": "and my tongue",
+     "quote": null,
+     "speaker": null,
+     "segment": 49,
+     "refrain": null,
+     "acrostic": null,
+     "selah": false
+    },
+    {
+     "verse": "22:15",
+     "token": 11,
+     "text": "sticks to the roof of my mouth.",
+     "quote": null,
+     "speaker": null,
+     "segment": 49,
+     "refrain": null,
+     "acrostic": null,
+     "selah": false
+    },
+    {
+     "verse": "22:15",
+     "token": 18,
+     "text": "You lay me in the dust of death.",
+     "quote": null,
+     "speaker": null,
+     "segment": 50,
+     "refrain": null,
+     "acrostic": null,
+     "selah": false
+    },
+    {
+     "verse": "22:16",
+     "token": 0,
+     "text": "For dogs surround me;",
+     "quote": null,
+     "speaker": null,
+     "segment": 51,
+     "refrain": null,
+     "acrostic": null,
+     "selah": false
+    },
+    {
+     "verse": "22:16",
+     "token": 4,
+     "text": "a band of evil men encircles me;",
+     "quote": null,
+     "speaker": null,
+     "segment": 52,
+     "refrain": null,
+     "acrostic": null,
+     "selah": false
+    },
+    {
+     "verse": "22:16",
+     "token": 11,
+     "text": "they have pierced my hands and feet.",
+     "quote": null,
+     "speaker": null,
+     "segment": 53,
+     "refrain": null,
+     "acrostic": null,
+     "selah": false
+    },
+    {
+     "verse": "22:17",
+     "token": 0,
+     "text": "I can count all my bones;",
+     "quote": null,
+     "speaker": null,
+     "segment": 54,
+     "refrain": null,
+     "acrostic": null,
+     "selah": false
+    },
+    {
+     "verse": "22:17",
+     "token": 6,
+     "text": "they stare and gloat over me.",
+     "quote": null,
+     "speaker": null,
+     "segment": 55,
+     "refrain": null,
+     "acrostic": null,
+     "selah": false
+    },
+    {
+     "verse": "22:18",
+     "token": 0,
+     "text": "They divide my garments among them",
+     "quote": null,
+     "speaker": null,
+     "segment": 57,
+     "refrain": null,
+     "acrostic": null,
+     "selah": false
+    },
+    {
+     "verse": "22:18",
+     "token": 6,
+     "text": "and cast lots for my clothing.",
+     "quote": null,
+     "speaker": null,
+     "segment": 58,
+     "refrain": null,
+     "acrostic": null,
+     "selah": false
+    }
+   ],
+   "starts": "split"
+  },
+  {
+   "label": "Verse 6",
+   "sung": true,
+   "mood": {
+    "family": "md.tsarah",
+    "head": "צָרָה",
+    "tag": "[Mood: anguished]",
+    "evidence": "passage-moods-model PSA 22:19-20; passage-moods-model PSA 22:21",
+    "model": true
+   },
+   "verses": [
+    "22:19",
+    "22:20",
+    "22:21",
+    "22:22"
+   ],
+   "lines": [
+    {
+     "verse": "22:19",
+     "token": 0,
+     "text": "But You, O LORD,",
+     "quote": null,
+     "speaker": null,
+     "segment": 59,
+     "refrain": null,
+     "acrostic": null,
+     "selah": false
+    },
+    {
+     "verse": "22:19",
+     "token": 4,
+     "text": "be not far off;",
+     "quote": null,
+     "speaker": null,
+     "segment": 61,
+     "refrain": null,
+     "acrostic": null,
+     "selah": false
+    },
+    {
+     "verse": "22:19",
+     "token": 8,
+     "text": "O my Strength,",
+     "quote": null,
+     "speaker": null,
+     "segment": 62,
+     "refrain": null,
+     "acrostic": null,
+     "selah": false
+    },
+    {
+     "verse": "22:19",
+     "token": 11,
+     "text": "come quickly to help me.",
+     "quote": null,
+     "speaker": null,
+     "segment": 63,
+     "refrain": null,
+     "acrostic": null,
+     "selah": false
+    },
+    {
+     "verse": "22:20",
+     "token": 0,
+     "text": "Deliver my soul from the sword,",
+     "quote": null,
+     "speaker": null,
+     "segment": 64,
+     "refrain": null,
+     "acrostic": null,
+     "selah": false
+    },
+    {
+     "verse": "22:20",
+     "token": 6,
+     "text": "my precious life from the power of wild dogs.",
+     "quote": null,
+     "speaker": null,
+     "segment": 65,
+     "refrain": null,
+     "acrostic": null,
+     "selah": false
+    },
+    {
+     "verse": "22:21",
+     "token": 0,
+     "text": "Save me from the mouth of the lion;",
+     "quote": null,
+     "speaker": null,
+     "segment": 66,
+     "refrain": null,
+     "acrostic": null,
+     "selah": false
+    },
+    {
+     "verse": "22:21",
+     "token": 8,
+     "text": "at the horns of the wild oxen You have answered me!",
+     "quote": null,
+     "speaker": null,
+     "segment": 67,
+     "refrain": null,
+     "acrostic": null,
+     "selah": false
+    },
+    {
+     "verse": "22:22",
+     "token": 0,
+     "text": "I will proclaim Your name to my brothers;",
+     "quote": null,
+     "speaker": null,
+     "segment": 68,
+     "refrain": null,
+     "acrostic": null,
+     "selah": false
+    },
+    {
+     "verse": "22:22",
+     "token": 8,
+     "text": "I will praise You in the assembly.",
+     "quote": null,
+     "speaker": null,
+     "segment": 69,
+     "refrain": null,
+     "acrostic": null,
+     "selah": false
+    }
+   ],
+   "starts": "split"
+  },
+  {
+   "label": "Verse 7",
+   "sung": true,
+   "mood": {
+    "family": "md.samach",
+    "head": "שָׂמַח",
+    "tag": "[Mood: joyful]",
+    "evidence": "passage-facts PSA 22:22-26",
+    "model": false
+   },
+   "verses": [
+    "22:23",
+    "22:24",
+    "22:25"
+   ],
+   "lines": [
+    {
+     "verse": "22:23",
+     "token": 0,
+     "text": "You who fear the LORD,",
+     "quote": null,
+     "speaker": null,
+     "segment": 70,
+     "refrain": null,
+     "acrostic": null,
+     "selah": false
+    },
+    {
+     "verse": "22:23",
+     "token": 5,
+     "text": "praise Him! All descendants of Jacob,",
+     "quote": null,
+     "speaker": null,
+     "segment": 71,
+     "refrain": null,
+     "acrostic": null,
+     "selah": false
+    },
+    {
+     "verse": "22:23",
+     "token": 11,
+     "text": "honor Him! All offspring of Israel, revere Him!",
+     "quote": null,
+     "speaker": null,
+     "segment": 73,
+     "refrain": null,
+     "acrostic": null,
+     "selah": false
+    },
+    {
+     "verse": "22:24",
+     "token": 0,
+     "text": "For He has not despised",
+     "quote": null,
+     "speaker": null,
+     "segment": 76,
+     "refrain": null,
+     "acrostic": null,
+     "selah": false
+    },
+    {
+     "verse": "22:24",
+     "token": 5,
+     "text": "or detested the torment of the afflicted.",
+     "quote": null,
+     "speaker": null,
+     "segment": 77,
+     "refrain": null,
+     "acrostic": null,
+     "selah": false
+    },
+    {
+     "verse": "22:24",
+     "token": 12,
+     "text": "He has not hidden His face from him,",
+     "quote": null,
+     "speaker": null,
+     "segment": 78,
+     "refrain": null,
+     "acrostic": null,
+     "selah": false
+    },
+    {
+     "verse": "22:24",
+     "token": 20,
+     "text": "but has attended",
+     "quote": null,
+     "speaker": null,
+     "segment": 80,
+     "refrain": null,
+     "acrostic": null,
+     "selah": false
+    },
+    {
+     "verse": "22:24",
+     "token": 23,
+     "text": "to his cry for help.",
+     "quote": null,
+     "speaker": null,
+     "segment": 79,
+     "refrain": null,
+     "acrostic": null,
+     "selah": false
+    },
+    {
+     "verse": "22:25",
+     "token": 0,
+     "text": "My praise for You resounds",
+     "quote": null,
+     "speaker": null,
+     "segment": 81,
+     "refrain": null,
+     "acrostic": null,
+     "selah": false
+    },
+    {
+     "verse": "22:25",
+     "token": 5,
+     "text": "in the great assembly;",
+     "quote": null,
+     "speaker": null,
+     "segment": 81,
+     "refrain": null,
+     "acrostic": null,
+     "selah": false
+    },
+    {
+     "verse": "22:25",
+     "token": 9,
+     "text": "I will fulfill my vows",
+     "quote": null,
+     "speaker": null,
+     "segment": 82,
+     "refrain": null,
+     "acrostic": null,
+     "selah": false
+    },
+    {
+     "verse": "22:25",
+     "token": 14,
+     "text": "before those who fear You.",
+     "quote": null,
+     "speaker": null,
+     "segment": 82,
+     "refrain": null,
+     "acrostic": null,
+     "selah": false
+    }
+   ],
+   "starts": "split"
+  },
+  {
+   "label": "Verse 8",
+   "sung": true,
+   "mood": {
+    "family": "md.samach",
+    "head": "שָׂמַח",
+    "tag": "[Mood: joyful]",
+    "evidence": "passage-facts PSA 22:22-26; passage-moods-model PSA 22:27-31",
+    "model": true
+   },
+   "verses": [
+    "22:26",
+    "22:27"
+   ],
+   "lines": [
+    {
+     "verse": "22:26",
+     "token": 0,
+     "text": "The poor will eat",
+     "quote": null,
+     "speaker": null,
+     "segment": 83,
+     "refrain": null,
+     "acrostic": null,
+     "selah": false
+    },
+    {
+     "verse": "22:26",
+     "token": 4,
+     "text": "and be satisfied;",
+     "quote": null,
+     "speaker": null,
+     "segment": 84,
+     "refrain": null,
+     "acrostic": null,
+     "selah": false
+    },
+    {
+     "verse": "22:26",
+     "token": 7,
+     "text": "those who seek",
+     "quote": null,
+     "speaker": null,
+     "segment": 85,
+     "refrain": null,
+     "acrostic": null,
+     "selah": false
+    },
+    {
+     "verse": "22:26",
+     "token": 10,
+     "text": "the LORD will praise Him.",
+     "quote": null,
+     "speaker": null,
+     "segment": 85,
+     "refrain": null,
+     "acrostic": null,
+     "selah": false
+    },
+    {
+     "verse": "22:26",
+     "token": 15,
+     "text": "May your hearts live forever!",
+     "quote": null,
+     "speaker": null,
+     "segment": 86,
+     "refrain": null,
+     "acrostic": null,
+     "selah": false
+    },
+    {
+     "verse": "22:27",
+     "token": 0,
+     "text": "All the ends of the earth",
+     "quote": null,
+     "speaker": null,
+     "segment": 88,
+     "refrain": null,
+     "acrostic": null,
+     "selah": false
+    },
+    {
+     "verse": "22:27",
+     "token": 6,
+     "text": "will remember and turn to the LORD.",
+     "quote": null,
+     "speaker": null,
+     "segment": 87,
+     "refrain": null,
+     "acrostic": null,
+     "selah": false
+    },
+    {
+     "verse": "22:27",
+     "token": 13,
+     "text": "All the families of the nations",
+     "quote": null,
+     "speaker": null,
+     "segment": 89,
+     "refrain": null,
+     "acrostic": null,
+     "selah": false
+    },
+    {
+     "verse": "22:27",
+     "token": 19,
+     "text": "will bow down before Him.",
+     "quote": null,
+     "speaker": null,
+     "segment": 89,
+     "refrain": null,
+     "acrostic": null,
+     "selah": false
+    }
+   ],
+   "starts": "split"
+  },
+  {
+   "label": "Verse 9",
+   "sung": true,
+   "mood": {
+    "family": "md.yare",
+    "head": "יָרֵא",
+    "tag": "[Mood: fearful, in awe]",
+    "evidence": "passage-moods-model PSA 22:27-31",
+    "model": true
+   },
+   "verses": [
+    "22:28",
+    "22:29",
+    "22:30",
+    "22:31"
+   ],
+   "lines": [
+    {
+     "verse": "22:28",
+     "token": 0,
+     "text": "For dominion belongs to the LORD",
+     "quote": null,
+     "speaker": null,
+     "segment": 90,
+     "refrain": null,
+     "acrostic": null,
+     "selah": false
+    },
+    {
+     "verse": "22:28",
+     "token": 6,
+     "text": "and He rules over the nations.",
+     "quote": null,
+     "speaker": null,
+     "segment": 91,
+     "refrain": null,
+     "acrostic": null,
+     "selah": false
+    },
+    {
+     "verse": "22:29",
+     "token": 0,
+     "text": "All the rich of the earth will feast and worship;",
+     "quote": null,
+     "speaker": null,
+     "segment": 92,
+     "refrain": null,
+     "acrostic": null,
+     "selah": false
+    },
+    {
+     "verse": "22:29",
+     "token": 10,
+     "text": "all who go down to the dust will kneel before Him—",
+     "quote": null,
+     "speaker": null,
+     "segment": 93,
+     "refrain": null,
+     "acrostic": null,
+     "selah": false
+    },
+    {
+     "verse": "22:29",
+     "token": 21,
+     "text": "even those unable to preserve their lives.",
+     "quote": null,
+     "speaker": null,
+     "segment": 94,
+     "refrain": null,
+     "acrostic": null,
+     "selah": false
+    },
+    {
+     "verse": "22:30",
+     "token": 0,
+     "text": "Posterity will serve Him;",
+     "quote": null,
+     "speaker": null,
+     "segment": 95,
+     "refrain": null,
+     "acrostic": null,
+     "selah": false
+    },
+    {
+     "verse": "22:30",
+     "token": 4,
+     "text": "they will declare the Lord to a new generation.",
+     "quote": null,
+     "speaker": null,
+     "segment": 96,
+     "refrain": null,
+     "acrostic": null,
+     "selah": false
+    },
+    {
+     "verse": "22:31",
+     "token": 0,
+     "text": "They will come",
+     "quote": null,
+     "speaker": null,
+     "segment": 97,
+     "refrain": null,
+     "acrostic": null,
+     "selah": false
+    },
+    {
+     "verse": "22:31",
+     "token": 3,
+     "text": "and proclaim His righteousness",
+     "quote": null,
+     "speaker": null,
+     "segment": 98,
+     "refrain": null,
+     "acrostic": null,
+     "selah": false
+    },
+    {
+     "verse": "22:31",
+     "token": 7,
+     "text": "to a people yet unborn —",
+     "quote": null,
+     "speaker": null,
+     "segment": 98,
+     "refrain": null,
+     "acrostic": null,
+     "selah": false
+    },
+    {
+     "verse": "22:31",
+     "token": 12,
+     "text": "all that He has done.",
+     "quote": null,
+     "speaker": null,
+     "segment": 99,
+     "refrain": null,
+     "acrostic": null,
+     "selah": false
+    }
+   ],
+   "starts": "split"
+  }
+ ]
+}

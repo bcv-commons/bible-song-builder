@@ -1,0 +1,1714 @@
+{
+ "book": "EXO",
+ "chapter": 15,
+ "edition": "BSB",
+ "setting": "song",
+ "profile": {
+  "name": "folk",
+  "lead": "male",
+  "persona": null,
+  "style": "acoustic folk ballad, 90 BPM, fingerpicked guitar, soft strings, storytelling, earnest",
+  "tags": {
+   "narrator": "[Lead Vocal]",
+   "female": "[Female Vocal]",
+   "male": "[Male Vocal]",
+   "group": "[Choir]",
+   "female_group": "[Female Choir]",
+   "divine": "[Deep Male Vocal]",
+   "refrain": "[Choir]"
+  }
+ },
+ "style": "acoustic folk ballad, 90 BPM, fingerpicked guitar, soft strings, storytelling, earnest, triumphant, anthemic, full choir",
+ "own_style": true,
+ "mood": {
+  "mood": "song",
+  "basis": "song",
+  "evidence": "Masoretic song layout over 19 of 27 verses; speech delivered as praise over 27 of 27 verses",
+  "instruments": []
+ },
+ "text_fingerprint": "38a5c52ab47ca485bcc76e50d9a9b505d1f8e08f7b4fde6e4c2796098fcc80e4",
+ "superscription": null,
+ "alignment": {
+  "kind": "full",
+  "layer": "eng_BSB+manual+bsb-tables",
+  "file": "e/eng/eng_BSB+manual+bsb-tables/EXO_02137cc2.json"
+ },
+ "pins": {
+  "hebrew-clause-lines": {
+   "repo": "bcv-commons/hebrew-clause-lines",
+   "tag": "v0.2",
+   "revision": "83a96640ea45aa410c7cfbca62d2fc84b76f19be",
+   "licence": "CC BY-SA 4.0"
+  },
+  "greek-nt-clause-lines": {
+   "repo": "bcv-commons/greek-nt-clause-lines",
+   "tag": "v0.2",
+   "revision": "6c76d7b2b95782ad8e250f53a4fcf5b54fe8385b",
+   "licence": "CC BY-SA 4.0"
+  },
+  "clause-connectives": {
+   "repo": "bcv-commons/clause-connectives",
+   "tag": "v0.1",
+   "revision": "c26a84be0262b9fd9470fc8b4bca766d1e8bf4ab",
+   "licence": "CC BY-SA 4.0"
+  },
+  "clause-columns": {
+   "repo": "bcv-commons/clause-columns",
+   "tag": "v1.2",
+   "revision": "32beff0b50e54dfde2d5d10d19ea5a0d8cc80e94",
+   "licence": "CC BY-SA 4.0"
+  },
+  "passage-facts": {
+   "repo": "bcv-commons/passage-facts",
+   "tag": "v0.3.3",
+   "revision": "7e147a06b0cccf0b6e544912834a8da8f6d8ffbc",
+   "licence": "CC BY-SA 4.0"
+  },
+  "full-alignments-manual": {
+   "repo": "bcv-commons/full-alignments-manual",
+   "tag": "v1.1",
+   "revision": "b305c7b49e02ab911f264c8e6537f115b0f930ca",
+   "licence": "CC BY 4.0 (BSB tables layer: CC0)"
+  },
+  "compact-alignments": {
+   "repo": "bcv-commons/compact-alignments",
+   "tag": null,
+   "revision": "115830822e155b5cce71f902481aa9092fa9670e",
+   "licence": "CC0 1.0"
+  },
+  "compact-alignments-meta": {
+   "repo": "bcv-commons/compact-alignments-meta",
+   "tag": null,
+   "revision": "96d0a2295d1729c589ac6df67b56d0e88e4defe8",
+   "licence": "CC0 1.0",
+   "_use": "_fingerprints.txt: the aligned text's chapter fingerprints"
+  },
+  "passage-moods-model": {
+   "repo": "bcv-commons/passage-moods-model",
+   "tag": "v0.1",
+   "revision": "db4ad9173bee9371a983aa105fa1f647e9a6d24a",
+   "licence": "CC BY-SA 4.0 (model output, claude-opus-5-5, no human check)"
+  },
+  "hebrew-commentary-terms": {
+   "repo": "bcv-commons/hebrew-commentary-terms",
+   "tag": "v0.1",
+   "revision": "797e20cd29c97abaeceb7ba6bbd47272153ddc21",
+   "licence": "CC BY-SA 4.0"
+  },
+  "hebrew-commentary-terms-model": {
+   "repo": "bcv-commons/hebrew-commentary-terms-model",
+   "tag": "v0.1",
+   "revision": "965909b57f77b1001a6f3bf34c25231a93c63b3d",
+   "licence": "CC BY-SA 4.0 (model output, claude-opus-5-5, no human check)"
+  }
+ },
+ "bible-song-builder": "0.1.0",
+ "sections": [
+  {
+   "label": "Verse 1",
+   "sung": true,
+   "mood": null,
+   "verses": [
+    "15:1"
+   ],
+   "lines": [
+    {
+     "verse": "15:1",
+     "token": 0,
+     "text": "Then Moses and the Israelites sang this song to the LORD:",
+     "quote": null,
+     "speaker": null,
+     "segment": 1,
+     "refrain": null,
+     "acrostic": null,
+     "selah": false
+    },
+    {
+     "verse": "15:1",
+     "token": 11,
+     "text": "“I will sing to the LORD,",
+     "quote": "q00629",
+     "speaker": {
+      "id": "c0794",
+      "label": "Moses and the Israelites",
+      "voice": "group"
+     },
+     "segment": 4,
+     "refrain": null,
+     "acrostic": null,
+     "selah": false
+    }
+   ],
+   "starts": "start"
+  },
+  {
+   "label": "Chorus",
+   "sung": true,
+   "mood": null,
+   "verses": [
+    "15:1"
+   ],
+   "lines": [
+    {
+     "verse": "15:1",
+     "token": 17,
+     "text": "for He is highly exalted.",
+     "quote": "q00629",
+     "speaker": {
+      "id": "c0794",
+      "label": "Moses and the Israelites",
+      "voice": "group"
+     },
+     "segment": 5,
+     "refrain": "EXO.02068#1",
+     "acrostic": null,
+     "selah": false
+    },
+    {
+     "verse": "15:1",
+     "token": 22,
+     "text": "The horse and rider He has thrown into the sea.",
+     "quote": "q00629",
+     "speaker": {
+      "id": "c0794",
+      "label": "Moses and the Israelites",
+      "voice": "group"
+     },
+     "segment": 6,
+     "refrain": "EXO.02068#1",
+     "acrostic": null,
+     "selah": false
+    }
+   ],
+   "starts": "midverse"
+  },
+  {
+   "label": "Verse 2",
+   "sung": true,
+   "mood": null,
+   "verses": [
+    "15:2",
+    "15:3"
+   ],
+   "lines": [
+    {
+     "verse": "15:2",
+     "token": 0,
+     "text": "The LORD is my strength and my song,",
+     "quote": "q00629",
+     "speaker": {
+      "id": "c0794",
+      "label": "Moses and the Israelites",
+      "voice": "group"
+     },
+     "segment": 7,
+     "refrain": null,
+     "acrostic": null,
+     "selah": false
+    },
+    {
+     "verse": "15:2",
+     "token": 8,
+     "text": "and He has become my salvation.",
+     "quote": "q00629",
+     "speaker": {
+      "id": "c0794",
+      "label": "Moses and the Israelites",
+      "voice": "group"
+     },
+     "segment": 8,
+     "refrain": null,
+     "acrostic": null,
+     "selah": false
+    },
+    {
+     "verse": "15:2",
+     "token": 14,
+     "text": "He is my God,",
+     "quote": "q00629",
+     "speaker": {
+      "id": "c0794",
+      "label": "Moses and the Israelites",
+      "voice": "group"
+     },
+     "segment": 9,
+     "refrain": null,
+     "acrostic": null,
+     "selah": false
+    },
+    {
+     "verse": "15:2",
+     "token": 18,
+     "text": "and I will praise Him,",
+     "quote": "q00629",
+     "speaker": {
+      "id": "c0794",
+      "label": "Moses and the Israelites",
+      "voice": "group"
+     },
+     "segment": 10,
+     "refrain": null,
+     "acrostic": null,
+     "selah": false
+    },
+    {
+     "verse": "15:2",
+     "token": 23,
+     "text": "my father’s God,",
+     "quote": "q00629",
+     "speaker": {
+      "id": "c0794",
+      "label": "Moses and the Israelites",
+      "voice": "group"
+     },
+     "segment": 10,
+     "refrain": null,
+     "acrostic": null,
+     "selah": false
+    },
+    {
+     "verse": "15:2",
+     "token": 27,
+     "text": "and I will exalt Him.",
+     "quote": "q00629",
+     "speaker": {
+      "id": "c0794",
+      "label": "Moses and the Israelites",
+      "voice": "group"
+     },
+     "segment": 11,
+     "refrain": null,
+     "acrostic": null,
+     "selah": false
+    },
+    {
+     "verse": "15:3",
+     "token": 0,
+     "text": "The LORD is a warrior,",
+     "quote": "q00629",
+     "speaker": {
+      "id": "c0794",
+      "label": "Moses and the Israelites",
+      "voice": "group"
+     },
+     "segment": 12,
+     "refrain": null,
+     "acrostic": null,
+     "selah": false
+    },
+    {
+     "verse": "15:3",
+     "token": 5,
+     "text": "the LORD is His name.",
+     "quote": "q00629",
+     "speaker": {
+      "id": "c0794",
+      "label": "Moses and the Israelites",
+      "voice": "group"
+     },
+     "segment": 13,
+     "refrain": null,
+     "acrostic": null,
+     "selah": false
+    }
+   ],
+   "starts": "chorus"
+  },
+  {
+   "label": "Verse 3",
+   "sung": true,
+   "mood": null,
+   "verses": [
+    "15:4",
+    "15:5",
+    "15:6",
+    "15:7"
+   ],
+   "lines": [
+    {
+     "verse": "15:4",
+     "token": 0,
+     "text": "Pharaoh’s chariots and army He has cast into the sea;",
+     "quote": "q00629",
+     "speaker": {
+      "id": "c0794",
+      "label": "Moses and the Israelites",
+      "voice": "group"
+     },
+     "segment": 14,
+     "refrain": null,
+     "acrostic": null,
+     "selah": false
+    },
+    {
+     "verse": "15:4",
+     "token": 11,
+     "text": "the finest of his officers are drowned in the Red Sea.",
+     "quote": "q00629",
+     "speaker": {
+      "id": "c0794",
+      "label": "Moses and the Israelites",
+      "voice": "group"
+     },
+     "segment": 15,
+     "refrain": null,
+     "acrostic": null,
+     "selah": false
+    },
+    {
+     "verse": "15:5",
+     "token": 0,
+     "text": "The depths have covered them;",
+     "quote": "q00629",
+     "speaker": {
+      "id": "c0794",
+      "label": "Moses and the Israelites",
+      "voice": "group"
+     },
+     "segment": 16,
+     "refrain": null,
+     "acrostic": null,
+     "selah": false
+    },
+    {
+     "verse": "15:5",
+     "token": 5,
+     "text": "they sank there like a stone.",
+     "quote": "q00629",
+     "speaker": {
+      "id": "c0794",
+      "label": "Moses and the Israelites",
+      "voice": "group"
+     },
+     "segment": 17,
+     "refrain": null,
+     "acrostic": null,
+     "selah": false
+    },
+    {
+     "verse": "15:6",
+     "token": 0,
+     "text": "Your right hand,",
+     "quote": "q00629",
+     "speaker": {
+      "id": "c0794",
+      "label": "Moses and the Israelites",
+      "voice": "group"
+     },
+     "segment": 18,
+     "refrain": null,
+     "acrostic": null,
+     "selah": false
+    },
+    {
+     "verse": "15:6",
+     "token": 3,
+     "text": "O LORD, is majestic in power;",
+     "quote": "q00629",
+     "speaker": {
+      "id": "c0794",
+      "label": "Moses and the Israelites",
+      "voice": "group"
+     },
+     "segment": 19,
+     "refrain": null,
+     "acrostic": null,
+     "selah": false
+    },
+    {
+     "verse": "15:6",
+     "token": 9,
+     "text": "Your right hand,",
+     "quote": "q00629",
+     "speaker": {
+      "id": "c0794",
+      "label": "Moses and the Israelites",
+      "voice": "group"
+     },
+     "segment": 21,
+     "refrain": null,
+     "acrostic": null,
+     "selah": false
+    },
+    {
+     "verse": "15:6",
+     "token": 12,
+     "text": "O LORD, has shattered the enemy.",
+     "quote": "q00629",
+     "speaker": {
+      "id": "c0794",
+      "label": "Moses and the Israelites",
+      "voice": "group"
+     },
+     "segment": 22,
+     "refrain": null,
+     "acrostic": null,
+     "selah": false
+    },
+    {
+     "verse": "15:7",
+     "token": 0,
+     "text": "You overthrew Your adversaries by Your great majesty.",
+     "quote": "q00629",
+     "speaker": {
+      "id": "c0794",
+      "label": "Moses and the Israelites",
+      "voice": "group"
+     },
+     "segment": 24,
+     "refrain": null,
+     "acrostic": null,
+     "selah": false
+    },
+    {
+     "verse": "15:7",
+     "token": 8,
+     "text": "You unleashed Your burning wrath;",
+     "quote": "q00629",
+     "speaker": {
+      "id": "c0794",
+      "label": "Moses and the Israelites",
+      "voice": "group"
+     },
+     "segment": 25,
+     "refrain": null,
+     "acrostic": null,
+     "selah": false
+    },
+    {
+     "verse": "15:7",
+     "token": 13,
+     "text": "it consumed them like stubble.",
+     "quote": "q00629",
+     "speaker": {
+      "id": "c0794",
+      "label": "Moses and the Israelites",
+      "voice": "group"
+     },
+     "segment": 26,
+     "refrain": null,
+     "acrostic": null,
+     "selah": false
+    }
+   ],
+   "starts": "split"
+  },
+  {
+   "label": "Verse 4",
+   "sung": true,
+   "mood": null,
+   "verses": [
+    "15:8",
+    "15:9"
+   ],
+   "lines": [
+    {
+     "verse": "15:8",
+     "token": 0,
+     "text": "At the blast of Your nostrils the waters piled up;",
+     "quote": "q00629",
+     "speaker": {
+      "id": "c0794",
+      "label": "Moses and the Israelites",
+      "voice": "group"
+     },
+     "segment": 27,
+     "refrain": null,
+     "acrostic": null,
+     "selah": false
+    },
+    {
+     "verse": "15:8",
+     "token": 10,
+     "text": "like a wall the currents stood firm;",
+     "quote": "q00629",
+     "speaker": {
+      "id": "c0794",
+      "label": "Moses and the Israelites",
+      "voice": "group"
+     },
+     "segment": 28,
+     "refrain": null,
+     "acrostic": null,
+     "selah": false
+    },
+    {
+     "verse": "15:8",
+     "token": 17,
+     "text": "the depths congealed in the heart of the sea.",
+     "quote": "q00629",
+     "speaker": {
+      "id": "c0794",
+      "label": "Moses and the Israelites",
+      "voice": "group"
+     },
+     "segment": 29,
+     "refrain": null,
+     "acrostic": null,
+     "selah": false
+    },
+    {
+     "verse": "15:9",
+     "token": 0,
+     "text": "The enemy declared,",
+     "quote": "q00629",
+     "speaker": {
+      "id": "c0794",
+      "label": "Moses and the Israelites",
+      "voice": "group"
+     },
+     "segment": 30,
+     "refrain": null,
+     "acrostic": null,
+     "selah": false
+    },
+    {
+     "verse": "15:9",
+     "token": 3,
+     "text": "‘I will pursue,",
+     "quote": "q00629",
+     "speaker": {
+      "id": "c0794",
+      "label": "Moses and the Israelites",
+      "voice": "group"
+     },
+     "segment": 31,
+     "refrain": null,
+     "acrostic": null,
+     "selah": false
+    },
+    {
+     "verse": "15:9",
+     "token": 6,
+     "text": "I will overtake.",
+     "quote": "q00629",
+     "speaker": {
+      "id": "c0794",
+      "label": "Moses and the Israelites",
+      "voice": "group"
+     },
+     "segment": 32,
+     "refrain": null,
+     "acrostic": null,
+     "selah": false
+    },
+    {
+     "verse": "15:9",
+     "token": 9,
+     "text": "I will divide the spoils;",
+     "quote": "q00629",
+     "speaker": {
+      "id": "c0794",
+      "label": "Moses and the Israelites",
+      "voice": "group"
+     },
+     "segment": 33,
+     "refrain": null,
+     "acrostic": null,
+     "selah": false
+    },
+    {
+     "verse": "15:9",
+     "token": 14,
+     "text": "I will gorge myself on them.",
+     "quote": "q00629",
+     "speaker": {
+      "id": "c0794",
+      "label": "Moses and the Israelites",
+      "voice": "group"
+     },
+     "segment": 34,
+     "refrain": null,
+     "acrostic": null,
+     "selah": false
+    },
+    {
+     "verse": "15:9",
+     "token": 20,
+     "text": "I will draw my sword;",
+     "quote": "q00629",
+     "speaker": {
+      "id": "c0794",
+      "label": "Moses and the Israelites",
+      "voice": "group"
+     },
+     "segment": 35,
+     "refrain": null,
+     "acrostic": null,
+     "selah": false
+    },
+    {
+     "verse": "15:9",
+     "token": 25,
+     "text": "my hand will destroy them.’",
+     "quote": "q00629",
+     "speaker": {
+      "id": "c0794",
+      "label": "Moses and the Israelites",
+      "voice": "group"
+     },
+     "segment": 36,
+     "refrain": null,
+     "acrostic": null,
+     "selah": false
+    }
+   ],
+   "starts": "split"
+  },
+  {
+   "label": "Verse 5",
+   "sung": true,
+   "mood": null,
+   "verses": [
+    "15:10",
+    "15:11",
+    "15:12",
+    "15:13"
+   ],
+   "lines": [
+    {
+     "verse": "15:10",
+     "token": 0,
+     "text": "But You blew with Your breath,",
+     "quote": "q00629",
+     "speaker": {
+      "id": "c0794",
+      "label": "Moses and the Israelites",
+      "voice": "group"
+     },
+     "segment": 37,
+     "refrain": null,
+     "acrostic": null,
+     "selah": false
+    },
+    {
+     "verse": "15:10",
+     "token": 6,
+     "text": "and the sea covered them.",
+     "quote": "q00629",
+     "speaker": {
+      "id": "c0794",
+      "label": "Moses and the Israelites",
+      "voice": "group"
+     },
+     "segment": 38,
+     "refrain": null,
+     "acrostic": null,
+     "selah": false
+    },
+    {
+     "verse": "15:10",
+     "token": 11,
+     "text": "They sank like lead in the mighty waters.",
+     "quote": "q00629",
+     "speaker": {
+      "id": "c0794",
+      "label": "Moses and the Israelites",
+      "voice": "group"
+     },
+     "segment": 39,
+     "refrain": null,
+     "acrostic": null,
+     "selah": false
+    },
+    {
+     "verse": "15:11",
+     "token": 0,
+     "text": "Who among the gods is like You,",
+     "quote": "q00629",
+     "speaker": {
+      "id": "c0794",
+      "label": "Moses and the Israelites",
+      "voice": "group"
+     },
+     "segment": 40,
+     "refrain": null,
+     "acrostic": null,
+     "selah": false
+    },
+    {
+     "verse": "15:11",
+     "token": 7,
+     "text": "O LORD? Who is like You —",
+     "quote": "q00629",
+     "speaker": {
+      "id": "c0794",
+      "label": "Moses and the Israelites",
+      "voice": "group"
+     },
+     "segment": 41,
+     "refrain": null,
+     "acrostic": null,
+     "selah": false
+    },
+    {
+     "verse": "15:11",
+     "token": 13,
+     "text": "majestic in holiness,",
+     "quote": "q00629",
+     "speaker": {
+      "id": "c0794",
+      "label": "Moses and the Israelites",
+      "voice": "group"
+     },
+     "segment": 43,
+     "refrain": null,
+     "acrostic": null,
+     "selah": false
+    },
+    {
+     "verse": "15:11",
+     "token": 16,
+     "text": "revered with praises, performing wonders?",
+     "quote": "q00629",
+     "speaker": {
+      "id": "c0794",
+      "label": "Moses and the Israelites",
+      "voice": "group"
+     },
+     "segment": 44,
+     "refrain": null,
+     "acrostic": null,
+     "selah": false
+    },
+    {
+     "verse": "15:12",
+     "token": 0,
+     "text": "You stretched out Your right hand,",
+     "quote": "q00629",
+     "speaker": {
+      "id": "c0794",
+      "label": "Moses and the Israelites",
+      "voice": "group"
+     },
+     "segment": 45,
+     "refrain": null,
+     "acrostic": null,
+     "selah": false
+    },
+    {
+     "verse": "15:12",
+     "token": 6,
+     "text": "and the earth swallowed them up.",
+     "quote": "q00629",
+     "speaker": {
+      "id": "c0794",
+      "label": "Moses and the Israelites",
+      "voice": "group"
+     },
+     "segment": 46,
+     "refrain": null,
+     "acrostic": null,
+     "selah": false
+    },
+    {
+     "verse": "15:13",
+     "token": 0,
+     "text": "With loving devotion You will lead the people",
+     "quote": "q00629",
+     "speaker": {
+      "id": "c0794",
+      "label": "Moses and the Israelites",
+      "voice": "group"
+     },
+     "segment": 47,
+     "refrain": null,
+     "acrostic": null,
+     "selah": false
+    },
+    {
+     "verse": "15:13",
+     "token": 8,
+     "text": "You have redeemed;",
+     "quote": "q00629",
+     "speaker": {
+      "id": "c0794",
+      "label": "Moses and the Israelites",
+      "voice": "group"
+     },
+     "segment": 48,
+     "refrain": null,
+     "acrostic": null,
+     "selah": false
+    },
+    {
+     "verse": "15:13",
+     "token": 11,
+     "text": "with Your strength You will guide them to Your holy dwelling.",
+     "quote": "q00629",
+     "speaker": {
+      "id": "c0794",
+      "label": "Moses and the Israelites",
+      "voice": "group"
+     },
+     "segment": 49,
+     "refrain": null,
+     "acrostic": null,
+     "selah": false
+    }
+   ],
+   "starts": "split"
+  },
+  {
+   "label": "Verse 6",
+   "sung": true,
+   "mood": null,
+   "verses": [
+    "15:14",
+    "15:15",
+    "15:16"
+   ],
+   "lines": [
+    {
+     "verse": "15:14",
+     "token": 0,
+     "text": "The nations will hear",
+     "quote": "q00629",
+     "speaker": {
+      "id": "c0794",
+      "label": "Moses and the Israelites",
+      "voice": "group"
+     },
+     "segment": 50,
+     "refrain": null,
+     "acrostic": null,
+     "selah": false
+    },
+    {
+     "verse": "15:14",
+     "token": 4,
+     "text": "and tremble; anguish will grip the dwellers of Philistia.",
+     "quote": "q00629",
+     "speaker": {
+      "id": "c0794",
+      "label": "Moses and the Israelites",
+      "voice": "group"
+     },
+     "segment": 51,
+     "refrain": null,
+     "acrostic": null,
+     "selah": false
+    },
+    {
+     "verse": "15:15",
+     "token": 0,
+     "text": "Then the chiefs of Edom will be dismayed;",
+     "quote": "q00629",
+     "speaker": {
+      "id": "c0794",
+      "label": "Moses and the Israelites",
+      "voice": "group"
+     },
+     "segment": 53,
+     "refrain": null,
+     "acrostic": null,
+     "selah": false
+    },
+    {
+     "verse": "15:15",
+     "token": 8,
+     "text": "trembling will seize",
+     "quote": "q00629",
+     "speaker": {
+      "id": "c0794",
+      "label": "Moses and the Israelites",
+      "voice": "group"
+     },
+     "segment": 55,
+     "refrain": null,
+     "acrostic": null,
+     "selah": false
+    },
+    {
+     "verse": "15:15",
+     "token": 11,
+     "text": "the leaders of Moab;",
+     "quote": "q00629",
+     "speaker": {
+      "id": "c0794",
+      "label": "Moses and the Israelites",
+      "voice": "group"
+     },
+     "segment": 54,
+     "refrain": null,
+     "acrostic": null,
+     "selah": false
+    },
+    {
+     "verse": "15:15",
+     "token": 15,
+     "text": "those who dwell in Canaan will melt away,",
+     "quote": "q00629",
+     "speaker": {
+      "id": "c0794",
+      "label": "Moses and the Israelites",
+      "voice": "group"
+     },
+     "segment": 56,
+     "refrain": null,
+     "acrostic": null,
+     "selah": false
+    },
+    {
+     "verse": "15:16",
+     "token": 0,
+     "text": "and terror and dread will fall on them.",
+     "quote": "q00629",
+     "speaker": {
+      "id": "c0794",
+      "label": "Moses and the Israelites",
+      "voice": "group"
+     },
+     "segment": 57,
+     "refrain": null,
+     "acrostic": null,
+     "selah": false
+    },
+    {
+     "verse": "15:16",
+     "token": 8,
+     "text": "By the power of Your arm they will be as still as a stone",
+     "quote": "q00629",
+     "speaker": {
+      "id": "c0794",
+      "label": "Moses and the Israelites",
+      "voice": "group"
+     },
+     "segment": 58,
+     "refrain": null,
+     "acrostic": null,
+     "selah": false
+    },
+    {
+     "verse": "15:16",
+     "token": 22,
+     "text": "until Your people pass by,",
+     "quote": "q00629",
+     "speaker": {
+      "id": "c0794",
+      "label": "Moses and the Israelites",
+      "voice": "group"
+     },
+     "segment": 59,
+     "refrain": null,
+     "acrostic": null,
+     "selah": false
+    },
+    {
+     "verse": "15:16",
+     "token": 27,
+     "text": "O LORD, until the people",
+     "quote": "q00629",
+     "speaker": {
+      "id": "c0794",
+      "label": "Moses and the Israelites",
+      "voice": "group"
+     },
+     "segment": 60,
+     "refrain": null,
+     "acrostic": null,
+     "selah": false
+    },
+    {
+     "verse": "15:16",
+     "token": 32,
+     "text": "You have bought pass by.",
+     "quote": "q00629",
+     "speaker": {
+      "id": "c0794",
+      "label": "Moses and the Israelites",
+      "voice": "group"
+     },
+     "segment": 62,
+     "refrain": null,
+     "acrostic": null,
+     "selah": false
+    }
+   ],
+   "starts": "split"
+  },
+  {
+   "label": "Verse 7",
+   "sung": true,
+   "mood": null,
+   "verses": [
+    "15:17",
+    "15:18",
+    "15:19"
+   ],
+   "lines": [
+    {
+     "verse": "15:17",
+     "token": 0,
+     "text": "You will bring them in",
+     "quote": "q00629",
+     "speaker": {
+      "id": "c0794",
+      "label": "Moses and the Israelites",
+      "voice": "group"
+     },
+     "segment": 63,
+     "refrain": null,
+     "acrostic": null,
+     "selah": false
+    },
+    {
+     "verse": "15:17",
+     "token": 5,
+     "text": "and plant them on the mountain of Your inheritance —",
+     "quote": "q00629",
+     "speaker": {
+      "id": "c0794",
+      "label": "Moses and the Israelites",
+      "voice": "group"
+     },
+     "segment": 64,
+     "refrain": null,
+     "acrostic": null,
+     "selah": false
+    },
+    {
+     "verse": "15:17",
+     "token": 14,
+     "text": "the place, O LORD,",
+     "quote": "q00629",
+     "speaker": {
+      "id": "c0794",
+      "label": "Moses and the Israelites",
+      "voice": "group"
+     },
+     "segment": 65,
+     "refrain": null,
+     "acrostic": null,
+     "selah": false
+    },
+    {
+     "verse": "15:17",
+     "token": 18,
+     "text": "You have prepared",
+     "quote": "q00629",
+     "speaker": {
+      "id": "c0794",
+      "label": "Moses and the Israelites",
+      "voice": "group"
+     },
+     "segment": 67,
+     "refrain": null,
+     "acrostic": null,
+     "selah": false
+    },
+    {
+     "verse": "15:17",
+     "token": 21,
+     "text": "for Your dwelling,",
+     "quote": "q00629",
+     "speaker": {
+      "id": "c0794",
+      "label": "Moses and the Israelites",
+      "voice": "group"
+     },
+     "segment": 66,
+     "refrain": null,
+     "acrostic": null,
+     "selah": false
+    },
+    {
+     "verse": "15:17",
+     "token": 24,
+     "text": "the sanctuary, O Lord,",
+     "quote": "q00629",
+     "speaker": {
+      "id": "c0794",
+      "label": "Moses and the Israelites",
+      "voice": "group"
+     },
+     "segment": 69,
+     "refrain": null,
+     "acrostic": null,
+     "selah": false
+    },
+    {
+     "verse": "15:17",
+     "token": 28,
+     "text": "Your hands have established.",
+     "quote": "q00629",
+     "speaker": {
+      "id": "c0794",
+      "label": "Moses and the Israelites",
+      "voice": "group"
+     },
+     "segment": 71,
+     "refrain": null,
+     "acrostic": null,
+     "selah": false
+    },
+    {
+     "verse": "15:18",
+     "token": 0,
+     "text": "The LORD will reign",
+     "quote": "q00629",
+     "speaker": {
+      "id": "c0794",
+      "label": "Moses and the Israelites",
+      "voice": "group"
+     },
+     "segment": 72,
+     "refrain": null,
+     "acrostic": null,
+     "selah": false
+    },
+    {
+     "verse": "15:18",
+     "token": 4,
+     "text": "forever and ever!”",
+     "quote": "q00629",
+     "speaker": {
+      "id": "c0794",
+      "label": "Moses and the Israelites",
+      "voice": "group"
+     },
+     "segment": 72,
+     "refrain": null,
+     "acrostic": null,
+     "selah": false
+    },
+    {
+     "verse": "15:19",
+     "token": 0,
+     "text": "For when Pharaoh’s horses, chariots, and horsemen went into the sea,",
+     "quote": null,
+     "speaker": null,
+     "segment": 73,
+     "refrain": null,
+     "acrostic": null,
+     "selah": false
+    },
+    {
+     "verse": "15:19",
+     "token": 12,
+     "text": "the LORD brought the waters of the sea back over them.",
+     "quote": null,
+     "speaker": null,
+     "segment": 74,
+     "refrain": null,
+     "acrostic": null,
+     "selah": false
+    },
+    {
+     "verse": "15:19",
+     "token": 23,
+     "text": "But the Israelites walked through the sea on dry ground.",
+     "quote": null,
+     "speaker": null,
+     "segment": 75,
+     "refrain": null,
+     "acrostic": null,
+     "selah": false
+    }
+   ],
+   "starts": "split"
+  },
+  {
+   "label": "Verse 8",
+   "sung": true,
+   "mood": null,
+   "verses": [
+    "15:20",
+    "15:21"
+   ],
+   "lines": [
+    {
+     "verse": "15:20",
+     "token": 0,
+     "text": "Then Miriam the prophetess, Aaron’s sister, took a tambourine in her hand,",
+     "quote": null,
+     "speaker": null,
+     "segment": 76,
+     "refrain": null,
+     "acrostic": null,
+     "selah": false
+    },
+    {
+     "verse": "15:20",
+     "token": 13,
+     "text": "and all the women followed her with tambourines and dancing.",
+     "quote": null,
+     "speaker": null,
+     "segment": 77,
+     "refrain": null,
+     "acrostic": null,
+     "selah": false
+    },
+    {
+     "verse": "15:21",
+     "token": 0,
+     "text": "And Miriam sang back to them:",
+     "quote": null,
+     "speaker": null,
+     "segment": 78,
+     "refrain": null,
+     "acrostic": null,
+     "selah": false
+    },
+    {
+     "verse": "15:21",
+     "token": 6,
+     "text": "“Sing to the LORD,",
+     "quote": "q00630",
+     "speaker": {
+      "id": "c0090",
+      "label": "Miriam",
+      "voice": "female"
+     },
+     "segment": 79,
+     "refrain": null,
+     "acrostic": null,
+     "selah": false
+    }
+   ],
+   "starts": "para"
+  },
+  {
+   "label": "Chorus",
+   "sung": true,
+   "mood": null,
+   "verses": [
+    "15:21"
+   ],
+   "lines": [
+    {
+     "verse": "15:21",
+     "token": 10,
+     "text": "for He is highly exalted;",
+     "quote": "q00630",
+     "speaker": {
+      "id": "c0090",
+      "label": "Miriam",
+      "voice": "female"
+     },
+     "segment": 80,
+     "refrain": "EXO.02068#2",
+     "acrostic": null,
+     "selah": false
+    },
+    {
+     "verse": "15:21",
+     "token": 15,
+     "text": "the horse and rider He has thrown into the sea.”",
+     "quote": "q00630",
+     "speaker": {
+      "id": "c0090",
+      "label": "Miriam",
+      "voice": "female"
+     },
+     "segment": 81,
+     "refrain": "EXO.02068#2",
+     "acrostic": null,
+     "selah": false
+    }
+   ],
+   "starts": "midverse"
+  },
+  {
+   "label": "Verse 9",
+   "sung": true,
+   "mood": null,
+   "verses": [
+    "15:22",
+    "15:23",
+    "15:24"
+   ],
+   "lines": [
+    {
+     "verse": "15:22",
+     "token": 0,
+     "text": "Then Moses led Israel from the Red Sea,",
+     "quote": null,
+     "speaker": null,
+     "segment": 82,
+     "refrain": null,
+     "acrostic": null,
+     "selah": false
+    },
+    {
+     "verse": "15:22",
+     "token": 8,
+     "text": "and they went out into the Desert of Shur.",
+     "quote": null,
+     "speaker": null,
+     "segment": 83,
+     "refrain": null,
+     "acrostic": null,
+     "selah": false
+    },
+    {
+     "verse": "15:22",
+     "token": 17,
+     "text": "For three days they walked in the desert",
+     "quote": null,
+     "speaker": null,
+     "segment": 84,
+     "refrain": null,
+     "acrostic": null,
+     "selah": false
+    },
+    {
+     "verse": "15:22",
+     "token": 25,
+     "text": "without finding water.",
+     "quote": null,
+     "speaker": null,
+     "segment": 85,
+     "refrain": null,
+     "acrostic": null,
+     "selah": false
+    },
+    {
+     "verse": "15:23",
+     "token": 0,
+     "text": "And when they came to Marah,",
+     "quote": null,
+     "speaker": null,
+     "segment": 86,
+     "refrain": null,
+     "acrostic": null,
+     "selah": false
+    },
+    {
+     "verse": "15:23",
+     "token": 6,
+     "text": "they could not",
+     "quote": null,
+     "speaker": null,
+     "segment": 87,
+     "refrain": null,
+     "acrostic": null,
+     "selah": false
+    },
+    {
+     "verse": "15:23",
+     "token": 9,
+     "text": "drink the water there",
+     "quote": null,
+     "speaker": null,
+     "segment": 88,
+     "refrain": null,
+     "acrostic": null,
+     "selah": false
+    },
+    {
+     "verse": "15:23",
+     "token": 13,
+     "text": "because it was bitter.",
+     "quote": null,
+     "speaker": null,
+     "segment": 89,
+     "refrain": null,
+     "acrostic": null,
+     "selah": false
+    },
+    {
+     "verse": "15:23",
+     "token": 17,
+     "text": "(That is why it was named Marah.)",
+     "quote": null,
+     "speaker": null,
+     "segment": 90,
+     "refrain": null,
+     "acrostic": null,
+     "selah": false
+    },
+    {
+     "verse": "15:24",
+     "token": 0,
+     "text": "So the people grumbled against Moses, saying,",
+     "quote": null,
+     "speaker": null,
+     "segment": 91,
+     "refrain": null,
+     "acrostic": null,
+     "selah": false
+    },
+    {
+     "verse": "15:24",
+     "token": 7,
+     "text": "“What are we to drink?”",
+     "quote": "q00631",
+     "speaker": {
+      "id": "c0089",
+      "label": "they",
+      "voice": "group"
+     },
+     "segment": 93,
+     "refrain": null,
+     "acrostic": null,
+     "selah": false
+    }
+   ],
+   "starts": "para"
+  },
+  {
+   "label": "Verse 10",
+   "sung": true,
+   "mood": null,
+   "verses": [
+    "15:25"
+   ],
+   "lines": [
+    {
+     "verse": "15:25",
+     "token": 0,
+     "text": "And Moses cried out to the LORD,",
+     "quote": null,
+     "speaker": null,
+     "segment": 94,
+     "refrain": null,
+     "acrostic": null,
+     "selah": false
+    },
+    {
+     "verse": "15:25",
+     "token": 7,
+     "text": "and the LORD showed him a log.",
+     "quote": null,
+     "speaker": null,
+     "segment": 95,
+     "refrain": null,
+     "acrostic": null,
+     "selah": false
+    },
+    {
+     "verse": "15:25",
+     "token": 14,
+     "text": "And when he cast it into the waters,",
+     "quote": null,
+     "speaker": null,
+     "segment": 96,
+     "refrain": null,
+     "acrostic": null,
+     "selah": false
+    },
+    {
+     "verse": "15:25",
+     "token": 22,
+     "text": "they were sweetened.",
+     "quote": null,
+     "speaker": null,
+     "segment": 97,
+     "refrain": null,
+     "acrostic": null,
+     "selah": false
+    },
+    {
+     "verse": "15:25",
+     "token": 25,
+     "text": "There the LORD made for them a statute and an ordinance,",
+     "quote": null,
+     "speaker": null,
+     "segment": 98,
+     "refrain": null,
+     "acrostic": null,
+     "selah": false
+    },
+    {
+     "verse": "15:25",
+     "token": 36,
+     "text": "and there He tested them,",
+     "quote": null,
+     "speaker": null,
+     "segment": 99,
+     "refrain": null,
+     "acrostic": null,
+     "selah": false
+    }
+   ],
+   "starts": "split"
+  },
+  {
+   "label": "Verse 11",
+   "sung": true,
+   "mood": null,
+   "verses": [
+    "15:26"
+   ],
+   "lines": [
+    {
+     "verse": "15:26",
+     "token": 0,
+     "text": "saying,",
+     "quote": null,
+     "speaker": null,
+     "segment": 100,
+     "refrain": null,
+     "acrostic": null,
+     "selah": false
+    },
+    {
+     "verse": "15:26",
+     "token": 1,
+     "text": "“If you will listen carefully to the voice of the LORD your God,",
+     "quote": "q00632",
+     "speaker": {
+      "id": "c0001",
+      "label": "the LORD",
+      "voice": "divine"
+     },
+     "segment": 101,
+     "refrain": null,
+     "acrostic": null,
+     "selah": false
+    },
+    {
+     "verse": "15:26",
+     "token": 14,
+     "text": "and do what is right in His eyes,",
+     "quote": "q00632",
+     "speaker": {
+      "id": "c0001",
+      "label": "the LORD",
+      "voice": "divine"
+     },
+     "segment": 102,
+     "refrain": null,
+     "acrostic": null,
+     "selah": false
+    },
+    {
+     "verse": "15:26",
+     "token": 22,
+     "text": "and pay attention to His commands,",
+     "quote": "q00632",
+     "speaker": {
+      "id": "c0001",
+      "label": "the LORD",
+      "voice": "divine"
+     },
+     "segment": 103,
+     "refrain": null,
+     "acrostic": null,
+     "selah": false
+    },
+    {
+     "verse": "15:26",
+     "token": 28,
+     "text": "and keep all His statutes,",
+     "quote": "q00632",
+     "speaker": {
+      "id": "c0001",
+      "label": "the LORD",
+      "voice": "divine"
+     },
+     "segment": 104,
+     "refrain": null,
+     "acrostic": null,
+     "selah": false
+    },
+    {
+     "verse": "15:26",
+     "token": 33,
+     "text": "then I will not",
+     "quote": "q00632",
+     "speaker": {
+      "id": "c0001",
+      "label": "the LORD",
+      "voice": "divine"
+     },
+     "segment": 107,
+     "refrain": null,
+     "acrostic": null,
+     "selah": false
+    },
+    {
+     "verse": "15:26",
+     "token": 37,
+     "text": "bring on you",
+     "quote": "q00632",
+     "speaker": {
+      "id": "c0001",
+      "label": "the LORD",
+      "voice": "divine"
+     },
+     "segment": 106,
+     "refrain": null,
+     "acrostic": null,
+     "selah": false
+    },
+    {
+     "verse": "15:26",
+     "token": 40,
+     "text": "any of the diseases I inflicted on the Egyptians.",
+     "quote": "q00632",
+     "speaker": {
+      "id": "c0001",
+      "label": "the LORD",
+      "voice": "divine"
+     },
+     "segment": 105,
+     "refrain": null,
+     "acrostic": null,
+     "selah": false
+    },
+    {
+     "verse": "15:26",
+     "token": 49,
+     "text": "For I am the LORD who heals you.”",
+     "quote": "q00632",
+     "speaker": {
+      "id": "c0001",
+      "label": "the LORD",
+      "voice": "divine"
+     },
+     "segment": 108,
+     "refrain": null,
+     "acrostic": null,
+     "selah": false
+    }
+   ],
+   "starts": "split"
+  },
+  {
+   "label": "Verse 12",
+   "sung": true,
+   "mood": null,
+   "verses": [
+    "15:27"
+   ],
+   "lines": [
+    {
+     "verse": "15:27",
+     "token": 0,
+     "text": "Then they came to Elim,",
+     "quote": null,
+     "speaker": null,
+     "segment": 109,
+     "refrain": null,
+     "acrostic": null,
+     "selah": false
+    },
+    {
+     "verse": "15:27",
+     "token": 5,
+     "text": "where there were twelve springs of water and seventy palm trees,",
+     "quote": null,
+     "speaker": null,
+     "segment": 110,
+     "refrain": null,
+     "acrostic": null,
+     "selah": false
+    },
+    {
+     "verse": "15:27",
+     "token": 16,
+     "text": "and they camped there by the waters.",
+     "quote": null,
+     "speaker": null,
+     "segment": 111,
+     "refrain": null,
+     "acrostic": null,
+     "selah": false
+    }
+   ],
+   "starts": "para"
+  }
+ ]
+}

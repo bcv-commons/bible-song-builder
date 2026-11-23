@@ -1,0 +1,116 @@
+# How the lyrics are laid out: text, setting, lines, stanzas, sections, chorus, psalm marks, length.
+# These are the defaults for every book and edition. (How a book SOUNDS is in books.toml /
+# profiles.toml.) A language can change any of them in languages.toml ([eng.layout.lines] ...),
+# and an edition in editions.toml ([BSB.layout.lines] ...). A command-line option
+# (e.g. --max-lines) wins over all of them for that run.
+
+
+[text]
+# How length is counted in the edition's text (for lines.min_words):
+#   "words"       runs of letters between spaces and punctuation
+#   "characters"  letters one by one, for scripts written without spaces (Chinese, Japanese, Thai)
+count = "words"
+
+# Punctuation that belongs to the start of the next line: a line break never leaves these at
+# the end of a line (opening quotes and brackets, Spanish ¿ ¡, dashes).
+line_start_punctuation = "“‘\"'([{«‹¿¡—–-"
+
+
+[setting]
+# Whether a chapter is sung as a song, as poetry, or told as a story (prose), from the
+# passage-facts form codes on its verses.
+# A chapter is "song" when at least `share` of its verses are song, "poetry" when song and
+# poetic lines together reach it, else "prose".
+share = 0.5
+song_forms = ["fm.ms.song"]                       # the Masoretic song layout
+song_quotes = ["qt.song", "qt.song_speech"]       # a song in a speech
+# Poetic lines: the Masoretic layout, Nestle 1904's printed lines, and how two translations
+# (ULT, BSB) indent the text. An edition can drop "fm.tr.poetry" if it should not lean on them.
+poetic_forms = ["fm.ms.lines", "fm.ed.lines", "fm.ed.qlines", "fm.ed.block", "fm.tr.poetry"]
+
+
+[lines]
+# A line shorter than this many words is joined to its neighbour (same verse and voice).
+min_words = 3
+
+# Line breaks inside poetic verses of Psalms, Proverbs and Job:
+#   "clauses"         a new line at each clause of the Hebrew (as everywhere else)
+#   "halves"          only where the verse divides in two (its main accent: half A / half B)
+#   "clauses+halves"  both
+poetry = "clauses+halves"
+
+
+[stanzas]
+# A stanza longer than this many lines is split at verse starts: into as few stanzas as fit,
+# at the verses where the Hebrew/Greek most clearly starts something new (a new episode,
+# "and now", a setting, a new participant, the narrator taking over), as even as possible.
+max_lines = 12
+
+# A split never leaves a stanza shorter than this many lines.
+min_lines = 2
+
+# The edition's own layout. These depend on the edition, so they are off by default; an edition
+# can switch them on in editions.toml.
+#   edition_paragraphs:        "never", "nt" (in the New Testament, whose Greek has no paragraph
+#                              marks) or "always": start a stanza at each of the edition's paragraphs
+#   edition_heading_weight:    extra weight for a split at a verse where the edition has a heading
+#   edition_paragraph_weight:  extra weight for a split at the edition's paragraph start
+edition_paragraphs = "never"
+edition_heading_weight = 0
+edition_paragraph_weight = 0
+
+# Acrostics (Psalm 119, Lamentations ...): a new stanza starts at each new letter of the alphabet
+# when the letter covers at least this many verses or lines (Psalm 119: 8 verses per letter).
+# Acrostics with a new letter on every verse are only noted in the notes file.
+acrostic_min_run = 2
+
+
+[sections]
+# Which section tags are written into the lyrics:
+#   "all"            [Verse 1], [Chorus], [Bridge]
+#   "chorus_bridge"  only [Chorus] and [Bridge]; other stanzas are just separated by a blank line
+#   "none"           no section tags at all (voice tags stay)
+tags = "all"
+
+# Number the verse sections ([Verse 1], [Verse 2] ...) or not ([Verse]).
+number_verses = true
+
+
+[chorus]
+# Where a [Chorus] comes from:
+#   "text"   a line the Hebrew/Greek text itself repeats in the chapter (passage-facts
+#            fm.tx.refrain); the same in every edition and language
+#   "lines"  a line of the edition that is repeated word for word (depends on the language)
+#   "both"
+source = "text"
+
+# How a chorus is set out:
+#   "section"  each time the refrain comes, it is its own [Chorus] section (Suno sings it as the hook);
+#              where it comes back inside one stanza (Psalm 136) the stanza stays whole, call and response
+#   "inline"   the stanza always stays whole; the refrain is sung by the [Choir] (refrain tag) inside it
+style = "section"
+
+# A repeated line in the Hebrew/Greek needs at least this many words to become a chorus.
+min_words = 3
+
+# For source "lines" / "both": how often an edition line must repeat, and its least length in words.
+lines_min_repeats = 3
+lines_min_words = 3
+
+
+[psalms]
+# List the psalm heading's terms (for the leader, the instruments, the tune ...) and the selahs
+# in the notes file. They are never sung.
+heading_terms = true
+
+# A tag put on its own line after a line holding "Selah", e.g. "[Instrumental Break]".
+# "" = none (the word Selah is the edition's text and is sung as it stands).
+selah_tag = ""
+
+
+[length]
+# Warn in the notes file when the lyrics are longer than this many characters.
+max_chars = 5000
+
+# scripts/cut_points.py: cut long chapters into parts under this many characters.
+cut_limit = 4000

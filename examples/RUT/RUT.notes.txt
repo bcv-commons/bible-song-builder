@@ -1,0 +1,5 @@
+RUT · profile country, female lead · settings: config/books/RUT.toml
+Style for every chapter: RUT.style.txt — except the chapters below, which have their own
+<chapter>.style.txt (the same style with a mood the Hebrew/Greek gives the chapter).
+
+(no chapter of this book has its own style)

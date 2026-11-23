@@ -1,0 +1,125 @@
+# Chapter moods: which cue in the Hebrew/Greek gives a chapter its own mood.
+#
+# A book keeps its one style (books.toml / profiles.toml). Only where the source says how a
+# chapter sounds does it get its own style: the book's style plus a few words for the mood.
+# Those words are set per profile in profiles.toml ([moods] and [instruments]).
+#
+# The cues (fixed in the code, because they are read from the Hebrew/Greek):
+#   heading   a psalm heading naming the kind of piece: תְּפִלָּה prayer, תְּהִלָּה praise, לְתוֹדָה
+#             thanksgiving, שִׁיר יְדִידֹת love_song, the sabbath, שִׁיר הַמַּעֲלוֹת pilgrimage;
+#             הַלְלוּ יָהּ in the text (praise);
+#             and the instruments named: בִּנְגִינוֹת strings, הַנְּחִילוֹת flutes
+#   song      a song in narrative (the Masoretic song layout over most of a chapter, in a book
+#             that is not song): EXO 15, DEU 32, JDG 5, 2SA 22, 1CH 16
+#   type      the psalm's type in the Tyndale Open Study Notes (see [type])
+#   purpose   the psalm's purpose in Scriptura's Psalms: Layer by Layer (see [purpose])
+#   commentary  what the classical Hebrew commentators (Radak, Meiri, Rashi, Ibn Ezra, Malbim …) say
+#             the psalm is, in their own Hebrew words (see [commentary])
+#   delivery  most of a chapter is speech delivered one way (see [delivery])
+#
+# Moods: those in priority below; the words each adds are in profiles.toml [moods].
+# A chapter's mood can also be set by hand in books/<BOOK>.toml ([chapters.N] mood = ...).
+
+
+# When a chapter has cues that disagree, the cue first in this list wins: the text's own heading
+# before a scholar's reading of it.
+sources = ["heading", "song", "type", "purpose", "commentary", "delivery"]
+
+# When one cue gives several moods, the first mood in this list wins.
+priority = ["song", "prayer", "lament", "penitence", "thanksgiving", "praise", "love_song", "sabbath",
+            "anger", "trust", "pilgrimage", "wisdom", "royal"]
+
+
+[song]
+# Chapters set in song layout that are lists, not songs. The data marks these itself (passage-facts
+# layout "list": the kings of Canaan JOS 12, the sons of Haman EST 9); add any others here.
+not_songs = []
+
+
+# The psalm types, by the Hebrew term passage-facts names them with (fm.gn.<term>), and the mood
+# each gives. "" = no mood. A type gives the mood where it covers at least min_share of the psalm.
+# The study notes often name several types for one psalm (Ps 119: five); where they name more than
+# max_types, they name no one type, and the psalm gets no mood from them. Of the types named, the
+# one covering more of the psalm wins, then the mood first in priority.
+[type]
+min_share = 0.5
+max_types = 2
+
+[type.terms]
+tefillah_tsarah  = "lament"     # תְּפִלָּה בְּצָרָה a prayer in distress (a lament)
+tefillat_tsibbur = "lament"     # תְּפִלַּת צִבּוּר the congregation's prayer (communal lament)
+tefillah      = "prayer"        # תְּפִלָּה prayer
+viduy         = "penitence"     # וִדּוּי confession (the penitential psalms)
+tehillah      = "praise"        # תְּהִלָּה praise
+todah         = "thanksgiving"  # תּוֹדָה thanksgiving
+mivtach       = "trust"         # מִבְטָח trust
+chokhmah      = "wisdom"        # חָכְמָה wisdom
+melekh        = "royal"         # מֶלֶךְ the king (royal psalms)
+malkhut       = "royal"         # מַלְכוּת the LORD's kingship
+tsiyyon       = "praise"        # צִיּוֹן songs of Zion
+qelalah       = "anger"         # קְלָלָה imprecation
+aliyah        = "pilgrimage"    # עֲלִיָּה לָרֶגֶל pilgrimage
+
+
+# The psalm purposes (fm.pu.<term>), the same way.
+[purpose]
+min_share = 0.5
+max_types = 2
+
+[purpose.terms]
+tefillah_tsarah = "lament"      # תְּפִלָּה בְּצָרָה to lament
+tefillah = "prayer"
+tehillah = "praise"
+todah    = "thanksgiving"
+mivtach  = "trust"
+musar    = "wisdom"             # מוּסָר instruction
+
+
+# What the classical Hebrew commentators call a psalm (bcv-commons hebrew-commentary-terms: by rule,
+# and -model: read by a model, marked "model-read" in the notes). Each commentator's term is matched
+# to the first root below whose letters it holds (התפלה, ומתפלל, תפלתו all hold תפל). A chapter gets
+# the mood most commentators agree on, if at least min_witnesses do and no other mood has as many.
+[commentary]
+use = true
+datasets = ["hebrew-commentary-terms", "hebrew-commentary-terms-model"]
+min_witnesses = 1
+
+[commentary.roots]
+"תפל" = "prayer"          # תפלה prayer
+"קינ" = "lament"          # קינה lament
+"הודא" = "thanksgiving"   # הודאה thanksgiving
+"להודות" = "thanksgiving"
+"הודה" = "thanksgiving"
+"שבח" = "praise"          # שבח praise
+"הלל" = "praise"
+"נבוא" = ""               # נבואה prophecy: no mood of its own
+"שיר" = ""                # שיר, שירה a song: says no more than the heading
+"מזמור" = ""
+
+
+# Moods inside a chapter: a [Mood: …] tag at the start of a section whose Hebrew/Greek words mark a
+# feeling (one of the 9 families of passage-facts: md.samach joy, md.bakah grief, …), written only
+# where the feeling changes. The words of each tag are in profiles.toml [families].
+# From: passage-facts mood facts (by rule) and passage-moods-model (read by a model; the notes say so).
+[section_moods]
+use = true
+use_model = true
+# a family must cover at least this share of the section's verses
+min_share = 0.5
+# how much the model's 1st, 2nd and 3rd named family count (a rule fact counts 1)
+model_weights = [1.0, 0.5, 0.33]
+
+
+[delivery]
+# A chapter gets the mood when speech delivered that way covers at least this share of its verses.
+min_share = 0.4
+
+# Which delivery notes (the labels in passage-facts codes.tsv, "dl.*") make up each mood.
+# A delivery not listed here gives no mood.
+[delivery.groups]
+lament = ["lament", "lamenting", "weeping", "mourning", "sad", "wailing", "crying", "distraught",
+          "deeply distressed", "calling out in anguish", "weeping, pleading"]
+prayer = ["praying", "pleading", "begging", "entreating", "interceding"]
+praise = ["praising", "singing", "rejoicing", "joyfully singing", "worshiping God", "praising Jesus",
+          "call to worship"]
+anger  = ["angry", "rebuking", "accusing", "furious", "threatening", "scolding", "indignant", "outraged"]

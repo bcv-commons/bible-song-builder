@@ -1,0 +1,19 @@
+# PSA: Psalms
+#
+# Everything about this book's songs. A book without a file here uses _default.toml.
+#
+#   profile = one of the profiles in ../profiles.toml: folk, country, jazz, lullaby, pop,
+#             hardrock, gospel, hymn
+#   lead    = "female" or "male": the lead singer (the narrator) for the whole book
+#   style   = (optional) this book's own style line, instead of the profile's
+#
+# A chapter can be changed in a [chapters.N] block (N = the chapter number):
+#   mood  = a mood from ../profiles.toml [moods] (prayer, lament, praise, thanksgiving, trust ...),
+#           or "" to give the chapter the book's style even where the source names a mood
+#   style = a whole style line for that chapter
+#
+#   [chapters.23]
+#   mood = "trust"
+
+profile = "hymn"
+lead = "female"

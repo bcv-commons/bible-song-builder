@@ -1,0 +1,12 @@
+# Books without their own file in this folder.
+#
+# To give a book its own settings, copy this file to <BOOK>.toml (USFM code: GEN, EXO ... REV).
+#
+#   profile = one of the profiles in ../profiles.toml: folk, country, jazz, lullaby, pop,
+#             hardrock, gospel, hymn
+#   lead    = "female" or "male": the lead singer (the narrator) for the whole book
+#   style   = (optional) this book's own style line, instead of the profile's
+#
+
+profile = "folk"
+lead = "male"

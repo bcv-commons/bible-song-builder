@@ -1,0 +1,5 @@
+LUK · profile folk, male lead · settings: config/books/_default.toml
+Style for every chapter: LUK.style.txt — except the chapters below, which have their own
+<chapter>.style.txt (the same style with a mood the Hebrew/Greek gives the chapter).
+
+(no chapter of this book has its own style)

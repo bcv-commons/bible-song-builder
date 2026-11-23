@@ -1,0 +1,97 @@
+{
+  "_doc": "Pinned revisions of every input. Change a pin deliberately and rebuild; outputs record the pins they were built with.",
+  "huggingface": {
+    "hebrew-clause-lines": {
+      "repo": "bcv-commons/hebrew-clause-lines",
+      "tag": "v0.2",
+      "revision": "83a96640ea45aa410c7cfbca62d2fc84b76f19be",
+      "licence": "CC BY-SA 4.0"
+    },
+    "greek-nt-clause-lines": {
+      "repo": "bcv-commons/greek-nt-clause-lines",
+      "tag": "v0.2",
+      "revision": "6c76d7b2b95782ad8e250f53a4fcf5b54fe8385b",
+      "licence": "CC BY-SA 4.0"
+    },
+    "clause-connectives": {
+      "repo": "bcv-commons/clause-connectives",
+      "tag": "v0.1",
+      "revision": "c26a84be0262b9fd9470fc8b4bca766d1e8bf4ab",
+      "licence": "CC BY-SA 4.0"
+    },
+    "clause-columns": {
+      "repo": "bcv-commons/clause-columns",
+      "tag": "v1.2",
+      "revision": "32beff0b50e54dfde2d5d10d19ea5a0d8cc80e94",
+      "licence": "CC BY-SA 4.0"
+    },
+    "passage-facts": {
+      "repo": "bcv-commons/passage-facts",
+      "tag": "v0.3.3",
+      "revision": "7e147a06b0cccf0b6e544912834a8da8f6d8ffbc",
+      "licence": "CC BY-SA 4.0"
+    },
+    "full-alignments-manual": {
+      "repo": "bcv-commons/full-alignments-manual",
+      "tag": "v1.1",
+      "revision": "b305c7b49e02ab911f264c8e6537f115b0f930ca",
+      "licence": "CC BY 4.0 (BSB tables layer: CC0)"
+    },
+    "compact-alignments": {
+      "repo": "bcv-commons/compact-alignments",
+      "tag": null,
+      "revision": "115830822e155b5cce71f902481aa9092fa9670e",
+      "licence": "CC0 1.0"
+    },
+    "compact-alignments-meta": {
+      "repo": "bcv-commons/compact-alignments-meta",
+      "tag": null,
+      "revision": "96d0a2295d1729c589ac6df67b56d0e88e4defe8",
+      "licence": "CC0 1.0",
+      "_use": "_fingerprints.txt: the aligned text's chapter fingerprints"
+    },
+    "passage-moods-model": {
+      "repo": "bcv-commons/passage-moods-model",
+      "tag": "v0.1",
+      "revision": "db4ad9173bee9371a983aa105fa1f647e9a6d24a",
+      "licence": "CC BY-SA 4.0 (model output, claude-opus-5-5, no human check)"
+    },
+    "hebrew-commentary-terms": {
+      "repo": "bcv-commons/hebrew-commentary-terms",
+      "tag": "v0.1",
+      "revision": "797e20cd29c97abaeceb7ba6bbd47272153ddc21",
+      "licence": "CC BY-SA 4.0"
+    },
+    "hebrew-commentary-terms-model": {
+      "repo": "bcv-commons/hebrew-commentary-terms-model",
+      "tag": "v0.1",
+      "revision": "965909b57f77b1001a6f3bf34c25231a93c63b3d",
+      "licence": "CC BY-SA 4.0 (model output, claude-opus-5-5, no human check)"
+    }
+  },
+  "bibles": {
+    "repo": "bcv-commons/bibles",
+    "commit": "81073fe4848f92e6ff964ca9b767f7b8b2911122",
+    "verse_text_version": "2.0.0"
+  },
+  "editions": {
+    "BSB": {
+      "text": "bsb2usfm-usj",
+      "_text": "the edition's text: a USJ release in \"releases\" (one .usj per book)",
+      "iso": "eng",
+      "full_layer": "eng_BSB+manual+bsb-tables",
+      "compact_edition": "eng_BSB",
+      "verse_map": "_versification_eng+3JN1-14+REV12-17esv.json",
+      "licence": "Public Domain (berean.bible, 2023-04-30)"
+    }
+  },
+  "releases": {
+    "bsb2usfm-usj": {
+      "repo": "BSB-publishing/bsb2usfm",
+      "tag": "v5.20",
+      "asset": "BSB_usj.zip",
+      "sha256": "bd9a744801fdc6c190057a916c6978804fd72331bb31c3a5297a8414c7c425d8",
+      "licence": "Public Domain (berean.bible, 2023-04-30)"
+    }
+  }
+}

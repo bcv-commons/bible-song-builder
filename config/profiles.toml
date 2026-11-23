@@ -1,0 +1,121 @@
+# Song profiles: how a book sounds.
+#
+# A profile is one style line (what Suno's "Style of Music" box gets) and two Suno personas,
+# one with a female and one with a male lead singer. Which profile and which lead a book uses
+# is chosen in books.toml, so every chapter of a book gets the same style and the same singer.
+#
+# Personas: in Suno, save a persona from a song you like, then type its name here.
+# Leave it as "" until you have one; each lyric sheet says which persona to pick.
+#
+# To add a profile, copy one of the [profiles.xxx] blocks below and give it a new name.
+
+
+# Voice tags: what is written into the lyrics where a new voice starts singing.
+# Tags describe a kind of voice, never a person (Suno does not know who Naomi is).
+# A profile can change any of them in its own [profiles.xxx.tags] block.
+# How a mood tag inside a chapter is written ([families] below gives the words).
+family_tag = "[Mood: {words}]"
+
+
+[tags]
+narrator     = "[Lead Vocal]"        # back to the narrator (the persona)
+female       = "[Female Vocal]"      # a woman speaking
+male         = "[Male Vocal]"        # a man speaking
+group        = "[Choir]"             # a crowd or several people
+female_group = "[Female Choir]"      # a group of women
+divine       = "[Deep Male Vocal]"   # God speaking
+refrain      = "[Choir]"             # a line the chapter repeats (Psalm 136)
+
+
+# Chapter moods (see moods.toml): words added to the book's style line for a chapter whose
+# Hebrew/Greek gives it a mood. Keep the genre and instruments of the profile; change only tempo
+# and colour. "" = no own style for that mood. A profile can change any of them in its own
+# [profiles.xxx.moods] block.
+[moods]
+prayer       = "slower, intimate, prayerful"
+lament       = "slower, minor key, sparse, sorrowful"
+praise       = "uplifting, joyful, fuller sound"
+thanksgiving = "warm, grateful, uplifting"
+love_song    = "tender, romantic"
+sabbath      = "peaceful, restful"
+song         = "triumphant, anthemic, full choir"
+anger        = "intense, urgent"
+trust        = "calm, steady, confident"
+wisdom       = "thoughtful, measured"
+royal        = "stately, majestic"
+penitence    = "slow, humble, contrite"
+pilgrimage   = "walking pace, hopeful, communal"
+
+# Moods inside a chapter (moods.toml [section_moods]): the words of the tag written at the start of
+# a section whose words mark a feeling. "" = no tag for that family. A profile can change them in
+# its own [profiles.xxx.families] block. How the tag is written: family_tag, at the top of this file.
+
+[families]
+"md.samach" = "joyful"                # שָׂמַח joy, praise
+"md.bakah"  = "mournful"              # בָּכָה grief, weeping, lament
+"md.yare"   = "fearful, in awe"       # יָרֵא fear and awe
+"md.aph"    = "angry"                 # אַף anger, indignation
+"md.bosh"   = "ashamed, subdued"      # בּוֹשׁ shame
+"md.batach" = "confident, hopeful"    # בָּטַח trust, hope
+"md.tsarah" = "anguished"             # צָרָה distress, crying out
+"md.ahav"   = "tender, loving"        # אָהֵב love, compassion
+"md.sane"   = "harsh, scornful"       # שָׂנֵא hate, contempt
+
+# Instruments a psalm heading names; added to the style line of that psalm.
+[instruments]
+strings = "with harp and strings"
+flutes  = "with flutes"
+
+
+[profiles.folk]
+style = "acoustic folk ballad, 90 BPM, fingerpicked guitar, soft strings, storytelling, earnest"
+persona.female = ""
+persona.male = ""
+
+[profiles.country]
+style = "country, 92 BPM, acoustic guitar, pedal steel, fiddle, warm, heartfelt"
+persona.female = ""
+persona.male = ""
+
+[profiles.jazz]
+style = "smooth jazz ballad, 76 BPM, piano trio, upright bass, brushed drums, intimate"
+persona.female = ""
+persona.male = ""
+
+[profiles.lullaby]
+style = "gentle lullaby, 66 BPM, music box, soft strings, hushed, tender"
+persona.female = ""
+persona.male = ""
+
+[profiles.lullaby.tags]
+group = "[Soft Choir]"
+female_group = "[Soft Female Choir]"
+divine = "[Soft Male Vocal]"
+refrain = "[Soft Choir]"
+
+[profiles.pop]
+style = "modern pop, 104 BPM, synths, punchy drums, bright, uplifting"
+persona.female = ""
+persona.male = ""
+
+[profiles.hardrock]
+style = "hard rock, 128 BPM, distorted guitars, driving drums, powerful"
+persona.female = ""
+persona.male = ""
+
+[profiles.hardrock.tags]
+group = "[Gang Vocals]"
+female_group = "[Female Backing Vocals]"
+
+[profiles.gospel]
+style = "gospel, 84 BPM, Hammond organ, piano, hand claps, soulful, joyful"
+persona.female = ""
+persona.male = ""
+
+[profiles.gospel.tags]
+group = "[Gospel Choir]"
+
+[profiles.hymn]
+style = "hymn, 72 BPM, piano and warm choir pads, reverent, contemplative"
+persona.female = ""
+persona.male = ""

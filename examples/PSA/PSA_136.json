@@ -1,0 +1,797 @@
+{
+ "book": "PSA",
+ "chapter": 136,
+ "edition": "BSB",
+ "setting": "poetry",
+ "profile": {
+  "name": "hymn",
+  "lead": "female",
+  "persona": null,
+  "style": "hymn, 72 BPM, piano and warm choir pads, reverent, contemplative",
+  "tags": {
+   "narrator": "[Lead Vocal]",
+   "female": "[Female Vocal]",
+   "male": "[Male Vocal]",
+   "group": "[Choir]",
+   "female_group": "[Female Choir]",
+   "divine": "[Deep Male Vocal]",
+   "refrain": "[Choir]"
+  }
+ },
+ "style": "hymn, 72 BPM, piano and warm choir pads, reverent, contemplative, uplifting, joyful, fuller sound",
+ "own_style": true,
+ "mood": {
+  "mood": "praise",
+  "basis": "type",
+  "evidence": "Tyndale Open Study Notes: tehillah תְּהִלָּה over 26 of 26 verses; Hebrew commentators: Malbim (model-read): ההודאה",
+  "instruments": []
+ },
+ "text_fingerprint": "c867de4b767d66eb71bf1c03510730abb8478c9baf43bb75d65380afb6fd86c0",
+ "superscription": null,
+ "alignment": {
+  "kind": "full",
+  "layer": "eng_BSB+manual+bsb-tables",
+  "file": "e/eng/eng_BSB+manual+bsb-tables/PSA_c867de4b.json"
+ },
+ "pins": {
+  "hebrew-clause-lines": {
+   "repo": "bcv-commons/hebrew-clause-lines",
+   "tag": "v0.2",
+   "revision": "83a96640ea45aa410c7cfbca62d2fc84b76f19be",
+   "licence": "CC BY-SA 4.0"
+  },
+  "greek-nt-clause-lines": {
+   "repo": "bcv-commons/greek-nt-clause-lines",
+   "tag": "v0.2",
+   "revision": "6c76d7b2b95782ad8e250f53a4fcf5b54fe8385b",
+   "licence": "CC BY-SA 4.0"
+  },
+  "clause-connectives": {
+   "repo": "bcv-commons/clause-connectives",
+   "tag": "v0.1",
+   "revision": "c26a84be0262b9fd9470fc8b4bca766d1e8bf4ab",
+   "licence": "CC BY-SA 4.0"
+  },
+  "clause-columns": {
+   "repo": "bcv-commons/clause-columns",
+   "tag": "v1.2",
+   "revision": "32beff0b50e54dfde2d5d10d19ea5a0d8cc80e94",
+   "licence": "CC BY-SA 4.0"
+  },
+  "passage-facts": {
+   "repo": "bcv-commons/passage-facts",
+   "tag": "v0.3.3",
+   "revision": "7e147a06b0cccf0b6e544912834a8da8f6d8ffbc",
+   "licence": "CC BY-SA 4.0"
+  },
+  "full-alignments-manual": {
+   "repo": "bcv-commons/full-alignments-manual",
+   "tag": "v1.1",
+   "revision": "b305c7b49e02ab911f264c8e6537f115b0f930ca",
+   "licence": "CC BY 4.0 (BSB tables layer: CC0)"
+  },
+  "compact-alignments": {
+   "repo": "bcv-commons/compact-alignments",
+   "tag": null,
+   "revision": "115830822e155b5cce71f902481aa9092fa9670e",
+   "licence": "CC0 1.0"
+  },
+  "compact-alignments-meta": {
+   "repo": "bcv-commons/compact-alignments-meta",
+   "tag": null,
+   "revision": "96d0a2295d1729c589ac6df67b56d0e88e4defe8",
+   "licence": "CC0 1.0",
+   "_use": "_fingerprints.txt: the aligned text's chapter fingerprints"
+  },
+  "passage-moods-model": {
+   "repo": "bcv-commons/passage-moods-model",
+   "tag": "v0.1",
+   "revision": "db4ad9173bee9371a983aa105fa1f647e9a6d24a",
+   "licence": "CC BY-SA 4.0 (model output, claude-opus-5-5, no human check)"
+  },
+  "hebrew-commentary-terms": {
+   "repo": "bcv-commons/hebrew-commentary-terms",
+   "tag": "v0.1",
+   "revision": "797e20cd29c97abaeceb7ba6bbd47272153ddc21",
+   "licence": "CC BY-SA 4.0"
+  },
+  "hebrew-commentary-terms-model": {
+   "repo": "bcv-commons/hebrew-commentary-terms-model",
+   "tag": "v0.1",
+   "revision": "965909b57f77b1001a6f3bf34c25231a93c63b3d",
+   "licence": "CC BY-SA 4.0 (model output, claude-opus-5-5, no human check)"
+  }
+ },
+ "bible-song-builder": "0.1.0",
+ "sections": [
+  {
+   "label": "Verse 1",
+   "sung": true,
+   "mood": null,
+   "verses": [
+    "136:1",
+    "136:2",
+    "136:3"
+   ],
+   "lines": [
+    {
+     "verse": "136:1",
+     "token": 0,
+     "text": "Give thanks to the LORD,",
+     "quote": null,
+     "speaker": null,
+     "segment": 1,
+     "refrain": null,
+     "acrostic": null,
+     "selah": false
+    },
+    {
+     "verse": "136:1",
+     "token": 5,
+     "text": "for He is good.",
+     "quote": null,
+     "speaker": null,
+     "segment": 2,
+     "refrain": null,
+     "acrostic": null,
+     "selah": false
+    },
+    {
+     "verse": "136:1",
+     "token": 9,
+     "text": "His loving devotion endures forever.",
+     "quote": null,
+     "speaker": null,
+     "segment": 3,
+     "refrain": "PSA.04834#1",
+     "acrostic": null,
+     "selah": false
+    },
+    {
+     "verse": "136:2",
+     "token": 0,
+     "text": "Give thanks to the God of gods.",
+     "quote": null,
+     "speaker": null,
+     "segment": 4,
+     "refrain": null,
+     "acrostic": null,
+     "selah": false
+    },
+    {
+     "verse": "136:2",
+     "token": 7,
+     "text": "His loving devotion endures forever.",
+     "quote": null,
+     "speaker": null,
+     "segment": 5,
+     "refrain": "PSA.04834#2",
+     "acrostic": null,
+     "selah": false
+    },
+    {
+     "verse": "136:3",
+     "token": 0,
+     "text": "Give thanks to the Lord of lords.",
+     "quote": null,
+     "speaker": null,
+     "segment": 6,
+     "refrain": null,
+     "acrostic": null,
+     "selah": false
+    },
+    {
+     "verse": "136:3",
+     "token": 7,
+     "text": "His loving devotion endures forever.",
+     "quote": null,
+     "speaker": null,
+     "segment": 7,
+     "refrain": null,
+     "acrostic": null,
+     "selah": false
+    }
+   ],
+   "starts": "start"
+  },
+  {
+   "label": "Verse 2",
+   "sung": true,
+   "mood": null,
+   "verses": [
+    "136:4",
+    "136:5"
+   ],
+   "lines": [
+    {
+     "verse": "136:4",
+     "token": 0,
+     "text": "He alone does great wonders.",
+     "quote": null,
+     "speaker": null,
+     "segment": 8,
+     "refrain": null,
+     "acrostic": null,
+     "selah": false
+    },
+    {
+     "verse": "136:4",
+     "token": 5,
+     "text": "His loving devotion endures forever.",
+     "quote": null,
+     "speaker": null,
+     "segment": 9,
+     "refrain": "PSA.04834#3",
+     "acrostic": null,
+     "selah": false
+    },
+    {
+     "verse": "136:5",
+     "token": 0,
+     "text": "By His insight He made the heavens.",
+     "quote": null,
+     "speaker": null,
+     "segment": 10,
+     "refrain": null,
+     "acrostic": null,
+     "selah": false
+    },
+    {
+     "verse": "136:5",
+     "token": 7,
+     "text": "His loving devotion endures forever.",
+     "quote": null,
+     "speaker": null,
+     "segment": 11,
+     "refrain": "PSA.04834#4",
+     "acrostic": null,
+     "selah": false
+    }
+   ],
+   "starts": "split"
+  },
+  {
+   "label": "Verse 3",
+   "sung": true,
+   "mood": null,
+   "verses": [
+    "136:6",
+    "136:7",
+    "136:8",
+    "136:9"
+   ],
+   "lines": [
+    {
+     "verse": "136:6",
+     "token": 0,
+     "text": "He spread out the earth upon the waters.",
+     "quote": null,
+     "speaker": null,
+     "segment": 12,
+     "refrain": null,
+     "acrostic": null,
+     "selah": false
+    },
+    {
+     "verse": "136:6",
+     "token": 8,
+     "text": "His loving devotion endures forever.",
+     "quote": null,
+     "speaker": null,
+     "segment": 13,
+     "refrain": "PSA.04834#5",
+     "acrostic": null,
+     "selah": false
+    },
+    {
+     "verse": "136:7",
+     "token": 0,
+     "text": "He made the great lights —",
+     "quote": null,
+     "speaker": null,
+     "segment": 14,
+     "refrain": null,
+     "acrostic": null,
+     "selah": false
+    },
+    {
+     "verse": "136:7",
+     "token": 5,
+     "text": "His loving devotion endures forever.",
+     "quote": null,
+     "speaker": null,
+     "segment": 15,
+     "refrain": "PSA.04834#6",
+     "acrostic": null,
+     "selah": false
+    },
+    {
+     "verse": "136:8",
+     "token": 0,
+     "text": "the sun to rule the day,",
+     "quote": null,
+     "speaker": null,
+     "segment": 16,
+     "refrain": null,
+     "acrostic": null,
+     "selah": false
+    },
+    {
+     "verse": "136:8",
+     "token": 6,
+     "text": "His loving devotion endures forever.",
+     "quote": null,
+     "speaker": null,
+     "segment": 17,
+     "refrain": "PSA.04834#7",
+     "acrostic": null,
+     "selah": false
+    },
+    {
+     "verse": "136:9",
+     "token": 0,
+     "text": "the moon and stars to govern the night.",
+     "quote": null,
+     "speaker": null,
+     "segment": 18,
+     "refrain": null,
+     "acrostic": null,
+     "selah": false
+    },
+    {
+     "verse": "136:9",
+     "token": 8,
+     "text": "His loving devotion endures forever.",
+     "quote": null,
+     "speaker": null,
+     "segment": 19,
+     "refrain": "PSA.04834#8",
+     "acrostic": null,
+     "selah": false
+    }
+   ],
+   "starts": "split"
+  },
+  {
+   "label": "Verse 4",
+   "sung": true,
+   "mood": null,
+   "verses": [
+    "136:10",
+    "136:11",
+    "136:12"
+   ],
+   "lines": [
+    {
+     "verse": "136:10",
+     "token": 0,
+     "text": "He struck down the firstborn of Egypt",
+     "quote": null,
+     "speaker": null,
+     "segment": 20,
+     "refrain": null,
+     "acrostic": null,
+     "selah": false
+    },
+    {
+     "verse": "136:10",
+     "token": 7,
+     "text": "His loving devotion endures forever.",
+     "quote": null,
+     "speaker": null,
+     "segment": 21,
+     "refrain": "PSA.04834#9",
+     "acrostic": null,
+     "selah": false
+    },
+    {
+     "verse": "136:11",
+     "token": 0,
+     "text": "and brought Israel out from among them",
+     "quote": null,
+     "speaker": null,
+     "segment": 22,
+     "refrain": null,
+     "acrostic": null,
+     "selah": false
+    },
+    {
+     "verse": "136:11",
+     "token": 7,
+     "text": "His loving devotion endures forever.",
+     "quote": null,
+     "speaker": null,
+     "segment": 23,
+     "refrain": "PSA.04834#10",
+     "acrostic": null,
+     "selah": false
+    },
+    {
+     "verse": "136:12",
+     "token": 0,
+     "text": "with a mighty hand and an outstretched arm.",
+     "quote": null,
+     "speaker": null,
+     "segment": 24,
+     "refrain": null,
+     "acrostic": null,
+     "selah": false
+    },
+    {
+     "verse": "136:12",
+     "token": 8,
+     "text": "His loving devotion endures forever.",
+     "quote": null,
+     "speaker": null,
+     "segment": 25,
+     "refrain": "PSA.04834#11",
+     "acrostic": null,
+     "selah": false
+    }
+   ],
+   "starts": "split"
+  },
+  {
+   "label": "Verse 5",
+   "sung": true,
+   "mood": null,
+   "verses": [
+    "136:13",
+    "136:14",
+    "136:15"
+   ],
+   "lines": [
+    {
+     "verse": "136:13",
+     "token": 0,
+     "text": "He divided the Red Sea in two",
+     "quote": null,
+     "speaker": null,
+     "segment": 26,
+     "refrain": null,
+     "acrostic": null,
+     "selah": false
+    },
+    {
+     "verse": "136:13",
+     "token": 7,
+     "text": "His loving devotion endures forever.",
+     "quote": null,
+     "speaker": null,
+     "segment": 27,
+     "refrain": "PSA.04834#12",
+     "acrostic": null,
+     "selah": false
+    },
+    {
+     "verse": "136:14",
+     "token": 0,
+     "text": "and led Israel through the midst,",
+     "quote": null,
+     "speaker": null,
+     "segment": 28,
+     "refrain": null,
+     "acrostic": null,
+     "selah": false
+    },
+    {
+     "verse": "136:14",
+     "token": 6,
+     "text": "His loving devotion endures forever.",
+     "quote": null,
+     "speaker": null,
+     "segment": 29,
+     "refrain": "PSA.04834#13",
+     "acrostic": null,
+     "selah": false
+    },
+    {
+     "verse": "136:15",
+     "token": 0,
+     "text": "but swept Pharaoh and his army into the Red Sea.",
+     "quote": null,
+     "speaker": null,
+     "segment": 30,
+     "refrain": null,
+     "acrostic": null,
+     "selah": false
+    },
+    {
+     "verse": "136:15",
+     "token": 10,
+     "text": "His loving devotion endures forever.",
+     "quote": null,
+     "speaker": null,
+     "segment": 31,
+     "refrain": "PSA.04834#14",
+     "acrostic": null,
+     "selah": false
+    }
+   ],
+   "starts": "split"
+  },
+  {
+   "label": "Verse 6",
+   "sung": true,
+   "mood": null,
+   "verses": [
+    "136:16",
+    "136:17",
+    "136:18"
+   ],
+   "lines": [
+    {
+     "verse": "136:16",
+     "token": 0,
+     "text": "He led His people through the wilderness.",
+     "quote": null,
+     "speaker": null,
+     "segment": 32,
+     "refrain": null,
+     "acrostic": null,
+     "selah": false
+    },
+    {
+     "verse": "136:16",
+     "token": 7,
+     "text": "His loving devotion endures forever.",
+     "quote": null,
+     "speaker": null,
+     "segment": 33,
+     "refrain": "PSA.04834#15",
+     "acrostic": null,
+     "selah": false
+    },
+    {
+     "verse": "136:17",
+     "token": 0,
+     "text": "He struck down great kings",
+     "quote": null,
+     "speaker": null,
+     "segment": 34,
+     "refrain": null,
+     "acrostic": null,
+     "selah": false
+    },
+    {
+     "verse": "136:17",
+     "token": 5,
+     "text": "His loving devotion endures forever.",
+     "quote": null,
+     "speaker": null,
+     "segment": 35,
+     "refrain": "PSA.04834#16",
+     "acrostic": null,
+     "selah": false
+    },
+    {
+     "verse": "136:18",
+     "token": 0,
+     "text": "and slaughtered mighty kings—",
+     "quote": null,
+     "speaker": null,
+     "segment": 36,
+     "refrain": null,
+     "acrostic": null,
+     "selah": false
+    },
+    {
+     "verse": "136:18",
+     "token": 4,
+     "text": "His loving devotion endures forever.",
+     "quote": null,
+     "speaker": null,
+     "segment": 37,
+     "refrain": "PSA.04834#17",
+     "acrostic": null,
+     "selah": false
+    }
+   ],
+   "starts": "split"
+  },
+  {
+   "label": "Verse 7",
+   "sung": true,
+   "mood": null,
+   "verses": [
+    "136:19",
+    "136:20",
+    "136:21",
+    "136:22"
+   ],
+   "lines": [
+    {
+     "verse": "136:19",
+     "token": 0,
+     "text": "Sihon king of the Amorites",
+     "quote": null,
+     "speaker": null,
+     "segment": 38,
+     "refrain": null,
+     "acrostic": null,
+     "selah": false
+    },
+    {
+     "verse": "136:19",
+     "token": 5,
+     "text": "His loving devotion endures forever.",
+     "quote": null,
+     "speaker": null,
+     "segment": 39,
+     "refrain": "PSA.04834#18",
+     "acrostic": null,
+     "selah": false
+    },
+    {
+     "verse": "136:20",
+     "token": 0,
+     "text": "and Og king of Bashan—",
+     "quote": null,
+     "speaker": null,
+     "segment": 40,
+     "refrain": null,
+     "acrostic": null,
+     "selah": false
+    },
+    {
+     "verse": "136:20",
+     "token": 5,
+     "text": "His loving devotion endures forever.",
+     "quote": null,
+     "speaker": null,
+     "segment": 41,
+     "refrain": "PSA.04834#19",
+     "acrostic": null,
+     "selah": false
+    },
+    {
+     "verse": "136:21",
+     "token": 0,
+     "text": "and He gave their land as an inheritance,",
+     "quote": null,
+     "speaker": null,
+     "segment": 42,
+     "refrain": null,
+     "acrostic": null,
+     "selah": false
+    },
+    {
+     "verse": "136:21",
+     "token": 8,
+     "text": "His loving devotion endures forever.",
+     "quote": null,
+     "speaker": null,
+     "segment": 43,
+     "refrain": "PSA.04834#20",
+     "acrostic": null,
+     "selah": false
+    },
+    {
+     "verse": "136:22",
+     "token": 0,
+     "text": "a heritage to His servant Israel.",
+     "quote": null,
+     "speaker": null,
+     "segment": 44,
+     "refrain": null,
+     "acrostic": null,
+     "selah": false
+    },
+    {
+     "verse": "136:22",
+     "token": 6,
+     "text": "His loving devotion endures forever.",
+     "quote": null,
+     "speaker": null,
+     "segment": 45,
+     "refrain": "PSA.04834#21",
+     "acrostic": null,
+     "selah": false
+    }
+   ],
+   "starts": "split"
+  },
+  {
+   "label": "Verse 8",
+   "sung": true,
+   "mood": null,
+   "verses": [
+    "136:23",
+    "136:24",
+    "136:25",
+    "136:26"
+   ],
+   "lines": [
+    {
+     "verse": "136:23",
+     "token": 0,
+     "text": "He remembered us in our low estate",
+     "quote": null,
+     "speaker": null,
+     "segment": 46,
+     "refrain": null,
+     "acrostic": null,
+     "selah": false
+    },
+    {
+     "verse": "136:23",
+     "token": 7,
+     "text": "His loving devotion endures forever.",
+     "quote": null,
+     "speaker": null,
+     "segment": 47,
+     "refrain": "PSA.04834#22",
+     "acrostic": null,
+     "selah": false
+    },
+    {
+     "verse": "136:24",
+     "token": 0,
+     "text": "and freed us from our enemies.",
+     "quote": null,
+     "speaker": null,
+     "segment": 48,
+     "refrain": null,
+     "acrostic": null,
+     "selah": false
+    },
+    {
+     "verse": "136:24",
+     "token": 6,
+     "text": "His loving devotion endures forever.",
+     "quote": null,
+     "speaker": null,
+     "segment": 49,
+     "refrain": "PSA.04834#23",
+     "acrostic": null,
+     "selah": false
+    },
+    {
+     "verse": "136:25",
+     "token": 0,
+     "text": "He gives food to every creature.",
+     "quote": null,
+     "speaker": null,
+     "segment": 50,
+     "refrain": null,
+     "acrostic": null,
+     "selah": false
+    },
+    {
+     "verse": "136:25",
+     "token": 6,
+     "text": "His loving devotion endures forever.",
+     "quote": null,
+     "speaker": null,
+     "segment": 51,
+     "refrain": "PSA.04834#24",
+     "acrostic": null,
+     "selah": false
+    },
+    {
+     "verse": "136:26",
+     "token": 0,
+     "text": "Give thanks to the God of heaven!",
+     "quote": null,
+     "speaker": null,
+     "segment": 52,
+     "refrain": null,
+     "acrostic": null,
+     "selah": false
+    },
+    {
+     "verse": "136:26",
+     "token": 7,
+     "text": "His loving devotion endures forever.",
+     "quote": null,
+     "speaker": null,
+     "segment": 53,
+     "refrain": "PSA.04834#25",
+     "acrostic": null,
+     "selah": false
+    }
+   ],
+   "starts": "split"
+  }
+ ]
+}

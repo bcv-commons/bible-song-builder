@@ -1,0 +1,34 @@
+# Settings for one edition of the Bible text. The edition names are the ones in pins.json
+# ("editions"), which says where each edition's text and alignment come from.
+#
+# Anything here applies to that edition only, and wins over the general files:
+#   layout.toml  ->  languages.toml (the edition's language)  ->  editions.toml (the edition)
+#
+# An edition that is not listed here gets no text fixes and the general settings.
+
+
+[BSB]
+
+# Repairs to the text as the release delivers it, before it is read. Each one is narrow and is
+# checked by the alignment's fingerprints (see bible_song_builder/edition.py):
+#   "titles-in-d"   a psalm title paragraph (\d) that holds the verse-1 marker is read as a title,
+#                   not as verse text, in the books listed in title_books
+#   "note-spaces"   put back the space the USJ export drops between a footnote and a following
+#                   \add word ("punishmentis"; reported to bsb2usfm, 2026-11-18)
+#   "span-spaces"   drop the space inside an \add span before punctuation ("\add his role \add*."
+#                   would read "role .")
+fixes = ["titles-in-d", "note-spaces", "span-spaces"]
+title_books = ["PSA"]
+
+# Added to the end of every style line, e.g. ", sung in Spanish".
+style_suffix = ""
+
+# The edition's own song choices (they win over books.toml):
+#   [BSB.default]               default profile / lead
+#   [BSB.books]                 per book, e.g.  RUT = { profile = "folk", lead = "female" }
+#   [BSB.profiles.country]      part of a profile, e.g. that language's own personas:
+#                               persona.female = "Country ES F"
+
+# The edition's own layout (any setting of layout.toml), e.g.
+#   [BSB.layout.stanzas]
+#   edition_heading_weight = 3

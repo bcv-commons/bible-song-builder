@@ -1,0 +1,14 @@
+[project]
+name = "bible-song-builder"
+version = "0.1.0"
+description = "Suno lyrics from any Bible edition, with line breaks, voices, moods and setting from bcv-commons clause lines and passage facts"
+readme = "README.md"
+license = { file = "LICENSE" }
+requires-python = ">=3.11"
+dependencies = ["pyarrow>=14"]
+
+[project.scripts]
+bible-song-builder = "bible_song_builder.__main__:main"
+
+[tool.setuptools]
+packages = ["bible_song_builder"]

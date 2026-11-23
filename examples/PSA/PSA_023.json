@@ -1,0 +1,344 @@
+{
+ "book": "PSA",
+ "chapter": 23,
+ "edition": "BSB",
+ "setting": "poetry",
+ "profile": {
+  "name": "hymn",
+  "lead": "female",
+  "persona": null,
+  "style": "hymn, 72 BPM, piano and warm choir pads, reverent, contemplative",
+  "tags": {
+   "narrator": "[Lead Vocal]",
+   "female": "[Female Vocal]",
+   "male": "[Male Vocal]",
+   "group": "[Choir]",
+   "female_group": "[Female Choir]",
+   "divine": "[Deep Male Vocal]",
+   "refrain": "[Choir]"
+  }
+ },
+ "style": "hymn, 72 BPM, piano and warm choir pads, reverent, contemplative, calm, steady, confident",
+ "own_style": true,
+ "mood": {
+  "mood": "trust",
+  "basis": "type",
+  "evidence": "Tyndale Open Study Notes: mivtach מִבְטָח over 6 of 6 verses; Scriptura: mivtach מִבְטָח over 6 of 6 verses",
+  "instruments": []
+ },
+ "text_fingerprint": "c867de4b767d66eb71bf1c03510730abb8478c9baf43bb75d65380afb6fd86c0",
+ "superscription": "A Psalm of David.",
+ "alignment": {
+  "kind": "full",
+  "layer": "eng_BSB+manual+bsb-tables",
+  "file": "e/eng/eng_BSB+manual+bsb-tables/PSA_c867de4b.json"
+ },
+ "pins": {
+  "hebrew-clause-lines": {
+   "repo": "bcv-commons/hebrew-clause-lines",
+   "tag": "v0.2",
+   "revision": "83a96640ea45aa410c7cfbca62d2fc84b76f19be",
+   "licence": "CC BY-SA 4.0"
+  },
+  "greek-nt-clause-lines": {
+   "repo": "bcv-commons/greek-nt-clause-lines",
+   "tag": "v0.2",
+   "revision": "6c76d7b2b95782ad8e250f53a4fcf5b54fe8385b",
+   "licence": "CC BY-SA 4.0"
+  },
+  "clause-connectives": {
+   "repo": "bcv-commons/clause-connectives",
+   "tag": "v0.1",
+   "revision": "c26a84be0262b9fd9470fc8b4bca766d1e8bf4ab",
+   "licence": "CC BY-SA 4.0"
+  },
+  "clause-columns": {
+   "repo": "bcv-commons/clause-columns",
+   "tag": "v1.2",
+   "revision": "32beff0b50e54dfde2d5d10d19ea5a0d8cc80e94",
+   "licence": "CC BY-SA 4.0"
+  },
+  "passage-facts": {
+   "repo": "bcv-commons/passage-facts",
+   "tag": "v0.3.3",
+   "revision": "7e147a06b0cccf0b6e544912834a8da8f6d8ffbc",
+   "licence": "CC BY-SA 4.0"
+  },
+  "full-alignments-manual": {
+   "repo": "bcv-commons/full-alignments-manual",
+   "tag": "v1.1",
+   "revision": "b305c7b49e02ab911f264c8e6537f115b0f930ca",
+   "licence": "CC BY 4.0 (BSB tables layer: CC0)"
+  },
+  "compact-alignments": {
+   "repo": "bcv-commons/compact-alignments",
+   "tag": null,
+   "revision": "115830822e155b5cce71f902481aa9092fa9670e",
+   "licence": "CC0 1.0"
+  },
+  "compact-alignments-meta": {
+   "repo": "bcv-commons/compact-alignments-meta",
+   "tag": null,
+   "revision": "96d0a2295d1729c589ac6df67b56d0e88e4defe8",
+   "licence": "CC0 1.0",
+   "_use": "_fingerprints.txt: the aligned text's chapter fingerprints"
+  },
+  "passage-moods-model": {
+   "repo": "bcv-commons/passage-moods-model",
+   "tag": "v0.1",
+   "revision": "db4ad9173bee9371a983aa105fa1f647e9a6d24a",
+   "licence": "CC BY-SA 4.0 (model output, claude-opus-5-5, no human check)"
+  },
+  "hebrew-commentary-terms": {
+   "repo": "bcv-commons/hebrew-commentary-terms",
+   "tag": "v0.1",
+   "revision": "797e20cd29c97abaeceb7ba6bbd47272153ddc21",
+   "licence": "CC BY-SA 4.0"
+  },
+  "hebrew-commentary-terms-model": {
+   "repo": "bcv-commons/hebrew-commentary-terms-model",
+   "tag": "v0.1",
+   "revision": "965909b57f77b1001a6f3bf34c25231a93c63b3d",
+   "licence": "CC BY-SA 4.0 (model output, claude-opus-5-5, no human check)"
+  }
+ },
+ "bible-song-builder": "0.1.0",
+ "sections": [
+  {
+   "label": "Verse 1",
+   "sung": true,
+   "mood": {
+    "family": "md.batach",
+    "head": "בָּטַח",
+    "tag": "[Mood: confident, hopeful]",
+    "evidence": "passage-moods-model PSA 23:1-6",
+    "model": true
+   },
+   "verses": [
+    "23:1",
+    "23:2",
+    "23:3",
+    "23:4"
+   ],
+   "lines": [
+    {
+     "verse": "23:1",
+     "token": 0,
+     "text": "The LORD is my shepherd;",
+     "quote": null,
+     "speaker": null,
+     "segment": 2,
+     "refrain": null,
+     "acrostic": null,
+     "selah": false
+    },
+    {
+     "verse": "23:1",
+     "token": 5,
+     "text": "I shall not want.",
+     "quote": null,
+     "speaker": null,
+     "segment": 3,
+     "refrain": null,
+     "acrostic": null,
+     "selah": false
+    },
+    {
+     "verse": "23:2",
+     "token": 0,
+     "text": "He makes me lie down in green pastures;",
+     "quote": null,
+     "speaker": null,
+     "segment": 4,
+     "refrain": null,
+     "acrostic": null,
+     "selah": false
+    },
+    {
+     "verse": "23:2",
+     "token": 8,
+     "text": "He leads me beside quiet waters.",
+     "quote": null,
+     "speaker": null,
+     "segment": 5,
+     "refrain": null,
+     "acrostic": null,
+     "selah": false
+    },
+    {
+     "verse": "23:3",
+     "token": 0,
+     "text": "He restores my soul;",
+     "quote": null,
+     "speaker": null,
+     "segment": 6,
+     "refrain": null,
+     "acrostic": null,
+     "selah": false
+    },
+    {
+     "verse": "23:3",
+     "token": 4,
+     "text": "He guides me in the paths of righteousness for the sake of His name.",
+     "quote": null,
+     "speaker": null,
+     "segment": 7,
+     "refrain": null,
+     "acrostic": null,
+     "selah": false
+    },
+    {
+     "verse": "23:4",
+     "token": 0,
+     "text": "Even though I walk through the valley of the shadow of death,",
+     "quote": null,
+     "speaker": null,
+     "segment": 8,
+     "refrain": null,
+     "acrostic": null,
+     "selah": false
+    },
+    {
+     "verse": "23:4",
+     "token": 12,
+     "text": "I will fear no evil,",
+     "quote": null,
+     "speaker": null,
+     "segment": 9,
+     "refrain": null,
+     "acrostic": null,
+     "selah": false
+    },
+    {
+     "verse": "23:4",
+     "token": 17,
+     "text": "for You are with me;",
+     "quote": null,
+     "speaker": null,
+     "segment": 10,
+     "refrain": null,
+     "acrostic": null,
+     "selah": false
+    },
+    {
+     "verse": "23:4",
+     "token": 22,
+     "text": "Your rod and Your staff,",
+     "quote": null,
+     "speaker": null,
+     "segment": 11,
+     "refrain": null,
+     "acrostic": null,
+     "selah": false
+    },
+    {
+     "verse": "23:4",
+     "token": 27,
+     "text": "they comfort me.",
+     "quote": null,
+     "speaker": null,
+     "segment": 12,
+     "refrain": null,
+     "acrostic": null,
+     "selah": false
+    }
+   ],
+   "starts": "start"
+  },
+  {
+   "label": "Verse 2",
+   "sung": true,
+   "mood": {
+    "family": "md.batach",
+    "head": "בָּטַח",
+    "tag": "[Mood: confident, hopeful]",
+    "evidence": "passage-moods-model PSA 23:1-6",
+    "model": true
+   },
+   "verses": [
+    "23:5",
+    "23:6"
+   ],
+   "lines": [
+    {
+     "verse": "23:5",
+     "token": 0,
+     "text": "You prepare a table before me",
+     "quote": null,
+     "speaker": null,
+     "segment": 13,
+     "refrain": null,
+     "acrostic": null,
+     "selah": false
+    },
+    {
+     "verse": "23:5",
+     "token": 6,
+     "text": "in the presence of my enemies.",
+     "quote": null,
+     "speaker": null,
+     "segment": 13,
+     "refrain": null,
+     "acrostic": null,
+     "selah": false
+    },
+    {
+     "verse": "23:5",
+     "token": 12,
+     "text": "You anoint my head with oil;",
+     "quote": null,
+     "speaker": null,
+     "segment": 14,
+     "refrain": null,
+     "acrostic": null,
+     "selah": false
+    },
+    {
+     "verse": "23:5",
+     "token": 18,
+     "text": "my cup overflows.",
+     "quote": null,
+     "speaker": null,
+     "segment": 15,
+     "refrain": null,
+     "acrostic": null,
+     "selah": false
+    },
+    {
+     "verse": "23:6",
+     "token": 0,
+     "text": "Surely goodness and mercy will follow me",
+     "quote": null,
+     "speaker": null,
+     "segment": 16,
+     "refrain": null,
+     "acrostic": null,
+     "selah": false
+    },
+    {
+     "verse": "23:6",
+     "token": 7,
+     "text": "all the days of my life,",
+     "quote": null,
+     "speaker": null,
+     "segment": 16,
+     "refrain": null,
+     "acrostic": null,
+     "selah": false
+    },
+    {
+     "verse": "23:6",
+     "token": 13,
+     "text": "and I will dwell in the house of the LORD forever.",
+     "quote": null,
+     "speaker": null,
+     "segment": 17,
+     "refrain": null,
+     "acrostic": null,
+     "selah": false
+    }
+   ],
+   "starts": "split"
+  }
+ ]
+}

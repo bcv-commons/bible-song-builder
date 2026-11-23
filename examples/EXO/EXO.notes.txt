@@ -1,0 +1,5 @@
+EXO · profile folk, male lead · settings: config/books/_default.toml
+Style for every chapter: EXO.style.txt — except the chapters below, which have their own
+<chapter>.style.txt (the same style with a mood the Hebrew/Greek gives the chapter).
+
+EXO 15: song (+ "triumphant, anthemic, full choir"), from song: Masoretic song layout over 19 of 27 verses; speech delivered as praise over 27 of 27 verses

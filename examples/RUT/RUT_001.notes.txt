@@ -1,0 +1,19 @@
+Ruth 1 · BSB · setting: prose
+Profile: country, female lead · Suno persona: (not set: profiles.toml [profiles.country] persona.female)
+Style: the book's (RUT.style.txt, profile country). To change: config/books/RUT.toml, [chapters.1] (mood or style)
+Voices: [Female Vocal] Naomi, Ruth; [Female Choir] two daughters-in-law, the women; [Lead Vocal] or no tag = the narrator (the persona)
+[Verse 1] 1:1
+[Verse 2] 1:2-4
+[Verse 3] 1:5-7
+[Verse 4] 1:8-10
+[Verse 5] 1:11-12
+[Verse 6] 1:13-14
+[Verse 7] 1:15-16
+[Bridge] 1:17
+[Verse 8] 1:18-19
+[Verse 9] 1:20-21
+[Verse 10] 1:22
+Shortened or paraphrased: nothing; every line is the edition's text, verbatim.
+Text: BSB, Public Domain (berean.bible, 2023-04-30).
+Structure: bcv-commons/hebrew-clause-lines v0.2, passage-facts v0.3.3, clause-connectives v0.1 and clause-columns v1.2, CC BY-SA 4.0 (bcv-commons; MACULA, Clear Bible / Biblica, CC BY 4.0; MAM, unfoldingWord ULT, UBS dictionaries, CC BY-SA 4.0).
+Alignment: bcv-commons/full-alignments-manual v1.1, layer eng_BSB+manual+bsb-tables (BSB translation tables, CC0).

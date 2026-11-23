@@ -1,0 +1,53 @@
+# License Information
+
+This repository holds three kinds of content under different licences.
+
+## 1. Software - MIT License
+
+The Python code (`bible_song_builder/`, `scripts/`, `tests/`), the `Makefile` and the hand-written settings in
+`config/` (`books/`, `profiles.toml`, `moods.toml`, `editions.toml`, `layout.toml`, `languages.toml`,
+`cast.csv`) are licensed under the MIT License:
+
+```
+MIT License
+
+Copyright (c) 2026 BSB Publishing, LLC
+Copyright (c) 2026 bcv-commons contributors
+
+Permission is hereby granted, free of charge, to any person obtaining a copy
+of this software and associated documentation files (the "Software"), to deal
+in the Software without restriction, including without limitation the rights
+to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
+copies of the Software, and to permit persons to whom the Software is
+furnished to do so, subject to the following conditions:
+
+The above copyright notice and this permission notice shall be included in all
+copies or substantial portions of the Software.
+
+THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
+IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
+FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
+AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
+LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
+OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
+SOFTWARE.
+```
+
+## 2. Data derived from bcv-commons - CC BY-SA 4.0
+
+The Hebrew and Greek word lists in `config/cast-rules.toml`, and the example lyric sheets in
+`examples/`, are built from bcv-commons datasets under CC BY-SA 4.0 (see [ATTRIBUTION.md](ATTRIBUTION.md)).
+They are shared under the same licence, [CC BY-SA 4.0](https://creativecommons.org/licenses/by-sa/4.0/).
+Credit: bcv-commons; MACULA (Clear Bible / Biblica, CC BY 4.0).
+
+What the tool generates (the cast table in `cache/`, the lyric sheets in `output/`, neither in this
+repository) combines the public-domain BSB text with this structure, so it carries the same CC BY-SA 4.0
+credit; each sheet's notes file holds it.
+
+## 3. Vendored code - CC0
+
+`vendor/verse_text/` is bcv-commons/bibles `tools/verse-text`, dedicated to the public domain (CC0 1.0);
+see `vendor/verse_text/LICENSE-bibles`.
+
+The Berean Standard Bible text itself is in the public domain (berean.bible). It is downloaded at run
+time and not stored here.

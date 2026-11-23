@@ -1,0 +1,3071 @@
+{
+ "book": "LUK",
+ "chapter": 1,
+ "edition": "BSB",
+ "setting": "prose",
+ "profile": {
+  "name": "folk",
+  "lead": "male",
+  "persona": null,
+  "style": "acoustic folk ballad, 90 BPM, fingerpicked guitar, soft strings, storytelling, earnest",
+  "tags": {
+   "narrator": "[Lead Vocal]",
+   "female": "[Female Vocal]",
+   "male": "[Male Vocal]",
+   "group": "[Choir]",
+   "female_group": "[Female Choir]",
+   "divine": "[Deep Male Vocal]",
+   "refrain": "[Choir]"
+  }
+ },
+ "style": "acoustic folk ballad, 90 BPM, fingerpicked guitar, soft strings, storytelling, earnest",
+ "own_style": false,
+ "mood": null,
+ "text_fingerprint": "3dacdd5e2a0c871f38cf7c29ae9c98538e2abe5deb40ab7c524ae6af4431418b",
+ "superscription": null,
+ "alignment": {
+  "kind": "full",
+  "layer": "eng_BSB+manual+bsb-tables",
+  "file": "e/eng/eng_BSB+manual+bsb-tables/LUK_3dacdd5e.json"
+ },
+ "pins": {
+  "hebrew-clause-lines": {
+   "repo": "bcv-commons/hebrew-clause-lines",
+   "tag": "v0.2",
+   "revision": "83a96640ea45aa410c7cfbca62d2fc84b76f19be",
+   "licence": "CC BY-SA 4.0"
+  },
+  "greek-nt-clause-lines": {
+   "repo": "bcv-commons/greek-nt-clause-lines",
+   "tag": "v0.2",
+   "revision": "6c76d7b2b95782ad8e250f53a4fcf5b54fe8385b",
+   "licence": "CC BY-SA 4.0"
+  },
+  "clause-connectives": {
+   "repo": "bcv-commons/clause-connectives",
+   "tag": "v0.1",
+   "revision": "c26a84be0262b9fd9470fc8b4bca766d1e8bf4ab",
+   "licence": "CC BY-SA 4.0"
+  },
+  "clause-columns": {
+   "repo": "bcv-commons/clause-columns",
+   "tag": "v1.2",
+   "revision": "32beff0b50e54dfde2d5d10d19ea5a0d8cc80e94",
+   "licence": "CC BY-SA 4.0"
+  },
+  "passage-facts": {
+   "repo": "bcv-commons/passage-facts",
+   "tag": "v0.3.3",
+   "revision": "7e147a06b0cccf0b6e544912834a8da8f6d8ffbc",
+   "licence": "CC BY-SA 4.0"
+  },
+  "full-alignments-manual": {
+   "repo": "bcv-commons/full-alignments-manual",
+   "tag": "v1.1",
+   "revision": "b305c7b49e02ab911f264c8e6537f115b0f930ca",
+   "licence": "CC BY 4.0 (BSB tables layer: CC0)"
+  },
+  "compact-alignments": {
+   "repo": "bcv-commons/compact-alignments",
+   "tag": null,
+   "revision": "115830822e155b5cce71f902481aa9092fa9670e",
+   "licence": "CC0 1.0"
+  },
+  "compact-alignments-meta": {
+   "repo": "bcv-commons/compact-alignments-meta",
+   "tag": null,
+   "revision": "96d0a2295d1729c589ac6df67b56d0e88e4defe8",
+   "licence": "CC0 1.0",
+   "_use": "_fingerprints.txt: the aligned text's chapter fingerprints"
+  },
+  "passage-moods-model": {
+   "repo": "bcv-commons/passage-moods-model",
+   "tag": "v0.1",
+   "revision": "db4ad9173bee9371a983aa105fa1f647e9a6d24a",
+   "licence": "CC BY-SA 4.0 (model output, claude-opus-5-5, no human check)"
+  },
+  "hebrew-commentary-terms": {
+   "repo": "bcv-commons/hebrew-commentary-terms",
+   "tag": "v0.1",
+   "revision": "797e20cd29c97abaeceb7ba6bbd47272153ddc21",
+   "licence": "CC BY-SA 4.0"
+  },
+  "hebrew-commentary-terms-model": {
+   "repo": "bcv-commons/hebrew-commentary-terms-model",
+   "tag": "v0.1",
+   "revision": "965909b57f77b1001a6f3bf34c25231a93c63b3d",
+   "licence": "CC BY-SA 4.0 (model output, claude-opus-5-5, no human check)"
+  }
+ },
+ "bible-song-builder": "0.1.0",
+ "sections": [
+  {
+   "label": "Verse 1",
+   "sung": false,
+   "mood": null,
+   "verses": [
+    "1:1",
+    "1:2",
+    "1:3",
+    "1:4"
+   ],
+   "lines": [
+    {
+     "verse": "1:1",
+     "token": 0,
+     "text": "Many have undertaken",
+     "quote": null,
+     "speaker": null,
+     "segment": 1,
+     "refrain": null,
+     "acrostic": null,
+     "selah": false
+    },
+    {
+     "verse": "1:1",
+     "token": 3,
+     "text": "to compose an account of the",
+     "quote": null,
+     "speaker": null,
+     "segment": 2,
+     "refrain": null,
+     "acrostic": null,
+     "selah": false
+    },
+    {
+     "verse": "1:1",
+     "token": 9,
+     "text": "things that have been fulfilled among us,",
+     "quote": null,
+     "speaker": null,
+     "segment": 4,
+     "refrain": null,
+     "acrostic": null,
+     "selah": false
+    },
+    {
+     "verse": "1:2",
+     "token": 0,
+     "text": "just as they were handed down to us by the initial eyewitnesses and servants of the word.",
+     "quote": null,
+     "speaker": null,
+     "segment": 5,
+     "refrain": null,
+     "acrostic": null,
+     "selah": false
+    },
+    {
+     "verse": "1:3",
+     "token": 0,
+     "text": "Therefore, having carefully investigated everything from the beginning,",
+     "quote": null,
+     "speaker": null,
+     "segment": 8,
+     "refrain": null,
+     "acrostic": null,
+     "selah": false
+    },
+    {
+     "verse": "1:3",
+     "token": 8,
+     "text": "it seemed good also to me",
+     "quote": null,
+     "speaker": null,
+     "segment": 7,
+     "refrain": null,
+     "acrostic": null,
+     "selah": false
+    },
+    {
+     "verse": "1:3",
+     "token": 14,
+     "text": "to write an orderly account for you,",
+     "quote": null,
+     "speaker": null,
+     "segment": 9,
+     "refrain": null,
+     "acrostic": null,
+     "selah": false
+    },
+    {
+     "verse": "1:3",
+     "token": 21,
+     "text": "most excellent Theophilus,",
+     "quote": null,
+     "speaker": null,
+     "segment": 10,
+     "refrain": null,
+     "acrostic": null,
+     "selah": false
+    },
+    {
+     "verse": "1:4",
+     "token": 0,
+     "text": "so that you may know",
+     "quote": null,
+     "speaker": null,
+     "segment": 11,
+     "refrain": null,
+     "acrostic": null,
+     "selah": false
+    },
+    {
+     "verse": "1:4",
+     "token": 5,
+     "text": "the certainty of the things you have been taught.",
+     "quote": null,
+     "speaker": null,
+     "segment": 13,
+     "refrain": null,
+     "acrostic": null,
+     "selah": false
+    }
+   ],
+   "starts": "start"
+  },
+  {
+   "label": "Verse 2",
+   "sung": false,
+   "mood": null,
+   "verses": [
+    "1:5",
+    "1:6",
+    "1:7"
+   ],
+   "lines": [
+    {
+     "verse": "1:5",
+     "token": 0,
+     "text": "In the time of Herod king of Judea there was a priest",
+     "quote": null,
+     "speaker": null,
+     "segment": 14,
+     "refrain": null,
+     "acrostic": null,
+     "selah": false
+    },
+    {
+     "verse": "1:5",
+     "token": 12,
+     "text": "named Zechariah, who belonged to the priestly division of Abijah,",
+     "quote": null,
+     "speaker": null,
+     "segment": 15,
+     "refrain": null,
+     "acrostic": null,
+     "selah": false
+    },
+    {
+     "verse": "1:5",
+     "token": 22,
+     "text": "and whose wife",
+     "quote": null,
+     "speaker": null,
+     "segment": 17,
+     "refrain": null,
+     "acrostic": null,
+     "selah": false
+    },
+    {
+     "verse": "1:5",
+     "token": 25,
+     "text": "Elizabeth was a descendant of Aaron.",
+     "quote": null,
+     "speaker": null,
+     "segment": 18,
+     "refrain": null,
+     "acrostic": null,
+     "selah": false
+    },
+    {
+     "verse": "1:6",
+     "token": 0,
+     "text": "Both of them were righteous in the sight of God,",
+     "quote": null,
+     "speaker": null,
+     "segment": 19,
+     "refrain": null,
+     "acrostic": null,
+     "selah": false
+    },
+    {
+     "verse": "1:6",
+     "token": 10,
+     "text": "walking blamelessly in all the commandments and decrees of the Lord.",
+     "quote": null,
+     "speaker": null,
+     "segment": 20,
+     "refrain": null,
+     "acrostic": null,
+     "selah": false
+    },
+    {
+     "verse": "1:7",
+     "token": 0,
+     "text": "But they had no children,",
+     "quote": null,
+     "speaker": null,
+     "segment": 21,
+     "refrain": null,
+     "acrostic": null,
+     "selah": false
+    },
+    {
+     "verse": "1:7",
+     "token": 5,
+     "text": "because Elizabeth was barren,",
+     "quote": null,
+     "speaker": null,
+     "segment": 22,
+     "refrain": null,
+     "acrostic": null,
+     "selah": false
+    },
+    {
+     "verse": "1:7",
+     "token": 9,
+     "text": "and they were both well along in years.",
+     "quote": null,
+     "speaker": null,
+     "segment": 23,
+     "refrain": null,
+     "acrostic": null,
+     "selah": false
+    }
+   ],
+   "starts": "split"
+  },
+  {
+   "label": "Verse 3",
+   "sung": false,
+   "mood": {
+    "family": "md.yare",
+    "head": "φοβέω",
+    "tag": "[Mood: fearful, in awe]",
+    "evidence": "passage-moods-model LUK 1:10-14",
+    "model": true
+   },
+   "verses": [
+    "1:8",
+    "1:9",
+    "1:10",
+    "1:11",
+    "1:12"
+   ],
+   "lines": [
+    {
+     "verse": "1:8",
+     "token": 0,
+     "text": "One day while Zechariah’s division was on duty and he was serving as priest before God,",
+     "quote": null,
+     "speaker": null,
+     "segment": 24,
+     "refrain": null,
+     "acrostic": null,
+     "selah": false
+    },
+    {
+     "verse": "1:9",
+     "token": 0,
+     "text": "he was chosen by lot, according to the custom of the priesthood,",
+     "quote": null,
+     "speaker": null,
+     "segment": 26,
+     "refrain": null,
+     "acrostic": null,
+     "selah": false
+    },
+    {
+     "verse": "1:9",
+     "token": 12,
+     "text": "to enter the temple of the Lord",
+     "quote": null,
+     "speaker": null,
+     "segment": 28,
+     "refrain": null,
+     "acrostic": null,
+     "selah": false
+    },
+    {
+     "verse": "1:9",
+     "token": 19,
+     "text": "and burn incense.",
+     "quote": null,
+     "speaker": null,
+     "segment": 27,
+     "refrain": null,
+     "acrostic": null,
+     "selah": false
+    },
+    {
+     "verse": "1:10",
+     "token": 0,
+     "text": "And at the hour of the incense offering, the whole congregation was praying outside.",
+     "quote": null,
+     "speaker": null,
+     "segment": 29,
+     "refrain": null,
+     "acrostic": null,
+     "selah": false
+    },
+    {
+     "verse": "1:11",
+     "token": 0,
+     "text": "Just then an angel of the Lord appeared to Zechariah,",
+     "quote": null,
+     "speaker": null,
+     "segment": 30,
+     "refrain": null,
+     "acrostic": null,
+     "selah": false
+    },
+    {
+     "verse": "1:11",
+     "token": 10,
+     "text": "standing at the right side of the altar of incense.",
+     "quote": null,
+     "speaker": null,
+     "segment": 31,
+     "refrain": null,
+     "acrostic": null,
+     "selah": false
+    },
+    {
+     "verse": "1:12",
+     "token": 0,
+     "text": "When Zechariah saw him, he was startled",
+     "quote": null,
+     "speaker": null,
+     "segment": 32,
+     "refrain": null,
+     "acrostic": null,
+     "selah": false
+    },
+    {
+     "verse": "1:12",
+     "token": 7,
+     "text": "and gripped with fear.",
+     "quote": null,
+     "speaker": null,
+     "segment": 33,
+     "refrain": null,
+     "acrostic": null,
+     "selah": false
+    }
+   ],
+   "starts": "split"
+  },
+  {
+   "label": "Verse 4",
+   "sung": false,
+   "mood": {
+    "family": "md.yare",
+    "head": "φοβέω",
+    "tag": "[Mood: fearful, in awe]",
+    "evidence": "passage-moods-model LUK 1:10-14",
+    "model": true
+   },
+   "verses": [
+    "1:13",
+    "1:14",
+    "1:15"
+   ],
+   "lines": [
+    {
+     "verse": "1:13",
+     "token": 0,
+     "text": "But the angel said to him,",
+     "quote": null,
+     "speaker": null,
+     "segment": 34,
+     "refrain": null,
+     "acrostic": null,
+     "selah": false
+    },
+    {
+     "verse": "1:13",
+     "token": 6,
+     "text": "“Do not be afraid, Zechariah,",
+     "quote": "42001013007",
+     "speaker": {
+      "id": "n0109",
+      "label": "angel",
+      "voice": "male"
+     },
+     "segment": 35,
+     "refrain": null,
+     "acrostic": null,
+     "selah": false
+    },
+    {
+     "verse": "1:13",
+     "token": 11,
+     "text": "because your prayer has been heard.",
+     "quote": "42001013007",
+     "speaker": {
+      "id": "n0109",
+      "label": "angel",
+      "voice": "male"
+     },
+     "segment": 36,
+     "refrain": null,
+     "acrostic": null,
+     "selah": false
+    },
+    {
+     "verse": "1:13",
+     "token": 17,
+     "text": "Your wife Elizabeth will bear you a son,",
+     "quote": "42001013007",
+     "speaker": {
+      "id": "n0109",
+      "label": "angel",
+      "voice": "male"
+     },
+     "segment": 37,
+     "refrain": null,
+     "acrostic": null,
+     "selah": false
+    },
+    {
+     "verse": "1:13",
+     "token": 25,
+     "text": "and you are to give him the name John.",
+     "quote": "42001013007",
+     "speaker": {
+      "id": "n0109",
+      "label": "angel",
+      "voice": "male"
+     },
+     "segment": 38,
+     "refrain": null,
+     "acrostic": null,
+     "selah": false
+    },
+    {
+     "verse": "1:14",
+     "token": 0,
+     "text": "He will be a joy and delight to you,",
+     "quote": "42001013007",
+     "speaker": {
+      "id": "n0109",
+      "label": "angel",
+      "voice": "male"
+     },
+     "segment": 39,
+     "refrain": null,
+     "acrostic": null,
+     "selah": false
+    },
+    {
+     "verse": "1:14",
+     "token": 9,
+     "text": "and many will rejoice at his birth,",
+     "quote": "42001013007",
+     "speaker": {
+      "id": "n0109",
+      "label": "angel",
+      "voice": "male"
+     },
+     "segment": 40,
+     "refrain": null,
+     "acrostic": null,
+     "selah": false
+    },
+    {
+     "verse": "1:15",
+     "token": 0,
+     "text": "for he will be great in the sight of the Lord.",
+     "quote": "42001013007",
+     "speaker": {
+      "id": "n0109",
+      "label": "angel",
+      "voice": "male"
+     },
+     "segment": 41,
+     "refrain": null,
+     "acrostic": null,
+     "selah": false
+    },
+    {
+     "verse": "1:15",
+     "token": 11,
+     "text": "He shall never take wine or strong drink,",
+     "quote": "42001013007",
+     "speaker": {
+      "id": "n0109",
+      "label": "angel",
+      "voice": "male"
+     },
+     "segment": 42,
+     "refrain": null,
+     "acrostic": null,
+     "selah": false
+    },
+    {
+     "verse": "1:15",
+     "token": 19,
+     "text": "and he will be filled with the Holy Spirit even from his mother’s womb.",
+     "quote": "42001013007",
+     "speaker": {
+      "id": "n0109",
+      "label": "angel",
+      "voice": "male"
+     },
+     "segment": 43,
+     "refrain": null,
+     "acrostic": null,
+     "selah": false
+    }
+   ],
+   "starts": "split"
+  },
+  {
+   "label": "Verse 5",
+   "sung": false,
+   "mood": null,
+   "verses": [
+    "1:16",
+    "1:17",
+    "1:18"
+   ],
+   "lines": [
+    {
+     "verse": "1:16",
+     "token": 0,
+     "text": "Many of the sons of Israel he will turn back to the Lord their God.",
+     "quote": "42001013007",
+     "speaker": {
+      "id": "n0109",
+      "label": "angel",
+      "voice": "male"
+     },
+     "segment": 44,
+     "refrain": null,
+     "acrostic": null,
+     "selah": false
+    },
+    {
+     "verse": "1:17",
+     "token": 0,
+     "text": "And he will go on before the Lord in the spirit and power of Elijah,",
+     "quote": "42001013007",
+     "speaker": {
+      "id": "n0109",
+      "label": "angel",
+      "voice": "male"
+     },
+     "segment": 45,
+     "refrain": null,
+     "acrostic": null,
+     "selah": false
+    },
+    {
+     "verse": "1:17",
+     "token": 15,
+     "text": "to turn the hearts of the fathers to their children",
+     "quote": "42001013007",
+     "speaker": {
+      "id": "n0109",
+      "label": "angel",
+      "voice": "male"
+     },
+     "segment": 46,
+     "refrain": null,
+     "acrostic": null,
+     "selah": false
+    },
+    {
+     "verse": "1:17",
+     "token": 25,
+     "text": "and the disobedient to the wisdom of the righteous —",
+     "quote": "42001013007",
+     "speaker": {
+      "id": "n0109",
+      "label": "angel",
+      "voice": "male"
+     },
+     "segment": 47,
+     "refrain": null,
+     "acrostic": null,
+     "selah": false
+    },
+    {
+     "verse": "1:17",
+     "token": 34,
+     "text": "to make ready a people prepared for the Lord.”",
+     "quote": "42001013007",
+     "speaker": {
+      "id": "n0109",
+      "label": "angel",
+      "voice": "male"
+     },
+     "segment": 48,
+     "refrain": null,
+     "acrostic": null,
+     "selah": false
+    },
+    {
+     "verse": "1:18",
+     "token": 0,
+     "text": "“How can I be sure of this?”",
+     "quote": "42001018007",
+     "speaker": {
+      "id": "n0110",
+      "label": "Zechariah",
+      "voice": "male"
+     },
+     "segment": 50,
+     "refrain": null,
+     "acrostic": null,
+     "selah": false
+    },
+    {
+     "verse": "1:18",
+     "token": 7,
+     "text": "Zechariah asked the angel.",
+     "quote": null,
+     "speaker": null,
+     "segment": 49,
+     "refrain": null,
+     "acrostic": null,
+     "selah": false
+    },
+    {
+     "verse": "1:18",
+     "token": 11,
+     "text": "“I am an old man,",
+     "quote": "42001018007",
+     "speaker": {
+      "id": "n0110",
+      "label": "Zechariah",
+      "voice": "male"
+     },
+     "segment": 51,
+     "refrain": null,
+     "acrostic": null,
+     "selah": false
+    },
+    {
+     "verse": "1:18",
+     "token": 16,
+     "text": "and my wife is well along in years.”",
+     "quote": "42001018007",
+     "speaker": {
+      "id": "n0110",
+      "label": "Zechariah",
+      "voice": "male"
+     },
+     "segment": 52,
+     "refrain": null,
+     "acrostic": null,
+     "selah": false
+    }
+   ],
+   "starts": "split"
+  },
+  {
+   "label": "Verse 6",
+   "sung": false,
+   "mood": null,
+   "verses": [
+    "1:19",
+    "1:20"
+   ],
+   "lines": [
+    {
+     "verse": "1:19",
+     "token": 0,
+     "text": "“I am Gabriel,”",
+     "quote": "42001019007",
+     "speaker": {
+      "id": "n0109",
+      "label": "angel",
+      "voice": "male"
+     },
+     "segment": 55,
+     "refrain": null,
+     "acrostic": null,
+     "selah": false
+    },
+    {
+     "verse": "1:19",
+     "token": 3,
+     "text": "replied the angel.",
+     "quote": null,
+     "speaker": null,
+     "segment": 54,
+     "refrain": null,
+     "acrostic": null,
+     "selah": false
+    },
+    {
+     "verse": "1:19",
+     "token": 6,
+     "text": "“I stand in the presence of God,",
+     "quote": "42001019007",
+     "speaker": {
+      "id": "n0109",
+      "label": "angel",
+      "voice": "male"
+     },
+     "segment": 56,
+     "refrain": null,
+     "acrostic": null,
+     "selah": false
+    },
+    {
+     "verse": "1:19",
+     "token": 13,
+     "text": "and I have been sent",
+     "quote": "42001019007",
+     "speaker": {
+      "id": "n0109",
+      "label": "angel",
+      "voice": "male"
+     },
+     "segment": 57,
+     "refrain": null,
+     "acrostic": null,
+     "selah": false
+    },
+    {
+     "verse": "1:19",
+     "token": 18,
+     "text": "to speak to you",
+     "quote": "42001019007",
+     "speaker": {
+      "id": "n0109",
+      "label": "angel",
+      "voice": "male"
+     },
+     "segment": 58,
+     "refrain": null,
+     "acrostic": null,
+     "selah": false
+    },
+    {
+     "verse": "1:19",
+     "token": 22,
+     "text": "and to bring you this good news.",
+     "quote": "42001019007",
+     "speaker": {
+      "id": "n0109",
+      "label": "angel",
+      "voice": "male"
+     },
+     "segment": 59,
+     "refrain": null,
+     "acrostic": null,
+     "selah": false
+    },
+    {
+     "verse": "1:20",
+     "token": 0,
+     "text": "And now you will be",
+     "quote": "42001019007",
+     "speaker": {
+      "id": "n0109",
+      "label": "angel",
+      "voice": "male"
+     },
+     "segment": 60,
+     "refrain": null,
+     "acrostic": null,
+     "selah": false
+    },
+    {
+     "verse": "1:20",
+     "token": 5,
+     "text": "silent and unable to speak",
+     "quote": "42001019007",
+     "speaker": {
+      "id": "n0109",
+      "label": "angel",
+      "voice": "male"
+     },
+     "segment": 61,
+     "refrain": null,
+     "acrostic": null,
+     "selah": false
+    },
+    {
+     "verse": "1:20",
+     "token": 10,
+     "text": "until the day this comes to pass,",
+     "quote": "42001019007",
+     "speaker": {
+      "id": "n0109",
+      "label": "angel",
+      "voice": "male"
+     },
+     "segment": 63,
+     "refrain": null,
+     "acrostic": null,
+     "selah": false
+    },
+    {
+     "verse": "1:20",
+     "token": 17,
+     "text": "because you did not believe my words,",
+     "quote": "42001019007",
+     "speaker": {
+      "id": "n0109",
+      "label": "angel",
+      "voice": "male"
+     },
+     "segment": 64,
+     "refrain": null,
+     "acrostic": null,
+     "selah": false
+    },
+    {
+     "verse": "1:20",
+     "token": 24,
+     "text": "which will be fulfilled at their proper time.”",
+     "quote": "42001019007",
+     "speaker": {
+      "id": "n0109",
+      "label": "angel",
+      "voice": "male"
+     },
+     "segment": 65,
+     "refrain": null,
+     "acrostic": null,
+     "selah": false
+    }
+   ],
+   "starts": "split"
+  },
+  {
+   "label": "Verse 7",
+   "sung": false,
+   "mood": null,
+   "verses": [
+    "1:21",
+    "1:22"
+   ],
+   "lines": [
+    {
+     "verse": "1:21",
+     "token": 0,
+     "text": "Meanwhile, the people were waiting for Zechariah",
+     "quote": null,
+     "speaker": null,
+     "segment": 66,
+     "refrain": null,
+     "acrostic": null,
+     "selah": false
+    },
+    {
+     "verse": "1:21",
+     "token": 7,
+     "text": "and wondering why he took so long in the temple.",
+     "quote": null,
+     "speaker": null,
+     "segment": 67,
+     "refrain": null,
+     "acrostic": null,
+     "selah": false
+    },
+    {
+     "verse": "1:22",
+     "token": 0,
+     "text": "When he came out and was unable",
+     "quote": null,
+     "speaker": null,
+     "segment": 69,
+     "refrain": null,
+     "acrostic": null,
+     "selah": false
+    },
+    {
+     "verse": "1:22",
+     "token": 7,
+     "text": "to speak to them,",
+     "quote": null,
+     "speaker": null,
+     "segment": 70,
+     "refrain": null,
+     "acrostic": null,
+     "selah": false
+    },
+    {
+     "verse": "1:22",
+     "token": 11,
+     "text": "they realized he had seen a vision in the temple.",
+     "quote": null,
+     "speaker": null,
+     "segment": 71,
+     "refrain": null,
+     "acrostic": null,
+     "selah": false
+    },
+    {
+     "verse": "1:22",
+     "token": 21,
+     "text": "He kept making signs to them",
+     "quote": null,
+     "speaker": null,
+     "segment": 73,
+     "refrain": null,
+     "acrostic": null,
+     "selah": false
+    },
+    {
+     "verse": "1:22",
+     "token": 27,
+     "text": "but remained unable to speak.",
+     "quote": null,
+     "speaker": null,
+     "segment": 74,
+     "refrain": null,
+     "acrostic": null,
+     "selah": false
+    }
+   ],
+   "starts": "split"
+  },
+  {
+   "label": "Verse 8",
+   "sung": false,
+   "mood": null,
+   "verses": [
+    "1:23",
+    "1:24",
+    "1:25"
+   ],
+   "lines": [
+    {
+     "verse": "1:23",
+     "token": 0,
+     "text": "And when the days of his service were complete,",
+     "quote": null,
+     "speaker": null,
+     "segment": 75,
+     "refrain": null,
+     "acrostic": null,
+     "selah": false
+    },
+    {
+     "verse": "1:23",
+     "token": 9,
+     "text": "he returned home.",
+     "quote": null,
+     "speaker": null,
+     "segment": 77,
+     "refrain": null,
+     "acrostic": null,
+     "selah": false
+    },
+    {
+     "verse": "1:24",
+     "token": 0,
+     "text": "After these days, his wife Elizabeth became pregnant",
+     "quote": null,
+     "speaker": null,
+     "segment": 78,
+     "refrain": null,
+     "acrostic": null,
+     "selah": false
+    },
+    {
+     "verse": "1:24",
+     "token": 8,
+     "text": "and for five months remained in seclusion. She declared,",
+     "quote": null,
+     "speaker": null,
+     "segment": 79,
+     "refrain": null,
+     "acrostic": null,
+     "selah": false
+    },
+    {
+     "verse": "1:25",
+     "token": 0,
+     "text": "“The Lord has done this for me. In these days",
+     "quote": null,
+     "speaker": null,
+     "segment": 81,
+     "refrain": null,
+     "acrostic": null,
+     "selah": false
+    },
+    {
+     "verse": "1:25",
+     "token": 10,
+     "text": "He has shown me favor",
+     "quote": null,
+     "speaker": null,
+     "segment": 82,
+     "refrain": null,
+     "acrostic": null,
+     "selah": false
+    },
+    {
+     "verse": "1:25",
+     "token": 15,
+     "text": "and taken away my disgrace among the people.”",
+     "quote": null,
+     "speaker": null,
+     "segment": 83,
+     "refrain": null,
+     "acrostic": null,
+     "selah": false
+    }
+   ],
+   "starts": "split"
+  },
+  {
+   "label": "Verse 9",
+   "sung": false,
+   "mood": null,
+   "verses": [
+    "1:26",
+    "1:27",
+    "1:28"
+   ],
+   "lines": [
+    {
+     "verse": "1:26",
+     "token": 0,
+     "text": "In the sixth month, God sent the angel Gabriel to a town in Galilee called Nazareth,",
+     "quote": null,
+     "speaker": null,
+     "segment": 84,
+     "refrain": null,
+     "acrostic": null,
+     "selah": false
+    },
+    {
+     "verse": "1:27",
+     "token": 0,
+     "text": "to a virgin pledged in marriage to a man",
+     "quote": null,
+     "speaker": null,
+     "segment": 86,
+     "refrain": null,
+     "acrostic": null,
+     "selah": false
+    },
+    {
+     "verse": "1:27",
+     "token": 9,
+     "text": "named Joseph, who was of the house of David.",
+     "quote": null,
+     "speaker": null,
+     "segment": 87,
+     "refrain": null,
+     "acrostic": null,
+     "selah": false
+    },
+    {
+     "verse": "1:27",
+     "token": 18,
+     "text": "And the virgin’s name was Mary.",
+     "quote": null,
+     "speaker": null,
+     "segment": 89,
+     "refrain": null,
+     "acrostic": null,
+     "selah": false
+    },
+    {
+     "verse": "1:28",
+     "token": 0,
+     "text": "The angel appeared to her and said,",
+     "quote": null,
+     "speaker": null,
+     "segment": 90,
+     "refrain": null,
+     "acrostic": null,
+     "selah": false
+    },
+    {
+     "verse": "1:28",
+     "token": 7,
+     "text": "“Greetings, you who are highly favored!",
+     "quote": "42001028006",
+     "speaker": {
+      "id": "n0109",
+      "label": "angel",
+      "voice": "male"
+     },
+     "segment": 91,
+     "refrain": null,
+     "acrostic": null,
+     "selah": false
+    },
+    {
+     "verse": "1:28",
+     "token": 13,
+     "text": "The Lord is with you.”",
+     "quote": "42001028006",
+     "speaker": {
+      "id": "n0109",
+      "label": "angel",
+      "voice": "male"
+     },
+     "segment": 92,
+     "refrain": null,
+     "acrostic": null,
+     "selah": false
+    }
+   ],
+   "starts": "split"
+  },
+  {
+   "label": "Verse 10",
+   "sung": false,
+   "mood": null,
+   "verses": [
+    "1:29",
+    "1:30"
+   ],
+   "lines": [
+    {
+     "verse": "1:29",
+     "token": 0,
+     "text": "Mary was greatly troubled at his words",
+     "quote": null,
+     "speaker": null,
+     "segment": 93,
+     "refrain": null,
+     "acrostic": null,
+     "selah": false
+    },
+    {
+     "verse": "1:29",
+     "token": 7,
+     "text": "and wondered what kind of greeting this might be.",
+     "quote": null,
+     "speaker": null,
+     "segment": 94,
+     "refrain": null,
+     "acrostic": null,
+     "selah": false
+    },
+    {
+     "verse": "1:30",
+     "token": 0,
+     "text": "So the angel told her,",
+     "quote": null,
+     "speaker": null,
+     "segment": 96,
+     "refrain": null,
+     "acrostic": null,
+     "selah": false
+    },
+    {
+     "verse": "1:30",
+     "token": 5,
+     "text": "“Do not be afraid, Mary,",
+     "quote": "42001030006",
+     "speaker": {
+      "id": "n0109",
+      "label": "angel",
+      "voice": "male"
+     },
+     "segment": 97,
+     "refrain": null,
+     "acrostic": null,
+     "selah": false
+    },
+    {
+     "verse": "1:30",
+     "token": 10,
+     "text": "for you have found favor with God.",
+     "quote": "42001030006",
+     "speaker": {
+      "id": "n0109",
+      "label": "angel",
+      "voice": "male"
+     },
+     "segment": 98,
+     "refrain": null,
+     "acrostic": null,
+     "selah": false
+    }
+   ],
+   "starts": "split"
+  },
+  {
+   "label": "Verse 11",
+   "sung": false,
+   "mood": null,
+   "verses": [
+    "1:31",
+    "1:32",
+    "1:33",
+    "1:34"
+   ],
+   "lines": [
+    {
+     "verse": "1:31",
+     "token": 0,
+     "text": "Behold, you will conceive",
+     "quote": "42001030006",
+     "speaker": {
+      "id": "n0109",
+      "label": "angel",
+      "voice": "male"
+     },
+     "segment": 99,
+     "refrain": null,
+     "acrostic": null,
+     "selah": false
+    },
+    {
+     "verse": "1:31",
+     "token": 4,
+     "text": "and give birth to a son,",
+     "quote": "42001030006",
+     "speaker": {
+      "id": "n0109",
+      "label": "angel",
+      "voice": "male"
+     },
+     "segment": 100,
+     "refrain": null,
+     "acrostic": null,
+     "selah": false
+    },
+    {
+     "verse": "1:31",
+     "token": 10,
+     "text": "and you are to give Him the name Jesus.",
+     "quote": "42001030006",
+     "speaker": {
+      "id": "n0109",
+      "label": "angel",
+      "voice": "male"
+     },
+     "segment": 101,
+     "refrain": null,
+     "acrostic": null,
+     "selah": false
+    },
+    {
+     "verse": "1:32",
+     "token": 0,
+     "text": "He will be great",
+     "quote": "42001030006",
+     "speaker": {
+      "id": "n0109",
+      "label": "angel",
+      "voice": "male"
+     },
+     "segment": 102,
+     "refrain": null,
+     "acrostic": null,
+     "selah": false
+    },
+    {
+     "verse": "1:32",
+     "token": 4,
+     "text": "and will be called the Son of the Most High.",
+     "quote": "42001030006",
+     "speaker": {
+      "id": "n0109",
+      "label": "angel",
+      "voice": "male"
+     },
+     "segment": 103,
+     "refrain": null,
+     "acrostic": null,
+     "selah": false
+    },
+    {
+     "verse": "1:32",
+     "token": 14,
+     "text": "The Lord God will give Him the throne of His father David,",
+     "quote": "42001030006",
+     "speaker": {
+      "id": "n0109",
+      "label": "angel",
+      "voice": "male"
+     },
+     "segment": 104,
+     "refrain": null,
+     "acrostic": null,
+     "selah": false
+    },
+    {
+     "verse": "1:33",
+     "token": 0,
+     "text": "and He will reign over the house of Jacob forever.",
+     "quote": "42001030006",
+     "speaker": {
+      "id": "n0109",
+      "label": "angel",
+      "voice": "male"
+     },
+     "segment": 105,
+     "refrain": null,
+     "acrostic": null,
+     "selah": false
+    },
+    {
+     "verse": "1:33",
+     "token": 10,
+     "text": "His kingdom will never end!”",
+     "quote": "42001030006",
+     "speaker": {
+      "id": "n0109",
+      "label": "angel",
+      "voice": "male"
+     },
+     "segment": 106,
+     "refrain": null,
+     "acrostic": null,
+     "selah": false
+    },
+    {
+     "verse": "1:34",
+     "token": 0,
+     "text": "“How can this be,”",
+     "quote": "42001034007",
+     "speaker": {
+      "id": "n0111",
+      "label": "Mary",
+      "voice": "female"
+     },
+     "segment": 108,
+     "refrain": null,
+     "acrostic": null,
+     "selah": false
+    },
+    {
+     "verse": "1:34",
+     "token": 4,
+     "text": "Mary asked the angel,",
+     "quote": null,
+     "speaker": null,
+     "segment": 107,
+     "refrain": null,
+     "acrostic": null,
+     "selah": false
+    },
+    {
+     "verse": "1:34",
+     "token": 8,
+     "text": "“since I am a virgin?”",
+     "quote": "42001034007",
+     "speaker": {
+      "id": "n0111",
+      "label": "Mary",
+      "voice": "female"
+     },
+     "segment": 109,
+     "refrain": null,
+     "acrostic": null,
+     "selah": false
+    }
+   ],
+   "starts": "split"
+  },
+  {
+   "label": "Verse 12",
+   "sung": false,
+   "mood": null,
+   "verses": [
+    "1:35",
+    "1:36",
+    "1:37",
+    "1:38"
+   ],
+   "lines": [
+    {
+     "verse": "1:35",
+     "token": 0,
+     "text": "The angel replied,",
+     "quote": null,
+     "speaker": null,
+     "segment": 110,
+     "refrain": null,
+     "acrostic": null,
+     "selah": false
+    },
+    {
+     "verse": "1:35",
+     "token": 3,
+     "text": "“The Holy Spirit will come upon you,",
+     "quote": "42001035007",
+     "speaker": {
+      "id": "n0109",
+      "label": "angel",
+      "voice": "male"
+     },
+     "segment": 111,
+     "refrain": null,
+     "acrostic": null,
+     "selah": false
+    },
+    {
+     "verse": "1:35",
+     "token": 10,
+     "text": "and the power of the Most High will overshadow you.",
+     "quote": "42001035007",
+     "speaker": {
+      "id": "n0109",
+      "label": "angel",
+      "voice": "male"
+     },
+     "segment": 112,
+     "refrain": null,
+     "acrostic": null,
+     "selah": false
+    },
+    {
+     "verse": "1:35",
+     "token": 20,
+     "text": "So the Holy One to be born will be called the Son of God.",
+     "quote": "42001035007",
+     "speaker": {
+      "id": "n0109",
+      "label": "angel",
+      "voice": "male"
+     },
+     "segment": 113,
+     "refrain": null,
+     "acrostic": null,
+     "selah": false
+    },
+    {
+     "verse": "1:36",
+     "token": 0,
+     "text": "Look, even Elizabeth your relative has conceived a son in her old age,",
+     "quote": "42001035007",
+     "speaker": {
+      "id": "n0109",
+      "label": "angel",
+      "voice": "male"
+     },
+     "segment": 114,
+     "refrain": null,
+     "acrostic": null,
+     "selah": false
+    },
+    {
+     "verse": "1:36",
+     "token": 13,
+     "text": "and she who was called barren is in her sixth month.",
+     "quote": "42001035007",
+     "speaker": {
+      "id": "n0109",
+      "label": "angel",
+      "voice": "male"
+     },
+     "segment": 115,
+     "refrain": null,
+     "acrostic": null,
+     "selah": false
+    },
+    {
+     "verse": "1:37",
+     "token": 0,
+     "text": "For no word from God will ever fail.”",
+     "quote": "42001035007",
+     "speaker": {
+      "id": "n0109",
+      "label": "angel",
+      "voice": "male"
+     },
+     "segment": 117,
+     "refrain": null,
+     "acrostic": null,
+     "selah": false
+    },
+    {
+     "verse": "1:38",
+     "token": 0,
+     "text": "“I am the Lord’s servant,”",
+     "quote": "42001038004",
+     "speaker": {
+      "id": "n0111",
+      "label": "Mary",
+      "voice": "female"
+     },
+     "segment": 119,
+     "refrain": null,
+     "acrostic": null,
+     "selah": false
+    },
+    {
+     "verse": "1:38",
+     "token": 6,
+     "text": "Mary answered.",
+     "quote": null,
+     "speaker": null,
+     "segment": 118,
+     "refrain": null,
+     "acrostic": null,
+     "selah": false
+    },
+    {
+     "verse": "1:38",
+     "token": 8,
+     "text": "“May it happen to me according to your word.”",
+     "quote": "42001038004",
+     "speaker": {
+      "id": "n0111",
+      "label": "Mary",
+      "voice": "female"
+     },
+     "segment": 120,
+     "refrain": null,
+     "acrostic": null,
+     "selah": false
+    },
+    {
+     "verse": "1:38",
+     "token": 17,
+     "text": "Then the angel left her.",
+     "quote": null,
+     "speaker": null,
+     "segment": 121,
+     "refrain": null,
+     "acrostic": null,
+     "selah": false
+    }
+   ],
+   "starts": "split"
+  },
+  {
+   "label": "Verse 13",
+   "sung": false,
+   "mood": null,
+   "verses": [
+    "1:39",
+    "1:40"
+   ],
+   "lines": [
+    {
+     "verse": "1:39",
+     "token": 0,
+     "text": "In those days",
+     "quote": null,
+     "speaker": null,
+     "segment": 124,
+     "refrain": null,
+     "acrostic": null,
+     "selah": false
+    },
+    {
+     "verse": "1:39",
+     "token": 3,
+     "text": "Mary got ready",
+     "quote": null,
+     "speaker": null,
+     "segment": 123,
+     "refrain": null,
+     "acrostic": null,
+     "selah": false
+    },
+    {
+     "verse": "1:39",
+     "token": 6,
+     "text": "and hurried to a town in the hill country of Judah,",
+     "quote": null,
+     "speaker": null,
+     "segment": 125,
+     "refrain": null,
+     "acrostic": null,
+     "selah": false
+    },
+    {
+     "verse": "1:40",
+     "token": 0,
+     "text": "where she entered the home of Zechariah",
+     "quote": null,
+     "speaker": null,
+     "segment": 126,
+     "refrain": null,
+     "acrostic": null,
+     "selah": false
+    },
+    {
+     "verse": "1:40",
+     "token": 7,
+     "text": "and greeted Elizabeth.",
+     "quote": null,
+     "speaker": null,
+     "segment": 127,
+     "refrain": null,
+     "acrostic": null,
+     "selah": false
+    }
+   ],
+   "starts": "split"
+  },
+  {
+   "label": "Verse 14",
+   "sung": false,
+   "mood": null,
+   "verses": [
+    "1:41",
+    "1:42",
+    "1:43",
+    "1:44",
+    "1:45"
+   ],
+   "lines": [
+    {
+     "verse": "1:41",
+     "token": 0,
+     "text": "When Elizabeth heard Mary’s greeting,",
+     "quote": null,
+     "speaker": null,
+     "segment": 128,
+     "refrain": null,
+     "acrostic": null,
+     "selah": false
+    },
+    {
+     "verse": "1:41",
+     "token": 6,
+     "text": "the baby leaped in her womb,",
+     "quote": null,
+     "speaker": null,
+     "segment": 130,
+     "refrain": null,
+     "acrostic": null,
+     "selah": false
+    },
+    {
+     "verse": "1:41",
+     "token": 12,
+     "text": "and Elizabeth was filled with the Holy Spirit.",
+     "quote": null,
+     "speaker": null,
+     "segment": 131,
+     "refrain": null,
+     "acrostic": null,
+     "selah": false
+    },
+    {
+     "verse": "1:42",
+     "token": 0,
+     "text": "In a loud voice she exclaimed,",
+     "quote": null,
+     "speaker": null,
+     "segment": 132,
+     "refrain": null,
+     "acrostic": null,
+     "selah": false
+    },
+    {
+     "verse": "1:42",
+     "token": 6,
+     "text": "“Blessed are you among women,",
+     "quote": "42001042007",
+     "speaker": {
+      "id": "n0112",
+      "label": "Elizabeth",
+      "voice": "female"
+     },
+     "segment": 134,
+     "refrain": null,
+     "acrostic": null,
+     "selah": false
+    },
+    {
+     "verse": "1:42",
+     "token": 11,
+     "text": "and blessed is the fruit of your womb!",
+     "quote": "42001042007",
+     "speaker": {
+      "id": "n0112",
+      "label": "Elizabeth",
+      "voice": "female"
+     },
+     "segment": 135,
+     "refrain": null,
+     "acrostic": null,
+     "selah": false
+    },
+    {
+     "verse": "1:43",
+     "token": 0,
+     "text": "And why am I so honored,",
+     "quote": "42001042007",
+     "speaker": {
+      "id": "n0112",
+      "label": "Elizabeth",
+      "voice": "female"
+     },
+     "segment": 136,
+     "refrain": null,
+     "acrostic": null,
+     "selah": false
+    },
+    {
+     "verse": "1:43",
+     "token": 6,
+     "text": "that the mother of my Lord should come to me?",
+     "quote": "42001042007",
+     "speaker": {
+      "id": "n0112",
+      "label": "Elizabeth",
+      "voice": "female"
+     },
+     "segment": 137,
+     "refrain": null,
+     "acrostic": null,
+     "selah": false
+    },
+    {
+     "verse": "1:44",
+     "token": 0,
+     "text": "For as soon as the sound of your greeting reached my ears,",
+     "quote": "42001042007",
+     "speaker": {
+      "id": "n0112",
+      "label": "Elizabeth",
+      "voice": "female"
+     },
+     "segment": 138,
+     "refrain": null,
+     "acrostic": null,
+     "selah": false
+    },
+    {
+     "verse": "1:44",
+     "token": 12,
+     "text": "the baby in my womb leaped for joy.",
+     "quote": "42001042007",
+     "speaker": {
+      "id": "n0112",
+      "label": "Elizabeth",
+      "voice": "female"
+     },
+     "segment": 139,
+     "refrain": null,
+     "acrostic": null,
+     "selah": false
+    },
+    {
+     "verse": "1:45",
+     "token": 0,
+     "text": "Blessed is she who has believed",
+     "quote": "42001042007",
+     "speaker": {
+      "id": "n0112",
+      "label": "Elizabeth",
+      "voice": "female"
+     },
+     "segment": 140,
+     "refrain": null,
+     "acrostic": null,
+     "selah": false
+    },
+    {
+     "verse": "1:45",
+     "token": 6,
+     "text": "that the Lord’s word to her will be fulfilled.”",
+     "quote": "42001042007",
+     "speaker": {
+      "id": "n0112",
+      "label": "Elizabeth",
+      "voice": "female"
+     },
+     "segment": 142,
+     "refrain": null,
+     "acrostic": null,
+     "selah": false
+    }
+   ],
+   "starts": "split"
+  },
+  {
+   "label": "Bridge",
+   "sung": true,
+   "mood": null,
+   "verses": [
+    "1:46",
+    "1:47",
+    "1:48",
+    "1:49"
+   ],
+   "lines": [
+    {
+     "verse": "1:46",
+     "token": 0,
+     "text": "Then Mary said:",
+     "quote": null,
+     "speaker": null,
+     "segment": 144,
+     "refrain": null,
+     "acrostic": null,
+     "selah": false
+    },
+    {
+     "verse": "1:46",
+     "token": 3,
+     "text": "“My soul magnifies the Lord,",
+     "quote": "42001046004",
+     "speaker": {
+      "id": "n0111",
+      "label": "Mary",
+      "voice": "female"
+     },
+     "segment": 145,
+     "refrain": null,
+     "acrostic": null,
+     "selah": false
+    },
+    {
+     "verse": "1:47",
+     "token": 0,
+     "text": "and my spirit rejoices in God my Savior!",
+     "quote": "42001046004",
+     "speaker": {
+      "id": "n0111",
+      "label": "Mary",
+      "voice": "female"
+     },
+     "segment": 146,
+     "refrain": null,
+     "acrostic": null,
+     "selah": false
+    },
+    {
+     "verse": "1:48",
+     "token": 0,
+     "text": "For He has looked with favor on the humble state of His servant.",
+     "quote": "42001046004",
+     "speaker": {
+      "id": "n0111",
+      "label": "Mary",
+      "voice": "female"
+     },
+     "segment": 147,
+     "refrain": null,
+     "acrostic": null,
+     "selah": false
+    },
+    {
+     "verse": "1:48",
+     "token": 13,
+     "text": "From now on all generations will call me blessed.",
+     "quote": "42001046004",
+     "speaker": {
+      "id": "n0111",
+      "label": "Mary",
+      "voice": "female"
+     },
+     "segment": 148,
+     "refrain": null,
+     "acrostic": null,
+     "selah": false
+    },
+    {
+     "verse": "1:49",
+     "token": 0,
+     "text": "For the Mighty One has done great things for me.",
+     "quote": "42001046004",
+     "speaker": {
+      "id": "n0111",
+      "label": "Mary",
+      "voice": "female"
+     },
+     "segment": 149,
+     "refrain": null,
+     "acrostic": null,
+     "selah": false
+    },
+    {
+     "verse": "1:49",
+     "token": 10,
+     "text": "Holy is His name.",
+     "quote": "42001046004",
+     "speaker": {
+      "id": "n0111",
+      "label": "Mary",
+      "voice": "female"
+     },
+     "segment": 150,
+     "refrain": null,
+     "acrostic": null,
+     "selah": false
+    }
+   ],
+   "starts": "split"
+  },
+  {
+   "label": "Bridge",
+   "sung": true,
+   "mood": null,
+   "verses": [
+    "1:50",
+    "1:51",
+    "1:52",
+    "1:53",
+    "1:54",
+    "1:55"
+   ],
+   "lines": [
+    {
+     "verse": "1:50",
+     "token": 0,
+     "text": "His mercy extends",
+     "quote": "42001046004",
+     "speaker": {
+      "id": "n0111",
+      "label": "Mary",
+      "voice": "female"
+     },
+     "segment": 151,
+     "refrain": null,
+     "acrostic": null,
+     "selah": false
+    },
+    {
+     "verse": "1:50",
+     "token": 3,
+     "text": "to those who fear Him, from generation to generation.",
+     "quote": "42001046004",
+     "speaker": {
+      "id": "n0111",
+      "label": "Mary",
+      "voice": "female"
+     },
+     "segment": 152,
+     "refrain": null,
+     "acrostic": null,
+     "selah": false
+    },
+    {
+     "verse": "1:51",
+     "token": 0,
+     "text": "He has performed mighty deeds with His arm;",
+     "quote": "42001046004",
+     "speaker": {
+      "id": "n0111",
+      "label": "Mary",
+      "voice": "female"
+     },
+     "segment": 153,
+     "refrain": null,
+     "acrostic": null,
+     "selah": false
+    },
+    {
+     "verse": "1:51",
+     "token": 8,
+     "text": "He has scattered those who are proud in the thoughts of their hearts.",
+     "quote": "42001046004",
+     "speaker": {
+      "id": "n0111",
+      "label": "Mary",
+      "voice": "female"
+     },
+     "segment": 154,
+     "refrain": null,
+     "acrostic": null,
+     "selah": false
+    },
+    {
+     "verse": "1:52",
+     "token": 0,
+     "text": "He has brought down rulers from their thrones,",
+     "quote": "42001046004",
+     "speaker": {
+      "id": "n0111",
+      "label": "Mary",
+      "voice": "female"
+     },
+     "segment": 155,
+     "refrain": null,
+     "acrostic": null,
+     "selah": false
+    },
+    {
+     "verse": "1:52",
+     "token": 8,
+     "text": "but has exalted the humble.",
+     "quote": "42001046004",
+     "speaker": {
+      "id": "n0111",
+      "label": "Mary",
+      "voice": "female"
+     },
+     "segment": 156,
+     "refrain": null,
+     "acrostic": null,
+     "selah": false
+    },
+    {
+     "verse": "1:53",
+     "token": 0,
+     "text": "He has filled the hungry with good things,",
+     "quote": "42001046004",
+     "speaker": {
+      "id": "n0111",
+      "label": "Mary",
+      "voice": "female"
+     },
+     "segment": 157,
+     "refrain": null,
+     "acrostic": null,
+     "selah": false
+    },
+    {
+     "verse": "1:53",
+     "token": 8,
+     "text": "but has sent the rich away empty.",
+     "quote": "42001046004",
+     "speaker": {
+      "id": "n0111",
+      "label": "Mary",
+      "voice": "female"
+     },
+     "segment": 158,
+     "refrain": null,
+     "acrostic": null,
+     "selah": false
+    },
+    {
+     "verse": "1:54",
+     "token": 0,
+     "text": "He has helped His servant Israel,",
+     "quote": "42001046004",
+     "speaker": {
+      "id": "n0111",
+      "label": "Mary",
+      "voice": "female"
+     },
+     "segment": 159,
+     "refrain": null,
+     "acrostic": null,
+     "selah": false
+    },
+    {
+     "verse": "1:54",
+     "token": 6,
+     "text": "remembering to be merciful,",
+     "quote": "42001046004",
+     "speaker": {
+      "id": "n0111",
+      "label": "Mary",
+      "voice": "female"
+     },
+     "segment": 160,
+     "refrain": null,
+     "acrostic": null,
+     "selah": false
+    },
+    {
+     "verse": "1:55",
+     "token": 0,
+     "text": "as He promised to our fathers,",
+     "quote": "42001046004",
+     "speaker": {
+      "id": "n0111",
+      "label": "Mary",
+      "voice": "female"
+     },
+     "segment": 161,
+     "refrain": null,
+     "acrostic": null,
+     "selah": false
+    },
+    {
+     "verse": "1:55",
+     "token": 6,
+     "text": "to Abraham and his descendants forever.”",
+     "quote": "42001046004",
+     "speaker": {
+      "id": "n0111",
+      "label": "Mary",
+      "voice": "female"
+     },
+     "segment": 162,
+     "refrain": null,
+     "acrostic": null,
+     "selah": false
+    }
+   ],
+   "starts": "split"
+  },
+  {
+   "label": "Verse 15",
+   "sung": false,
+   "mood": null,
+   "verses": [
+    "1:56",
+    "1:57",
+    "1:58"
+   ],
+   "lines": [
+    {
+     "verse": "1:56",
+     "token": 0,
+     "text": "Mary stayed with Elizabeth for about three months",
+     "quote": null,
+     "speaker": null,
+     "segment": 163,
+     "refrain": null,
+     "acrostic": null,
+     "selah": false
+    },
+    {
+     "verse": "1:56",
+     "token": 8,
+     "text": "and then returned home.",
+     "quote": null,
+     "speaker": null,
+     "segment": 164,
+     "refrain": null,
+     "acrostic": null,
+     "selah": false
+    },
+    {
+     "verse": "1:57",
+     "token": 0,
+     "text": "When the time came for Elizabeth",
+     "quote": null,
+     "speaker": null,
+     "segment": 165,
+     "refrain": null,
+     "acrostic": null,
+     "selah": false
+    },
+    {
+     "verse": "1:57",
+     "token": 6,
+     "text": "to have her child,",
+     "quote": null,
+     "speaker": null,
+     "segment": 166,
+     "refrain": null,
+     "acrostic": null,
+     "selah": false
+    },
+    {
+     "verse": "1:57",
+     "token": 10,
+     "text": "she gave birth to a son.",
+     "quote": null,
+     "speaker": null,
+     "segment": 167,
+     "refrain": null,
+     "acrostic": null,
+     "selah": false
+    },
+    {
+     "verse": "1:58",
+     "token": 0,
+     "text": "Her neighbors and relatives heard",
+     "quote": null,
+     "speaker": null,
+     "segment": 168,
+     "refrain": null,
+     "acrostic": null,
+     "selah": false
+    },
+    {
+     "verse": "1:58",
+     "token": 5,
+     "text": "that the Lord had shown her great mercy,",
+     "quote": null,
+     "speaker": null,
+     "segment": 169,
+     "refrain": null,
+     "acrostic": null,
+     "selah": false
+    },
+    {
+     "verse": "1:58",
+     "token": 13,
+     "text": "and they rejoiced with her.",
+     "quote": null,
+     "speaker": null,
+     "segment": 170,
+     "refrain": null,
+     "acrostic": null,
+     "selah": false
+    }
+   ],
+   "starts": "split"
+  },
+  {
+   "label": "Verse 16",
+   "sung": false,
+   "mood": null,
+   "verses": [
+    "1:59",
+    "1:60",
+    "1:61"
+   ],
+   "lines": [
+    {
+     "verse": "1:59",
+     "token": 0,
+     "text": "On the eighth day, when",
+     "quote": null,
+     "speaker": null,
+     "segment": 171,
+     "refrain": null,
+     "acrostic": null,
+     "selah": false
+    },
+    {
+     "verse": "1:59",
+     "token": 5,
+     "text": "they came to circumcise the child,",
+     "quote": null,
+     "speaker": null,
+     "segment": 172,
+     "refrain": null,
+     "acrostic": null,
+     "selah": false
+    },
+    {
+     "verse": "1:59",
+     "token": 11,
+     "text": "they were going to name him after his father Zechariah.",
+     "quote": null,
+     "speaker": null,
+     "segment": 174,
+     "refrain": null,
+     "acrostic": null,
+     "selah": false
+    },
+    {
+     "verse": "1:60",
+     "token": 0,
+     "text": "But his mother replied,",
+     "quote": null,
+     "speaker": null,
+     "segment": 175,
+     "refrain": null,
+     "acrostic": null,
+     "selah": false
+    },
+    {
+     "verse": "1:60",
+     "token": 4,
+     "text": "“No! He shall be called John.”",
+     "quote": "42001060007",
+     "speaker": {
+      "id": "n0112",
+      "label": "Elizabeth",
+      "voice": "female"
+     },
+     "segment": 176,
+     "refrain": null,
+     "acrostic": null,
+     "selah": false
+    },
+    {
+     "verse": "1:61",
+     "token": 0,
+     "text": "They said to her,",
+     "quote": null,
+     "speaker": null,
+     "segment": 177,
+     "refrain": null,
+     "acrostic": null,
+     "selah": false
+    },
+    {
+     "verse": "1:61",
+     "token": 4,
+     "text": "“There is no one among your relatives",
+     "quote": "42001061006",
+     "speaker": {
+      "id": "n0403",
+      "label": "neighbors and relatives",
+      "voice": "group"
+     },
+     "segment": 178,
+     "refrain": null,
+     "acrostic": null,
+     "selah": false
+    },
+    {
+     "verse": "1:61",
+     "token": 11,
+     "text": "who bears this name.”",
+     "quote": "42001061006",
+     "speaker": {
+      "id": "n0403",
+      "label": "neighbors and relatives",
+      "voice": "group"
+     },
+     "segment": 179,
+     "refrain": null,
+     "acrostic": null,
+     "selah": false
+    }
+   ],
+   "starts": "split"
+  },
+  {
+   "label": "Verse 17",
+   "sung": false,
+   "mood": null,
+   "verses": [
+    "1:62",
+    "1:63",
+    "1:64"
+   ],
+   "lines": [
+    {
+     "verse": "1:62",
+     "token": 0,
+     "text": "So they made signs to his father",
+     "quote": null,
+     "speaker": null,
+     "segment": 180,
+     "refrain": null,
+     "acrostic": null,
+     "selah": false
+    },
+    {
+     "verse": "1:62",
+     "token": 7,
+     "text": "to find out what he wanted",
+     "quote": null,
+     "speaker": null,
+     "segment": 181,
+     "refrain": null,
+     "acrostic": null,
+     "selah": false
+    },
+    {
+     "verse": "1:62",
+     "token": 13,
+     "text": "to name the child.",
+     "quote": null,
+     "speaker": null,
+     "segment": 182,
+     "refrain": null,
+     "acrostic": null,
+     "selah": false
+    },
+    {
+     "verse": "1:63",
+     "token": 0,
+     "text": "Zechariah asked for a tablet and wrote,",
+     "quote": null,
+     "speaker": null,
+     "segment": 183,
+     "refrain": null,
+     "acrostic": null,
+     "selah": false
+    },
+    {
+     "verse": "1:63",
+     "token": 7,
+     "text": "“His name is John.”",
+     "quote": "42001063006",
+     "speaker": {
+      "id": "n0110",
+      "label": "Zechariah",
+      "voice": "male"
+     },
+     "segment": 186,
+     "refrain": null,
+     "acrostic": null,
+     "selah": false
+    },
+    {
+     "verse": "1:63",
+     "token": 11,
+     "text": "And they were all amazed.",
+     "quote": null,
+     "speaker": null,
+     "segment": 187,
+     "refrain": null,
+     "acrostic": null,
+     "selah": false
+    },
+    {
+     "verse": "1:64",
+     "token": 0,
+     "text": "Immediately Zechariah’s mouth was opened",
+     "quote": null,
+     "speaker": null,
+     "segment": 188,
+     "refrain": null,
+     "acrostic": null,
+     "selah": false
+    },
+    {
+     "verse": "1:64",
+     "token": 6,
+     "text": "and his tongue was released,",
+     "quote": null,
+     "speaker": null,
+     "segment": 189,
+     "refrain": null,
+     "acrostic": null,
+     "selah": false
+    },
+    {
+     "verse": "1:64",
+     "token": 11,
+     "text": "and he began to speak, praising God.",
+     "quote": null,
+     "speaker": null,
+     "segment": 190,
+     "refrain": null,
+     "acrostic": null,
+     "selah": false
+    }
+   ],
+   "starts": "split"
+  },
+  {
+   "label": "Verse 18",
+   "sung": false,
+   "mood": null,
+   "verses": [
+    "1:65",
+    "1:66",
+    "1:67",
+    "1:68",
+    "1:69"
+   ],
+   "lines": [
+    {
+     "verse": "1:65",
+     "token": 0,
+     "text": "All their neighbors were filled with awe,",
+     "quote": null,
+     "speaker": null,
+     "segment": 192,
+     "refrain": null,
+     "acrostic": null,
+     "selah": false
+    },
+    {
+     "verse": "1:65",
+     "token": 7,
+     "text": "and people throughout the hill country of Judea were talking about these events.",
+     "quote": null,
+     "speaker": null,
+     "segment": 194,
+     "refrain": null,
+     "acrostic": null,
+     "selah": false
+    },
+    {
+     "verse": "1:66",
+     "token": 0,
+     "text": "And all who heard this wondered in their hearts and asked,",
+     "quote": null,
+     "speaker": null,
+     "segment": 195,
+     "refrain": null,
+     "acrostic": null,
+     "selah": false
+    },
+    {
+     "verse": "1:66",
+     "token": 11,
+     "text": "“What then will this child become?”",
+     "quote": "42001066011",
+     "speaker": {
+      "id": "n0114",
+      "label": null,
+      "voice": "group"
+     },
+     "segment": 197,
+     "refrain": null,
+     "acrostic": null,
+     "selah": false
+    },
+    {
+     "verse": "1:66",
+     "token": 17,
+     "text": "For the Lord’s hand was with him.",
+     "quote": null,
+     "speaker": null,
+     "segment": 198,
+     "refrain": null,
+     "acrostic": null,
+     "selah": false
+    },
+    {
+     "verse": "1:67",
+     "token": 0,
+     "text": "Then his father Zechariah was filled with the Holy Spirit and prophesied:",
+     "quote": null,
+     "speaker": null,
+     "segment": 199,
+     "refrain": null,
+     "acrostic": null,
+     "selah": false
+    },
+    {
+     "verse": "1:68",
+     "token": 0,
+     "text": "“Blessed be the Lord, the God of Israel,",
+     "quote": "42001068001",
+     "speaker": {
+      "id": "n0110",
+      "label": "Zechariah",
+      "voice": "male"
+     },
+     "segment": 202,
+     "refrain": null,
+     "acrostic": null,
+     "selah": false
+    },
+    {
+     "verse": "1:68",
+     "token": 8,
+     "text": "because He has visited",
+     "quote": "42001068001",
+     "speaker": {
+      "id": "n0110",
+      "label": "Zechariah",
+      "voice": "male"
+     },
+     "segment": 203,
+     "refrain": null,
+     "acrostic": null,
+     "selah": false
+    },
+    {
+     "verse": "1:68",
+     "token": 12,
+     "text": "and redeemed His people.",
+     "quote": "42001068001",
+     "speaker": {
+      "id": "n0110",
+      "label": "Zechariah",
+      "voice": "male"
+     },
+     "segment": 204,
+     "refrain": null,
+     "acrostic": null,
+     "selah": false
+    },
+    {
+     "verse": "1:69",
+     "token": 0,
+     "text": "He has raised up a horn of salvation for us",
+     "quote": "42001068001",
+     "speaker": {
+      "id": "n0110",
+      "label": "Zechariah",
+      "voice": "male"
+     },
+     "segment": 205,
+     "refrain": null,
+     "acrostic": null,
+     "selah": false
+    },
+    {
+     "verse": "1:69",
+     "token": 10,
+     "text": "in the house of His servant David,",
+     "quote": "42001068001",
+     "speaker": {
+      "id": "n0110",
+      "label": "Zechariah",
+      "voice": "male"
+     },
+     "segment": 205,
+     "refrain": null,
+     "acrostic": null,
+     "selah": false
+    }
+   ],
+   "starts": "split"
+  },
+  {
+   "label": "Bridge",
+   "sung": true,
+   "mood": null,
+   "verses": [
+    "1:70",
+    "1:71",
+    "1:72",
+    "1:73",
+    "1:74",
+    "1:75"
+   ],
+   "lines": [
+    {
+     "verse": "1:70",
+     "token": 0,
+     "text": "as He spoke through His holy prophets, those of ages past,",
+     "quote": "42001068001",
+     "speaker": {
+      "id": "n0110",
+      "label": "Zechariah",
+      "voice": "male"
+     },
+     "segment": 206,
+     "refrain": null,
+     "acrostic": null,
+     "selah": false
+    },
+    {
+     "verse": "1:71",
+     "token": 0,
+     "text": "salvation from our enemies",
+     "quote": "42001068001",
+     "speaker": {
+      "id": "n0110",
+      "label": "Zechariah",
+      "voice": "male"
+     },
+     "segment": 207,
+     "refrain": null,
+     "acrostic": null,
+     "selah": false
+    },
+    {
+     "verse": "1:71",
+     "token": 4,
+     "text": "and from the hand of all",
+     "quote": "42001068001",
+     "speaker": {
+      "id": "n0110",
+      "label": "Zechariah",
+      "voice": "male"
+     },
+     "segment": 207,
+     "refrain": null,
+     "acrostic": null,
+     "selah": false
+    },
+    {
+     "verse": "1:71",
+     "token": 10,
+     "text": "who hate us,",
+     "quote": "42001068001",
+     "speaker": {
+      "id": "n0110",
+      "label": "Zechariah",
+      "voice": "male"
+     },
+     "segment": 208,
+     "refrain": null,
+     "acrostic": null,
+     "selah": false
+    },
+    {
+     "verse": "1:72",
+     "token": 0,
+     "text": "to show mercy to our fathers",
+     "quote": "42001068001",
+     "speaker": {
+      "id": "n0110",
+      "label": "Zechariah",
+      "voice": "male"
+     },
+     "segment": 209,
+     "refrain": null,
+     "acrostic": null,
+     "selah": false
+    },
+    {
+     "verse": "1:72",
+     "token": 6,
+     "text": "and to remember His holy covenant,",
+     "quote": "42001068001",
+     "speaker": {
+      "id": "n0110",
+      "label": "Zechariah",
+      "voice": "male"
+     },
+     "segment": 210,
+     "refrain": null,
+     "acrostic": null,
+     "selah": false
+    },
+    {
+     "verse": "1:73",
+     "token": 0,
+     "text": "the oath He swore to our father Abraham,",
+     "quote": "42001068001",
+     "speaker": {
+      "id": "n0110",
+      "label": "Zechariah",
+      "voice": "male"
+     },
+     "segment": 211,
+     "refrain": null,
+     "acrostic": null,
+     "selah": false
+    },
+    {
+     "verse": "1:73",
+     "token": 8,
+     "text": "to grant us",
+     "quote": "42001068001",
+     "speaker": {
+      "id": "n0110",
+      "label": "Zechariah",
+      "voice": "male"
+     },
+     "segment": 213,
+     "refrain": null,
+     "acrostic": null,
+     "selah": false
+    },
+    {
+     "verse": "1:74",
+     "token": 0,
+     "text": "deliverance from hostile hands,",
+     "quote": "42001068001",
+     "speaker": {
+      "id": "n0110",
+      "label": "Zechariah",
+      "voice": "male"
+     },
+     "segment": 215,
+     "refrain": null,
+     "acrostic": null,
+     "selah": false
+    },
+    {
+     "verse": "1:74",
+     "token": 4,
+     "text": "that we may serve Him without fear,",
+     "quote": "42001068001",
+     "speaker": {
+      "id": "n0110",
+      "label": "Zechariah",
+      "voice": "male"
+     },
+     "segment": 216,
+     "refrain": null,
+     "acrostic": null,
+     "selah": false
+    },
+    {
+     "verse": "1:75",
+     "token": 0,
+     "text": "in holiness and righteousness before Him all the days of our lives.",
+     "quote": "42001068001",
+     "speaker": {
+      "id": "n0110",
+      "label": "Zechariah",
+      "voice": "male"
+     },
+     "segment": 217,
+     "refrain": null,
+     "acrostic": null,
+     "selah": false
+    }
+   ],
+   "starts": "split"
+  },
+  {
+   "label": "Bridge",
+   "sung": true,
+   "mood": null,
+   "verses": [
+    "1:76",
+    "1:77",
+    "1:78",
+    "1:79"
+   ],
+   "lines": [
+    {
+     "verse": "1:76",
+     "token": 0,
+     "text": "And you, child, will be called a prophet of the Most High;",
+     "quote": "42001068001",
+     "speaker": {
+      "id": "n0110",
+      "label": "Zechariah",
+      "voice": "male"
+     },
+     "segment": 218,
+     "refrain": null,
+     "acrostic": null,
+     "selah": false
+    },
+    {
+     "verse": "1:76",
+     "token": 12,
+     "text": "for you will go on before the Lord",
+     "quote": "42001068001",
+     "speaker": {
+      "id": "n0110",
+      "label": "Zechariah",
+      "voice": "male"
+     },
+     "segment": 219,
+     "refrain": null,
+     "acrostic": null,
+     "selah": false
+    },
+    {
+     "verse": "1:76",
+     "token": 20,
+     "text": "to prepare the way for Him,",
+     "quote": "42001068001",
+     "speaker": {
+      "id": "n0110",
+      "label": "Zechariah",
+      "voice": "male"
+     },
+     "segment": 220,
+     "refrain": null,
+     "acrostic": null,
+     "selah": false
+    },
+    {
+     "verse": "1:77",
+     "token": 0,
+     "text": "to give to His people the knowledge of salvation",
+     "quote": "42001068001",
+     "speaker": {
+      "id": "n0110",
+      "label": "Zechariah",
+      "voice": "male"
+     },
+     "segment": 221,
+     "refrain": null,
+     "acrostic": null,
+     "selah": false
+    },
+    {
+     "verse": "1:77",
+     "token": 9,
+     "text": "through the forgiveness of their sins,",
+     "quote": "42001068001",
+     "speaker": {
+      "id": "n0110",
+      "label": "Zechariah",
+      "voice": "male"
+     },
+     "segment": 221,
+     "refrain": null,
+     "acrostic": null,
+     "selah": false
+    },
+    {
+     "verse": "1:78",
+     "token": 0,
+     "text": "because of the tender mercy of our God,",
+     "quote": "42001068001",
+     "speaker": {
+      "id": "n0110",
+      "label": "Zechariah",
+      "voice": "male"
+     },
+     "segment": 222,
+     "refrain": null,
+     "acrostic": null,
+     "selah": false
+    },
+    {
+     "verse": "1:78",
+     "token": 8,
+     "text": "by which the Dawn will visit us from on high,",
+     "quote": "42001068001",
+     "speaker": {
+      "id": "n0110",
+      "label": "Zechariah",
+      "voice": "male"
+     },
+     "segment": 223,
+     "refrain": null,
+     "acrostic": null,
+     "selah": false
+    },
+    {
+     "verse": "1:79",
+     "token": 0,
+     "text": "to shine on",
+     "quote": "42001068001",
+     "speaker": {
+      "id": "n0110",
+      "label": "Zechariah",
+      "voice": "male"
+     },
+     "segment": 224,
+     "refrain": null,
+     "acrostic": null,
+     "selah": false
+    },
+    {
+     "verse": "1:79",
+     "token": 3,
+     "text": "those who live in darkness and in the shadow of death,",
+     "quote": "42001068001",
+     "speaker": {
+      "id": "n0110",
+      "label": "Zechariah",
+      "voice": "male"
+     },
+     "segment": 225,
+     "refrain": null,
+     "acrostic": null,
+     "selah": false
+    },
+    {
+     "verse": "1:79",
+     "token": 14,
+     "text": "to guide our feet into the path of peace.”",
+     "quote": "42001068001",
+     "speaker": {
+      "id": "n0110",
+      "label": "Zechariah",
+      "voice": "male"
+     },
+     "segment": 226,
+     "refrain": null,
+     "acrostic": null,
+     "selah": false
+    }
+   ],
+   "starts": "split"
+  },
+  {
+   "label": "Verse 19",
+   "sung": false,
+   "mood": null,
+   "verses": [
+    "1:80"
+   ],
+   "lines": [
+    {
+     "verse": "1:80",
+     "token": 0,
+     "text": "And the child grew",
+     "quote": null,
+     "speaker": null,
+     "segment": 227,
+     "refrain": null,
+     "acrostic": null,
+     "selah": false
+    },
+    {
+     "verse": "1:80",
+     "token": 4,
+     "text": "and became strong in spirit;",
+     "quote": null,
+     "speaker": null,
+     "segment": 228,
+     "refrain": null,
+     "acrostic": null,
+     "selah": false
+    },
+    {
+     "verse": "1:80",
+     "token": 9,
+     "text": "and he lived in the wilderness until the time of his public appearance to Israel.",
+     "quote": null,
+     "speaker": null,
+     "segment": 229,
+     "refrain": null,
+     "acrostic": null,
+     "selah": false
+    }
+   ],
+   "starts": "split"
+  }
+ ]
+}

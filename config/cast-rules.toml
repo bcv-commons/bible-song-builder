@@ -1,0 +1,58 @@
+# How bible-song-builder decides who sings each speaker.
+#
+# Each speaker in the Hebrew/Greek data (speaker_id) gets a voice type:
+#   narrator, female, male, group, female_group, divine
+# The table of all speakers is cast.csv (open it in Excel, LibreOffice or Google Sheets).
+# These rules are only used for speakers that are not in cast.csv yet, and by
+# scripts/build_cast.py (make cast) when it rebuilds cast.csv.
+#
+# The rules, in order:
+#   1. group        several people are named, or the word naming the speaker is in group_words
+#                   (female_group if every person named is a woman)
+#   2. divine       most of the speaker's quotes are marked divine in passage-facts (see [divine])
+#   3. verb         the verb that introduces the speaker ("she said", "they said") is feminine,
+#                   masculine or plural in most of their quotes (see [verb]); Hebrew verbs show
+#                   gender and number, Greek verbs number only
+#   4. female       the word naming the speaker is in female_words
+#   5. otherwise    the voice given by `default`
+#
+# The word lists are Hebrew and Greek dictionary forms (lemmas), exactly as they appear in the
+# data, so they work for every edition and language. Copy them from cast.csv's "source" column.
+
+# Voice for a quote whose speaker the data does not know.
+unknown = "narrator"
+
+# A quote inside a speech (Eve repeating what God said):
+#   "outer" = the person speaking sings it,  "inner" = switch to the one being quoted.
+nested_quotes = "outer"
+
+# Voice when no rule applies.
+default = "male"
+
+# Words for a woman (woman, daughter, mother, queen, girl, ...) and women's names.
+female_words = [
+  "אִשָּׁה", "בַּת", "אֵם", "מַלְכָּה", "נַעֲרָה", "בְּכִירָה",
+  "אָחוֹת", "כַּלָּה", "γυνή", "μήτηρ", "παιδίσκη", "κοράσιον",
+  "אֶסְתֵּר", "נׇעֳמִי", "חַנָּה", "אֲבִיגַיִל", "רִבְקָה", "רָחָב",
+  "רוּת", "Μαρία", "אִיזֶבֶל", "לֵאָה", "דְּלִילָה", "רָחֵל",
+  "Μάρθα", "תָּמָר", "חֻלְדָּה", "Ἐλισάβετ", "שָׂרָה", "שָׂרַי",
+  "דְּבוֹרָה", "מִיכַל", "חַוָּה", "הָגָר", "זֶרֶשׁ", "שִׁפְרָה",
+  "יָעֵל", "מִרְיָם", "צִפֹּרָה", "עֲתַלְיָהוּ", "Λυδία", "Ἡρῳδιάς",
+  "Σάπφιρα", "צִיּוֹן", "יְרוּשָׁלִַ͏ם",
+]
+
+# Words that name a crowd or a group (people, all, everyone, two, ...).
+group_words = [
+  "עַם", "כֹּל", "πᾶς", "ἅπας", "שְׁנַיִם",
+]
+
+[divine]
+min_quotes = 3   # the speaker needs at least this many quotes
+min_share = 0.8    # and at least this share of them marked divine
+
+[verb]
+use = true          # false = skip this rule
+min_share = 0.6     # the verb must agree in at least this share of the speaker's quotes
+# Languages whose verb gender is the speaker's (hbo Hebrew, arc Aramaic). Greek is left out: its
+# participles agree with the noun ("a voice saying", φωνὴ λέγουσα is feminine like φωνή).
+gender_from = ["hbo", "arc"]

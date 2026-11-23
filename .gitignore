@@ -1,0 +1,16 @@
+cache/
+output/
+/plan/*/
+__pycache__/
+*.pyc
+.venv/
+venv/
+.DS_Store
+*.part
+*.egg-info/
+build/
+dist/
+.pytest_cache/
+notes/
+internal-docs/
+CLAUDE.local.md
