@@ -5,15 +5,17 @@ Song lyrics for AI music services (Suno today) from **any Bible edition** that
 Where the lines break, who sings them, the mood, and whether a chapter is sung or told come from the Hebrew and Greek
 text, through bcv-commons data, so the same decisions carry over to every edition and language.
 
-**Status: phase 2.** The code comes from [bsb2suno](https://github.com/BSB-publishing/bsb2suno), and for now it builds
+**Status: phase 3.** The code comes from [bsb2suno](https://github.com/BSB-publishing/bsb2suno), and for now it builds
 the Berean Standard Bible only, with output identical to bsb2suno's. The work is split in two halves:
 
 1. **The song plan** (`plan/<BOOK>/`, format in [`plan/SCHEMA.md`](plan/SCHEMA.md)), made once from the Hebrew/Greek
    and keyed to no edition: clause lines, speakers and their voices, stanza signals, text forms, chapter moods.
-2. **The projection**, which lays a plan onto one edition's text through its alignment, and writes the lyrics.
+2. **The projection**, which lays a plan onto one edition's text through its alignment, and writes the lyrics. It
+   is a JavaScript library (`js/`, no UI, no network access) and, as the reference it was ported from, the Python
+   CLI. Both give the same output for all 1,189 BSB chapters.
 
-Next: importing any catalog edition, then a JavaScript projection and a Netlify app that writes the lyrics in the
-browser. bsb2suno will become a user of this repo.
+Next: a Netlify app (its own repo) that uses the library to write the lyrics of any catalog edition in the browser,
+just in time. bsb2suno will become a user of this repo.
 
 See [`examples/`](examples/) for what it makes (RUT 1, PSA 22, PSA 23, PSA 136, EXO 15, EXO 39, LUK 1).
 
@@ -23,6 +25,9 @@ python3 -m bible_song_builder RUT 1            # one chapter → output/RUT/RUT_
 python3 -m bible_song_builder PSA 23 136       # several
 python3 -m bible_song_builder JON all          # a whole book
 make plans                           # write the song plans of every book (plan/; the CLI writes them as needed)
+make client                          # dist/config.json: config/ as JSON, for the JS library
+make test-js                         # the JS library gives examples/ byte for byte
+node js/sample/client.mjs PSA 23     # a sample client: one chapter's lyrics, Style and notes
 make examples                        # rebuild examples/
 make test                            # also checks that examples/ is current
 make cast                            # rebuild the generated cast table
@@ -44,11 +49,26 @@ Without `make setup`, the first run downloads what it needs.
 | Settings, and every hand decision | `config/` | yes |
 | A few example chapters | `examples/` (rebuilt by `make examples`; the tests fail if stale) | yes |
 | The song plan format | `plan/SCHEMA.md` | yes |
+| The JS projection library, its tests, a sample client | `js/` | yes |
+| The client config (generated) | `dist/config.json` (`make client`) | no |
 | Song plans (generated) | `plan/<BOOK>/` (`make plans`, or the CLI when one is missing or stale) | no |
 | Downloads; the generated cast table | `cache/` (`make setup`) | no |
 | Lyrics, styles, notes; a copy of the cast table to browse | `output/` (every run) | no |
 
 Nothing in `output/` is edited: it is rebuilt on every run. Every change goes in `config/`.
+
+## The JS library
+
+`js/` is the projection as a JavaScript library for clients (a web app, Node), with no UI and no network access.
+A client fetches five things and passes them in: the config (`dist/config.json`), the edition's description
+(name, language, licence, alignment layer, verse map), the edition's text of the book as USJ, the alignment files
+(through a small `files.json(dataset, path)` function of its own), and the plan files of the book and the chapter.
+Finding an edition in the bcv-commons/bibles catalog and fetching its text is the client's job.
+[`js/sample/client.mjs`](js/sample/client.mjs) shows the calls; [`js/src/index.js`](js/src/index.js) lists them.
+
+The library is a port of the Python projection (`bible_song_builder/__main__.py` and the modules it calls), kept
+identical: `make test-js` builds `examples/` with it byte for byte. It uses the vendored JavaScript of
+`tools/verse-text` 2.0.0 (`vendor/verse_text/js/`) for verse text, tokens and fingerprints. Node 20 or later.
 
 ## What it reads, per chapter
 
