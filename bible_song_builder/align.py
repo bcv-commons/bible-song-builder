@@ -107,6 +107,19 @@ def load(edition: str, book: str, file_hash: str, chapter_fps: dict[int, str] | 
     return al
 
 
+def lexeme_keys(book: str) -> dict[int, list[str]]:
+    """Strong's number -> the book's source word keys with it, in order (compact-alignments
+    ``_index``, the same for every edition: a key joined with ``+`` is split into its words)."""
+    lexemes = fetch.hf_json("compact-alignments", f"_index/{book}_lexemes.json")
+    keys = fetch.hf_json("compact-alignments", f"_index/{book}_keys.json")
+    out: dict[int, list[str]] = {}
+    for ref, lx in lexemes.items():
+        for k, s in zip(keys.get(ref, []), lx):
+            if s.isdigit():
+                out.setdefault(int(s), []).extend(k.split("+"))
+    return out
+
+
 def _load(edition: str, book: str, file_hash: str) -> Alignment:
     ed = fetch.pins()["editions"][edition]
     iso = ed["iso"]

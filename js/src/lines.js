@@ -67,7 +67,9 @@ function slice(v, starts, opening) {
     return out;
 }
 
-function phrase(cfg, bt, cv, pos, maxTokens = 6) {
+/** The edition's words at these token positions of a verse (a name, a term), trimmed of the
+ *  language's edge words and endings; null if too long (lines.phrase) */
+export function phrase(cfg, bt, cv, pos, maxTokens = 6) {
     const v = bt.verses.get(cv);
     if (!v || !v.spans || !pos.size) return null;
     let a = minOf(pos), b = maxOf(pos);

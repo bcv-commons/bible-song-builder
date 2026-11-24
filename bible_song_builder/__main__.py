@@ -52,7 +52,8 @@ def chapter_credits(bp: dict, chapter: int, ed: str, al: align.Alignment,
 
 def build_chapter(book: str, chapter: int, ed: str, bt: edition.BookText, al: align.Alignment,
                   bp: dict, cp: plan.ChapterPlan, speakers: dict, vmap: dict, args,
-                  profile: profiles.Profile | None = None, mood: moods.Mood | None = None) -> dict:
+                  profile: profiles.Profile | None = None, mood: moods.Mood | None = None,
+                  words: dict | None = None) -> dict:
     """Half 2 for one edition chapter: the book's plan ``bp`` and the chapter's ``cp`` (plan.py),
     projected onto the edition's text ``bt`` through the alignment ``al``."""
     profile = profile or profiles.for_book(ed, book, getattr(args, "profile", None), getattr(args, "lead", None))
@@ -78,7 +79,7 @@ def build_chapter(book: str, chapter: int, ed: str, bt: edition.BookText, al: al
                "poetry" if len(song | poetic) >= share * n else "prose")
     secs = render.sections(sts, setting, song | poetic, layout.get("chorus"))
     sec_moods = moods.section_moods(book, [s.stanza.verses for s in secs], cp.mood_facts, cp.model_moods,
-                                    to_ed, profile)
+                                    to_ed, profile, words)
     for s, m in zip(secs, sec_moods):
         s.mood = m
 
@@ -86,9 +87,12 @@ def build_chapter(book: str, chapter: int, ed: str, bt: edition.BookText, al: al
     if layout.get("psalms", {}).get("heading_terms", True):
         if marks.heading_terms:
             desc = cp.labels
-            notes.append("Heading terms (not sung): " + "; ".join(
-                desc.get(code, code).removeprefix("heading: ").split(": a term of the text")[0]
-                for code in marks.heading_terms))
+            def term(code):
+                gloss = desc.get(code, code).removeprefix("heading: ").split(": a term of the text")[0]
+                at = marks.heading_words.get(code)
+                own = lines.phrase(bt, at[0], at[1], max_tokens=12) if at else None
+                return f"{own} ({gloss.partition(' (')[2]}" if own and " (" in gloss else gloss
+            notes.append("Heading terms (not sung): " + "; ".join(map(term, marks.heading_terms)))
         if marks.selah:
             notes.append("Selah at " + ", ".join(f"{c}:{v}" for c, v in sorted(marks.selah)))
     letter_names = config.language(fetch.pins()["editions"][ed]["iso"]).get("hebrew_letters", {})
@@ -126,7 +130,7 @@ def build_chapter(book: str, chapter: int, ed: str, bt: edition.BookText, al: al
         "pins": fetch.pins()["huggingface"], "bible-song-builder": __version__,
         "sections": [{
             "label": s.label, "sung": s.sung,
-            "mood": ({"family": s.mood.family, "head": s.mood.head, "tag": s.mood.tag,
+            "mood": ({"family": s.mood.family, "head": s.mood.head, "tag": s.mood.tag, "word": s.mood.word,
                       "evidence": s.mood.evidence, "model": s.mood.model} if s.mood else None),
             "verses": [f"{c}:{v}" for c, v in s.stanza.verses],
             "lines": [{"verse": f"{ln.cv[0]}:{ln.cv[1]}", "token": ln.first_token, "text": ln.text,
@@ -185,6 +189,7 @@ def main(argv: list[str] | None = None) -> int:
     speakers = lines.speaker_labels(bp["speakers"], al, bt)
     profile = profiles.for_book(args.edition, book, args.profile, args.lead)
     vmap = align.verse_map(args.edition)
+    words = moods.family_words(align.lexeme_keys(book), al, bt, bp["testament"])
 
     chapters = sorted({c for c, _ in bt.verses}) if args.chapters == ["all"] else [int(c) for c in args.chapters]
     to_ed = lambda cv: align.spine_to_edition(vmap, book, cv)  # noqa: E731
@@ -197,7 +202,7 @@ def main(argv: list[str] | None = None) -> int:
         write_readme(Path(args.out))
     for c in chapters:
         res = build_chapter(book, c, args.edition, bt, al, bp, plan.load_chapter(book, c, plans), speakers, vmap,
-                            args, profile, book_moods.get(c))
+                            args, profile, book_moods.get(c), words)
         stem = out_dir / f"{book}_{c:03d}"
         own = Path(f"{stem}.style.txt")
         if res["own_style"]:

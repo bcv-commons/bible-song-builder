@@ -91,6 +91,24 @@ export async function loadAlignment(files, edition, book, fileHash, chapterFps =
     return al;
 }
 
+/** Strong's number -> the book's source word keys with it, in order (compact-alignments _index,
+ *  the same for every edition; a key joined with "+" is split into its words). align.lexeme_keys */
+export async function lexemeKeys(files, book) {
+    const lexemes = await files.json('compact-alignments', `_index/${book}_lexemes.json`);
+    const keys = await files.json('compact-alignments', `_index/${book}_keys.json`);
+    const out = new Map();
+    for (const [ref, lx] of Object.entries(lexemes)) {
+        const ks = keys[ref] || [];
+        for (let i = 0; i < Math.min(ks.length, lx.length); i++) {
+            if (!/^[0-9]+$/.test(lx[i])) continue;
+            const n = parseInt(lx[i], 10);
+            if (!out.has(n)) out.set(n, []);
+            out.get(n).push(...ks[i].split('+'));
+        }
+    }
+    return out;
+}
+
 async function load(files, edition, book, fileHash) {
     const iso = edition.iso;
     const lexemes = await files.json('compact-alignments', `_index/${book}_lexemes.json`);

@@ -117,7 +117,9 @@ def edge_words(edition: str) -> set[str]:
     return {w.lower() for w in config.language(iso).get("label_edge_words", [])}
 
 
-def _phrase(bt: BookText, cv: tuple[int, int], pos: set[int], max_tokens: int = 6) -> str | None:
+def phrase(bt: BookText, cv: tuple[int, int], pos: set[int], max_tokens: int = 6) -> str | None:
+    """The edition's words at these token positions of a verse (a name, a term), trimmed of the
+    language's edge words and endings; None if too long."""
     v = bt.verses.get(cv)
     if not v or not v.spans or not pos:
         return None
@@ -188,7 +190,7 @@ def speaker_labels(refs: dict[str, dict], al: Alignment, bt: BookText) -> dict[s
                     if hit:
                         per_verse.setdefault(hit[0], set()).update(hit[1])
                 for cv, pos in per_verse.items():
-                    label = _phrase(bt, cv, pos)
+                    label = phrase(bt, cv, pos)
                     if label:
                         found.setdefault(part, Counter())[label] += n
         c = found.get("named") or found.get("described")

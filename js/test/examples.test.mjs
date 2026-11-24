@@ -29,3 +29,23 @@ test('version matches the Python package', async () => {
     const init = await readFile(join(ROOT, 'bible_song_builder', '__init__.py'), 'utf8');
     assert.ok(init.includes(`"${VERSION}"`), `bible_song_builder/__init__.py has another version than ${VERSION}`);
 });
+
+test('mood family words and heading words in the edition', async () => {
+    const { Config, chapterPlan, lexemeKeys, loadAlignment, loadBookText, prepareBook, projectChapter, verseMap } = await import('../src/index.js');
+    const { bookPlan, cacheFiles, chapterPlanDocs, readJson, releaseUsj } = await import('../node/files.js');
+    const cfg = new Config(await readJson(join(ROOT, 'dist', 'config.json')));
+    const edition = { name: 'BSB', ...cfg.pins.editions.BSB };
+    const files = cacheFiles(ROOT, cfg.pins);
+    const bt = await loadBookText(cfg, edition, 'PSA', await releaseUsj(ROOT, cfg.pins, edition.text, 'PSA'));
+    const al = await loadAlignment(files, edition, 'PSA', bt.fileHash, bt.chapterFingerprints);
+    const bp = await bookPlan(ROOT, 'PSA');
+    const vmap = await verseMap(files, edition);
+    const ctx = prepareBook({ cfg, edition, book: 'PSA', bt, al, bookPlan: bp, vmap, lexemes: await lexemeKeys(files, 'PSA') });
+    assert.deepEqual(['md.samach', 'md.yare', 'md.sane'].map((f) => ctx.words.get(f)), ['rejoice', 'fear', 'hate']);
+    // an alignment that covers the psalm heading (the BSB's does not): למנצח on the first two words of 22:1
+    al.links.set('190220010011', [22001, new Set([0])]);
+    al.links.set('190220010012', [22001, new Set([1])]);
+    const res = projectChapter(prepareBook({ cfg, edition, book: 'PSA', bt, al, bookPlan: bp, vmap }), 22,
+        chapterPlan(await chapterPlanDocs(ROOT, 'PSA', 22)));
+    assert.ok(res.notes.includes('Heading terms (not sung): God (למנצח);'), res.notes);
+});

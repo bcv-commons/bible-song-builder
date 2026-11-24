@@ -111,6 +111,7 @@
     "family": "md.tsarah",
     "head": "צָרָה",
     "tag": "[Mood: anguished]",
+    "word": "trouble",
     "evidence": "passage-facts PSA 22:3-10; passage-moods-model PSA 22:1-2",
     "model": true
    },
@@ -240,6 +241,7 @@
     "family": "md.sane",
     "head": "שָׂנֵא",
     "tag": "[Mood: harsh, scornful]",
+    "word": "hate",
     "evidence": "passage-moods-model PSA 22:3-10; passage-moods-model PSA 22:5-9",
     "model": true
    },
@@ -381,6 +383,7 @@
     "family": "md.batach",
     "head": "בָּטַח",
     "tag": "[Mood: confident, hopeful]",
+    "word": "trust",
     "evidence": "passage-moods-model PSA 22:3-10; passage-moods-model PSA 22:5-9",
     "model": true
    },
@@ -504,6 +507,7 @@
     "family": "md.yare",
     "head": "יָרֵא",
     "tag": "[Mood: fearful, in awe]",
+    "word": "fear",
     "evidence": "passage-facts PSA 22:11-18",
     "model": false
    },
@@ -645,6 +649,7 @@
     "family": "md.yare",
     "head": "יָרֵא",
     "tag": "[Mood: fearful, in awe]",
+    "word": "fear",
     "evidence": "passage-facts PSA 22:11-18",
     "model": false
    },
@@ -786,6 +791,7 @@
     "family": "md.tsarah",
     "head": "צָרָה",
     "tag": "[Mood: anguished]",
+    "word": "trouble",
     "evidence": "passage-moods-model PSA 22:19-20; passage-moods-model PSA 22:21",
     "model": true
    },
@@ -916,6 +922,7 @@
     "family": "md.samach",
     "head": "שָׂמַח",
     "tag": "[Mood: joyful]",
+    "word": "rejoice",
     "evidence": "passage-facts PSA 22:22-26",
     "model": false
    },
@@ -1067,6 +1074,7 @@
     "family": "md.samach",
     "head": "שָׂמַח",
     "tag": "[Mood: joyful]",
+    "word": "rejoice",
     "evidence": "passage-facts PSA 22:22-26; passage-moods-model PSA 22:27-31",
     "model": true
    },
@@ -1184,6 +1192,7 @@
     "family": "md.yare",
     "head": "יָרֵא",
     "tag": "[Mood: fearful, in awe]",
+    "word": "fear",
     "evidence": "passage-moods-model PSA 22:27-31",
     "model": true
    },

@@ -12,6 +12,7 @@ export class Marks {
         this.letters = [];              // [[cv, tok], letter] for every unit
         this.selah = new Map();         // cvKey -> Set of tokens
         this.headingTerms = [];         // fm.ps.* codes in the heading
+        this.headingWords = new Map();  // code -> [cv, Set of tokens] of the edition's words, if aligned
     }
 }
 
@@ -108,7 +109,10 @@ export function chapterMarks(facts, rows, al, chapter, layout) {
             const s = start(keys, f.first, f.last, al);
             // heading terms: on the first verse (or the title, which the verse map puts at verse 1)
             if ((s && here(s[0]) && s[0] % 1000 <= 1) || (s === null && +f.first.slice(2, 5) === chapter)) {
-                if (!m.headingTerms.includes(v)) m.headingTerms.push(v);
+                if (!m.headingTerms.includes(v)) {
+                    m.headingTerms.push(v);
+                    if (s) m.headingWords.set(v, [s[0], span(keys, f.first, f.last, al).get(s[0])]);
+                }
             }
         }
     }

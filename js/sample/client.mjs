@@ -9,7 +9,7 @@
 import { readFile } from 'node:fs/promises';
 import { dirname, join, resolve } from 'node:path';
 import { fileURLToPath } from 'node:url';
-import { Config, chapterPlan, loadAlignment, loadBookText, prepareBook, projectChapter, verseMap } from '../src/index.js';
+import { Config, chapterPlan, lexemeKeys, loadAlignment, loadBookText, prepareBook, projectChapter, verseMap } from '../src/index.js';
 
 const ROOT = resolve(dirname(fileURLToPath(import.meta.url)), '..', '..');
 const [book = 'PSA', chapter = '23'] = process.argv.slice(2);
@@ -48,7 +48,7 @@ const docs = (await Promise.all([c - 1, c, c + 1].map((n) => orNull(json('plan',
 // The library: the book once, then any chapter of it.
 const bt = await loadBookText(cfg, edition, book, usj);
 const al = await loadAlignment(files, edition, book, bt.fileHash, bt.chapterFingerprints);
-const ctx = prepareBook({ cfg, edition, book, bt, al, bookPlan, vmap: await verseMap(files, edition) });
+const ctx = prepareBook({ cfg, edition, book, bt, al, bookPlan, vmap: await verseMap(files, edition), lexemes: await lexemeKeys(files, book) });
 const res = projectChapter(ctx, c, chapterPlan(docs));
 
 console.log(`=== Style (alignment: ${al.kind}) ===\n${res.style}\n`);

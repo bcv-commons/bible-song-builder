@@ -152,7 +152,7 @@ export function render(bookName, chapter, editionName, setting, secs, credits, p
     for (const s of secs) {
         const letters = s.stanza.lines.filter((ln) => ln.acrostic).map((ln) => ln.acrostic);
         const let_ = letters.length ? '  · ' + letters.map((x) => pyStrip(`${x} ${(letterNames || {})[x] ?? ''}`)).join(', ') : '';
-        const md = s.mood ? `  · ${s.mood.tag} ${s.mood.family} ${pyStr(s.mood.head)}, from ${s.mood.evidence}` + (s.mood.model ? ' (model-read)' : '') : '';
+        const md = s.mood ? `  · ${s.mood.tag} ${s.mood.family} ${pyStr(s.mood.head)}` + (s.mood.word ? ` “${s.mood.word}”` : '') + `, from ${s.mood.evidence}` + (s.mood.model ? ' (model-read)' : '') : '';
         notes.push(`[${s.label}] ${range(s.stanza.verses)}${let_}${md}`);
     }
     notes.push(...(extraNotes || []));

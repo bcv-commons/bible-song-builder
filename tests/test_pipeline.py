@@ -186,6 +186,33 @@ class TestMoods(unittest.TestCase):
         self.assertEqual(sm[0].family, "md.samach")                     # 22:23-25 praise in the assembly
         self.assertEqual(sm[0].tag, "[Mood: joyful]")
 
+    def test_family_words(self):
+        """The edition's word for a mood family: its rendering of the family's head lexemes."""
+        from bible_song_builder import moods
+        bt = edition.load_book("BSB", "PSA")
+        al = align.load("BSB", "PSA", bt.file_hash, bt.chapter_fingerprints)
+        w = moods.family_words(align.lexeme_keys("PSA"), al, bt, "ot")
+        self.assertEqual((w["md.samach"], w["md.yare"], w["md.sane"]), ("rejoice", "fear", "hate"))
+        bt = edition.load_book("BSB", "LUK")
+        al = align.load("BSB", "LUK", bt.file_hash, bt.chapter_fingerprints)
+        self.assertEqual(moods.family_words(align.lexeme_keys("LUK"), al, bt, "nt")["md.samach"], "rejoice")
+
+    def test_heading_words(self):
+        """Where the alignment covers a psalm heading, its terms are named in the edition's words.
+        The BSB's does not (the title is not verse text), so an alignment that does is made up:
+        למנצח on the first two words of 22:1 ("My" is an edge word, trimmed)."""
+        import copy
+        bt, al, res = build("PSA", 22)
+        self.assertIn("Heading terms (not sung): for the leader (למנצח)", res["notes"])
+        al2 = copy.copy(al)
+        al2.links = {**al.links, "190220010011": ((22, 1), {0}), "190220010012": ((22, 1), {1})}
+        sp = lines.speaker_labels(plan.load_book("PSA")["speakers"], al2, bt)
+        args = Args()
+        apply_layout_defaults(args)
+        res2 = build_chapter("PSA", 22, "BSB", bt, al2, plan.load_book("PSA"), plan.load_chapter("PSA", 22), sp,
+                             align.verse_map("BSB"), args)
+        self.assertIn("Heading terms (not sung): God (למנצח);", res2["notes"])
+
     def test_song_in_narrative(self):
         self.assertEqual(self.moods_of("EXO")[15].mood, "song")
         self.assertNotIn(12, self.moods_of("JOS"))      # a list of kings in song layout

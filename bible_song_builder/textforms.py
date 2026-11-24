@@ -31,6 +31,7 @@ class Marks:
     letters: list[tuple[Tok, str]] = field(default_factory=list)                # every unit's letter
     selah: dict[tuple[int, int], set[int]] = field(default_factory=dict)
     heading_terms: list[str] = field(default_factory=list)                     # fm.ps.* codes in the heading
+    heading_words: dict[str, Tok] = field(default_factory=dict)  # code -> (verse, tokens) of the edition's words, if aligned
 
 
 @lru_cache(maxsize=1)
@@ -128,4 +129,6 @@ def chapter_marks(facts: list[dict], rows: list[dict], al: Alignment, chapter: i
             if (s and here(s[0]) and s[0][1] <= 1) or (s is None and int(f["first"][2:5]) == chapter):
                 if v not in m.heading_terms:
                     m.heading_terms.append(v)
+                    if s:
+                        m.heading_words[v] = (s[0], _span(keys, f["first"], f["last"], al)[s[0]])
     return m

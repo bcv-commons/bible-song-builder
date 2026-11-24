@@ -4,8 +4,8 @@ Style: the book's (LUK.style.txt, profile folk). To change: config/books/LUK.tom
 Voices: [Male Vocal] angel, Zechariah; [Female Vocal] Mary, Elizabeth; [Choir] neighbors and relatives, n0114; [Lead Vocal] or no tag = the narrator (the persona)
 [Verse 1] 1:1-4
 [Verse 2] 1:5-7
-[Verse 3] 1:8-12  · [Mood: fearful, in awe] md.yare φοβέω, from passage-moods-model LUK 1:10-14 (model-read)
-[Verse 4] 1:13-15  · [Mood: fearful, in awe] md.yare φοβέω, from passage-moods-model LUK 1:10-14 (model-read)
+[Verse 3] 1:8-12  · [Mood: fearful, in awe] md.yare φοβέω “fear”, from passage-moods-model LUK 1:10-14 (model-read)
+[Verse 4] 1:13-15  · [Mood: fearful, in awe] md.yare φοβέω “fear”, from passage-moods-model LUK 1:10-14 (model-read)
 [Verse 5] 1:16-18
 [Verse 6] 1:19-20
 [Verse 7] 1:21-22

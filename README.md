@@ -281,6 +281,13 @@ source, marks model readings "model-read", and credits the datasets. The words o
 `config/profiles.toml` (`[families]`, and `family_tag` for its form); `config/moods.toml`
 `[section_moods]` turns this on or off, or turns off the model's part only.
 
+The tags stay English, for Suno. The notes also name each family in the edition's own words: its most common
+rendering in the book of the family's head lexemes ("md.tsarah צָרָה “trouble”" in the BSB Psalms; a Spanish
+edition gives its Spanish word). The head lexemes are Strong's numbers in `config/moods.toml`
+`[family_lexemes]`, Hebrew and Greek. The edition's words come through its alignment and the lexeme index of
+compact-alignments, so no translation file is needed. Psalm heading terms are named the same way where the
+edition's alignment covers the title; the BSB's does not yet, so they keep their English gloss.
+
 **Model-made data.** Two inputs are a language model's readings with no human check:
 `hebrew-commentary-terms-model` and `passage-moods-model`. Every chapter that uses them says so in its
 notes file.

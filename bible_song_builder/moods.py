@@ -324,6 +324,7 @@ class SectionMood:
     tag: str             # what is written in the lyrics
     evidence: str        # which facts gave it
     model: bool          # read by a model (passage-moods-model)
+    word: str | None = None   # the edition's usual word for the family's head lexeme (family_words)
 
 
 def _span_verses(first: str, last: str, spine: list[tuple[int, int]]) -> list[tuple[int, int]]:
@@ -364,11 +365,11 @@ def mood_spans(book: str, facts: list[dict], spine: list[tuple[int, int]]) -> tu
 
 
 def section_moods(book: str, sections_verses: list[list[tuple[int, int]]], mood_facts: list[dict],
-                  model_moods: list[dict], to_ed, profile) -> list[SectionMood | None]:
+                  model_moods: list[dict], to_ed, profile, words=None) -> list[SectionMood | None]:
     """A feeling for each section of a chapter, where the Hebrew/Greek words of most of its verses
     mark one (passage-facts ``mood`` facts, by rule; passage-moods-model, read by a model), from
     the spans of the song plan (mood_spans). Rules: config/moods.toml [section_moods]; the words of
-    each tag: profiles.toml [families]."""
+    each tag: profiles.toml [families]. ``words``: family -> the edition's word for it (family_words)."""
     cfg = toml("moods.toml").get("section_moods", {})
     if not cfg.get("use", True):
         return [None] * len(sections_verses)
@@ -402,8 +403,34 @@ def section_moods(book: str, sections_verses: list[list[tuple[int, int]]], mood_
             continue
         ws = why[best]
         srcs = list(dict.fromkeys(src for _, _, src in ws))
+        word = (words or {}).get(best)
         out.append(SectionMood(best, ws[0][0], profile.family_tag.format(words=families[best]),
-                               "; ".join(srcs), any(m for _, m, _ in ws)))
+                               "; ".join(srcs), any(m for _, m, _ in ws), word))
+    return out
+
+
+def family_words(lexeme_keys: dict[int, list[str]], al, bt, testament: str) -> dict[str, str]:
+    """md.* family -> the edition's most common rendering in this book of the family's head lexemes
+    (moods.toml [family_lexemes], Strong's numbers), found through the alignment. Families whose
+    lexemes the book does not have, or the edition does not render, are left out (the notes then
+    keep the Hebrew head word alone). ``lexeme_keys``: Strong's number -> the book's word keys
+    (align.lexeme_keys)."""
+    from . import lines
+    prefix = "G" if testament == "nt" else "H"
+    out = {}
+    for fam, strongs in toml("moods.toml").get("family_lexemes", {}).items():
+        one: Counter = Counter()        # renderings of one word ("love"), preferred
+        more: Counter = Counter()       # longer ones ("I love": a Hebrew verb carries its subject)
+        for s in strongs:
+            if s[:1] != prefix:
+                continue
+            for k in lexeme_keys.get(int(s[1:]), []):
+                hit = al.positions(k)
+                w = lines.phrase(bt, hit[0], hit[1], max_tokens=3) if hit else None
+                if w:
+                    (one if len(w.split()) == 1 else more)[w] += 1
+        if one or more:
+            out[fam] = (one or more).most_common(1)[0][0]
     return out
 
 

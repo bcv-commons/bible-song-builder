@@ -15,5 +15,5 @@
 export { Config } from './config.js';
 export { ConfigError } from './util.js';
 export { loadBookText } from './edition.js';
-export { Alignment, loadAlignment, verseMap, spineToEdition } from './align.js';
+export { Alignment, lexemeKeys, loadAlignment, verseMap, spineToEdition } from './align.js';
 export { chapterPlan, prepareBook, projectChapter, chapterFiles, bookFiles, chapters, withDefaults, VERSION } from './project.js';

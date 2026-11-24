@@ -123,3 +123,20 @@ prayer = ["praying", "pleading", "begging", "entreating", "interceding"]
 praise = ["praising", "singing", "rejoicing", "joyfully singing", "worshiping God", "praising Jesus",
           "call to worship"]
 anger  = ["angry", "rebuking", "accusing", "furious", "threatening", "scolding", "indignant", "outraged"]
+
+# The head lexemes of each section-mood family, as Strong's numbers (H Hebrew, G Greek). The notes
+# show the edition's own word for the family next to its Hebrew head word: the edition's most
+# common rendering of these lexemes in the book, found through its alignment ("md.tsarah צָרָה
+# “distress”" in the BSB, the Spanish word in a Spanish edition). Without a rendering the notes
+# show the Hebrew head word alone. The [Mood: ...] tag in the lyrics stays English, for Suno
+# (profiles.toml [families]).
+[family_lexemes]
+"md.samach" = ["H8055", "G5463"]    # שָׂמַח rejoice; χαίρω
+"md.bakah"  = ["H1058", "G2799"]    # בָּכָה weep; κλαίω
+"md.yare"   = ["H3372", "G5399"]    # יָרֵא fear; φοβέω
+"md.aph"    = ["H639", "G3709"]     # אַף anger; ὀργή
+"md.bosh"   = ["H954", "G153"]      # בּוֹשׁ be ashamed; αἰσχύνομαι
+"md.batach" = ["H982", "G1679"]     # בָּטַח trust; ἐλπίζω
+"md.tsarah" = ["H6869", "G2347"]    # צָרָה distress; θλῖψις
+"md.ahav"   = ["H157", "G25"]       # אָהֵב love; ἀγαπάω
+"md.sane"   = ["H8130", "G3404"]    # שָׂנֵא hate; μισέω

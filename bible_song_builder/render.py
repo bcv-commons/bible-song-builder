@@ -202,7 +202,8 @@ def render(book_name: str, chapter: int, edition_name: str, setting: str, secs: 
     for s in secs:
         letters = [ln.acrostic for ln in s.stanza.lines if ln.acrostic]
         let = ("  · " + ", ".join(f"{x} {(letter_names or {}).get(x, '')}".strip() for x in letters)) if letters else ""
-        md = (f"  · {s.mood.tag} {s.mood.family} {s.mood.head}, from {s.mood.evidence}"
+        md = (f"  · {s.mood.tag} {s.mood.family} {s.mood.head}"
+                  + (f" “{s.mood.word}”" if s.mood.word else "") + f", from {s.mood.evidence}"
               + (" (model-read)" if s.mood.model else "")) if s.mood else ""
         notes.append(f"[{s.label}] {_range(book_name, s.stanza.verses)}{let}{md}")
     notes.extend(extra_notes or [])

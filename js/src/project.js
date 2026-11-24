@@ -3,8 +3,8 @@
 // plan.ChapterPlan. Every input is passed in; nothing is fetched here.
 import { castName, profileFor } from './config.js';
 import { spineToEdition } from './align.js';
-import { buildLines, speakerLabels, stanzas } from './lines.js';
-import { applyOverrides, chapterStyle, editionMoods, sectionMoods, sourceCredits } from './moods.js';
+import { buildLines, phrase, speakerLabels, stanzas } from './lines.js';
+import { applyOverrides, chapterStyle, editionMoods, familyWords, sectionMoods, sourceCredits } from './moods.js';
 import { render, sections } from './render.js';
 import { chapterMarks, settingVerses } from './textforms.js';
 import { cvC, cvKey, fmtCv, pyLen, removePrefix, sortedNums } from './util.js';
@@ -47,8 +47,9 @@ export function withDefaults(cfg, edition, args = {}) {
 
 /** The book-level work, once per book: speakers, profile, chapter moods.
  *  edition: {name, iso, licence, full_layer, compact_edition, verse_map}; bt: loadBookText();
- *  al: loadAlignment(); bookPlan: plan/<BOOK>/<BOOK>.json; vmap: verseMap(). */
-export function prepareBook({ cfg, edition, book, bt, al, bookPlan, vmap, args = {} }) {
+ *  al: loadAlignment(); bookPlan: plan/<BOOK>/<BOOK>.json; vmap: verseMap();
+ *  lexemes: lexemeKeys(), for the edition's words of the section moods (optional). */
+export function prepareBook({ cfg, edition, book, bt, al, bookPlan, vmap, lexemes = null, args = {} }) {
     if (String(bookPlan.schema).split('.')[0] !== PLAN_SCHEMA_MAJOR) throw new Error(`plan schema ${bookPlan.schema}, this code reads ${PLAN_SCHEMA_MAJOR}.x`);
     args = withDefaults(cfg, edition, args);
     const profile = profileFor(cfg, edition, book, args.profile, args.lead);
@@ -57,6 +58,7 @@ export function prepareBook({ cfg, edition, book, bt, al, bookPlan, vmap, args =
         cfg, edition, book, bt, al, bookPlan, vmap, args, profile, toEd,
         speakers: speakerLabels(cfg, bookPlan.speakers, al, bt),
         moods: applyOverrides(cfg, book, editionMoods(bookPlan, toEd), profile),
+        words: lexemes ? familyWords(cfg, lexemes, al, bt, bookPlan.testament) : new Map(),
     };
 }
 
@@ -117,15 +119,21 @@ export function projectChapter(ctx, chapter, plan) {
     const share = (layout.setting || {}).share ?? 0.5;
     const setting = song.size >= share * n ? 'song' : sungOrPoetic.size >= share * n ? 'poetry' : 'prose';
     const secs = sections(sts, setting, sungOrPoetic, layout.chorus);
-    const secMoods = sectionMoods(cfg, book, secs.map((s) => s.stanza.verses), plan.moodFacts, plan.modelMoods, toEd, profile);
+    const secMoods = sectionMoods(cfg, book, secs.map((s) => s.stanza.verses), plan.moodFacts, plan.modelMoods, toEd, profile, ctx.words);
     secs.forEach((s, i) => { s.mood = secMoods[i]; });
 
     const titles = sortedNums(bt.titles.keys()).filter((k) => cvC(k) === chapter);
     const notes = titles.map((k) => `Superscription before ${fmtCv(k)} (not sung): ${bt.titles.get(k)}`);
     if ((layout.psalms || {}).heading_terms ?? true) {
         if (marks.headingTerms.length) {
-            notes.push('Heading terms (not sung): ' + marks.headingTerms.map((code) =>
-                removePrefix(plan.labels[code] ?? code, 'heading: ').split(': a term of the text')[0]).join('; '));
+            const term = (code) => {
+                const gloss = removePrefix(plan.labels[code] ?? code, 'heading: ').split(': a term of the text')[0];
+                const at = marks.headingWords.get(code);
+                const own = at ? phrase(cfg, bt, at[0], at[1], 12) : null;
+                const i = gloss.indexOf(' (');
+                return own && i >= 0 ? `${own} (${gloss.slice(i + 2)}` : gloss;
+            };
+            notes.push('Heading terms (not sung): ' + marks.headingTerms.map(term).join('; '));
         }
         if (marks.selah.size) notes.push('Selah at ' + sortedNums(marks.selah.keys()).map(fmtCv).join(', '));
     }
@@ -160,7 +168,7 @@ export function projectChapter(ctx, chapter, plan) {
         pins: cfg.pins.huggingface, 'bible-song-builder': VERSION,
         sections: secs.map((s) => ({
             label: s.label, sung: s.sung,
-            mood: s.mood ? { family: s.mood.family, head: s.mood.head, tag: s.mood.tag, evidence: s.mood.evidence, model: s.mood.model } : null,
+            mood: s.mood ? { family: s.mood.family, head: s.mood.head, tag: s.mood.tag, word: s.mood.word, evidence: s.mood.evidence, model: s.mood.model } : null,
             verses: s.stanza.verses.map(fmtCv),
             lines: s.stanza.lines.map((ln) => ({
                 verse: fmtCv(ln.cv), token: ln.first_token, text: ln.text, quote: ln.quote,

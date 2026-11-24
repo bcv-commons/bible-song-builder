@@ -111,6 +111,7 @@
     "family": "md.batach",
     "head": "בָּטַח",
     "tag": "[Mood: confident, hopeful]",
+    "word": "trust",
     "evidence": "passage-moods-model PSA 23:1-6",
     "model": true
    },
@@ -252,6 +253,7 @@
     "family": "md.batach",
     "head": "בָּטַח",
     "tag": "[Mood: confident, hopeful]",
+    "word": "trust",
     "evidence": "passage-moods-model PSA 23:1-6",
     "model": true
    },

@@ -1,7 +1,8 @@
 // The projection's part of moods: the chapter's style line, the section moods, the credit lines.
 // Mirrors bible_song_builder/moods.py (chapter_style, apply_overrides, section_moods,
 // source_credits) and plan.edition_moods; the rest of moods.py is half 1 (the plan).
-import { ConfigError, cvC, cvKey, fmtCv, pyStr, unique } from './util.js';
+import { phrase } from './lines.js';
+import { ConfigError, count, cvC, cvKey, fmtCv, mostCommon, pySplit, pyStr, unique } from './util.js';
 
 export class Mood {
     constructor(mood, basis, evidence, instruments = [], style = null) {
@@ -92,7 +93,7 @@ function cvs(vs) {
 
 /** A feeling for each section, where the Hebrew/Greek words of most of its verses mark one
  *  (the plan's mood_facts by rule, model_moods read by a model). Rules: moods.toml [section_moods]. */
-export function sectionMoods(cfg, book, sectionsVerses, moodFacts, modelMoods, toEd, profile) {
+export function sectionMoods(cfg, book, sectionsVerses, moodFacts, modelMoods, toEd, profile, words = null) {
     const mc = cfg.toml('moods.toml').section_moods || {};
     if (!(mc.use ?? true)) return sectionsVerses.map(() => null);
     const weights = mc.model_weights ?? [1.0, 0.5, 0.33];
@@ -130,6 +131,28 @@ export function sectionMoods(cfg, book, sectionsVerses, moodFacts, modelMoods, t
         return {
             family: best, head: ws[0][0], tag: profile.family_tag.replace('{words}', families[best]),
             evidence: unique(ws.map((x) => x[2])).join('; '), model: ws.some((x) => x[1]),
+            word: (words && words.get(best)) ?? null,
         };
     });
+}
+
+/** md.* family -> the edition's most common rendering in this book of the family's head lexemes
+ *  (moods.toml [family_lexemes], Strong's numbers), through the alignment; one-word renderings
+ *  are preferred. lexemes: lexemeKeys(). moods.family_words */
+export function familyWords(cfg, lexemes, al, bt, testament) {
+    const prefix = testament === 'nt' ? 'G' : 'H';
+    const out = new Map();
+    for (const [fam, strongs] of Object.entries(cfg.toml('moods.toml').family_lexemes || {})) {
+        const one = new Map(), more = new Map();
+        for (const s of strongs) {
+            if (s.slice(0, 1) !== prefix) continue;
+            for (const k of lexemes.get(parseInt(s.slice(1), 10)) || []) {
+                const hit = al.positions(k);
+                const w = hit ? phrase(cfg, bt, hit[0], hit[1], 3) : null;
+                if (w) count(pySplit(w).length === 1 ? one : more, w);
+            }
+        }
+        if (one.size || more.size) out.set(fam, mostCommon(one.size ? one : more));
+    }
+    return out;
 }
