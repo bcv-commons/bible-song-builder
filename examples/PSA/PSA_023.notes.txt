@@ -1,8 +1,8 @@
 Psalm 23 · BSB · setting: poetry
 Profile: hymn, female lead · Suno persona: (not set: profiles.toml [profiles.hymn] persona.female)
-Style: this chapter's own (PSA_023.style.txt): trust (+ "calm, steady, confident"), from type: Tyndale Open Study Notes: mivtach מִבְטָח over 6 of 6 verses; Scriptura: mivtach מִבְטָח over 6 of 6 verses. To change: config/books/PSA.toml, [chapters.23] (mood or style)
-[Verse 1] 23:1-4  · [Mood: confident, hopeful] md.batach בָּטַח “trust”, from passage-moods-model PSA 23:1-6 (model-read)
-[Verse 2] 23:5-6  · [Mood: confident, hopeful] md.batach בָּטַח “trust”, from passage-moods-model PSA 23:1-6 (model-read)
+Style: this chapter's own (PSA_023.style.txt): trust (+ "calm, confident"), from type: Tyndale Open Study Notes: mivtach מִבְטָח over 6 of 6 verses; Scriptura: mivtach מִבְטָח over 6 of 6 verses. To change: config/books/PSA.toml, [chapters.23] (mood or style)
+[Verse 1] 23:1-4  · [Mood: calm] mivtach מִבְטָח (md.batach) “trust”, from passage-moods-model PSA 23:1-6 (model-read)
+[Verse 2] 23:5-6  · [Mood: calm] mivtach מִבְטָח (md.batach) “trust”, from passage-moods-model PSA 23:1-6 (model-read)
 Superscription before 23:1 (not sung): A Psalm of David.
 Heading terms (not sung): a psalm, a song with accompaniment (מזמור); ascribed to David (לדוד)
 Shortened or paraphrased: nothing; every line is the edition's text, verbatim.

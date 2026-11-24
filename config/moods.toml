@@ -2,7 +2,8 @@
 #
 # A book keeps its one style (books.toml / profiles.toml). Only where the source says how a
 # chapter sounds does it get its own style: the book's style plus a few words for the mood.
-# Those words are set per profile in profiles.toml ([moods] and [instruments]).
+# Those words are in mood-list.toml ([kinds]: the kind of chapter -> a mood of the list) and, for
+# kinds that are not moods and for instruments, in profiles.toml ([moods], [instruments]).
 #
 # The cues (fixed in the code, because they are read from the Hebrew/Greek):
 #   heading   a psalm heading naming the kind of piece: תְּפִלָּה prayer, תְּהִלָּה praise, לְתוֹדָה
@@ -17,7 +18,7 @@
 #             the psalm is, in their own Hebrew words (see [commentary])
 #   delivery  most of a chapter is speech delivered one way (see [delivery])
 #
-# Moods: those in priority below; the words each adds are in profiles.toml [moods].
+# Kinds: those in priority below; the words each adds are in mood-list.toml [kinds].
 # A chapter's mood can also be set by hand in books/<BOOK>.toml ([chapters.N] mood = ...).
 
 
@@ -99,7 +100,10 @@ min_witnesses = 1
 
 # Moods inside a chapter: a [Mood: …] tag at the start of a section whose Hebrew/Greek words mark a
 # feeling (one of the 9 families of passage-facts: md.samach joy, md.bakah grief, …), written only
-# where the feeling changes. The words of each tag are in profiles.toml [families].
+# where the feeling changes. The mood of each family and its words are in mood-list.toml
+# ([families]). The notes name the mood by its Hebrew word, with the edition's own word for it
+# where the book has it: the edition's most common rendering of the mood's Hebrew or Greek noun
+# (mood-list.toml strong / greek), found through its alignment. The tag itself stays English.
 # From: passage-facts mood facts (by rule) and passage-moods-model (read by a model; the notes say so).
 [section_moods]
 use = true
@@ -123,20 +127,3 @@ prayer = ["praying", "pleading", "begging", "entreating", "interceding"]
 praise = ["praising", "singing", "rejoicing", "joyfully singing", "worshiping God", "praising Jesus",
           "call to worship"]
 anger  = ["angry", "rebuking", "accusing", "furious", "threatening", "scolding", "indignant", "outraged"]
-
-# The head lexemes of each section-mood family, as Strong's numbers (H Hebrew, G Greek). The notes
-# show the edition's own word for the family next to its Hebrew head word: the edition's most
-# common rendering of these lexemes in the book, found through its alignment ("md.tsarah צָרָה
-# “distress”" in the BSB, the Spanish word in a Spanish edition). Without a rendering the notes
-# show the Hebrew head word alone. The [Mood: ...] tag in the lyrics stays English, for Suno
-# (profiles.toml [families]).
-[family_lexemes]
-"md.samach" = ["H8055", "G5463"]    # שָׂמַח rejoice; χαίρω
-"md.bakah"  = ["H1058", "G2799"]    # בָּכָה weep; κλαίω
-"md.yare"   = ["H3372", "G5399"]    # יָרֵא fear; φοβέω
-"md.aph"    = ["H639", "G3709"]     # אַף anger; ὀργή
-"md.bosh"   = ["H954", "G153"]      # בּוֹשׁ be ashamed; αἰσχύνομαι
-"md.batach" = ["H982", "G1679"]     # בָּטַח trust; ἐλπίζω
-"md.tsarah" = ["H6869", "G2347"]    # צָרָה distress; θλῖψις
-"md.ahav"   = ["H157", "G25"]       # אָהֵב love; ἀγαπάω
-"md.sane"   = ["H8130", "G3404"]    # שָׂנֵא hate; μισέω

@@ -8,7 +8,8 @@
 #   style   = (optional) this book's own style line, instead of the profile's
 #
 # A chapter can be changed in a [chapters.N] block (N = the chapter number):
-#   mood  = a mood from ../profiles.toml [moods] (prayer, lament, praise, thanksgiving, trust ...),
+#   mood  = a kind of ../mood-list.toml [kinds] (lament, praise, thanksgiving, trust ...), a mood of that
+#           list (evel, shalom ...), or a kind of ../profiles.toml [moods] (prayer, wisdom, royal),
 #           or "" to give the chapter the book's style even where the source names a mood
 #   style = a whole style line for that chapter
 #

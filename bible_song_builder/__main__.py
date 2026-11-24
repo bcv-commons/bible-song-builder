@@ -136,7 +136,8 @@ def build_chapter(book: str, chapter: int, ed: str, bt: edition.BookText, al: al
         "pins": fetch.pins()["huggingface"], "bible-song-builder": __version__,
         "sections": [{
             "label": s.label, "sung": s.sung,
-            "mood": ({"family": s.mood.family, "head": s.mood.head, "tag": s.mood.tag, "word": s.mood.word,
+            "mood": ({"mood": s.mood.mood, "hebrew": s.mood.hebrew, "family": s.mood.family, "head": s.mood.head,
+                      "tag": s.mood.tag, "word": s.mood.word,
                       "evidence": s.mood.evidence, "model": s.mood.model} if s.mood else None),
             "verses": [f"{c}:{v}" for c, v in s.stanza.verses],
             "lines": [{"verse": f"{ln.cv[0]}:{ln.cv[1]}", "token": ln.first_token, "text": ln.text,

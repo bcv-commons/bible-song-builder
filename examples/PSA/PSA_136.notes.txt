@@ -1,6 +1,6 @@
 Psalm 136 · BSB · setting: poetry
 Profile: hymn, female lead · Suno persona: (not set: profiles.toml [profiles.hymn] persona.female)
-Style: this chapter's own (PSA_136.style.txt): praise (+ "uplifting, joyful, fuller sound"), from type: Tyndale Open Study Notes: tehillah תְּהִלָּה over 26 of 26 verses; Hebrew commentators: Malbim (model-read): ההודאה. To change: config/books/PSA.toml, [chapters.136] (mood or style)
+Style: this chapter's own (PSA_136.style.txt): praise (+ "triumphant, anthemic, high energy, driving"), from type: Tyndale Open Study Notes: tehillah תְּהִלָּה over 26 of 26 verses; Hebrew commentators: Malbim (model-read): ההודאה. To change: config/books/PSA.toml, [chapters.136] (mood or style)
 [Verse 1] 136:1-3
 [Verse 2] 136:4-5
 [Verse 3] 136:6-9

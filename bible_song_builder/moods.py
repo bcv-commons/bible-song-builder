@@ -19,7 +19,8 @@ Where cues give different moods, the cue first in moods.toml ``sources`` wins (a
 word before a scholar's reading), then the mood first in ``priority``.
 
 Which cue gives which mood is in config/moods.toml; the words the mood adds to the style line
-are in config/profiles.toml ([moods], [instruments]). Facts are in source chapters; the chapter
+are in config/mood-list.toml ([kinds] -> a mood of the list) and config/profiles.toml ([moods],
+[instruments]). Facts are in source chapters; the chapter
 of the edition is found through the verse map.
 """
 from __future__ import annotations
@@ -255,12 +256,51 @@ def apply_overrides(book: str, found: dict[int, Mood], profile) -> dict[int, Moo
             if not m:
                 out.pop(c, None)
                 continue
-            if m not in (profile.moods or {}):
-                raise ConfigError(f"{where}: mood {m!r} is not in config/profiles.toml [moods]; "
-                                  f"choose from {', '.join(profile.moods or {})}")
+            known = list(dict.fromkeys([*(profile.moods or {}), *mood_list()["kinds"], *mood_list()["moods"]]))
+            if m not in known:
+                raise ConfigError(f"{where}: mood {m!r} is not a kind of config/mood-list.toml [kinds] or "
+                                  f"config/profiles.toml [moods], nor a mood of the list; "
+                                  f"choose from {', '.join(known)}")
             out[c] = Mood(m, "manual", where + (f" (the source: {src.evidence})" if src else ""),
                           src.instruments if src else ())
     return out
+
+
+def mood_list() -> dict:
+    """config/mood-list.toml, checked: [kinds] and [families] name moods of the list, and each mood
+    has words and a known energy."""
+    ml = toml("mood-list.toml")
+    where = "config/mood-list.toml"
+    ms = ml.get("moods", {})
+    for table in ("kinds", "families"):
+        bad = sorted(f"{k} = {v!r}" for k, v in ml.get(table, {}).items() if v and v not in ms)
+        if bad:
+            raise ConfigError(f"{where} [{table}]: {', '.join(bad)}: not a mood of the list; "
+                              f"choose from {', '.join(ms)}")
+    for mid, m in ms.items():
+        if not m.get("words") or m.get("energy") not in ml.get("energy", {}):
+            raise ConfigError(f"{where} [moods.{mid}]: needs words, and an energy from [energy] "
+                              f"({', '.join(ml.get('energy', {}))})")
+    return {"use": {}, "kinds": {}, "families": {}, "energy": {}, **ml}
+
+
+def mood_words(mid: str, n: int) -> str:
+    """The first ``n`` of a mood's words for the music service."""
+    return ", ".join(w.strip() for w in mood_list()["moods"][mid]["words"].split(",")[:n])
+
+
+def kind_words(profile, kind: str) -> str:
+    """The words a chapter of this kind adds to the style: the profile's own (profiles.toml [moods])
+    where it has the kind, else those of its mood in the list (mood-list.toml [kinds]; a mood id
+    itself is also taken), with the mood's usual energy."""
+    if kind in (profile.moods or {}):
+        return profile.moods[kind]
+    ml = mood_list()
+    mid = ml["kinds"].get(kind) or (kind if kind in ml["moods"] else "")
+    if not mid:
+        return ""
+    energy = ml["energy"][ml["moods"][mid]["energy"]]
+    return ", ".join(w for w in (mood_words(mid, ml["use"].get("style_words", 2)), energy) if w)
 
 
 def chapter_style(profile, mood: Mood | None) -> tuple[str, str | None]:
@@ -269,7 +309,7 @@ def chapter_style(profile, mood: Mood | None) -> tuple[str, str | None]:
         return profile.style, None
     if mood.style:
         return mood.style, "its own style line"
-    words = [w for w in ([profile.moods.get(mood.mood, "")] if mood.mood else [])
+    words = [w for w in ([kind_words(profile, mood.mood)] if mood.mood else [])
              + [profile.instruments.get(i, "") for i in mood.instruments] if w]
     if not words:
         return profile.style, None
@@ -324,7 +364,9 @@ class SectionMood:
     tag: str             # what is written in the lyrics
     evidence: str        # which facts gave it
     model: bool          # read by a model (passage-moods-model)
-    word: str | None = None   # the edition's usual word for the family's head lexeme (family_words)
+    word: str | None = None   # the edition's usual word for the mood's noun (family_words)
+    mood: str = ""            # the mood of the list (mood-list.toml), e.g. "evel"
+    hebrew: str = ""          # its Hebrew name
 
 
 def _span_verses(first: str, last: str, spine: list[tuple[int, int]]) -> list[tuple[int, int]]:
@@ -368,8 +410,9 @@ def section_moods(book: str, sections_verses: list[list[tuple[int, int]]], mood_
                   model_moods: list[dict], to_ed, profile, words=None) -> list[SectionMood | None]:
     """A feeling for each section of a chapter, where the Hebrew/Greek words of most of its verses
     mark one (passage-facts ``mood`` facts, by rule; passage-moods-model, read by a model), from
-    the spans of the song plan (mood_spans). Rules: config/moods.toml [section_moods]; the words of
-    each tag: profiles.toml [families]. ``words``: family -> the edition's word for it (family_words)."""
+    the spans of the song plan (mood_spans). Rules: config/moods.toml [section_moods]; the mood of
+    each family and the words of its tag: mood-list.toml. ``words``: family -> the edition's word
+    for its mood (family_words)."""
     cfg = toml("moods.toml").get("section_moods", {})
     if not cfg.get("use", True):
         return [None] * len(sections_verses)
@@ -384,7 +427,9 @@ def section_moods(book: str, sections_verses: list[list[tuple[int, int]]], mood_
             for i, m in enumerate(r["moods"]):
                 if i < len(weights):
                     spans.append((m["family"], m["head"], ev, weights[i], True, "passage-moods-model"))
-    families = profile.families or {}
+    ml = mood_list()
+    families = ml["families"]
+    n_words = ml["use"].get("tag_words", 1)
     out: list[SectionMood | None] = []
     for vs in sections_verses:
         V = set(vs)
@@ -404,21 +449,26 @@ def section_moods(book: str, sections_verses: list[list[tuple[int, int]]], mood_
         ws = why[best]
         srcs = list(dict.fromkeys(src for _, _, src in ws))
         word = (words or {}).get(best)
-        out.append(SectionMood(best, ws[0][0], profile.family_tag.format(words=families[best]),
-                               "; ".join(srcs), any(m for _, m, _ in ws), word))
+        mid = families[best]
+        out.append(SectionMood(best, ws[0][0], profile.family_tag.format(words=mood_words(mid, n_words)),
+                               "; ".join(srcs), any(m for _, m, _ in ws), word, mid, ml["moods"][mid]["hebrew"]))
     return out
 
 
 def family_words(lexeme_keys: dict[int, list[str]], al, bt, testament: str) -> dict[str, str]:
-    """md.* family -> the edition's most common rendering in this book of the family's head lexemes
-    (moods.toml [family_lexemes], Strong's numbers), found through the alignment. Families whose
-    lexemes the book does not have, or the edition does not render, are left out (the notes then
-    keep the Hebrew head word alone). ``lexeme_keys``: Strong's number -> the book's word keys
-    (align.lexeme_keys)."""
+    """md.* family -> the edition's most common rendering in this book of the noun naming the
+    family's mood (mood-list.toml: strong for the Hebrew, greek for the Greek), found through the
+    alignment. Families whose mood the book does not name, or the edition does not render, are left
+    out (the notes then keep the Hebrew name alone). ``lexeme_keys``: Strong's number -> the book's
+    word keys (align.lexeme_keys)."""
     from . import lines
     prefix = "G" if testament == "nt" else "H"
     out = {}
-    for fam, strongs in toml("moods.toml").get("family_lexemes", {}).items():
+    ml = mood_list()
+    for fam, mid in ml["families"].items():
+        if not mid:
+            continue
+        strongs = [ml["moods"][mid].get("strong", ""), ml["moods"][mid].get("greek", "")]
         one: Counter = Counter()        # renderings of one word ("love"), preferred
         more: Counter = Counter()       # longer ones ("I love": a Hebrew verb carries its subject)
         for s in strongs:

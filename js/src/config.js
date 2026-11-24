@@ -128,7 +128,6 @@ export function profileFor(cfg, edition, book, profile = null, lead = null) {
         tags, base_style: base, suffix,
         moods: deepMerge(profs.moods || {}, p.moods || {}),
         instruments: deepMerge(profs.instruments || {}, p.instruments || {}),
-        families: deepMerge(profs.families || {}, p.families || {}),
         family_tag: p.family_tag ?? profs.family_tag ?? '[Mood: {words}]',
     };
 }

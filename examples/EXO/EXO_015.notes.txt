@@ -1,6 +1,6 @@
 Exodus 15 · BSB · setting: song
 Profile: folk, male lead · Suno persona: (not set: profiles.toml [profiles.folk] persona.male)
-Style: this chapter's own (EXO_015.style.txt): song (+ "triumphant, anthemic, full choir"), from song: Masoretic song layout over 19 of 27 verses; speech delivered as praise over 27 of 27 verses. To change: config/books/EXO.toml, [chapters.15] (mood or style)
+Style: this chapter's own (EXO_015.style.txt): song (+ "triumphant, anthemic, high energy, driving"), from song: Masoretic song layout over 19 of 27 verses; speech delivered as praise over 27 of 27 verses. To change: config/books/EXO.toml, [chapters.15] (mood or style)
 Voices: [Choir] Moses and the Israelites, they; [Female Vocal] Miriam; [Deep Male Vocal] the LORD; [Lead Vocal] or no tag = the narrator (the persona)
 [Verse 1] 15:1
 [Chorus] 15:1

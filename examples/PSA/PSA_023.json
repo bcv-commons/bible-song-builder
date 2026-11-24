@@ -18,7 +18,7 @@
    "refrain": "[Choir]"
   }
  },
- "style": "hymn, 72 BPM, piano and warm choir pads, reverent, contemplative, calm, steady, confident",
+ "style": "hymn, 72 BPM, piano and warm choir pads, reverent, contemplative, calm, confident",
  "own_style": true,
  "mood": {
   "mood": "trust",
@@ -108,9 +108,11 @@
    "label": "Verse 1",
    "sung": true,
    "mood": {
+    "mood": "mivtach",
+    "hebrew": "מִבְטָח",
     "family": "md.batach",
     "head": "בָּטַח",
-    "tag": "[Mood: confident, hopeful]",
+    "tag": "[Mood: calm]",
     "word": "trust",
     "evidence": "passage-moods-model PSA 23:1-6",
     "model": true
@@ -250,9 +252,11 @@
    "label": "Verse 2",
    "sung": true,
    "mood": {
+    "mood": "mivtach",
+    "hebrew": "מִבְטָח",
     "family": "md.batach",
     "head": "בָּטַח",
-    "tag": "[Mood: confident, hopeful]",
+    "tag": "[Mood: calm]",
     "word": "trust",
     "evidence": "passage-moods-model PSA 23:1-6",
     "model": true

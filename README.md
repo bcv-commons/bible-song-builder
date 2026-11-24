@@ -184,7 +184,8 @@ keyed so that it carries over to other books, editions and languages.
 | File | Edit with | Keyed by | Holds |
 |---|---|---|---|
 | [`books/<BOOK>.toml`](config/books/) | any text editor | book, chapter | a book's profile, lead singer and (optional) own style line; a chapter's mood or style (`[chapters.23]`). Books without a file use `_default.toml` |
-| [`profiles.toml`](config/profiles.toml) | any text editor | profile name | style line, Suno persona names (`persona.female` / `persona.male`), the tag for each voice type, the words each mood adds |
+| [`profiles.toml`](config/profiles.toml) | any text editor | profile name | style line, Suno persona names (`persona.female` / `persona.male`), the tag for each voice type, the words of the chapter kinds that are not moods |
+| [`mood-list.toml`](config/mood-list.toml) | any text editor | mood (its Hebrew name) | the twelve moods: Hebrew and Greek noun, what each is, its English words and usual energy for the music service; which mood each chapter kind and each feeling family gets |
 | [`cast.csv`](config/cast.csv) | Excel, LibreOffice, Google Sheets | `speaker_id` (source data) | the speakers whose voice or name is set by hand |
 | [`cast-rules.toml`](config/cast-rules.toml) | any text editor | none | the rules that give speakers their voice |
 | [`layout.toml`](config/layout.toml) | any text editor | none | the defaults: text (word counting, line-start punctuation), setting codes, lines, stanzas, section tags, chorus, psalm marks, length limits |
@@ -278,30 +279,36 @@ With these, 135 of the 150 psalms have a mood (49 from the headings alone). The 
 tell a lament from praise reliably. A chapter whose mood comes from Tyndale, Scriptura or the
 commentators credits them in its notes file.
 
-**Moods inside a chapter.** Where the Hebrew/Greek words of most of a section mark a feeling, the
-section opens with a tag after its section label, such as `[Mood: anguished]`. The tag is written only
-where the feeling changes, and Suno sings the section in that mood within the chapter's style. The
-feelings are the 9 families of passage-facts, each named by a Hebrew head word: שָׂמַח joy, בָּכָה
-grief, יָרֵא fear and awe, אַף anger, בּוֹשׁ shame, בָּטַח trust, צָרָה distress, אָהֵב love, שָׂנֵא contempt.
-They come from passage-facts `mood` facts (by rule) and from `passage-moods-model` (read by a model).
-That gives tags in 337 of the 1,189 chapters. The notes file lists each section's mood and its
-source, marks model readings "model-read", and credits the datasets. The words of each tag are in
-`config/profiles.toml` (`[families]`, and `family_tag` for its form); `config/moods.toml`
-`[section_moods]` turns this on or off, or turns off the model's part only.
+**The mood list.** `config/mood-list.toml` holds the twelve moods a song can have. Each is named by a Hebrew noun
+(אֵבֶל mourning, צָרָה distress, שִׂמְחָה joy …), with its Greek counterpart, a sentence saying what it is, and the
+English words a music service is given for it. Everything sent to the music service is English, in every
+edition. The words can be tuned there without touching code.
 
-The tags stay English, for Suno. The notes also name each family in the edition's own words: its most common
-rendering in the book of the family's head lexemes ("md.tsarah צָרָה “trouble”" in the BSB Psalms; a Spanish
-edition gives its Spanish word). The head lexemes are Strong's numbers in `config/moods.toml`
-`[family_lexemes]`, Hebrew and Greek. The edition's words come through its alignment and the lexeme index of
-compact-alignments, so no translation file is needed. Psalm heading terms are named the same way where the
-edition's alignment covers the title; the BSB's does not yet, so they keep their English gloss.
+**Moods inside a chapter.** Where the Hebrew/Greek words of most of a section mark a feeling, the
+section opens with a tag after its section label, such as `[Mood: desperate]`. The tag is written only
+where the feeling changes, and Suno sings the section in that mood within the chapter's style. The
+feelings come as the 9 families of passage-facts: from its `mood` facts (by rule) and from
+`passage-moods-model` (read by a model). `config/mood-list.toml` `[families]` gives each family its mood of the
+list. Fear (יָרֵא) and hatred (שָׂנֵא) get no tag: the family does not say whether fear is awe or dread, and hatred
+is not in the list. The notes file lists each section's mood and its source, marks model readings
+"model-read", and credits the datasets. `config/profiles.toml` `family_tag` sets the tag's form;
+`config/moods.toml` `[section_moods]` turns this on or off, or turns off the model's part only.
+
+The notes also name each mood in the edition's own words: its most common rendering in the book of the mood's
+Hebrew or Greek noun ("tsarah צָרָה (md.tsarah) “trouble”" in the BSB Psalms; a Spanish edition gives its Spanish
+word). The edition's words come through its alignment and the lexeme index of compact-alignments, so no
+translation file is needed. Psalm heading terms are named the same way where the edition's alignment covers the
+title; the BSB's does not yet, so they keep their English gloss.
 
 **Model-made data.** Two inputs are a language model's readings with no human check:
 `hebrew-commentary-terms-model` and `passage-moods-model`. Every chapter that uses them says so in its
 notes file.
 
-`config/moods.toml` says which cue gives which mood. `config/profiles.toml` (`[moods]`,
-`[instruments]`, and per profile) says which words each mood adds; `""` turns a mood off.
+`config/moods.toml` says which cue gives a chapter which kind (lament, praise, trust …).
+`config/mood-list.toml` `[kinds]` gives each kind its mood of the list, whose words and usual energy are added
+to the chapter's Style. `config/profiles.toml` (`[moods]`, `[instruments]`, and per profile) holds the words of
+the kinds that are not moods (prayer, wisdom, royal) and of instruments, and can set any kind's words for one
+profile; `""` turns a kind off.
 
 ## The text and its repairs
 

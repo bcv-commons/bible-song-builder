@@ -338,14 +338,7 @@
   {
    "label": "Verse 3",
    "sung": false,
-   "mood": {
-    "family": "md.yare",
-    "head": "φοβέω",
-    "tag": "[Mood: fearful, in awe]",
-    "word": "fear",
-    "evidence": "passage-moods-model LUK 1:10-14",
-    "model": true
-   },
+   "mood": null,
    "verses": [
     "1:8",
     "1:9",
@@ -459,14 +452,7 @@
   {
    "label": "Verse 4",
    "sung": false,
-   "mood": {
-    "family": "md.yare",
-    "head": "φοβέω",
-    "tag": "[Mood: fearful, in awe]",
-    "word": "fear",
-    "evidence": "passage-moods-model LUK 1:10-14",
-    "model": true
-   },
+   "mood": null,
    "verses": [
     "1:13",
     "1:14",

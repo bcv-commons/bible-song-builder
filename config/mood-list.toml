@@ -1,0 +1,276 @@
+# The mood list: which moods a song or a section of it can have, how a reader of the Hebrew or
+# Greek recognises each one, and how a music service is told to sing it.
+# Revision 4 (2026-11-24). The songs take their mood words from this file: [kinds] for a chapter's
+# Style, [families] for the [Mood: …] tags inside the lyrics. Which cue of the source gives a
+# chapter its kind is in moods.toml. [blends], colour and tension are not used yet: today's data
+# names one mood at a time.
+#
+# The list is a bridge between two users:
+#   A. Whoever reads a passage and names its mood (a model run over every passage, or a person).
+#      They need few moods, each clearly apart from the others: `is` says what it is, `not`
+#      says how to tell it from its nearest neighbour.
+#   B. The music service (Suno today). It needs one plain English emotion word it already
+#      knows, plus an energy level. `words` are those words, the first one the main word.
+#
+# What the pattern in Suno prompts shows (community guides for v5.5, 2026; the service's own
+# documentation calls bracket tags suggestions, not commands):
+#   - The moods in use are few and coarse: dark, uplifting, melancholic, aggressive, triumphant,
+#     peaceful, euphoric, haunting, bittersweet, desperate, mournful, intimate, tense, calm.
+#   - A plain emotion word works better than a technical one ("desperate", not "minor key").
+#   - One or two mood words. Moods that pull apart are averaged into neither.
+#   - Energy is said apart from the mood: low, medium, rising, high.
+#   - Inside the lyrics a mood rides on a section: [Mournful Outro], [Angry Verse], [Mood: Dark].
+# So a reading of a passage is: one mood, at most a second, and an energy level.
+#
+# A mood is in the list only if all four hold:
+#   1. Hebrew anchor. One Hebrew noun of the Tanakh names it (hebrew, strong). That word is the
+#      mood's name and identity, also in the New Testament. `also` lists further Hebrew nouns
+#      that belong to the same mood.
+#   2. Greek counterpart: the Greek noun that carries it in the New Testament (greek).
+#   3. Its own vocabulary: the UBS dictionaries (SDBH, Louw-Nida) group words for it; that group
+#      is its family in passage-facts mood_families.tsv (family).
+#   4. Music can express it: it has words a music service knows, and no other mood of the list
+#      has the same main word.
+#
+# Per mood:
+#   colour   "bright" | "dark" | "mixed"   major or minor, warm or cold. Two moods of one reading
+#                                          should share a colour; see [blends] for the exceptions.
+#   energy   the usual energy when the reading gives none: "low" | "medium" | "rising" | "high"
+#   tension  "settled" | "tense"           resolved and stable, or unresolved and restless
+#
+# How the bridge works:
+#   1. The reader names a mood by its id (the Hebrew word, e.g. "evel"), choosing by `is` and `not`.
+#      The Hebrew word is the mood's name; it need not occur in the passage (Genesis 22 has dread
+#      without the word).
+#   2. The id is looked up here; `words` and the energy level go to the music service.
+# Everything sent to the music service is English, in every edition and language: the services
+# know English mood words best, and a translated word may be unknown to them or mean something else.
+# Only a song's notes (for people, not sent) may name the mood in the edition's language, from
+# lexeme-alignments top.json (looked up by strong / greek).
+# Suno's own list of 33 moods (suno.com/music-library/moods) has, of the main words here: hopeful,
+# peaceful, calm, dark, angry, epic, sad. The others come from community guides. Words marked
+# (untested) must be tried in Suno; all of them will be tuned as experience comes.
+#
+# Left out on purpose: hatred (שִׂנְאָה): the text has the words, but it does not carry a song.
+# Not yet placed: longing, surprise.
+
+
+[use]
+# How many of a mood's words go into the Style of a chapter with that mood (its energy words are
+# added after them).
+style_words = 2
+# How many go into a [Mood: …] tag inside the lyrics. One word: a tag is short.
+tag_words = 1
+
+
+[kinds]
+# The kinds of chapter moods.toml finds (a psalm's heading, type or purpose, a song in narrative,
+# speech delivered one way) -> the mood whose words the chapter's Style gets. A kind with words
+# in profiles.toml [moods] takes those instead (prayer, wisdom, royal: kinds of piece, not moods;
+# or a profile's own choice). "" = no mood words for that kind.
+lament       = "tsarah"       # a prayer in distress: most laments still plead. A dirge would be evel.
+penitence    = "boshet"
+praise       = "rinnah"
+song         = "rinnah"       # a song in narrative: the Sea, Deborah, David
+thanksgiving = "simchah"
+love_song    = "ahavah"
+sabbath      = "shalom"
+trust        = "mivtach"
+pilgrimage   = "tiqvah"
+anger        = "af"
+
+
+[families]
+# The feeling families of passage-facts (and of passage-moods-model) -> the mood a section gets
+# where the data names only the family. "" = no tag for that family.
+"md.samach" = "simchah"
+"md.bakah"  = "evel"
+"md.aph"    = "af"
+"md.bosh"   = "boshet"
+"md.batach" = "mivtach"
+"md.tsarah" = "tsarah"
+"md.ahav"   = "ahavah"
+"md.yare"   = ""              # fear: awe (yirah) or dread (pachad); the family does not say which,
+                              # and a wrong mood is worse than none
+"md.sane"   = ""              # hatred: not in the list
+
+
+[energy]
+# How each energy level is written for the music service.
+low    = "slow, sparse"
+medium = ""                    # nothing added
+rising = "building intensity"
+high   = "high energy, driving"
+
+
+[blends]
+# Two moods of different colour that make one known mood together. Any other pair of different
+# colours: only the first mood is given to the music service.
+"evel+tiqvah"    = "bittersweet"            # grief with hope
+"tsarah+mivtach" = "pleading, trusting"     # (untested) distress that holds on to trust: many laments
+
+
+# ---- bright ----
+
+[moods.simchah]
+hebrew  = "שִׂמְחָה"                          # joy, gladness
+strong  = "H8057"
+greek   = "G5479"                            # χαρά
+also    = ["H8426 תּוֹדָה thanksgiving", "H8342 שָׂשׂוֹן gladness"]
+family  = "md.samach"
+is      = "Gladness over something good: a gift, a rescue, a feast, giving thanks."
+not     = "rinnah: joy is glad; jubilation is loud and victorious."
+colour  = "bright"
+energy  = "medium"
+tension = "settled"
+words   = "joyful, uplifting"
+
+[moods.rinnah]
+hebrew  = "רִנָּה"                            # a ringing cry, jubilation
+strong  = "H7440"
+greek   = "G20"                              # ἀγαλλίασις
+also    = ["H8416 תְּהִלָּה praise", "H8643 תְּרוּעָה shout", "H5797 עֹז strength"]
+family  = "md.samach"
+is      = "Loud praise or victory: a shout, a triumph song, a call for all to praise."
+not     = "simchah: jubilation is public and at full voice."
+colour  = "bright"
+energy  = "high"
+tension = "settled"
+words   = "triumphant, anthemic"
+
+[moods.shalom]
+hebrew  = "שָׁלוֹם"                            # peace, wholeness
+strong  = "H7965"
+greek   = "G1515"                            # εἰρήνη
+also    = ["H5165 נֶחָמָה comfort", "H4496 מְנוּחָה rest"]
+family  = "md.batach"
+is      = "Rest and well-being: nothing threatens; blessing, comfort after trouble."
+not     = "mivtach: peace has no danger in view; trust stands firm while danger is there."
+colour  = "bright"
+energy  = "low"
+tension = "settled"
+words   = "peaceful, gentle"
+
+[moods.mivtach]
+hebrew  = "מִבְטָח"                           # trust, confidence
+strong  = "H4009"
+greek   = "G4006"                            # πεποίθησις
+also    = ["H983 בֶּטַח security"]
+family  = "md.batach"
+is      = "Firm reliance on God or a person while danger or need is still present."
+not     = "tiqvah: trust rests now; hope waits for what has not come."
+colour  = "bright"
+energy  = "medium"
+tension = "settled"
+words   = "calm, confident"
+
+[moods.tiqvah]
+hebrew  = "תִּקְוָה"                           # hope, waiting
+strong  = "H8615"
+greek   = "G1680"                            # ἐλπίς
+also    = ["H8431 תּוֹחֶלֶת expectation"]
+family  = "md.batach"
+is      = "Waiting for good that has not come yet: a promise, a longed-for return."
+not     = "mivtach: hope looks ahead and is not at rest."
+colour  = "bright"
+energy  = "rising"
+tension = "tense"
+words   = "hopeful, yearning"                # "hopeful" is one of Suno's own moods
+
+[moods.ahavah]
+hebrew  = "אַהֲבָה"                           # love
+strong  = "H160"
+greek   = "G26"                              # ἀγάπη
+also    = ["H7356 רַחֲמִים compassion", "H2617 חֶסֶד faithful love"]
+family  = "md.ahav"
+is      = "Love, affection or compassion shown to someone: lovers, parent and child, God's mercy."
+not     = "simchah: love is turned to a person and is tender, not festive."
+colour  = "bright"
+energy  = "low"
+tension = "settled"
+words   = "tender, intimate"
+
+
+# ---- between bright and dark ----
+
+[moods.yirah]
+hebrew  = "יִרְאָה"                           # awe, reverence (the fear of the LORD)
+strong  = "H3374"
+greek   = "G2124"                            # εὐλάβεια
+also    = ["H6382 פֶּלֶא wonder", "H1926 הָדָר majesty"]
+family  = "md.yare"
+is      = "Standing before what is holy or very great: God appears, a wonder, a solemn charge."
+not     = "pachad: awe draws near with respect; dread wants to flee."
+colour  = "mixed"
+energy  = "low"
+tension = "tense"
+words   = "epic, solemn"                     # "epic" is one of Suno's own moods; may turn out too grand (untested)
+
+
+# ---- dark ----
+
+[moods.pachad]
+hebrew  = "פַּחַד"                            # dread, terror
+strong  = "H6343"
+greek   = "G5401"                            # φόβος
+also    = ["H367 אֵימָה terror", "H2731 חֲרָדָה trembling"]
+family  = "md.yare"
+is      = "Fear of harm: a threat, an enemy, a judgement about to fall."
+not     = "tsarah: dread is of what is coming; distress is in what is here."
+colour  = "dark"
+energy  = "medium"
+tension = "tense"
+words   = "dark, tense"
+
+[moods.evel]
+hebrew  = "אֵבֶל"                            # mourning
+strong  = "H60"
+greek   = "G3997"                            # πένθος
+also    = ["H1065 בְּכִי weeping", "H7015 קִינָה lament", "H3015 יָגוֹן sorrow"]
+family  = "md.bakah"
+is      = "Grief over a loss that has happened: a death, a ruin, an exile; weeping, a dirge."
+not     = "tsarah: mourning looks back at a loss; distress cries for help in present trouble."
+colour  = "dark"
+energy  = "low"
+tension = "settled"
+words   = "mournful, melancholic"
+
+[moods.tsarah]
+hebrew  = "צָרָה"                            # distress, a tight place
+strong  = "H6869"
+greek   = "G2347"                            # θλῖψις
+also    = ["H2201 זְעָקָה outcry", "H6818 צְעָקָה cry"]
+family  = "md.tsarah"
+is      = "Present trouble and the cry for help out of it: pressed by enemies, sickness, the pit."
+not     = "evel: distress still pleads for rescue; mourning has nothing left to ask."
+colour  = "dark"
+energy  = "rising"
+tension = "tense"
+words   = "desperate, pleading"
+
+[moods.af]
+hebrew  = "אַף"                              # anger
+strong  = "H639"
+greek   = "G3709"                            # ὀργή
+also    = ["H2534 חֵמָה wrath", "H7110 קֶצֶף rage"]
+family  = "md.aph"
+is      = "Anger, rebuke or indignation: God's or a person's, an accusation, a woe."
+not     = "pachad: anger is of the one who threatens; dread is of the one threatened."
+colour  = "dark"
+energy  = "high"
+tension = "tense"
+words   = "angry, aggressive"
+
+[moods.boshet]
+hebrew  = "בֹּשֶׁת"                            # shame
+strong  = "H1322"
+greek   = "G152"                             # αἰσχύνη
+also    = ["H3639 כְּלִמָּה disgrace", "H2781 חֶרְפָּה reproach"]
+family  = "md.bosh"
+is      = "Shame, guilt or humiliation: a confession, a penitent prayer, a disgrace borne."
+not     = "evel: shame is over one's own wrong or dishonour, not over a loss."
+colour  = "dark"
+energy  = "low"
+tension = "tense"
+words   = "sad, subdued"                     # (untested) no service has a word for shame; if it sounds
+                                             # like evel, give evel's words here and keep the mood for readers

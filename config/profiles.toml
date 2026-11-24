@@ -13,7 +13,7 @@
 # Voice tags: what is written into the lyrics where a new voice starts singing.
 # Tags describe a kind of voice, never a person (Suno does not know who Naomi is).
 # A profile can change any of them in its own [profiles.xxx.tags] block.
-# How a mood tag inside a chapter is written ([families] below gives the words).
+# How a mood tag inside a chapter is written (mood-list.toml gives the words).
 family_tag = "[Mood: {words}]"
 
 
@@ -27,39 +27,14 @@ divine       = "[Deep Male Vocal]"   # God speaking
 refrain      = "[Choir]"             # a line the chapter repeats (Psalm 136)
 
 
-# Chapter moods (see moods.toml): words added to the book's style line for a chapter whose
-# Hebrew/Greek gives it a mood. Keep the genre and instruments of the profile; change only tempo
-# and colour. "" = no own style for that mood. A profile can change any of them in its own
-# [profiles.xxx.moods] block.
+# Chapter kinds that are not moods (see moods.toml): words added to the book's style line for a
+# chapter of that kind. The kinds that are moods (lament, praise, trust …) take their words from
+# mood-list.toml [kinds]. A kind named here wins over mood-list.toml; "" = no own style for that
+# kind. A profile can set any kind in its own [profiles.xxx.moods] block.
 [moods]
 prayer       = "slower, intimate, prayerful"
-lament       = "slower, minor key, sparse, sorrowful"
-praise       = "uplifting, joyful, fuller sound"
-thanksgiving = "warm, grateful, uplifting"
-love_song    = "tender, romantic"
-sabbath      = "peaceful, restful"
-song         = "triumphant, anthemic, full choir"
-anger        = "intense, urgent"
-trust        = "calm, steady, confident"
 wisdom       = "thoughtful, measured"
 royal        = "stately, majestic"
-penitence    = "slow, humble, contrite"
-pilgrimage   = "walking pace, hopeful, communal"
-
-# Moods inside a chapter (moods.toml [section_moods]): the words of the tag written at the start of
-# a section whose words mark a feeling. "" = no tag for that family. A profile can change them in
-# its own [profiles.xxx.families] block. How the tag is written: family_tag, at the top of this file.
-
-[families]
-"md.samach" = "joyful"                # שָׂמַח joy, praise
-"md.bakah"  = "mournful"              # בָּכָה grief, weeping, lament
-"md.yare"   = "fearful, in awe"       # יָרֵא fear and awe
-"md.aph"    = "angry"                 # אַף anger, indignation
-"md.bosh"   = "ashamed, subdued"      # בּוֹשׁ shame
-"md.batach" = "confident, hopeful"    # בָּטַח trust, hope
-"md.tsarah" = "anguished"             # צָרָה distress, crying out
-"md.ahav"   = "tender, loving"        # אָהֵב love, compassion
-"md.sane"   = "harsh, scornful"       # שָׂנֵא hate, contempt
 
 # Instruments a psalm heading names; added to the style line of that psalm.
 [instruments]

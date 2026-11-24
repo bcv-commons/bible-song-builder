@@ -39,9 +39,12 @@ export function applyOverrides(cfg, book, found, profile) {
                 out.delete(c);
                 continue;
             }
-            if (!(m in (profile.moods || {}))) {
-                throw new ConfigError(`${where}: mood '${m}' is not in config/profiles.toml [moods]; `
-                    + `choose from ${Object.keys(profile.moods || {}).join(', ')}`);
+            const ml = moodList(cfg);
+            const known = unique([...Object.keys(profile.moods || {}), ...Object.keys(ml.kinds), ...Object.keys(ml.moods)]);
+            if (!known.includes(m)) {
+                throw new ConfigError(`${where}: mood '${m}' is not a kind of config/mood-list.toml [kinds] or `
+                    + 'config/profiles.toml [moods], nor a mood of the list; '
+                    + `choose from ${known.join(', ')}`);
             }
             out.set(c, new Mood(m, 'manual', where + (src ? ` (the source: ${src.evidence})` : ''), src ? src.instruments : []));
         }
@@ -49,11 +52,45 @@ export function applyOverrides(cfg, book, found, profile) {
     return out;
 }
 
+/** config/mood-list.toml, checked: [kinds] and [families] name moods of the list, and each mood
+ *  has words and a known energy. moods.mood_list */
+export function moodList(cfg) {
+    const ml = cfg.toml('mood-list.toml');
+    const where = 'config/mood-list.toml';
+    const ms = ml.moods || {};
+    for (const table of ['kinds', 'families']) {
+        const bad = Object.entries(ml[table] || {}).filter(([, v]) => v && !(v in ms)).map(([k, v]) => `${k} = '${v}'`).sort();
+        if (bad.length) {
+            throw new ConfigError(`${where} [${table}]: ${bad.join(', ')}: not a mood of the list; choose from ${Object.keys(ms).join(', ')}`);
+        }
+    }
+    for (const [mid, m] of Object.entries(ms)) {
+        if (!m.words || !(m.energy in (ml.energy || {}))) {
+            throw new ConfigError(`${where} [moods.${mid}]: needs words, and an energy from [energy] (${Object.keys(ml.energy || {}).join(', ')})`);
+        }
+    }
+    return { use: {}, kinds: {}, families: {}, energy: {}, ...ml };
+}
+
+/** The first n of a mood's words for the music service. moods.mood_words */
+const moodWords = (ml, mid, n) => ml.moods[mid].words.split(',').slice(0, n).map((w) => w.trim()).join(', ');
+
+/** The words a chapter of this kind adds to the style: the profile's own (profiles.toml [moods])
+ *  where it has the kind, else those of its mood in the list, with the mood's usual energy. moods.kind_words */
+function kindWords(cfg, profile, kind) {
+    if (kind in (profile.moods || {})) return profile.moods[kind];
+    const ml = moodList(cfg);
+    const mid = ml.kinds[kind] || (kind in ml.moods ? kind : '');
+    if (!mid) return '';
+    const energy = ml.energy[ml.moods[mid].energy];
+    return [moodWords(ml, mid, ml.use.style_words ?? 2), energy].filter(Boolean).join(', ');
+}
+
 /** [the chapter's style line, the words its mood added, or null when it keeps the book style] */
-export function chapterStyle(profile, mood) {
+export function chapterStyle(cfg, profile, mood) {
     if (!mood) return [profile.style, null];
     if (mood.style) return [mood.style, 'its own style line'];
-    const words = [...(mood.mood ? [profile.moods[mood.mood] ?? ''] : []),
+    const words = [...(mood.mood ? [kindWords(cfg, profile, mood.mood)] : []),
         ...mood.instruments.map((i) => profile.instruments[i] ?? '')].filter(Boolean);
     if (!words.length) return [profile.style, null];
     const added = words.join(', ');
@@ -108,7 +145,9 @@ export function sectionMoods(cfg, book, sectionsVerses, moodFacts, modelMoods, t
             });
         }
     }
-    const families = profile.families || {};
+    const ml = moodList(cfg);
+    const families = ml.families;
+    const nWords = ml.use.tag_words ?? 1;
     return sectionsVerses.map((vs) => {
         const V = new Set(vs);
         const score = new Map(), cover = new Map(), why = new Map();
@@ -128,21 +167,26 @@ export function sectionMoods(cfg, book, sectionsVerses, moodFacts, modelMoods, t
         }
         if (best === null || cover.get(best).size < (mc.min_share ?? 0.5) * V.size || !families[best]) return null;
         const ws = why.get(best);
+        const mid = families[best];
         return {
-            family: best, head: ws[0][0], tag: profile.family_tag.replace('{words}', families[best]),
+            mood: mid, hebrew: ml.moods[mid].hebrew,
+            family: best, head: ws[0][0], tag: profile.family_tag.replace('{words}', moodWords(ml, mid, nWords)),
             evidence: unique(ws.map((x) => x[2])).join('; '), model: ws.some((x) => x[1]),
             word: (words && words.get(best)) ?? null,
         };
     });
 }
 
-/** md.* family -> the edition's most common rendering in this book of the family's head lexemes
- *  (moods.toml [family_lexemes], Strong's numbers), through the alignment; one-word renderings
+/** md.* family -> the edition's most common rendering in this book of the noun naming the
+ *  family's mood (mood-list.toml strong / greek), through the alignment; one-word renderings
  *  are preferred. lexemes: lexemeKeys(). moods.family_words */
 export function familyWords(cfg, lexemes, al, bt, testament) {
     const prefix = testament === 'nt' ? 'G' : 'H';
     const out = new Map();
-    for (const [fam, strongs] of Object.entries(cfg.toml('moods.toml').family_lexemes || {})) {
+    const ml = moodList(cfg);
+    for (const [fam, mid] of Object.entries(ml.families)) {
+        if (!mid) continue;
+        const strongs = [ml.moods[mid].strong || '', ml.moods[mid].greek || ''];
         const one = new Map(), more = new Map();
         for (const s of strongs) {
             if (s.slice(0, 1) !== prefix) continue;

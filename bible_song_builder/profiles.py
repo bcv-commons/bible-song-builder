@@ -17,9 +17,8 @@ class Profile:
     tags: dict[str, str]        # voice class -> lyric tag
     base_style: str = ""        # the style without the edition's suffix
     suffix: str = ""            # the edition's style_suffix
-    moods: dict[str, str] | None = None         # mood -> words added for a chapter with that mood
+    moods: dict[str, str] | None = None         # chapter kind -> its own words here (else mood-list.toml)
     instruments: dict[str, str] | None = None   # instrument -> words added
-    families: dict[str, str] | None = None      # feeling family (md.*) -> words of its in-lyrics mood tag
     family_tag: str = "[Mood: {words}]"         # how that tag is written
 
 
@@ -62,5 +61,4 @@ def for_book(edition: str, book: str, profile: str | None = None, lead: str | No
                    base_style=base, suffix=suffix,
                    moods=_merge(profs.get("moods", {}), p.get("moods", {})),
                    instruments=_merge(profs.get("instruments", {}), p.get("instruments", {})),
-                   families=_merge(profs.get("families", {}), p.get("families", {})),
                    family_tag=p.get("family_tag", profs.get("family_tag", "[Mood: {words}]")))

@@ -200,18 +200,18 @@ class TestMoods(unittest.TestCase):
         sm = moods.section_moods("PSA", [[(22, v) for v in range(23, 26)], [(22, 1)]],
                                  *moods.mood_spans("PSA", structure.passage_facts("PSA"), spine), to_ed, prof)
         self.assertEqual(sm[0].family, "md.samach")                     # 22:23-25 praise in the assembly
-        self.assertEqual(sm[0].tag, "[Mood: joyful]")
+        self.assertEqual((sm[0].mood, sm[0].tag), ("simchah", "[Mood: joyful]"))   # by mood-list.toml
 
     def test_family_words(self):
-        """The edition's word for a mood family: its rendering of the family's head lexemes."""
+        """The edition's word for a mood family: its rendering of the noun naming the family's mood."""
         from bible_song_builder import moods
         bt = edition.load_book("BSB", "PSA")
         al = align.load("BSB", "PSA", bt.file_hash, bt.chapter_fingerprints)
         w = moods.family_words(align.lexeme_keys("PSA"), al, bt, "ot")
-        self.assertEqual((w["md.samach"], w["md.yare"], w["md.sane"]), ("rejoice", "fear", "hate"))
+        self.assertEqual((w["md.samach"], w["md.tsarah"], w.get("md.sane")), ("joy", "trouble", None))
         bt = edition.load_book("BSB", "LUK")
         al = align.load("BSB", "LUK", bt.file_hash, bt.chapter_fingerprints)
-        self.assertEqual(moods.family_words(align.lexeme_keys("LUK"), al, bt, "nt")["md.samach"], "rejoice")
+        self.assertEqual(moods.family_words(align.lexeme_keys("LUK"), al, bt, "nt")["md.samach"], "joy")
 
     def test_heading_words(self):
         """Where the alignment covers a psalm heading, its terms are named in the edition's words.

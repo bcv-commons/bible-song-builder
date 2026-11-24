@@ -149,7 +149,7 @@ export function projectChapter(ctx, chapter, plan) {
         notes.push('Acrostic (each unit starts with the next letter): ' + marks.letters.map(([[cv], x]) => `${fmtCv(cv)} ${x}`).join(', '));
     }
 
-    const [style, added] = args.style ? [args.style, null] : chapterStyle(profile, mood);
+    const [style, added] = args.style ? [args.style, null] : chapterStyle(cfg, profile, mood);
     const stem = `${book}_${pad3(chapter)}`;
     let styleNote = added && mood
         ? `Style: this chapter's own (${stem}.style.txt): ${mood.mood || 'instruments'} (+ "${added}"), from ${mood.basis}: ${mood.evidence}`
@@ -175,7 +175,7 @@ export function projectChapter(ctx, chapter, plan) {
         pins: cfg.pins.huggingface, 'bible-song-builder': VERSION,
         sections: secs.map((s) => ({
             label: s.label, sung: s.sung,
-            mood: s.mood ? { family: s.mood.family, head: s.mood.head, tag: s.mood.tag, word: s.mood.word, evidence: s.mood.evidence, model: s.mood.model } : null,
+            mood: s.mood ? { mood: s.mood.mood, hebrew: s.mood.hebrew, family: s.mood.family, head: s.mood.head, tag: s.mood.tag, word: s.mood.word, evidence: s.mood.evidence, model: s.mood.model } : null,
             verses: s.stanza.verses.map(fmtCv),
             lines: s.stanza.lines.map((ln) => ({
                 verse: fmtCv(ln.cv), token: ln.first_token, text: ln.text, quote: ln.quote,
@@ -206,7 +206,7 @@ export function bookFiles(ctx) {
     const own = [];
     for (const c of sortedNums(ctx.moods.keys())) {
         const m = ctx.moods.get(c);
-        const [, added] = chapterStyle(profile, m);
+        const [, added] = chapterStyle(cfg, profile, m);
         if (added && !args.style) own.push(`${book} ${c}: ${m.mood || 'instruments'} (+ "${added}"), from ${m.basis}: ${m.evidence}`);
     }
     const lines = [`${book} · profile ${profile.name}, ${profile.lead} lead · settings: config/books/`
