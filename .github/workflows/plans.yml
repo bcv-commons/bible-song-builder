@@ -1,0 +1,33 @@
+# Build the song plan of every book (plan/<BOOK>/, plan/SCHEMA.md) from a clean checkout.
+# Phase 2's pass test: all 1,189 chapters build. Only the source data is downloaded (about 140
+# files, 33 MB, from the Hugging Face datasets pinned in pins.json); the edition text, the
+# alignments and the cast table are not needed. The full checks (make test) run locally.
+
+name: plans
+
+on:
+  push:
+    branches: [main]
+  pull_request:
+
+jobs:
+  plans:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.11"       # the oldest pyproject.toml allows
+      - run: pip install -e .
+      # cache/ paths include each file's revision, so a pin change never serves a stale file;
+      # the key follows pins.json, so a pin change starts a fresh cache
+      - uses: actions/cache@v4
+        with:
+          path: cache
+          key: source-data-${{ hashFiles('pins.json') }}
+      - run: make plans
+      - name: Every spine chapter has a plan
+        run: |
+          n=$(find plan -name '*_[0-9][0-9][0-9].json' | wc -l)
+          echo "$n chapter plans"
+          test "$n" -eq 1189
