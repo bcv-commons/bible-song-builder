@@ -39,6 +39,14 @@ min_words = 3
 #   "clauses+halves"  both
 poetry = "clauses+halves"
 
+# A compact alignment links only the edition's content words, so a clause's first word may be a
+# word with no link ("when the" in "when the judges ruled"). Where the line would start at the first
+# linked word, it starts this many unlinked words earlier, up to punctuation or the line before:
+#   "compact"  for compact alignments only (a full alignment links function words too)
+#   "always"   for every alignment
+#   "never"    lines start at the first linked word
+pull_unaligned = "compact"
+
 
 [stanzas]
 # A stanza longer than this many lines is split at verse starts: into as few stanzas as fit,

@@ -31,7 +31,7 @@ client:
 
 test-js: client
 	@for b in RUT PSA EXO LUK; do $(PY) -c "from bible_song_builder import plan; plan.ensure('$$b')"; done
-	cd js && node --test test/*.test.mjs
+	node --test js/test/*.test.mjs
 
 cast:
 	$(PY) scripts/build_cast.py

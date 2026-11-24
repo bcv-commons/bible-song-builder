@@ -49,3 +49,12 @@ test('mood family words and heading words in the edition', async () => {
         chapterPlan(await chapterPlanDocs(ROOT, 'PSA', 22)));
     assert.ok(res.notes.includes('Heading terms (not sung): God (למנצח);'), res.notes);
 });
+
+test('a compact alignment: lines start before the unlinked words of a clause', async () => {
+    const { buildBook, loadConfig } = await import('../node/build.js');
+    const cfg = await loadConfig(ROOT);
+    cfg.pins.editions.BSB = { ...cfg.pins.editions.BSB, full_layer: null };
+    const out = await buildBook(ROOT, cfg, 'BSB', 'RUT', [1]);
+    assert.ok(out['RUT_001.lyrics.txt'].includes('\nwhen the judges ruled,\nthere was a famine in the land.\n'));
+    assert.ok(out['RUT_001.json'].includes('"kind": "compact"'));
+});

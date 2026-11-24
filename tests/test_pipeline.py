@@ -82,6 +82,22 @@ class TestRuth(unittest.TestCase):
         self.assertIn("by providing them with food,", v6)
 
 
+class TestCompact(unittest.TestCase):
+    def test_pull_unaligned(self):
+        """With a compact alignment (content words only), a line starts at the clause's unlinked
+        words before its first linked word: "when the judges ruled", not "when the | judges"."""
+        from bible_song_builder import fetch
+        ed = fetch.pins()["editions"]["BSB"]
+        layer = ed["full_layer"]
+        ed["full_layer"] = None
+        try:
+            bt, al, res = build("RUT", 1)
+        finally:
+            ed["full_layer"] = layer
+        self.assertEqual(al.kind, "compact")
+        self.assertIn("\nwhen the judges ruled,\nthere was a famine in the land.\n", res["lyrics"])
+
+
 class TestCast(unittest.TestCase):
     def test_rules(self):
         def info(lemma, name="", members=False, quotes=0, divine=0):

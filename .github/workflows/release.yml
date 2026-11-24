@@ -1,0 +1,47 @@
+# A release: the JS library, the song plans and the client config at one version.
+# Push a tag vX.Y.Z (the version of package.json and bible_song_builder/__init__.py); this builds
+#   plans.zip    plan/<BOOK>/*.json and plan/SCHEMA.md
+#   config.json  dist/config.json (make client): config/ parsed and checked, the cast table, pins
+# and attaches them to a GitHub release of that tag. Clients (studio-bibel-wiki) depend on the
+# library at the same tag (npm: github:bcv-commons/bible-song-builder#vX.Y.Z) and serve these two
+# files themselves.
+#
+# make client builds the cast table, which still reads the BSB text and alignments (until the
+# naming word's number is in the clause lines; notes/bcv-commons-speaker-number.md).
+
+name: release
+
+on:
+  push:
+    tags: ["v*"]
+
+permissions:
+  contents: write
+
+jobs:
+  release:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.11"
+      - run: pip install -e .
+      - name: The tag is the version
+        run: |
+          v="${GITHUB_REF_NAME#v}"
+          grep -q "\"version\": \"$v\"" package.json
+          grep -q "__version__ = \"$v\"" bible_song_builder/__init__.py
+      - uses: actions/cache@v4
+        with:
+          path: cache
+          key: release-data-${{ hashFiles('pins.json') }}
+      - run: make plans
+      - run: make client
+      - name: Every spine chapter has a plan
+        run: test "$(find plan -name '*_[0-9][0-9][0-9].json' | wc -l)" -eq 1189
+      - run: zip -qr plans.zip plan -i '*.json' 'plan/SCHEMA.md'
+      - run: cp dist/config.json config.json
+      - env:
+          GH_TOKEN: ${{ github.token }}
+        run: gh release create "$GITHUB_REF_NAME" plans.zip config.json --title "$GITHUB_REF_NAME" --generate-notes

@@ -14,8 +14,8 @@ the Berean Standard Bible only, with output identical to bsb2suno's. The work is
    is a JavaScript library (`js/`, no UI, no network access) and, as the reference it was ported from, the Python
    CLI. Both give the same output for all 1,189 BSB chapters.
 
-Next: a Netlify app (its own repo) that uses the library to write the lyrics of any catalog edition in the browser,
-just in time. bsb2suno will become a user of this repo.
+Its first client is [studio.bibel.wiki](https://github.com/bcv-commons/studio-bibel-wiki), a Netlify site that writes
+the lyrics of any aligned catalog edition in the browser, just in time. bsb2suno will become a user of this repo.
 
 See [`examples/`](examples/) for what it makes (RUT 1, PSA 22, PSA 23, PSA 136, EXO 15, EXO 39, LUK 1).
 
@@ -65,6 +65,14 @@ A client fetches five things and passes them in: the config (`dist/config.json`)
 (through a small `files.json(dataset, path)` function of its own), and the plan files of the book and the chapter.
 Finding an edition in the bcv-commons/bibles catalog and fetching its text is the client's job.
 [`js/sample/client.mjs`](js/sample/client.mjs) shows the calls; [`js/src/index.js`](js/src/index.js) lists them.
+
+**Releases.** A client installs the library from a tag, `github:bcv-commons/bible-song-builder#vX.Y.Z` (the root
+`package.json`), and serves that tag's release files: `plans.zip` and `config.json`. CI builds them when a tag is
+pushed (`.github/workflows/release.yml`). The tag must equal the version in `package.json` and
+`bible_song_builder/__init__.py`.
+
+**Compact alignments** link only an edition's content words. A clause's line then starts at the unlinked words just
+before its first linked word ("when the judges ruled"); `layout.toml [lines] pull_unaligned` sets this.
 
 The library is a port of the Python projection (`bible_song_builder/__main__.py` and the modules it calls), kept
 identical: `make test-js` builds `examples/` with it byte for byte. It uses the vendored JavaScript of

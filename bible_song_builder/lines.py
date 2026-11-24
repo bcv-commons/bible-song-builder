@@ -202,14 +202,18 @@ def speaker_labels(refs: dict[str, dict], al: Alignment, bt: BookText) -> dict[s
 def build_lines(bt: BookText, chapter: int, rows: list[dict], al: Alignment,
                 speakers: dict[str, Speaker], vmap_cv, min_tokens: int = 3,
                 marks: Marks | None = None, poetry: str = "clauses+halves",
-                text_cfg: dict | None = None) -> list[LyricLine]:
+                text_cfg: dict | None = None, pull: bool = False) -> list[LyricLine]:
     """Lyric lines of an edition chapter; ``para_end`` is set on a line in which a
     ``para_end`` clause line ends.
 
     ``marks`` (textforms) add line starts: each refrain occurrence is its own line, an acrostic
     letter starts a line, and a poetic verse breaks where its half B starts. ``poetry`` says
     whether such a verse also breaks at its clauses ("clauses+halves"), only at the halves
-    ("halves"), or only at the clauses ("clauses")."""
+    ("halves"), or only at the clauses ("clauses").
+
+    ``pull``: a clause's line start moves back over the unaligned words just before it ("when the |
+    judges ruled" -> "| when the judges ruled"), up to punctuation, an aligned word or the line
+    before. For alignments of content words only (compact), where function words have no link."""
     marks = marks or Marks()
     text_cfg = text_cfg or {}
     opening = set(text_cfg.get("line_start_punctuation", "")) or OPENING
@@ -275,10 +279,25 @@ def build_lines(bt: BookText, chapter: int, rows: list[dict], al: Alignment,
                 base = ({hb} if poetry == "halves" else base | {hb})
             base |= marks.breaks.get(cv, set())
             starts = sorted({0, *(t for t in base if t < len(v.tokens))})
+            moved: dict[int, int] = {}
+            if pull:
+                own = owner.get(cv, {})
+                fixed = marks.breaks.get(cv, set()) | ({hb} if hb is not None else set())
+                new: list[int] = []
+                for t in starts:
+                    s = t
+                    if t in cand and t not in fixed:
+                        lo = new[-1] if new else -1
+                        while (s - 1 > lo and s - 1 not in own
+                               and not v.text[v.spans[s - 1][1]:v.spans[s][0]].strip()):
+                            s -= 1
+                    new.append(s)
+                    moved[s] = t
+                starts = new
             prev_row = None
             first = len(lines)
             for t, piece in _slice(v, starts, opening):
-                r = cand.get(t) or owner.get(cv, {}).get(t) or prev_row
+                r = cand.get(moved.get(t, t)) or owner.get(cv, {}).get(t) or prev_row
                 prev_row = r
                 qq, sp = voice(r)
                 lines.append(LyricLine(cv, piece, t, qq, sp, r["seg"] if r else None,

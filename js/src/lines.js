@@ -148,7 +148,7 @@ export function speakerLabels(cfg, refs, al, bt) {
 }
 
 /** Lyric lines of an edition chapter (lines.build_lines) */
-export function buildLines(cfg, bt, chapter, rows, al, speakers, vmapCv, { minTokens = 3, marks, poetry = 'clauses+halves', textCfg = null } = {}) {
+export function buildLines(cfg, bt, chapter, rows, al, speakers, vmapCv, { minTokens = 3, marks, poetry = 'clauses+halves', textCfg = null, pull = false } = {}) {
     textCfg = textCfg || {};
     const own = new Set(textCfg.line_start_punctuation || '');
     const opening = own.size ? own : OPENING;
@@ -214,11 +214,28 @@ export function buildLines(cfg, bt, chapter, rows, al, speakers, vmapCv, { minTo
             const hb = marks.halfB.get(cv);
             if (hb !== undefined && poetry !== 'clauses') base = poetry === 'halves' ? new Set([hb]) : new Set([...base, hb]);
             for (const t of marks.breaks.get(cv) || []) base.add(t);
-            const starts = unique([0, ...[...base].filter((t) => t < v.tokens.length)]).sort((a, b) => a - b);
+            let starts = unique([0, ...[...base].filter((t) => t < v.tokens.length)]).sort((a, b) => a - b);
+            // pull: a clause's line start moves back over the unaligned words before it (compact alignments)
+            const moved = new Map();
+            if (pull) {
+                const own = owner.get(cv) || new Map();
+                const fixed = new Set([...(marks.breaks.get(cv) || []), ...(hb !== undefined ? [hb] : [])]);
+                const next = [];
+                for (const t of starts) {
+                    let s = t;
+                    if (cand.has(t) && !fixed.has(t)) {
+                        const lo = next.length ? next[next.length - 1] : -1;
+                        while (s - 1 > lo && !own.has(s - 1) && !pyStrip(v.text.slice(v.spans[s - 1][1], v.spans[s][0]))) s--;
+                    }
+                    next.push(s);
+                    moved.set(s, t);
+                }
+                starts = next;
+            }
             let prevRow = null;
             const first = lines.length;
             for (const [t, piece] of slice(v, starts, opening)) {
-                const r = cand.get(t) || (owner.get(cv) || new Map()).get(t) || prevRow;
+                const r = cand.get(moved.has(t) ? moved.get(t) : t) || (owner.get(cv) || new Map()).get(t) || prevRow;
                 prevRow = r;
                 const [qq, sp] = voice(r);
                 lines.push(line(cv, piece, t, qq, sp, r ? r.seg : null, r ? clauseKey(r) : null));

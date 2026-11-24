@@ -1,0 +1,29 @@
+{
+  "name": "bible-song-builder",
+  "version": "0.1.0",
+  "description": "Song lyrics from any Bible edition: a song plan (Hebrew/Greek) laid onto an edition's text through its alignment. The JS library: no UI, no network access.",
+  "type": "module",
+  "license": "MIT",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/bcv-commons/bible-song-builder.git"
+  },
+  "exports": {
+    ".": "./js/src/index.js",
+    "./node": "./js/node/files.js"
+  },
+  "files": [
+    "js/src/",
+    "js/node/",
+    "vendor/verse_text/js/",
+    "vendor/verse_text/LICENSE*",
+    "LICENSE",
+    "README.md"
+  ],
+  "engines": {
+    "node": ">=20"
+  },
+  "scripts": {
+    "test": "node --test js/test/*.test.mjs"
+  }
+}

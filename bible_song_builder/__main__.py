@@ -50,6 +50,12 @@ def chapter_credits(bp: dict, chapter: int, ed: str, al: align.Alignment,
     return out + [f"Mood: {c}" for c in moods.source_credits(mood, section_moods, bp["pins"], bp["sources"])]
 
 
+def pull_unaligned(layout: dict, al: align.Alignment) -> bool:
+    """layout.toml [lines] pull_unaligned: "compact" (only for content-word alignments), "always", "never"."""
+    mode = layout.get("lines", {}).get("pull_unaligned", "compact")
+    return mode == "always" or (mode == "compact" and al.kind == "compact")
+
+
 def build_chapter(book: str, chapter: int, ed: str, bt: edition.BookText, al: align.Alignment,
                   bp: dict, cp: plan.ChapterPlan, speakers: dict, vmap: dict, args,
                   profile: profiles.Profile | None = None, mood: moods.Mood | None = None,
@@ -63,7 +69,7 @@ def build_chapter(book: str, chapter: int, ed: str, bt: edition.BookText, al: al
     marks = textforms.chapter_marks(facts, ch_rows, al, chapter, layout)
     lyric_lines = lines.build_lines(bt, chapter, ch_rows, al, speakers, to_ed, min_tokens=args.min_words,
                                     marks=marks, poetry=layout.get("lines", {}).get("poetry", "clauses+halves"),
-                                    text_cfg=layout.get("text"))
+                                    text_cfg=layout.get("text"), pull=pull_unaligned(layout, al))
     is_nt = bp["testament"] == "nt"
     sts = lines.stanzas(lyric_lines, bt, args.max_lines, cp.signals,
                         layout.get("stanzas", {}), is_nt)

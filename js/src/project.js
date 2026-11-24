@@ -99,6 +99,12 @@ function chapterCredits(ctx, chapter, mood, secMoods) {
 
 const pad3 = (n) => String(n).padStart(3, '0');
 
+/** layout.toml [lines] pull_unaligned: "compact" (content-word alignments only), "always", "never" */
+function pullUnaligned(layout, al) {
+    const mode = (layout.lines || {}).pull_unaligned ?? 'compact';
+    return mode === 'always' || (mode === 'compact' && al.kind === 'compact');
+}
+
 /** One edition chapter: {notes, lyrics, style, own_style, data}. plan: chapterPlan(...) */
 export function projectChapter(ctx, chapter, plan) {
     const { cfg, edition, book, bt, al, bookPlan: bp, profile, toEd, args } = ctx;
@@ -107,6 +113,7 @@ export function projectChapter(ctx, chapter, plan) {
     const marks = chapterMarks(plan.facts, plan.rows, al, chapter, layout);
     const lyricLines = buildLines(cfg, bt, chapter, plan.rows, al, ctx.speakers, toEd, {
         minTokens: args.min_words, marks, poetry: (layout.lines || {}).poetry ?? 'clauses+halves', textCfg: layout.text,
+        pull: pullUnaligned(layout, al),
     });
     const sts = stanzas(lyricLines, bt, args.max_lines, plan.signals, layout.stanzas || {}, bp.testament === 'nt');
 
