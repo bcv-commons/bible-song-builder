@@ -289,6 +289,13 @@ class TestPlan(unittest.TestCase):
         self.assertTrue(all("words" in r for r in cp.rows))
         self.assertIn('"rows"', json_text)
 
+    def test_spine_chapters(self):
+        """An edition chapter reads every spine chapter a verse comes from, also two chapters away
+        (the Vulgate and Russian Synodal Psalms: spine PSA 115:1 is their PSA 113:9)."""
+        vmap = {"PSA 115:1": "PSA 113:9", "PSA 114:1": "PSA 113:1", "GEN 9:1": "PSA 113:2"}
+        self.assertEqual(align.spine_chapters(vmap, "PSA", 113), [112, 113, 114, 115])
+        self.assertEqual(align.spine_chapters({}, "RUT", 1), [1, 2])
+
     def test_runs(self):
         from bible_song_builder import moods
         vs = [(1, 1), (1, 2), (1, 3), (1, 5), (2, 1)]

@@ -24,6 +24,13 @@ test('examples/ byte for byte', async () => {
     for (const k of Object.keys(want).sort()) assert.equal(got[k], want[k], k);
 });
 
+test('spine chapters two away (align.spine_chapters)', async () => {
+    const { spineChapters } = await import('../src/index.js');
+    const vmap = { 'PSA 115:1': 'PSA 113:9', 'PSA 114:1': 'PSA 113:1', 'GEN 9:1': 'PSA 113:2' };
+    assert.deepEqual(spineChapters(vmap, 'PSA', 113), [112, 113, 114, 115]);
+    assert.deepEqual(spineChapters({}, 'RUT', 1), [1, 2]);
+});
+
 test('version matches the Python package', async () => {
     const { VERSION } = await import('../src/index.js');
     const init = await readFile(join(ROOT, 'bible_song_builder', '__init__.py'), 'utf8');

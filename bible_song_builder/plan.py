@@ -13,7 +13,8 @@ use the [setting] codes of layout.toml itself.
 Files, in ``plan/<BOOK>/``:
   <BOOK>.json           the book: chapter moods, speakers (rule voice, words naming them), credits
   <BOOK>_<CCC>.json     one spine chapter: clause rows, stanza signals, form and quote facts,
-                        mood spans. Half 2 reads chapters c-1, c and c+1 for edition chapter c.
+                        mood spans. Half 2 reads chapters c-1, c and c+1 for edition chapter c,
+                        and any other the verse map moves a verse from (align.spine_chapters).
 """
 from __future__ import annotations
 
@@ -154,8 +155,8 @@ def load_book(book: str, root: Path = PLAN_DIR) -> dict:
 
 
 class ChapterPlan:
-    """What half 2 reads for one edition chapter: the plans of spine chapters c-1, c and c+1
-    (a verse map can move a verse into the next or the previous chapter)."""
+    """What half 2 reads for one edition chapter: the plans of the spine chapters its verses come
+    from (align.spine_chapters: c-1, c, c+1, and further ones a verse map moves a verse from)."""
 
     def __init__(self, docs: list[dict]):
         self.rows = [r for d in docs for r in d["rows"]]
@@ -177,9 +178,10 @@ def _union(docs: list[dict], part: str, key: str) -> list[dict]:
     return [seen[k] for k in sorted(seen)]
 
 
-def load_chapter(book: str, chapter: int, root: Path = PLAN_DIR) -> ChapterPlan:
+def load_chapter(book: str, chapter: int, root: Path = PLAN_DIR, vmap: dict | None = None) -> ChapterPlan:
+    from . import align
     docs = []
-    for c in (chapter - 1, chapter, chapter + 1):
+    for c in align.spine_chapters(vmap or {}, book, chapter):
         p = root / book / f"{book}_{c:03d}.json"
         if p.exists():
             docs.append(json.loads(p.read_text(encoding="utf-8")))

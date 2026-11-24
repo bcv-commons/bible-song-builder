@@ -9,11 +9,11 @@ import { render, sections } from './render.js';
 import { chapterMarks, settingVerses } from './textforms.js';
 import { cvC, cvKey, fmtCv, pyLen, removePrefix, sortedNums } from './util.js';
 
-export const VERSION = '0.1.0';
+export const VERSION = '0.2.0';
 const PLAN_SCHEMA_MAJOR = '1';
 
-/** What half 2 reads for edition chapter c: the plans of spine chapters c-1, c and c+1 (those that
- *  exist), joined (plan.ChapterPlan). */
+/** What half 2 reads for edition chapter c: the plans of the spine chapters spineChapters names
+ *  (those that exist), joined (plan.ChapterPlan). */
 export function chapterPlan(docs) {
     for (const d of docs) {
         if (String(d.schema).split('.')[0] !== PLAN_SCHEMA_MAJOR) throw new Error(`plan schema ${d.schema}, this code reads ${PLAN_SCHEMA_MAJOR}.x`);

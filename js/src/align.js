@@ -44,6 +44,20 @@ export async function verseMap(files, edition) {
     return (await files.json('compact-alignments', `_index/${edition.verse_map}`)).map;
 }
 
+/** The spine chapters whose plans edition chapter `chapter` needs: the chapter itself and the ones
+ *  next to it, and every spine chapter the verse map moves a verse from into it. Most maps move a
+ *  verse at most one chapter; the Vulgate and Russian Synodal maps move some two (spine PSA 115:1 is
+ *  their PSA 113:9; ROM 16:25-27 is ROM 14:24-26). align.spine_chapters */
+export function spineChapters(vmap, book, chapter) {
+    const out = new Set([chapter - 1, chapter, chapter + 1]);
+    const split = (r) => { const i = r.indexOf(' '); return i < 0 ? [r, ''] : [r.slice(0, i), r.slice(i + 1)]; };
+    for (const [k, v] of Object.entries(vmap)) {
+        const [b, cv] = split(k), [b2, cv2] = split(v);
+        if (b === book && b2 === book && cv2.split(':')[0] === String(chapter)) out.add(parseInt(cv.split(':')[0], 10));
+    }
+    return [...out].filter((c) => c > 0).sort((a, b) => a - b);
+}
+
 export function spineToEdition(vmap, book, cv) {
     const ref = `${book} ${Math.floor(cv / 1000)}:${cv % 1000}`;
     return refToCv(vmap[ref] ?? ref);

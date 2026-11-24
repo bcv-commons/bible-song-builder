@@ -14,10 +14,11 @@ export async function buildBook(root, cfg, editionName, book, wanted = 'all', ar
     const files = cacheFiles(root, pins);
     const bt = await loadBookText(cfg, edition, book, await releaseUsj(root, pins, edition.text, book));
     const al = await loadAlignment(files, edition, book, bt.fileHash, bt.chapterFingerprints);
-    const ctx = prepareBook({ cfg, edition, book, bt, al, bookPlan: await bookPlan(root, book), vmap: await verseMap(files, edition), lexemes: await lexemeKeys(files, book), args });
+    const vmap = await verseMap(files, edition);
+    const ctx = prepareBook({ cfg, edition, book, bt, al, bookPlan: await bookPlan(root, book), vmap, lexemes: await lexemeKeys(files, book), args });
     const out = { ...bookFiles(ctx) };
     for (const c of wanted === 'all' ? chapters(ctx) : wanted) {
-        const res = projectChapter(ctx, c, chapterPlan(await chapterPlanDocs(root, book, c)));
+        const res = projectChapter(ctx, c, chapterPlan(await chapterPlanDocs(root, book, c, vmap)));
         Object.assign(out, chapterFiles(ctx, c, res));
     }
     return out;

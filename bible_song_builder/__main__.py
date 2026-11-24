@@ -208,7 +208,7 @@ def main(argv: list[str] | None = None) -> int:
         castbuild.write_browse(Path(args.out))
         write_readme(Path(args.out))
     for c in chapters:
-        res = build_chapter(book, c, args.edition, bt, al, bp, plan.load_chapter(book, c, plans), speakers, vmap,
+        res = build_chapter(book, c, args.edition, bt, al, bp, plan.load_chapter(book, c, plans, vmap), speakers, vmap,
                             args, profile, book_moods.get(c), words)
         stem = out_dir / f"{book}_{c:03d}"
         own = Path(f"{stem}.style.txt")

@@ -60,6 +60,20 @@ def verse_map(edition: str) -> dict[str, str]:
     return fetch.hf_json("compact-alignments", f"_index/{name}")["map"]
 
 
+def spine_chapters(vmap: dict[str, str], book: str, chapter: int) -> list[int]:
+    """The spine chapters whose plans edition chapter ``chapter`` needs: the chapter itself and the
+    ones next to it, and every spine chapter the verse map moves a verse from into it. Most maps move
+    a verse at most one chapter; the Vulgate and Russian Synodal maps move some two (spine PSA 115:1
+    is their PSA 113:9; ROM 16:25-27 is ROM 14:24-26)."""
+    out = {chapter - 1, chapter, chapter + 1}
+    for k, v in vmap.items():
+        b, _, cv = k.partition(" ")
+        b2, _, cv2 = v.partition(" ")
+        if b == book and b2 == book and cv2.split(":")[0] == str(chapter):
+            out.add(int(cv.split(":")[0]))
+    return sorted(c for c in out if c > 0)
+
+
 def spine_to_edition(vmap: dict[str, str], book: str, cv: tuple[int, int]) -> tuple[int, int] | None:
     ref = f"{book} {cv[0]}:{cv[1]}"
     return _ref_to_cv(vmap.get(ref, ref))

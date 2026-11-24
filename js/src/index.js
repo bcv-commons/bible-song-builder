@@ -7,7 +7,8 @@
 //   const al = await loadAlignment(files, edition, book, bt.fileHash, bt.chapterFingerprints);
 //   const vmap = await verseMap(files, edition);
 //   const ctx = prepareBook({ cfg, edition, book, bt, al, bookPlan, vmap });
-//   const res = projectChapter(ctx, 23, chapterPlan([plan22, plan23, plan24]));
+//   const docs = spineChapters(vmap, book, 23).map(...);        // the plan files it needs
+//   const res = projectChapter(ctx, 23, chapterPlan(docs));
 //   res.lyrics, res.style, res.notes
 //
 // `files` is the client's: async json(dataset, path) / text(dataset, path), a file of a pinned
@@ -15,5 +16,5 @@
 export { Config } from './config.js';
 export { ConfigError } from './util.js';
 export { loadBookText } from './edition.js';
-export { Alignment, lexemeKeys, loadAlignment, verseMap, spineToEdition } from './align.js';
+export { Alignment, lexemeKeys, loadAlignment, verseMap, spineChapters, spineToEdition } from './align.js';
 export { chapterPlan, prepareBook, projectChapter, chapterFiles, bookFiles, chapters, withDefaults, VERSION } from './project.js';

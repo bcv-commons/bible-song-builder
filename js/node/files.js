@@ -3,6 +3,7 @@
 // bundle. Nothing is downloaded: a file that is not there is "not found".
 import { readFile } from 'node:fs/promises';
 import { join } from 'node:path';
+import { spineChapters } from '../src/align.js';
 
 async function readOrNull(path) {
     try {
@@ -37,10 +38,10 @@ export async function releaseUsj(root, pins, release, book) {
 
 export const bookPlan = (root, book) => readJson(join(root, 'plan', book, `${book}.json`));
 
-/** The plan files of spine chapters c-1, c, c+1 that exist */
-export async function chapterPlanDocs(root, book, chapter) {
+/** The plan files that exist of the spine chapters edition chapter c needs (spineChapters) */
+export async function chapterPlanDocs(root, book, chapter, vmap = {}) {
     const docs = [];
-    for (const c of [chapter - 1, chapter, chapter + 1]) {
+    for (const c of spineChapters(vmap, book, chapter)) {
         const t = await readOrNull(join(root, 'plan', book, `${book}_${String(c).padStart(3, '0')}.json`));
         if (t !== null) docs.push(JSON.parse(t));
     }
