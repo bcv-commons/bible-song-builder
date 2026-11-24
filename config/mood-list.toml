@@ -1,6 +1,6 @@
 # The mood list: which moods a song or a section of it can have, how a reader of the Hebrew or
 # Greek recognises each one, and how a music service is told to sing it.
-# Revision 4 (2026-11-24). The songs take their mood words from this file: [kinds] for a chapter's
+# Revision 5 (2026-11-24). The songs take their mood words from this file: [kinds] for a chapter's
 # Style, [families] for the [Mood: …] tags inside the lyrics. Which cue of the source gives a
 # chapter its kind is in moods.toml. [blends], colour and tension are not used yet: today's data
 # names one mood at a time.
@@ -26,7 +26,8 @@
 #   1. Hebrew anchor. One Hebrew noun of the Tanakh names it (hebrew, strong). That word is the
 #      mood's name and identity, also in the New Testament. `also` lists further Hebrew nouns
 #      that belong to the same mood.
-#   2. Greek counterpart: the Greek noun that carries it in the New Testament (greek).
+#   2. Greek counterpart: the Greek noun that carries it in the New Testament (greek); the verb
+#      where the New Testament has no noun for it (hatred: μισέω).
 #   3. Its own vocabulary: the UBS dictionaries (SDBH, Louw-Nida) group words for it; that group
 #      is its family in passage-facts mood_families.tsv (family).
 #   4. Music can express it: it has words a music service knows, and no other mood of the list
@@ -51,7 +52,6 @@
 # peaceful, calm, dark, angry, epic, sad. The others come from community guides. Words marked
 # (untested) must be tried in Suno; all of them will be tuned as experience comes.
 #
-# Left out on purpose: hatred (שִׂנְאָה): the text has the words, but it does not carry a song.
 # Not yet placed: longing, surprise.
 
 
@@ -90,9 +90,17 @@ anger        = "af"
 "md.batach" = "mivtach"
 "md.tsarah" = "tsarah"
 "md.ahav"   = "ahavah"
-"md.yare"   = ""              # fear: awe (yirah) or dread (pachad); the family does not say which,
-                              # and a wrong mood is worse than none
-"md.sane"   = ""              # hatred: not in the list
+"md.yare"   = "pachad"        # fear: dread, unless [families_of_god] says otherwise
+"md.sane"   = "sinah"         # hatred. The family does not say who hates: where the singer is the
+                              # one hated (John 15, Psalm 22), this is wrong until a reading says so
+
+
+[families_of_god]
+# The mood a family gets instead where the song plan marks the span "of_god": a verse with its
+# words names God (H3068 יְהוָה, H430 אֱלֹהִים, H136, H410, H3050, G2316 θεός, G2962 κύριος), or God or
+# an angel (H4397 מַלְאָךְ, G32 ἄγγελος) speaks in it or in the verse right after it. Fear of God, or
+# before God or an angel, is awe: "fear the LORD your God" (Deut 10:20), the shepherds (Luke 2:9).
+"md.yare"   = "yirah"
 
 
 [energy]
@@ -260,6 +268,19 @@ colour  = "dark"
 energy  = "high"
 tension = "tense"
 words   = "angry, aggressive"
+
+[moods.sinah]
+hebrew  = "שִׂנְאָה"                           # hatred
+strong  = "H8135"
+greek   = "G3404"                            # μισέω, a verb: the New Testament has no noun for hatred
+also    = ["H8130 שָׂנֵא to hate", "H7852 שָׂטַם hostility", "H4895 מַשְׂטֵמָה enmity"]
+family  = "md.sane"
+is      = "Settled hostility: someone in the passage hates or despises another; the brothers against Joseph, the enemies' hatred, a curse on the wicked."
+not     = "af: anger flares and passes; hatred is cold and stays. Where the singer is the one hated or scorned, the mood is tsarah or boshet, not sinah."
+colour  = "dark"
+energy  = "medium"
+tension = "tense"
+words   = "bitter, cold"                     # (untested) not in Suno's own list
 
 [moods.boshet]
 hebrew  = "בֹּשֶׁת"                            # shame

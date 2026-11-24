@@ -120,9 +120,10 @@ where the fact has them:
 All form and quote facts are kept, not only the ones today's settings use, because which codes count as song or
 poetry is a layout setting (`layout.toml [setting]`) that an edition can change.
 
-**A mood fact:** `n`, `family` (`md.*`), `head` (its Hebrew/Greek head word), `verses` (runs over the whole span,
-also outside this chapter). **A model mood:** `m` (its row index for the book), `moods` (`[{family, head}]`,
-strongest first; half 2 weighs them by rank, `moods.toml [section_moods] model_weights`), `verses` (runs).
+**A mood fact:** `n`, `family` (`md.*`), `head` (its Hebrew/Greek head word), `of_god` (true, or absent: a verse
+holding its marked words names God, or God or an angel speaks in the span or the verse after it; `moods._OfGod`),
+`verses` (runs over the whole span, also outside this chapter). **A model mood:** `m` (its row index for the book),
+`moods` (`[{family, head, of_god}]`, strongest first; half 2 weighs them by rank, `moods.toml [section_moods] model_weights`), `verses` (runs).
 
 ## What is in the plan and what is not
 

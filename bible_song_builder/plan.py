@@ -98,7 +98,7 @@ def build(book: str) -> tuple[dict, dict[int, dict]]:
     labels = textforms.codes()
     signals = structure.clause_signals(book)
     spine = sorted({(r["chapter"], r["verse"]) for r in rows})
-    mood_facts, model_moods = moods.mood_spans(book, facts, spine)
+    mood_facts, model_moods = moods.mood_spans(book, facts, spine, rows)
     chapters = {}
     for c in book_doc["chapters"]:
         ch_rows = [_row(r) for r in rows if r["chapter"] == c]

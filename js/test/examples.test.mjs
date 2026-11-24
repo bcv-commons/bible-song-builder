@@ -41,7 +41,7 @@ test('mood family words and heading words in the edition', async () => {
     const bp = await bookPlan(ROOT, 'PSA');
     const vmap = await verseMap(files, edition);
     const ctx = prepareBook({ cfg, edition, book: 'PSA', bt, al, bookPlan: bp, vmap, lexemes: await lexemeKeys(files, 'PSA') });
-    assert.deepEqual(['md.samach', 'md.tsarah', 'md.sane'].map((f) => ctx.words.get(f)), ['joy', 'trouble', undefined]);
+    assert.deepEqual(['simchah', 'tsarah', 'sinah'].map((m) => ctx.words.get(m)), ['joy', 'trouble', 'hatred']);
     // an alignment that covers the psalm heading (the BSB's does not): למנצח on the first two words of 22:1
     al.links.set('190220010011', [22001, new Set([0])]);
     al.links.set('190220010012', [22001, new Set([1])]);

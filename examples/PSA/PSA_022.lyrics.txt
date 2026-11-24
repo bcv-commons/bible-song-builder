@@ -12,6 +12,7 @@ Yet You are holy,
 enthroned on the praises of Israel.
 
 [Verse 2]
+[Mood: bitter]
 In You our fathers trusted;
 they trusted and You delivered them.
 They cried out to You
@@ -38,6 +39,7 @@ From birth I was cast upon You;
 from my mother’s womb You have been my God.
 
 [Verse 4]
+[Mood: desperate]
 Be not far from me,
 for trouble is near
 and there is no one to help.
@@ -64,7 +66,6 @@ They divide my garments among them
 and cast lots for my clothing.
 
 [Verse 6]
-[Mood: desperate]
 But You, O LORD,
 be not far off;
 O my Strength,
@@ -103,6 +104,7 @@ All the families of the nations
 will bow down before Him.
 
 [Verse 9]
+[Mood: epic]
 For dominion belongs to the LORD
 and He rules over the nations.
 All the rich of the earth will feast and worship;

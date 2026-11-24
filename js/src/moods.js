@@ -58,7 +58,7 @@ export function moodList(cfg) {
     const ml = cfg.toml('mood-list.toml');
     const where = 'config/mood-list.toml';
     const ms = ml.moods || {};
-    for (const table of ['kinds', 'families']) {
+    for (const table of ['kinds', 'families', 'families_of_god']) {
         const bad = Object.entries(ml[table] || {}).filter(([, v]) => v && !(v in ms)).map(([k, v]) => `${k} = '${v}'`).sort();
         if (bad.length) {
             throw new ConfigError(`${where} [${table}]: ${bad.join(', ')}: not a mood of the list; choose from ${Object.keys(ms).join(', ')}`);
@@ -69,7 +69,7 @@ export function moodList(cfg) {
             throw new ConfigError(`${where} [moods.${mid}]: needs words, and an energy from [energy] (${Object.keys(ml.energy || {}).join(', ')})`);
         }
     }
-    return { use: {}, kinds: {}, families: {}, energy: {}, ...ml };
+    return { use: {}, kinds: {}, families: {}, families_of_god: {}, energy: {}, ...ml };
 }
 
 /** The first n of a mood's words for the music service. moods.mood_words */
@@ -134,59 +134,58 @@ export function sectionMoods(cfg, book, sectionsVerses, moodFacts, modelMoods, t
     const mc = cfg.toml('moods.toml').section_moods || {};
     if (!(mc.use ?? true)) return sectionsVerses.map(() => null);
     const weights = mc.model_weights ?? [1.0, 0.5, 0.33];
-    const spans = [];     // [family, head, Set of edition verses, weight, model, source]
+    const ml = moodList(cfg);
+    const nWords = ml.use.tag_words ?? 1;
+    // the mood of the list a span gives; a family without one counts as itself, "~md.*", and gives no tag
+    const moodOf = (m) => (m.of_god ? ml.families_of_god[m.family] : '') || ml.families[m.family] || `~${m.family}`;
+    const spans = [];     // [mood, family, head, Set of edition verses, weight, model, source]
     const edVerses = (runs) => new Set(unrun(runs).map(toEd).filter((e) => e !== null));
-    for (const f of moodFacts) spans.push([f.family, f.head, edVerses(f.verses), 1.0, false, 'passage-facts']);
+    for (const f of moodFacts) spans.push([moodOf(f), f.family, f.head, edVerses(f.verses), 1.0, false, 'passage-facts']);
     if (mc.use_model ?? true) {
         for (const r of modelMoods) {
             const ev = edVerses(r.verses);
             r.moods.forEach((m, i) => {
-                if (i < weights.length) spans.push([m.family, m.head, ev, weights[i], true, 'passage-moods-model']);
+                if (i < weights.length) spans.push([moodOf(m), m.family, m.head, ev, weights[i], true, 'passage-moods-model']);
             });
         }
     }
-    const ml = moodList(cfg);
-    const families = ml.families;
-    const nWords = ml.use.tag_words ?? 1;
     return sectionsVerses.map((vs) => {
         const V = new Set(vs);
         const score = new Map(), cover = new Map(), why = new Map();
-        for (const [fam, head, ev, w, model, src] of spans) {
+        for (const [mid, fam, head, ev, w, model, src] of spans) {
             const ov = [...ev].filter((e) => V.has(e));
             if (ov.length) {
-                score.set(fam, (score.get(fam) || 0) + w * ov.length);
-                if (!cover.has(fam)) cover.set(fam, new Set());
-                ov.forEach((e) => cover.get(fam).add(e));
-                if (!why.has(fam)) why.set(fam, []);
-                why.get(fam).push([head, model, `${src} ${book} ${cvs([...ev].sort((a, b) => a - b))}`]);
+                score.set(mid, (score.get(mid) || 0) + w * ov.length);
+                if (!cover.has(mid)) cover.set(mid, new Set());
+                ov.forEach((e) => cover.get(mid).add(e));
+                if (!why.has(mid)) why.set(mid, []);
+                why.get(mid).push([fam, head, model, `${src} ${book} ${cvs([...ev].sort((a, b) => a - b))}`]);
             }
         }
         let best = null;
-        for (const [f, s] of score) {
-            if (best === null || s > score.get(best) || (s === score.get(best) && f > best)) best = f;
+        for (const [m, s] of score) {
+            if (best === null || s > score.get(best) || (s === score.get(best) && m > best)) best = m;
         }
-        if (best === null || cover.get(best).size < (mc.min_share ?? 0.5) * V.size || !families[best]) return null;
+        if (best === null || best.startsWith('~') || cover.get(best).size < (mc.min_share ?? 0.5) * V.size) return null;
         const ws = why.get(best);
-        const mid = families[best];
         return {
-            mood: mid, hebrew: ml.moods[mid].hebrew,
-            family: best, head: ws[0][0], tag: profile.family_tag.replace('{words}', moodWords(ml, mid, nWords)),
-            evidence: unique(ws.map((x) => x[2])).join('; '), model: ws.some((x) => x[1]),
+            mood: best, hebrew: ml.moods[best].hebrew,
+            family: ws[0][0], head: ws[0][1], tag: profile.family_tag.replace('{words}', moodWords(ml, best, nWords)),
+            evidence: unique(ws.map((x) => x[3])).join('; '), model: ws.some((x) => x[2]),
             word: (words && words.get(best)) ?? null,
         };
     });
 }
 
-/** md.* family -> the edition's most common rendering in this book of the noun naming the
- *  family's mood (mood-list.toml strong / greek), through the alignment; one-word renderings
- *  are preferred. lexemes: lexemeKeys(). moods.family_words */
+/** Mood of the list -> the edition's most common rendering in this book of the word naming it
+ *  (mood-list.toml strong / greek), through the alignment; one-word renderings are preferred.
+ *  lexemes: lexemeKeys(). moods.family_words */
 export function familyWords(cfg, lexemes, al, bt, testament) {
     const prefix = testament === 'nt' ? 'G' : 'H';
     const out = new Map();
     const ml = moodList(cfg);
-    for (const [fam, mid] of Object.entries(ml.families)) {
-        if (!mid) continue;
-        const strongs = [ml.moods[mid].strong || '', ml.moods[mid].greek || ''];
+    for (const [mid, mood] of Object.entries(ml.moods)) {
+        const strongs = [mood.strong || '', mood.greek || ''];
         const one = new Map(), more = new Map();
         for (const s of strongs) {
             if (s.slice(0, 1) !== prefix) continue;
@@ -196,7 +195,7 @@ export function familyWords(cfg, lexemes, al, bt, testament) {
                 if (w) count(pySplit(w).length === 1 ? one : more, w);
             }
         }
-        if (one.size || more.size) out.set(fam, mostCommon(one.size ? one : more));
+        if (one.size || more.size) out.set(mid, mostCommon(one.size ? one : more));
     }
     return out;
 }

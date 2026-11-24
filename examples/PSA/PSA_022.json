@@ -239,7 +239,16 @@
   {
    "label": "Verse 2",
    "sung": true,
-   "mood": null,
+   "mood": {
+    "mood": "sinah",
+    "hebrew": "שִׂנְאָה",
+    "family": "md.sane",
+    "head": "שָׂנֵא",
+    "tag": "[Mood: bitter]",
+    "word": "hatred",
+    "evidence": "passage-moods-model PSA 22:3-10; passage-moods-model PSA 22:5-9",
+    "model": true
+   },
    "verses": [
     "22:4",
     "22:5",
@@ -500,7 +509,16 @@
   {
    "label": "Verse 4",
    "sung": true,
-   "mood": null,
+   "mood": {
+    "mood": "tsarah",
+    "hebrew": "צָרָה",
+    "family": "md.tsarah",
+    "head": "צָרָה",
+    "tag": "[Mood: desperate]",
+    "word": "trouble",
+    "evidence": "passage-facts PSA 22:11-18",
+    "model": false
+   },
    "verses": [
     "22:11",
     "22:12",
@@ -635,7 +653,16 @@
   {
    "label": "Verse 5",
    "sung": true,
-   "mood": null,
+   "mood": {
+    "mood": "tsarah",
+    "hebrew": "צָרָה",
+    "family": "md.tsarah",
+    "head": "צָרָה",
+    "tag": "[Mood: desperate]",
+    "word": "trouble",
+    "evidence": "passage-facts PSA 22:11-18",
+    "model": false
+   },
    "verses": [
     "22:15",
     "22:16",
@@ -1177,7 +1204,16 @@
   {
    "label": "Verse 9",
    "sung": true,
-   "mood": null,
+   "mood": {
+    "mood": "yirah",
+    "hebrew": "יִרְאָה",
+    "family": "md.yare",
+    "head": "יָרֵא",
+    "tag": "[Mood: epic]",
+    "word": "fear",
+    "evidence": "passage-moods-model PSA 22:27-31",
+    "model": true
+   },
    "verses": [
     "22:28",
     "22:29",

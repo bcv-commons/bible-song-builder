@@ -279,7 +279,7 @@ With these, 135 of the 150 psalms have a mood (49 from the headings alone). The 
 tell a lament from praise reliably. A chapter whose mood comes from Tyndale, Scriptura or the
 commentators credits them in its notes file.
 
-**The mood list.** `config/mood-list.toml` holds the twelve moods a song can have. Each is named by a Hebrew noun
+**The mood list.** `config/mood-list.toml` holds the thirteen moods a song can have. Each is named by a Hebrew noun
 (אֵבֶל mourning, צָרָה distress, שִׂמְחָה joy …), with its Greek counterpart, a sentence saying what it is, and the
 English words a music service is given for it. Everything sent to the music service is English, in every
 edition. The words can be tuned there without touching code.
@@ -289,8 +289,10 @@ section opens with a tag after its section label, such as `[Mood: desperate]`. T
 where the feeling changes, and Suno sings the section in that mood within the chapter's style. The
 feelings come as the 9 families of passage-facts: from its `mood` facts (by rule) and from
 `passage-moods-model` (read by a model). `config/mood-list.toml` `[families]` gives each family its mood of the
-list. Fear (יָרֵא) and hatred (שָׂנֵא) get no tag: the family does not say whether fear is awe or dread, and hatred
-is not in the list. The notes file lists each section's mood and its source, marks model readings
+list. Fear (יָרֵא) is awe where it is fear of God or before God or an angel (a verse with the fear word names
+God, or God or an angel speaks there or in the next verse), and dread otherwise (`[families_of_god]`). The rule is
+a stopgap: it misses fear of enemies in a scene where God speaks, and Jesus does not count. Hatred (שָׂנֵא) is
+hatred also where the singer is the one hated (Psalm 22, John 15). The notes file lists each section's mood and its source, marks model readings
 "model-read", and credits the datasets. `config/profiles.toml` `family_tag` sets the tag's form;
 `config/moods.toml` `[section_moods]` turns this on or off, or turns off the model's part only.
 

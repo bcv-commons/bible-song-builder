@@ -272,7 +272,7 @@ def mood_list() -> dict:
     ml = toml("mood-list.toml")
     where = "config/mood-list.toml"
     ms = ml.get("moods", {})
-    for table in ("kinds", "families"):
+    for table in ("kinds", "families", "families_of_god"):
         bad = sorted(f"{k} = {v!r}" for k, v in ml.get(table, {}).items() if v and v not in ms)
         if bad:
             raise ConfigError(f"{where} [{table}]: {', '.join(bad)}: not a mood of the list; "
@@ -281,7 +281,7 @@ def mood_list() -> dict:
         if not m.get("words") or m.get("energy") not in ml.get("energy", {}):
             raise ConfigError(f"{where} [moods.{mid}]: needs words, and an energy from [energy] "
                               f"({', '.join(ml.get('energy', {}))})")
-    return {"use": {}, "kinds": {}, "families": {}, "energy": {}, **ml}
+    return {"use": {}, "kinds": {}, "families": {}, "families_of_god": {}, "energy": {}, **ml}
 
 
 def mood_words(mid: str, n: int) -> str:
@@ -394,15 +394,62 @@ def unrun(rs: list[list[int]]) -> list[tuple[int, int]]:
     return [(c, v) for c, a, b in rs for v in range(a, b + 1)]
 
 
-def mood_spans(book: str, facts: list[dict], spine: list[tuple[int, int]]) -> tuple[list[dict], list[dict]]:
+# Source words naming God, and the ones naming an angel (Strong's numbers). A mood span is "of God"
+# where a verse holding its marked words names God (the clause itself often has only "you", "him"), or where God or an angel speaks in the span or
+# in the verse right after it. config/mood-list.toml [families_of_god] says which family that changes.
+GOD = {"H3068", "H430", "H136", "H410", "H3050", "H433", "G2316", "G2962"}
+ANGEL = {"H4397", "G32"}
+
+
+class _OfGod:
+    """Tells whether a mood span is of God (GOD, ANGEL above), from the book's clause rows, its quote
+    facts and the lexeme index."""
+
+    def __init__(self, book: str, facts: list[dict], rows: list[dict], spine: list[tuple[int, int]]):
+        from . import align
+        lex = align.lexeme_keys(book)
+        god = {k for s in GOD for k in lex.get(int(s[1:]), [])}
+        angel = {k for s in ANGEL for k in lex.get(int(s[1:]), [])}
+        self.verse_of = {w: (r["chapter"], r["verse"]) for r in rows for w in r.get("words", [])}
+        self.names_god = {(r["chapter"], r["verse"]) for r in rows if any(w in god for w in r.get("words", []))}
+        self.spoken: set[tuple[int, int]] = set()          # verses where God or an angel speaks
+        for f in facts:
+            if f.get("kind") == "quote" and (f.get("divine") or any(k in god or k in angel
+                                                                  for k in f.get("speaker_ref") or [])):
+                self.spoken.update(_span_verses(f["first"], f["last"], spine))
+        self.after = {cv: spine[i + 1] for i, cv in enumerate(spine[:-1])}
+
+    def __call__(self, marked: list[str], verses: list[tuple[int, int]]) -> bool:
+        if any(self.verse_of.get(w) in self.names_god for w in marked):
+            return True
+        near = set(verses) | ({self.after[verses[-1]]} if verses and verses[-1] in self.after else set())
+        return bool(near & self.spoken)
+
+
+def mood_spans(book: str, facts: list[dict], spine: list[tuple[int, int]],
+               rows: list[dict] | None = None) -> tuple[list[dict], list[dict]]:
     """The spans section_moods weighs, as a song plan holds them: (passage-facts ``mood`` facts,
-    passage-moods-model rows), each with the spine verses it covers (as runs)."""
-    pf = [{"n": n, "family": f["value"], "head": f.get("head", ""),
-           "verses": runs(_span_verses(f["first"], f["last"], spine))}
-          for n, f in enumerate(facts) if f.get("kind") == "mood" and f.get("value", "").startswith("md.")]
-    model = [{"m": n, "moods": [{"family": m["family"], "head": m.get("head", "")} for m in r["moods"] or []],
-              "verses": runs(_span_verses(r["first"], r["last"], spine))}
-             for n, r in enumerate(structure.model_moods(book))]
+    passage-moods-model rows), each with the spine verses it covers (as runs), and ``of_god`` where
+    it is of God (_OfGod; only with the book's clause ``rows``)."""
+    of_god = _OfGod(book, facts, rows, spine) if rows is not None else (lambda marked, verses: False)
+
+    def one(family, head, marked, verses):
+        d = {"family": family, "head": head}
+        if of_god(marked, verses):
+            d["of_god"] = True
+        return d
+
+    pf = []
+    for n, f in enumerate(facts):
+        if f.get("kind") == "mood" and f.get("value", "").startswith("md."):
+            vs = _span_verses(f["first"], f["last"], spine)
+            pf.append({"n": n, **one(f["value"], f.get("head", ""), f.get("marked_by") or [], vs),
+                       "verses": runs(vs)})
+    model = []
+    for n, r in enumerate(structure.model_moods(book)):
+        vs = _span_verses(r["first"], r["last"], spine)
+        model.append({"m": n, "moods": [one(m["family"], m.get("head", ""), m.get("marked_by") or [], vs)
+                                        for m in r["moods"] or []], "verses": runs(vs)})
     return pf, model
 
 
@@ -411,64 +458,67 @@ def section_moods(book: str, sections_verses: list[list[tuple[int, int]]], mood_
     """A feeling for each section of a chapter, where the Hebrew/Greek words of most of its verses
     mark one (passage-facts ``mood`` facts, by rule; passage-moods-model, read by a model), from
     the spans of the song plan (mood_spans). Rules: config/moods.toml [section_moods]; the mood of
-    each family and the words of its tag: mood-list.toml. ``words``: family -> the edition's word
-    for its mood (family_words)."""
+    each family and the words of its tag: mood-list.toml. ``words``: mood -> the edition's word
+    for it (family_words)."""
     cfg = toml("moods.toml").get("section_moods", {})
     if not cfg.get("use", True):
         return [None] * len(sections_verses)
     weights = cfg.get("model_weights", [1.0, 0.5, 0.33])
-    spans: list[tuple[str, str, set, float, bool, str]] = []    # family, head, edition verses, weight, model, source
+    ml = mood_list()
+    n_words = ml["use"].get("tag_words", 1)
+
+    def mood_of(m: dict) -> str:
+        """The mood of the list a span gives (mood-list.toml [families], [families_of_god]); a family
+        without one counts as itself, "~md.*", and gives no tag."""
+        return ((ml["families_of_god"].get(m["family"]) if m.get("of_god") else "")
+                or ml["families"].get(m["family"]) or "~" + m["family"])
+
+    spans: list[tuple[str, str, str, set, float, bool, str]] = []   # mood, family, head, edition verses, weight, model, source
     for f in mood_facts:
         ev = {e for e in map(to_ed, unrun(f["verses"])) if e}
-        spans.append((f["family"], f["head"], ev, 1.0, False, "passage-facts"))
+        spans.append((mood_of(f), f["family"], f["head"], ev, 1.0, False, "passage-facts"))
     if cfg.get("use_model", True):
         for r in model_moods:
             ev = {e for e in map(to_ed, unrun(r["verses"])) if e}
             for i, m in enumerate(r["moods"]):
                 if i < len(weights):
-                    spans.append((m["family"], m["head"], ev, weights[i], True, "passage-moods-model"))
-    ml = mood_list()
-    families = ml["families"]
-    n_words = ml["use"].get("tag_words", 1)
+                    spans.append((mood_of(m), m["family"], m["head"], ev, weights[i], True, "passage-moods-model"))
     out: list[SectionMood | None] = []
     for vs in sections_verses:
         V = set(vs)
         score: Counter = Counter()
         cover: dict[str, set] = {}
         why: dict[str, list] = {}
-        for fam, head, ev, w, model, src in spans:
+        for mid, fam, head, ev, w, model, src in spans:
             ov = V & ev
             if ov:
-                score[fam] += w * len(ov)
-                cover.setdefault(fam, set()).update(ov)
-                why.setdefault(fam, []).append((head, model, f"{src} {book} {_cvs(sorted(ev))}"))
-        best = max(score, key=lambda f: (score[f], f), default=None)
-        if (not best or len(cover[best]) < cfg.get("min_share", 0.5) * len(V) or not families.get(best)):
+                score[mid] += w * len(ov)
+                cover.setdefault(mid, set()).update(ov)
+                why.setdefault(mid, []).append((fam, head, model, f"{src} {book} {_cvs(sorted(ev))}"))
+        best = max(score, key=lambda m: (score[m], m), default=None)
+        if not best or best.startswith("~") or len(cover[best]) < cfg.get("min_share", 0.5) * len(V):
             out.append(None)
             continue
         ws = why[best]
-        srcs = list(dict.fromkeys(src for _, _, src in ws))
-        word = (words or {}).get(best)
-        mid = families[best]
-        out.append(SectionMood(best, ws[0][0], profile.family_tag.format(words=mood_words(mid, n_words)),
-                               "; ".join(srcs), any(m for _, m, _ in ws), word, mid, ml["moods"][mid]["hebrew"]))
+        srcs = list(dict.fromkeys(src for _, _, _, src in ws))
+        out.append(SectionMood(ws[0][0], ws[0][1], profile.family_tag.format(words=mood_words(best, n_words)),
+                               "; ".join(srcs), any(m for _, _, m, _ in ws), (words or {}).get(best), best,
+                               ml["moods"][best]["hebrew"]))
     return out
 
 
 def family_words(lexeme_keys: dict[int, list[str]], al, bt, testament: str) -> dict[str, str]:
-    """md.* family -> the edition's most common rendering in this book of the noun naming the
-    family's mood (mood-list.toml: strong for the Hebrew, greek for the Greek), found through the
-    alignment. Families whose mood the book does not name, or the edition does not render, are left
-    out (the notes then keep the Hebrew name alone). ``lexeme_keys``: Strong's number -> the book's
-    word keys (align.lexeme_keys)."""
+    """Mood of the list -> the edition's most common rendering in this book of the word naming it
+    (mood-list.toml: strong for the Hebrew, greek for the Greek), found through the alignment. Moods
+    the book does not name, or the edition does not render, are left out (the notes then keep the
+    Hebrew name alone). ``lexeme_keys``: Strong's number -> the book's word keys
+    (align.lexeme_keys)."""
     from . import lines
     prefix = "G" if testament == "nt" else "H"
     out = {}
     ml = mood_list()
-    for fam, mid in ml["families"].items():
-        if not mid:
-            continue
-        strongs = [ml["moods"][mid].get("strong", ""), ml["moods"][mid].get("greek", "")]
+    for mid, mood in ml["moods"].items():
+        strongs = [mood.get("strong", ""), mood.get("greek", "")]
         one: Counter = Counter()        # renderings of one word ("love"), preferred
         more: Counter = Counter()       # longer ones ("I love": a Hebrew verb carries its subject)
         for s in strongs:
@@ -480,7 +530,7 @@ def family_words(lexeme_keys: dict[int, list[str]], al, bt, testament: str) -> d
                 if w:
                     (one if len(w.split()) == 1 else more)[w] += 1
         if one or more:
-            out[fam] = (one or more).most_common(1)[0][0]
+            out[mid] = (one or more).most_common(1)[0][0]
     return out
 
 
