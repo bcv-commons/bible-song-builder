@@ -67,7 +67,7 @@ def build_chapter(book: str, chapter: int, ed: str, bt: edition.BookText, al: al
     to_ed = lambda cv: align.spine_to_edition(vmap, book, cv)  # noqa: E731
     ch_rows, facts = cp.rows, cp.facts
     marks = textforms.chapter_marks(facts, ch_rows, al, chapter, layout)
-    lyric_lines = lines.build_lines(bt, chapter, ch_rows, al, speakers, to_ed, min_tokens=args.min_words,
+    lyric_lines = lines.build_lines(bt, chapter, ch_rows, al, lines.speaker_labels(speakers, chapter), to_ed, min_tokens=args.min_words,
                                     marks=marks, poetry=layout.get("lines", {}).get("poetry", "clauses+halves"),
                                     text_cfg=layout.get("text"), pull=pull_unaligned(layout, al))
     is_nt = bp["testament"] == "nt"
@@ -193,7 +193,7 @@ def main(argv: list[str] | None = None) -> int:
     plans = Path(args.plans)
     plan.ensure(book, plans)
     bp = plan.load_book(book, plans)
-    speakers = lines.speaker_labels(bp["speakers"], al, bt)
+    speakers = lines.speaker_hits(bp["speakers"], al, bt)
     profile = profiles.for_book(args.edition, book, args.profile, args.lead)
     vmap = align.verse_map(args.edition)
     words = moods.family_words(align.lexeme_keys(book), al, bt, bp["testament"])

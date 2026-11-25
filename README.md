@@ -61,9 +61,17 @@ Nothing in `output/` is edited: it is rebuilt on every run. Every change goes in
 
 `js/` is the projection as a JavaScript library for clients (a web app, Node), with no UI and no network access.
 A client fetches five things and passes them in: the config (`dist/config.json`), the edition's description
-(name, language, licence, alignment layer, verse map), the edition's text of the book as USJ, the alignment files
+(name, language, licence, alignment layer, verse map), the edition's text of the book, the alignment files
 (through a small `files.json(dataset, path)` function of its own), and the plan files of the book and the chapter.
 Finding an edition in the bcv-commons/bibles catalog and fetching its text is the client's job.
+
+**The text, in any format.** `loadBookText(cfg, edition, book, usj)` reads a book's USJ.
+`bookText(edition, book, {verses, paragraphStarts, headingBefore, poetryVerses, titles, name})` takes the text as
+plain data instead, from any source (DBT Sofria, plain text, through the verse-text readers), for a whole book or
+only some chapters: `verses` maps `"chapter:verse"` to the verse text, the three layout facts are lists of verse
+keys, and only `verses` is needed. Tokens and fingerprints are computed in it. A chapter's song is the same either
+way: speaker labels come from the chapter's own words (else the cast table's name), never from another chapter.
+With only some chapters, the alignment is found per chapter (compact alignments).
 [`js/sample/client.mjs`](js/sample/client.mjs) shows the calls; [`js/src/index.js`](js/src/index.js) lists them.
 
 **Releases.** A client installs the library from a tag, `github:bcv-commons/bible-song-builder#vX.Y.Z` (the root
@@ -184,8 +192,8 @@ keyed so that it carries over to other books, editions and languages.
 | File | Edit with | Keyed by | Holds |
 |---|---|---|---|
 | [`books/<BOOK>.toml`](config/books/) | any text editor | book, chapter | a book's profile, lead singer and (optional) own style line; a chapter's mood or style (`[chapters.23]`). Books without a file use `_default.toml` |
-| [`profiles.toml`](config/profiles.toml) | any text editor | profile name | style line, Suno persona names (`persona.female` / `persona.male`), the tag for each voice type, the words of the chapter kinds that are not moods |
-| [`mood-list.toml`](config/mood-list.toml) | any text editor | mood (its Hebrew name) | the twelve moods: Hebrew and Greek noun, what each is, its English words and usual energy for the music service; which mood each chapter kind and each feeling family gets |
+| [`profiles.toml`](config/profiles.toml) | any text editor | profile name | style line (the sound) and `feel` (feeling words for a chapter without a mood), Suno persona names (`persona.female` / `persona.male`), the tag for each voice type, the words of the chapter kinds that are not moods |
+| [`mood-list.toml`](config/mood-list.toml) | any text editor | mood (its Hebrew name) | the thirteen moods: Hebrew and Greek noun, what each is, its English words and usual energy for the music service; which mood each chapter kind and each feeling family gets |
 | [`cast.csv`](config/cast.csv) | Excel, LibreOffice, Google Sheets | `speaker_id` (source data) | the speakers whose voice or name is set by hand |
 | [`cast-rules.toml`](config/cast-rules.toml) | any text editor | none | the rules that give speakers their voice |
 | [`layout.toml`](config/layout.toml) | any text editor | none | the defaults: text (word counting, line-start punctuation), setting codes, lines, stanzas, section tags, chorus, psalm marks, length limits |
@@ -210,7 +218,9 @@ the row or book, and what is allowed.
 
 **Profiles.** A profile is chosen per book, never per chapter. In Suno, save one persona per profile
 and lead, then type its name into `profiles.toml` (`persona.female = "My Country F"`). The notes
-file shows which persona to select. `--profile` / `--lead` override a book for one run.
+file shows which persona to select. `--profile` / `--lead` override a book for one run. A profile's `style` is
+its sound alone (genre, tempo, instruments); a chapter's mood adds the feeling words. `feel` gives feeling words to
+chapters without a mood, and is empty by default, so such a chapter stays neutral.
 
 **Cast.** The full cast table is generated from the data: one row per speaker (1,448), with its
 `voice`, the rule that set it (`basis`), a `name`, the Hebrew/Greek word naming it (`source`), how many

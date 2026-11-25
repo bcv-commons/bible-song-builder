@@ -3,7 +3,8 @@
 // fetches the text, the alignment files, the plans and the config, and passes them in.
 //
 //   const cfg = new Config(configBundle);                       // dist/config.json
-//   const bt = await loadBookText(cfg, edition, book, usj);      // the edition's USJ of the book
+//   const bt = await loadBookText(cfg, edition, book, usj);      // the edition's USJ of the book,
+//   //   or from text in any format: await bookText(edition, book, { verses, paragraphStarts, headingBefore, poetryVerses, titles, name })
 //   const al = await loadAlignment(files, edition, book, bt.fileHash, bt.chapterFingerprints);
 //   const vmap = await verseMap(files, edition);
 //   const ctx = prepareBook({ cfg, edition, book, bt, al, bookPlan, vmap });
@@ -15,6 +16,6 @@
 // bcv-commons dataset, or null when it does not exist.
 export { Config } from './config.js';
 export { ConfigError } from './util.js';
-export { loadBookText } from './edition.js';
+export { bookText, loadBookText, usjLayout } from './edition.js';
 export { Alignment, lexemeKeys, loadAlignment, verseMap, spineChapters, spineToEdition } from './align.js';
 export { chapterPlan, prepareBook, projectChapter, chapterFiles, bookFiles, chapters, withDefaults, VERSION } from './project.js';

@@ -122,8 +122,9 @@ export function profileFor(cfg, edition, book, profile = null, lead = null) {
     }
     const suffix = ed.style_suffix || '';
     const base = pick.style || p.style;
+    const feel = pick.style ? '' : (p.feel || '');      // only for a chapter without a mood
     return {
-        name, lead, style: base + suffix,
+        name, lead, style: base + (feel ? `, ${feel}` : '') + suffix,
         persona: (p.persona || {})[lead] || null,
         tags, base_style: base, suffix,
         moods: deepMerge(profs.moods || {}, p.moods || {}),

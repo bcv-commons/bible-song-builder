@@ -3,7 +3,7 @@
 // token any of its words aligned to; stanzas at source paragraph ends, acrostic letters, and
 // long runs split at the strongest source signals).
 import { voiceOf } from './config.js';
-import { count, cvKey, getOr, maxOf, minOf, mostCommon, pyStrip, stripChars, tupleLess, unique, WORD_CHAR, wordRuns } from './util.js';
+import { count, cvC, cvKey, getOr, maxOf, minOf, mostCommon, pyStrip, stripChars, tupleLess, unique, WORD_CHAR, wordRuns } from './util.js';
 
 const OPENING = new Set('“‘"\'([{«‹¿¡—–-');    // default; layout.toml [text] line_start_punctuation
 
@@ -118,13 +118,14 @@ export function mergeShort(lines, minTokens, mode = 'words') {
     return out;
 }
 
-/** speaker_id -> {id, label, voice}: the voice (cast table, else the plan's rule voice) and the
- *  label, the edition's words for the speaker's name (named), else for the words introducing
- *  them (described). refs: the book plan's speakers. */
-export function speakerLabels(cfg, refs, al, bt) {
+/** speaker_id -> {voice, hits}: where the edition's text names each speaker, once per book
+ *  (lines.speaker_hits). hits: [{part, label, n, chapter}] in plan order, part "named" (the
+ *  speaker's name) or "described" (the words introducing them), chapter the edition chapter.
+ *  refs: the book plan's speakers. */
+export function speakerHits(cfg, refs, al, bt) {
     const out = new Map();
     for (const [sid, ref] of Object.entries(refs)) {
-        const found = new Map();
+        const hits = [];
         for (const part of ['named', 'described']) {
             for (const [keys, n] of ref[part] || []) {
                 const perVerse = new Map();
@@ -137,12 +138,30 @@ export function speakerLabels(cfg, refs, al, bt) {
                 }
                 for (const [cv, pos] of perVerse) {
                     const label = phrase(cfg, bt, cv, pos);
-                    if (label) count(getOr(found, part, () => new Map()), label, n);
+                    if (label) hits.push({ part, label, n, chapter: cvC(cv) });
                 }
             }
         }
-        const c = found.get('named') || found.get('described');
-        out.set(sid, speaker(sid, c ? mostCommon(c) : null, voiceOf(cfg, sid, ref.voice)));
+        out.set(sid, { voice: voiceOf(cfg, sid, ref.voice), hits });
+    }
+    return out;
+}
+
+/** speaker_id -> {id, label, voice} for one edition chapter (lines.speaker_labels). The label is
+ *  the commonest of the edition's words naming the speaker in this chapter (named, else described),
+ *  else none (the cast table's name is used). So a chapter gets the same label whether the client
+ *  has the whole book or only the chapter. chapter null: the commonest in the book (the cast
+ *  table). hits: speakerHits(). */
+export function speakerLabels(hits, chapter = null) {
+    const out = new Map();
+    for (const [sid, { voice, hits: hs }] of hits) {
+        const pick = (part) => {
+            const c = new Map();
+            for (const h of hs) if (h.part === part && (chapter === null || h.chapter === chapter)) count(c, h.label, h.n);
+            return c.size ? mostCommon(c) : null;
+        };
+        const label = pick('named') ?? pick('described');
+        out.set(sid, speaker(sid, label, voice));
     }
     return out;
 }

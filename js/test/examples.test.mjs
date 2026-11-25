@@ -65,3 +65,31 @@ test('a compact alignment: lines start before the unlinked words of a clause', a
     assert.ok(out['RUT_001.lyrics.txt'].includes('\nwhen the judges ruled,\nthere was a famine in the land.\n'));
     assert.ok(out['RUT_001.json'].includes('"kind": "compact"'));
 });
+
+test('bookText: one chapter as plain data gives the song the whole USJ book gives', async () => {
+    const { bookText, chapterFiles, chapterPlan, lexemeKeys, loadAlignment, loadBookText, prepareBook, projectChapter, verseMap } = await import('../src/index.js');
+    const { bookPlan, cacheFiles, chapterPlanDocs, releaseUsj } = await import('../node/files.js');
+    const cfg = await loadConfig(ROOT);
+    const edition = { name: 'BSB', ...cfg.pins.editions.BSB, full_layer: null };   // compact: matched per chapter
+    const files = cacheFiles(ROOT, cfg.pins);
+    const vmap = await verseMap(files, edition);
+    const whole = await loadBookText(cfg, edition, 'RUT', await releaseUsj(ROOT, cfg.pins, edition.text, 'RUT'));
+    const k = (cv) => `${Math.floor(cv / 1000)}:${cv % 1000}`;
+    const inCh1 = (cv) => Math.floor(cv / 1000) === 1;
+    const one = await bookText(edition, 'RUT', {
+        verses: Object.fromEntries(whole.chapterVerses(1).map((v) => [`${v.chapter}:${v.verse}`, v.text])),
+        paragraphStarts: [...whole.paragraphStarts].filter(inCh1).map(k),
+        headingBefore: [...whole.headingBefore].filter(inCh1).map(k),
+        poetryVerses: [...whole.poetryVerses].filter(inCh1).map(k),
+        name: whole.name,
+    });
+    assert.equal(one.chapterFingerprints.get(1), whole.chapterFingerprints.get(1));
+    const song = async (bt) => {
+        const al = await loadAlignment(files, edition, 'RUT', bt.fileHash, bt.chapterFingerprints);
+        const ctx = prepareBook({ cfg, edition, book: 'RUT', bt, al, bookPlan: await bookPlan(ROOT, 'RUT'), vmap, lexemes: await lexemeKeys(files, 'RUT') });
+        return chapterFiles(ctx, 1, projectChapter(ctx, 1, chapterPlan(await chapterPlanDocs(ROOT, 'RUT', 1, vmap))));
+    };
+    const [a, b] = [await song(whole), await song(one)];
+    assert.equal(b['RUT_001.lyrics.txt'], a['RUT_001.lyrics.txt']);
+    assert.equal(b['RUT_001.notes.txt'], a['RUT_001.notes.txt']);
+});

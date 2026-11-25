@@ -74,8 +74,10 @@ def token_spans(text: str) -> list[tuple[int, int]] | None:
     return spans
 
 
-def _walk_layout(usj: dict, book: BookText) -> None:
-    """Paragraph starts, headings and poetic verses from the USJ's paragraph markers."""
+def usj_layout(usj: dict) -> dict[str, set[tuple[int, int]]]:
+    """Paragraph starts, headings and poetic verses from the USJ's paragraph markers, as
+    ``book_text`` takes them: {"paragraph_starts", "heading_before", "poetry_verses"}."""
+    out: dict[str, set[tuple[int, int]]] = {"paragraph_starts": set(), "heading_before": set(), "poetry_verses": set()}
     chapter = 0
     last_verse: tuple[int, int] | None = None
     pending_heading = False
@@ -96,15 +98,31 @@ def _walk_layout(usj: dict, book: BookText) -> None:
         if opens_with_verse:
             here = (chapter, verse_nums[0])
             if marker in PARAGRAPH_MARKERS:
-                book.paragraph_starts.add(here)
+                out["paragraph_starts"].add(here)
             if pending_heading:
-                book.heading_before.add(here)
+                out["heading_before"].add(here)
         if marker.startswith(POETRY_PREFIX):
             for v in ([last_verse] if last_verse and not opens_with_verse else []) + [(chapter, n) for n in verse_nums]:
-                book.poetry_verses.add(v)
+                out["poetry_verses"].add(v)
         if verse_nums:
             last_verse = (chapter, verse_nums[-1])
             pending_heading = False
+    return out
+
+
+def book_text(edition: str, book: str, verses: dict[tuple[int, int], str],
+              paragraph_starts=(), heading_before=(), poetry_verses=(),
+              titles: dict[tuple[int, int], str] | None = None, name: str = "") -> BookText:
+    """A BookText from the text as plain data, in any source format: ``verses`` {(chapter, verse):
+    text}, for a whole book or only some chapters, as the vendored verse-text readers give it
+    (extract_usj, extract_sofria, extract_plain). The layout facts are optional sets of (chapter,
+    verse): a prose paragraph opens there, a heading stands before it, it is set in poetic lines.
+    ``titles``: a superscription before the verse (not sung); ``name``: the book's short name.
+    Tokens, spans and fingerprints are computed here, the way the alignments were built."""
+    vs = {(int(c), int(v)): Verse(int(c), int(v), t, tokenize(t), token_spans(t)) for (c, v), t in sorted(verses.items())}
+    fp, ch_fps = fingerprints({k: v.text for k, v in vs.items()})
+    return BookText(edition, book, vs, fp, ch_fps, set(paragraph_starts), set(heading_before), set(poetry_verses),
+                    name or book, dict(titles or {}))
 
 
 BOOKS = ("GEN EXO LEV NUM DEU JOS JDG RUT 1SA 2SA 1KI 2KI 1CH 2CH EZR NEH EST JOB PSA PRO ECC SNG ISA JER "
@@ -221,12 +239,5 @@ def load_book(edition: str, book: str) -> BookText:
         trim_span_spaces(usj)
     if "titles-in-d" in fixes and book in ecfg.get("title_books", []):
         titles = lift_titles(usj)
-    verses: dict[tuple[int, int], Verse] = {}
-    for ch, vs in extract_usj(usj).items():
-        for v in vs:
-            key = (int(ch), int(v["verse"]))
-            verses[key] = Verse(key[0], key[1], v["text"], tokenize(v["text"]), token_spans(v["text"]))
-    fp, ch_fps = fingerprints({k: v.text for k, v in verses.items()})
-    bt = BookText(edition, book, verses, fp, ch_fps, name=book_name(usj, book), titles=titles)
-    _walk_layout(usj, bt)
-    return bt
+    verses = {(int(ch), int(v["verse"])): v["text"] for ch, vs in extract_usj(usj).items() for v in vs}
+    return book_text(edition, book, verses, titles=titles, name=book_name(usj, book), **usj_layout(usj))

@@ -7,7 +7,7 @@
   "name": "country",
   "lead": "female",
   "persona": null,
-  "style": "country, 92 BPM, acoustic guitar, pedal steel, fiddle, warm, heartfelt",
+  "style": "country, 92 BPM, acoustic guitar, pedal steel, fiddle",
   "tags": {
    "narrator": "[Lead Vocal]",
    "female": "[Female Vocal]",
@@ -18,7 +18,7 @@
    "refrain": "[Choir]"
   }
  },
- "style": "country, 92 BPM, acoustic guitar, pedal steel, fiddle, warm, heartfelt",
+ "style": "country, 92 BPM, acoustic guitar, pedal steel, fiddle",
  "own_style": false,
  "mood": null,
  "text_fingerprint": "8b23cf7fddc849a39755bcea21ffc55ca5b186bee22478304dfca56243baffe1",
@@ -97,7 +97,7 @@
    "licence": "CC BY-SA 4.0 (model output, claude-opus-5-5, no human check)"
   }
  },
- "bible-song-builder": "0.2.0",
+ "bible-song-builder": "0.3.0",
  "sections": [
   {
    "label": "Verse 1",
@@ -1325,7 +1325,7 @@
      "quote": "q01582",
      "speaker": {
       "id": "c0212",
-      "label": "the women",
+      "label": null,
       "voice": "female_group"
      },
      "segment": 103,

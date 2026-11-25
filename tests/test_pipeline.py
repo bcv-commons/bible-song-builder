@@ -25,7 +25,7 @@ def build(book, chapter):
     al = align.load("BSB", book, bt.file_hash, bt.chapter_fingerprints)
     plan.ensure(book)
     bp = plan.load_book(book)
-    sp = lines.speaker_labels(bp["speakers"], al, bt)
+    sp = lines.speaker_hits(bp["speakers"], al, bt)
     args = Args()
     apply_layout_defaults(args)
     res = build_chapter(book, chapter, "BSB", bt, al, bp, plan.load_chapter(book, chapter), sp,
@@ -75,6 +75,20 @@ class TestRuth(unittest.TestCase):
         prof = profiles.for_book("BSB", "RUT")
         self.assertEqual(self.res["style"], prof.style)
         self.assertEqual(self.res["data"]["profile"]["name"], prof.name)
+
+    def test_book_text_from_plain_data(self):
+        """edition.book_text: the text as plain data (any source format), here one chapter, gives
+        the chapter the same fingerprint, and the same speaker labels (they are chapter-local)."""
+        one = edition.book_text("BSB", "RUT", {k: v.text for k, v in self.bt.verses.items() if k[0] == 1},
+                                paragraph_starts={cv for cv in self.bt.paragraph_starts if cv[0] == 1},
+                                name=self.bt.name)
+        self.assertEqual(one.chapter_fingerprints[1], self.bt.chapter_fingerprints[1])
+        self.assertEqual(one.paragraph_starts, {cv for cv in self.bt.paragraph_starts if cv[0] == 1})
+        self.assertEqual(len(one.chapter_verses(1)), 22)
+        refs = plan.load_book("RUT")["speakers"]
+        whole = lines.speaker_labels(lines.speaker_hits(refs, self.al, self.bt), 1)
+        alone = lines.speaker_labels(lines.speaker_hits(refs, self.al, one), 1)
+        self.assertEqual({s: p.label for s, p in whole.items()}, {s: p.label for s, p in alone.items()})
 
     def test_reordered_clauses_get_own_lines(self):
         v6 = [ln["text"] for s in self.res["data"]["sections"] for ln in s["lines"] if ln["verse"] == "1:6"]
@@ -223,7 +237,7 @@ class TestMoods(unittest.TestCase):
         self.assertIn("Heading terms (not sung): for the leader (למנצח)", res["notes"])
         al2 = copy.copy(al)
         al2.links = {**al.links, "190220010011": ((22, 1), {0}), "190220010012": ((22, 1), {1})}
-        sp = lines.speaker_labels(plan.load_book("PSA")["speakers"], al2, bt)
+        sp = lines.speaker_hits(plan.load_book("PSA")["speakers"], al2, bt)
         args = Args()
         apply_layout_defaults(args)
         res2 = build_chapter("PSA", 22, "BSB", bt, al2, plan.load_book("PSA"), plan.load_chapter("PSA", 22), sp,

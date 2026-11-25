@@ -7,7 +7,7 @@
   "name": "folk",
   "lead": "male",
   "persona": null,
-  "style": "acoustic folk ballad, 90 BPM, fingerpicked guitar, soft strings, storytelling, earnest",
+  "style": "acoustic folk ballad, 90 BPM, fingerpicked guitar, soft strings, storytelling",
   "tags": {
    "narrator": "[Lead Vocal]",
    "female": "[Female Vocal]",
@@ -18,7 +18,7 @@
    "refrain": "[Choir]"
   }
  },
- "style": "acoustic folk ballad, 90 BPM, fingerpicked guitar, soft strings, storytelling, earnest",
+ "style": "acoustic folk ballad, 90 BPM, fingerpicked guitar, soft strings, storytelling",
  "own_style": false,
  "mood": null,
  "text_fingerprint": "38a5c52ab47ca485bcc76e50d9a9b505d1f8e08f7b4fde6e4c2796098fcc80e4",
@@ -97,7 +97,7 @@
    "licence": "CC BY-SA 4.0 (model output, claude-opus-5-5, no human check)"
   }
  },
- "bible-song-builder": "0.2.0",
+ "bible-song-builder": "0.3.0",
  "sections": [
   {
    "label": "Verse 1",

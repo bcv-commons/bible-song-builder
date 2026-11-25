@@ -8,6 +8,11 @@
 # Leave it as "" until you have one; each lyric sheet says which persona to pick.
 #
 # To add a profile, copy one of the [profiles.xxx] blocks below and give it a new name.
+#
+# style = the sound alone: genre, tempo, instruments. No feeling words: a chapter's mood adds those
+#         (mood-list.toml), and a feeling word here would fight it ("bright, uplifting" on a lament).
+# feel  = feeling words for a chapter without a mood of its own; "" (the default) leaves such a
+#         chapter neutral. The comment after each gives the words the profile had before.
 
 
 # Voice tags: what is written into the lyrics where a new voice starts singing.
@@ -43,22 +48,26 @@ flutes  = "with flutes"
 
 
 [profiles.folk]
-style = "acoustic folk ballad, 90 BPM, fingerpicked guitar, soft strings, storytelling, earnest"
+style = "acoustic folk ballad, 90 BPM, fingerpicked guitar, soft strings, storytelling"
+feel = ""                # was "earnest"
 persona.female = ""
 persona.male = ""
 
 [profiles.country]
-style = "country, 92 BPM, acoustic guitar, pedal steel, fiddle, warm, heartfelt"
+style = "country, 92 BPM, acoustic guitar, pedal steel, fiddle"
+feel = ""                # was "warm, heartfelt"
 persona.female = ""
 persona.male = ""
 
 [profiles.jazz]
-style = "smooth jazz ballad, 76 BPM, piano trio, upright bass, brushed drums, intimate"
+style = "smooth jazz ballad, 76 BPM, piano trio, upright bass, brushed drums"
+feel = ""                # was "intimate"
 persona.female = ""
 persona.male = ""
 
 [profiles.lullaby]
-style = "gentle lullaby, 66 BPM, music box, soft strings, hushed, tender"
+style = "gentle lullaby, 66 BPM, music box, soft strings"
+feel = ""                # was "hushed, tender"
 persona.female = ""
 persona.male = ""
 
@@ -69,12 +78,14 @@ divine = "[Soft Male Vocal]"
 refrain = "[Soft Choir]"
 
 [profiles.pop]
-style = "modern pop, 104 BPM, synths, punchy drums, bright, uplifting"
+style = "modern pop, 104 BPM, synths, punchy drums"
+feel = ""                # was "bright, uplifting"
 persona.female = ""
 persona.male = ""
 
 [profiles.hardrock]
-style = "hard rock, 128 BPM, distorted guitars, driving drums, powerful"
+style = "hard rock, 128 BPM, distorted guitars, driving drums"
+feel = ""                # was "powerful"
 persona.female = ""
 persona.male = ""
 
@@ -83,7 +94,8 @@ group = "[Gang Vocals]"
 female_group = "[Female Backing Vocals]"
 
 [profiles.gospel]
-style = "gospel, 84 BPM, Hammond organ, piano, hand claps, soulful, joyful"
+style = "gospel, 84 BPM, Hammond organ, piano, hand claps"
+feel = ""                # was "soulful, joyful"
 persona.female = ""
 persona.male = ""
 
@@ -91,6 +103,7 @@ persona.male = ""
 group = "[Gospel Choir]"
 
 [profiles.hymn]
-style = "hymn, 72 BPM, piano and warm choir pads, reverent, contemplative"
+style = "hymn, 72 BPM, piano and warm choir pads"
+feel = ""                # was "reverent, contemplative"
 persona.female = ""
 persona.male = ""

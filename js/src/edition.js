@@ -66,8 +66,10 @@ function usjText(n) {
     return (n.content || []).map(usjText).join('');
 }
 
-/** Paragraph starts, headings and poetic verses from the USJ's paragraph markers */
-function walkLayout(usj, bt) {
+/** Paragraph starts, headings and poetic verses from the USJ's paragraph markers, as bookText
+ *  takes them: {paragraphStarts, headingBefore, poetryVerses}, Sets of cvKey (edition.usj_layout) */
+export function usjLayout(usj) {
+    const bt = { paragraphStarts: new Set(), headingBefore: new Set(), poetryVerses: new Set() };
     let chapter = 0;
     let lastVerse = null;
     let pendingHeading = false;
@@ -100,6 +102,7 @@ function walkLayout(usj, bt) {
             pendingHeading = false;
         }
     }
+    return bt;
 }
 
 /** A psalm title is a \d paragraph that holds the verse-1 marker. The title's text stays in the d
@@ -186,16 +189,43 @@ export async function loadBookText(cfg, edition, book, usj) {
     if (fixes.includes('titles-in-d') && (ecfg.title_books || []).includes(book)) titles = liftTitles(usj);
     const verses = new Map();
     for (const [ch, vs] of Object.entries(extractUsj(usj))) {
-        for (const v of vs) {
-            const key = cvKey(parseInt(ch, 10), parseInt(v.verse, 10));
-            verses.set(key, { chapter: cvC(key), verse: key % 1000, text: v.text, tokens: tokenize(v.text), spans: tokenSpans(v.text) });
-        }
+        for (const v of vs) verses.set(cvKey(parseInt(ch, 10), parseInt(v.verse, 10)), v.text);
     }
-    const fp = await fingerprints(new Map([...verses].map(([k, v]) => [`${cvC(k)}:${k % 1000}`, v.text])));
-    const bt = new BookText(edition, book, verses, fp.book,
+    return bookText(edition, book, { verses, titles, name: bookName(usj, book), ...usjLayout(usj) });
+}
+
+/** A verse key in any of the forms bookText takes: a cvKey number, "chapter:verse", or [chapter, verse] */
+function anyCv(k) {
+    if (typeof k === 'number') return k;
+    if (Array.isArray(k)) return cvKey(Number(k[0]), Number(k[1]));
+    const [c, v] = String(k).split(':');
+    if (v === undefined || !/^[0-9]+$/.test(c) || !/^[0-9]+$/.test(v)) throw new Error(`bookText: verse key ${JSON.stringify(k)} is not "chapter:verse"`);
+    return cvKey(parseInt(c, 10), parseInt(v, 10));
+}
+
+const entries = (m) => (m instanceof Map ? [...m] : Object.entries(m || {}));
+
+/** A BookText from the text as plain data, in any source format (edition.book_text). For a whole
+ *  book or only some chapters, as the verse-text readers give it (extractUsj, extract_sofria,
+ *  extract_plain). edition: {name, iso, ...};
+ *  verses: Map or object, verse key -> text (keys: "chapter:verse", a cvKey number or [c, v]);
+ *  paragraphStarts, headingBefore, poetryVerses (optional): iterables of verse keys, where a prose
+ *  paragraph opens, a heading stands before the verse, the verse is set in poetic lines;
+ *  titles (optional): Map or object, verse key -> superscription before it (not sung);
+ *  name (optional): the book's short name. Tokens, spans and fingerprints are computed here, the
+ *  way the alignments were built. Async (the fingerprints use WebCrypto). */
+export async function bookText(edition, book, { verses, paragraphStarts = [], headingBefore = [], poetryVerses = [], titles = null, name = '' }) {
+    const vs = new Map();
+    for (const [k, text] of entries(verses).map(([k, t]) => [anyCv(k), t]).sort((a, b) => a[0] - b[0])) {
+        vs.set(k, { chapter: cvC(k), verse: k % 1000, text, tokens: tokenize(text), spans: tokenSpans(text) });
+    }
+    const fp = await fingerprints(new Map([...vs].map(([k, v]) => [`${cvC(k)}:${k % 1000}`, v.text])));
+    const bt = new BookText(edition, book, vs, fp.book,
         new Map(Object.entries(fp.chapters).map(([c, h]) => [parseInt(c, 10), h])));
-    bt.name = bookName(usj, book);
-    bt.titles = titles;
-    walkLayout(usj, bt);
+    bt.name = name || book;
+    bt.titles = new Map(entries(titles).map(([k, t]) => [anyCv(k), t]));
+    bt.paragraphStarts = new Set([...paragraphStarts].map(anyCv));
+    bt.headingBefore = new Set([...headingBefore].map(anyCv));
+    bt.poetryVerses = new Set([...poetryVerses].map(anyCv));
     return bt;
 }

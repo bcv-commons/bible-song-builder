@@ -15,7 +15,7 @@ class Profile:
     style: str
     persona: str | None         # the Suno persona to select, if set
     tags: dict[str, str]        # voice class -> lyric tag
-    base_style: str = ""        # the style without the edition's suffix
+    base_style: str = ""        # the sound alone: no feel, no edition suffix
     suffix: str = ""            # the edition's style_suffix
     moods: dict[str, str] | None = None         # chapter kind -> its own words here (else mood-list.toml)
     instruments: dict[str, str] | None = None   # instrument -> words added
@@ -56,7 +56,8 @@ def for_book(edition: str, book: str, profile: str | None = None, lead: str | No
                           f"(profile {name}); allowed: {', '.join(VOICES)}, refrain")
     suffix = ed.get("style_suffix") or ""
     base = pick.get("style") or p["style"]          # a book's own style line wins over its profile's
-    return Profile(name=name, lead=lead, style=base + suffix,
+    feel = "" if pick.get("style") else p.get("feel", "")   # only for a chapter without a mood
+    return Profile(name=name, lead=lead, style=base + (f", {feel}" if feel else "") + suffix,
                    persona=(p.get("persona") or {}).get(lead) or None, tags=tags,
                    base_style=base, suffix=suffix,
                    moods=_merge(profs.get("moods", {}), p.get("moods", {})),

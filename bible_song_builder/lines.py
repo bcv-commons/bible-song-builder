@@ -175,13 +175,14 @@ def merge_short(lines: list[LyricLine], min_tokens: int, count: str = "words") -
     return out
 
 
-def speaker_labels(refs: dict[str, dict], al: Alignment, bt: BookText) -> dict[str, Speaker]:
-    """speaker_id -> Speaker: its voice class (the cast table, else the plan's ``voice``), and its
-    label, the edition's words for the speaker's name in the text (``named``), else for the words
-    that introduce them (``described``). ``refs``: the plan's speakers (cast.speaker_refs)."""
+def speaker_hits(refs: dict[str, dict], al: Alignment, bt: BookText) -> dict[str, tuple[str, list[tuple[str, str, int, int]]]]:
+    """speaker_id -> (voice, hits): where the edition's text names each speaker, once per book.
+    hits: (part, label, n, edition chapter) in plan order; part "named" (the speaker's name,
+    ``speaker_name_ref``) or "described" (the words introducing them). ``refs``: the plan's
+    speakers (cast.speaker_refs); the voice is the cast table's, else the plan's ``voice``."""
     out = {}
     for sid, ref in refs.items():
-        found: dict[str, Counter] = {}
+        hits = []
         for part in ("named", "described"):
             for keys, n in ref.get(part, []):
                 per_verse: dict[tuple[int, int], set[int]] = {}
@@ -192,10 +193,26 @@ def speaker_labels(refs: dict[str, dict], al: Alignment, bt: BookText) -> dict[s
                 for cv, pos in per_verse.items():
                     label = phrase(bt, cv, pos)
                     if label:
-                        found.setdefault(part, Counter())[label] += n
-        c = found.get("named") or found.get("described")
-        label = c.most_common(1)[0][0] if c else None
-        out[sid] = Speaker(sid, label, cast.voice_of(sid, None, ref.get("voice")))
+                        hits.append((part, label, n, cv[0]))
+        out[sid] = (cast.voice_of(sid, None, ref.get("voice")), hits)
+    return out
+
+
+def speaker_labels(hits: dict, chapter: int | None = None) -> dict[str, Speaker]:
+    """speaker_id -> Speaker for one edition chapter. The label is the commonest of the edition's
+    words naming the speaker in this chapter (named, else described), else None (the cast table's
+    name is used). So a chapter gets the same label whether the client has the whole book or only
+    the chapter. ``chapter`` None: the commonest in the book (the cast table). ``hits``: speaker_hits()."""
+    out = {}
+    for sid, (voice, hs) in hits.items():
+        def pick(part: str) -> str | None:
+            c: Counter = Counter()
+            for p, label, n, ch in hs:
+                if p == part and (chapter is None or ch == chapter):
+                    c[label] += n
+            return c.most_common(1)[0][0] if c else None
+        label = pick("named") or pick("described")
+        out[sid] = Speaker(sid, label, voice)
     return out
 
 

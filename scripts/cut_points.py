@@ -82,7 +82,7 @@ for book in books:
     al = align.load("BSB", book, bt.file_hash, bt.chapter_fingerprints)
     plan.ensure(book)
     bp = plan.load_book(book)
-    speakers = lines.speaker_labels(bp["speakers"], al, bt)
+    speakers = lines.speaker_hits(bp["speakers"], al, bt)
     vmap = align.verse_map("BSB")
     prof = profiles.for_book("BSB", book)
     for c in sorted({c for c, _ in bt.verses}):

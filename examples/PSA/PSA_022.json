@@ -7,7 +7,7 @@
   "name": "hymn",
   "lead": "female",
   "persona": null,
-  "style": "hymn, 72 BPM, piano and warm choir pads, reverent, contemplative",
+  "style": "hymn, 72 BPM, piano and warm choir pads",
   "tags": {
    "narrator": "[Lead Vocal]",
    "female": "[Female Vocal]",
@@ -18,7 +18,7 @@
    "refrain": "[Choir]"
   }
  },
- "style": "hymn, 72 BPM, piano and warm choir pads, reverent, contemplative, desperate, pleading, building intensity",
+ "style": "hymn, 72 BPM, piano and warm choir pads, desperate, pleading, building intensity",
  "own_style": true,
  "mood": {
   "mood": "lament",
@@ -102,7 +102,7 @@
    "licence": "CC BY-SA 4.0 (model output, claude-opus-5-5, no human check)"
   }
  },
- "bible-song-builder": "0.2.0",
+ "bible-song-builder": "0.3.0",
  "sections": [
   {
    "label": "Verse 1",
@@ -406,7 +406,7 @@
      "quote": "q03122",
      "speaker": {
       "id": "c0560",
-      "label": "men",
+      "label": null,
       "voice": "group"
      },
      "segment": 28,
@@ -421,7 +421,7 @@
      "quote": "q03122",
      "speaker": {
       "id": "c0560",
-      "label": "men",
+      "label": null,
       "voice": "group"
      },
      "segment": 29,
@@ -436,7 +436,7 @@
      "quote": "q03122",
      "speaker": {
       "id": "c0560",
-      "label": "men",
+      "label": null,
       "voice": "group"
      },
      "segment": 30,
@@ -451,7 +451,7 @@
      "quote": "q03122",
      "speaker": {
       "id": "c0560",
-      "label": "men",
+      "label": null,
       "voice": "group"
      },
      "segment": 31,

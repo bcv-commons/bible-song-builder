@@ -97,7 +97,7 @@ def build(edition_name: str = "BSB", only: list[str] | None = None) -> Path:
                 books[sid].add(b)
         bt = edition.load_book(edition_name, b)
         al = align.load(edition_name, b, bt.file_hash, bt.chapter_fingerprints)
-        for sid, sp in lines.speaker_labels(cast.speaker_refs(rows), al, bt).items():
+        for sid, sp in lines.speaker_labels(lines.speaker_hits(cast.speaker_refs(rows), al, bt)).items():
             if sp.label and sid in words:
                 labels[sid][sp.label] += 1
         print(b, file=sys.stderr, end=" ", flush=True)

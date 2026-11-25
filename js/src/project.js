@@ -3,13 +3,13 @@
 // plan.ChapterPlan. Every input is passed in; nothing is fetched here.
 import { castName, profileFor } from './config.js';
 import { spineToEdition } from './align.js';
-import { buildLines, phrase, speakerLabels, stanzas } from './lines.js';
+import { buildLines, phrase, speakerHits, speakerLabels, stanzas } from './lines.js';
 import { applyOverrides, chapterStyle, editionMoods, familyWords, sectionMoods, sourceCredits } from './moods.js';
 import { render, sections } from './render.js';
 import { chapterMarks, settingVerses } from './textforms.js';
 import { cvC, cvKey, fmtCv, pyLen, removePrefix, sortedNums } from './util.js';
 
-export const VERSION = '0.2.0';
+export const VERSION = '0.3.0';
 const PLAN_SCHEMA_MAJOR = '1';
 
 /** What half 2 reads for edition chapter c: the plans of the spine chapters spineChapters names
@@ -56,7 +56,7 @@ export function prepareBook({ cfg, edition, book, bt, al, bookPlan, vmap, lexeme
     const toEd = (cv) => spineToEdition(vmap, book, cv);
     return {
         cfg, edition, book, bt, al, bookPlan, vmap, args, profile, toEd,
-        speakers: speakerLabels(cfg, bookPlan.speakers, al, bt),
+        speakers: speakerHits(cfg, bookPlan.speakers, al, bt),
         moods: applyOverrides(cfg, book, editionMoods(bookPlan, toEd), profile),
         words: lexemes ? familyWords(cfg, lexemes, al, bt, bookPlan.testament) : new Map(),
     };
@@ -111,7 +111,7 @@ export function projectChapter(ctx, chapter, plan) {
     const mood = ctx.moods.get(chapter) || null;
     const layout = cfg.layout(edition);
     const marks = chapterMarks(plan.facts, plan.rows, al, chapter, layout);
-    const lyricLines = buildLines(cfg, bt, chapter, plan.rows, al, ctx.speakers, toEd, {
+    const lyricLines = buildLines(cfg, bt, chapter, plan.rows, al, speakerLabels(ctx.speakers, chapter), toEd, {
         minTokens: args.min_words, marks, poetry: (layout.lines || {}).poetry ?? 'clauses+halves', textCfg: layout.text,
         pull: pullUnaligned(layout, al),
     });
