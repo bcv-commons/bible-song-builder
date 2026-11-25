@@ -3,9 +3,12 @@
 // token any of its words aligned to; stanzas at source paragraph ends, acrostic letters, and
 // long runs split at the strongest source signals).
 import { voiceOf } from './config.js';
-import { BOOKS, count, cvC, cvKey, getOr, maxOf, minOf, mostCommon, pyStrip, stripChars, tupleLess, unique, WORD_CHAR, wordRuns } from './util.js';
+import { BOOKS, count, cvC, isPySpace, cvKey, getOr, maxOf, minOf, mostCommon, pyStrip, stripChars, tupleLess, unique, WORD_CHAR, wordRuns } from './util.js';
 
-const OPENING = new Set('“‘"\'([{«‹¿¡—–-');    // default; layout.toml [text] line_start_punctuation
+const OPENING = new Set('“‘"\'([{«‹¿¡—–-');    // line_start "list": default of layout.toml [text] line_start_punctuation
+const CLAUSE_END = new Set('.,;:!?…。，、；：！？');   // default of layout.toml [text] clause_end_punctuation
+const WORD = /^[\p{L}\p{N}\p{M}]$/u;
+const OPENS = /^[\p{Ps}\p{Pi}]$/u;
 
 /** Length of a text in words, or in letters for scripts without spaces (layout.toml [text] count) */
 export function countUnits(text, mode = 'words') {
@@ -50,10 +53,41 @@ function rowTargets(row, al) {
     return out;
 }
 
-/** Move a line start back over the opening punctuation that belongs to it */
-function cutStart(text, start, opening) {
-    while (start > 0 && opening.has(text[start - 1])) start--;
-    return start;
+/** Move a line start back over the punctuation before its first word that belongs to it (lines._cut_start) */
+function cutStart(text, start, [kind, marks]) {
+    if (kind === 'list') {
+        while (start > 0 && marks.has(text[start - 1])) start--;
+        return start;
+    }
+    const isWord = (c) => WORD.test(c);
+    let j = start;
+    while (j > 0 && !isPySpace(text[j - 1]) && !isWord(text[j - 1])) j--;
+    if (j > 0 && isWord(text[j - 1])) {          // between two words with no space: split at a clause end
+        let last = -1;
+        for (let i = j; i < start; i++) if (marks.has(text[i])) last = i;
+        return last >= 0 ? last + 1 : start;
+    }
+    let s = j;
+    for (;;) {
+        let i = s;
+        while (i > 0 && isPySpace(text[i - 1])) i--;
+        if (i === s || i === 0) return s;
+        let r = i;
+        while (r > 0 && !isPySpace(text[r - 1]) && !isWord(text[r - 1])) r--;
+        const run = [...text.slice(r, i)];
+        if (!run.length || (r > 0 && !isPySpace(text[r - 1])) || run.some((c) => marks.has(c)) || !run.every((c) => OPENS.test(c))) return s;
+        s = r;
+    }
+}
+
+/** layout.toml [text] line_start: ['spacing', clause end marks] or ['list', opening marks] (lines.line_start_rule) */
+export function lineStartRule(textCfg) {
+    if ((textCfg.line_start ?? 'spacing') === 'list') {
+        const own = new Set(textCfg.line_start_punctuation || '');
+        return ['list', own.size ? own : OPENING];
+    }
+    const own = new Set(textCfg.clause_end_punctuation || '');
+    return ['spacing', own.size ? own : CLAUSE_END];
 }
 
 function slice(v, starts, opening) {
@@ -234,8 +268,7 @@ export function speakerLabels(hits, chapter = null) {
 /** Lyric lines of an edition chapter (lines.build_lines) */
 export function buildLines(cfg, bt, chapter, rows, al, speakers, vmapCv, { minTokens = 3, marks, poetry = 'clauses+halves', textCfg = null, pull = false } = {}) {
     textCfg = textCfg || {};
-    const own = new Set(textCfg.line_start_punctuation || '');
-    const opening = own.size ? own : OPENING;
+    const opening = lineStartRule(textCfg);
     const verses = bt.chapterVerses(chapter);
     const breaks = new Map(), owner = new Map(), verseRows = new Map();
     const paraEnds = [];
@@ -306,6 +339,7 @@ export function buildLines(cfg, bt, chapter, rows, al, speakers, vmapCv, { minTo
                 const fixed = new Set([...(marks.breaks.get(cv) || []), ...(hb !== undefined ? [hb] : [])]);
                 const next = [];
                 for (const t of starts) {
+                    if (t === 0 && !cand.has(t) && !fixed.has(t)) continue;   // the verse start: a clause may pull its line back to it
                     let s = t;
                     if (cand.has(t) && !fixed.has(t)) {
                         const lo = next.length ? next[next.length - 1] : -1;
@@ -313,6 +347,10 @@ export function buildLines(cfg, bt, chapter, rows, al, speakers, vmapCv, { minTo
                     }
                     next.push(s);
                     moved.set(s, t);
+                }
+                if (!next.length || next[0] !== 0) {
+                    next.unshift(0);
+                    moved.set(0, 0);
                 }
                 starts = next;
             }

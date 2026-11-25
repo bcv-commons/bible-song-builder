@@ -108,7 +108,7 @@ that are empty, false or zero are left out, except the first four.
 | `chapter`, `verse`, `seg` | spine chapter and verse; the segment number in the verse |
 | `words` | its word keys |
 | `line` | its line number in the segment |
-| `quotation` | quotation id (`q00016`; a nested quote `q00016.t1`); absent for the narrator |
+| `quotation` | quotation id (`q00016`; a nested quote `q00016.t1`); absent for the narrator. Where a quote starts inside a source clause line, the line is split there and the second row has no `clause_key` (23 rows, all NT) |
 | `speaker_id` | who speaks it (the source's id, or the Hebrew/Greek word naming the speaker) |
 | `para_end`, `para_end_mam` | a paragraph of the Leningrad Codex / the MAM ends with this line |
 | `depth` | how deep the clause is embedded (absent: a top-level clause) |

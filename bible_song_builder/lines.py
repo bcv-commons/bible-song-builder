@@ -18,6 +18,7 @@ own headings and paragraphs count only if layout.toml / editions.toml give them 
 from __future__ import annotations
 
 import re
+import unicodedata
 from collections import Counter
 from dataclasses import dataclass, field, replace
 from functools import lru_cache
@@ -27,7 +28,8 @@ from .align import Alignment
 from .edition import BookText, Verse
 from .textforms import Marks
 
-OPENING = set("“‘\"'([{«‹¿¡—–-")    # default; layout.toml [text] line_start_punctuation
+OPENING = set("“‘\"'([{«‹¿¡—–-")    # line_start "list": default of layout.toml [text] line_start_punctuation
+CLAUSE_END = set(".,;:!?…。，、；：！？")   # default of layout.toml [text] clause_end_punctuation
 
 
 def count_units(text: str, mode: str = "words") -> int:
@@ -84,16 +86,56 @@ def _row_targets(row: dict, al: Alignment) -> dict[tuple[int, int], set[int]]:
     return out
 
 
-def _cut_start(text: str, start: int, opening: set[str] = OPENING) -> int:
-    """Move a line start back over the opening punctuation that belongs to it."""
-    while start > 0 and text[start - 1] in opening:
-        start -= 1
-    return start
+def _is_word(c: str) -> bool:
+    return unicodedata.category(c)[0] in "LNM"
 
 
-def _slice(v: Verse, starts: list[int], opening: set[str] = OPENING) -> list[tuple[int, str]]:
+def _cut_start(text: str, start: int, rule: tuple = ("spacing", CLAUSE_END)) -> int:
+    """Move a line start back over the punctuation before its first word that belongs to it.
+    ``rule`` ("spacing", clause ends): by the spaces of the text, the same in every language:
+    marks touching the word are its own (”Vi, «Nous, (Jesus); if they also touch the word before,
+    only those after its last clause end. Then each run of opening marks (Unicode Ps, Pi) standing
+    alone between spaces is the line's too: the French « of ": « Nous", not its » of "Nous » dit-il",
+    nor a dash. ``rule`` ("list", marks): the marks just before the word that are
+    in the list (layout.toml [text] line_start = "list")."""
+    kind, marks = rule
+    if kind == "list":
+        while start > 0 and text[start - 1] in marks:
+            start -= 1
+        return start
+    j = start
+    while j > 0 and not text[j - 1].isspace() and not _is_word(text[j - 1]):
+        j -= 1
+    if j > 0 and _is_word(text[j - 1]):            # between two words with no space: split at a clause end
+        ends = [i for i in range(j, start) if text[i] in marks]
+        return ends[-1] + 1 if ends else start
+    s = j
+    while True:
+        i = s
+        while i > 0 and text[i - 1].isspace():
+            i -= 1
+        if i == s or i == 0:
+            return s
+        r = i
+        while r > 0 and not text[r - 1].isspace() and not _is_word(text[r - 1]):
+            r -= 1
+        run = text[r:i]
+        if (not run or (r > 0 and not text[r - 1].isspace()) or any(c in marks for c in run)
+                or not all(unicodedata.category(c) in ("Ps", "Pi") for c in run)):
+            return s
+        s = r
+
+
+def line_start_rule(text_cfg: dict) -> tuple:
+    """layout.toml [text] line_start: ("spacing", clause end marks) or ("list", opening marks)."""
+    if text_cfg.get("line_start", "spacing") == "list":
+        return "list", set(text_cfg.get("line_start_punctuation", "")) or OPENING
+    return "spacing", set(text_cfg.get("clause_end_punctuation", "")) or CLAUSE_END
+
+
+def _slice(v: Verse, starts: list[int], rule: tuple = ("spacing", CLAUSE_END)) -> list[tuple[int, str]]:
     assert v.spans is not None
-    chars = [_cut_start(v.text, v.spans[t][0], opening) for t in starts]
+    chars = [_cut_start(v.text, v.spans[t][0], rule) for t in starts]
     chars[0] = 0
     out = []
     for i, t in enumerate(starts):
@@ -291,7 +333,7 @@ def build_lines(bt: BookText, chapter: int, rows: list[dict], al: Alignment,
     before. For alignments of content words only (compact), where function words have no link."""
     marks = marks or Marks()
     text_cfg = text_cfg or {}
-    opening = set(text_cfg.get("line_start_punctuation", "")) or OPENING
+    opening = line_start_rule(text_cfg)
     verses = bt.chapter_verses(chapter)
     # break candidates per edition verse: token -> the first clause row (source order) breaking there
     breaks: dict[tuple[int, int], dict[int, dict]] = {}
@@ -360,6 +402,8 @@ def build_lines(bt: BookText, chapter: int, rows: list[dict], al: Alignment,
                 fixed = marks.breaks.get(cv, set()) | ({hb} if hb is not None else set())
                 new: list[int] = []
                 for t in starts:
+                    if t == 0 and t not in cand and t not in fixed:
+                        continue           # the verse start: a clause may pull its line back to it
                     s = t
                     if t in cand and t not in fixed:
                         lo = new[-1] if new else -1
@@ -368,6 +412,9 @@ def build_lines(bt: BookText, chapter: int, rows: list[dict], al: Alignment,
                             s -= 1
                     new.append(s)
                     moved[s] = t
+                if not new or new[0] != 0:
+                    new.insert(0, 0)
+                    moved[0] = 0
                 starts = new
             prev_row = None
             first = len(lines)

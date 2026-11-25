@@ -76,12 +76,22 @@ def chapter_marks(facts: list[dict], rows: list[dict], al: Alignment, chapter: i
     def here(cv: tuple[int, int]) -> bool:
         return cv[0] == chapter
 
+    # a "refrain" that only introduces speech ("and he said to him", καὶ λέγει αὐτῷ) is no chorus:
+    # every time it comes, a quote starts with the next word
+    quote_starts = {f["first"] for f in facts if f.get("kind") == "quote"}
+    skip_frames = layout.get("chorus", {}).get("skip_speech_frames", True)
+
+    def introduces_speech(occ: list) -> bool:
+        return bool(occ) and all(next((k for k in keys if k > b), None) in quote_starts for _, b in occ)
+
     for f in facts:
         if f.get("kind") != "form" or f["last"] < lo_key or f["first"] > hi_key:
             continue
         v = f.get("value", "")
         if v == "fm.tx.refrain" and use_refrains and f.get("words", 0) >= min_words:
             occ = f.get("occurrences", [])
+            if skip_frames and introduces_speech(occ):
+                continue
             for n_occ, (a, b) in enumerate(occ, start=1):
                 # a refrain may run over a verse end; each verse's piece must be long enough by itself
                 per_verse: dict[tuple[int, int], list[str]] = {}

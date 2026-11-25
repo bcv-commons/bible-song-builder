@@ -131,7 +131,15 @@ to leave the land of Moab.
 ```
 
 A clause line with no aligned word adds no break, so it stays with the line before. A verse always starts
-a line. A line shorter than 3 words joins its neighbour in the same verse and voice (`lines.min_words`).
+a line, and with a compact alignment a clause's line reaches back over the unlinked words that open the verse
+("Jag | kände honom inte" becomes one line). A line shorter than 3 words joins its neighbour in the same verse
+and voice (`lines.min_words`). Where a quote starts inside a clause line of the source (John 1:32 "ὅτι
+Τεθέαμαι"), the plan splits the line there, so the quote's first words are the speaker's.
+
+The punctuation at a break goes by the spaces of the text, not by a list of marks, so the same rule fits every
+language (`text.line_start`): marks touching the next word go with it (Swedish ”Vi, French «Nous, ¿Qué), an
+opening mark standing alone between spaces goes too (French « Nous), and a closing mark, a dash or the end of
+a clause stays with the line before.
 
 Three forms of the Hebrew text (passage-facts) add line starts, through the alignment:
 - **Refrains:** each line the text repeats (`fm.tx.refrain`) is a line of its own.
@@ -179,7 +187,9 @@ sections; the style line comes from the book's profile, so a book sounds the sam
 **Sections.** Each stanza is a `[Verse n]`: a song verse, not a Bible verse (the notes file gives its
 verse range). In a prose chapter, a stanza the facts set as song or poetry is a `[Bridge]` (Ruth's vow, the
 Magnificat). A line the Hebrew/Greek repeats in its chapter (`fm.tx.refrain`) is a `[Chorus]`, e.g.
-"And there was evening, and there was morning" in Genesis 1, in every edition alike. Where the refrain comes
+"And there was evening, and there was morning" in Genesis 1, in every edition alike. A repeated speech
+formula that each time introduces a quote ("and he said to him", John 1:41, 45, 51) is no chorus
+(`chorus.skip_speech_frames`). Where the refrain comes
 back inside one stanza (Psalm 136), the stanza stays whole as call and response: `[Lead Vocal]` / `[Choir]`.
 `layout.toml` sets the chorus source (the text's refrains, or the edition's repeated lines), its style, and
 which section tags are written (all, only `[Chorus]`/`[Bridge]`, or none).

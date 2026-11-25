@@ -49,12 +49,17 @@ export function chapterMarks(facts, rows, al, chapter, layout) {
     const useRefrains = ['text', 'both'].includes(chorus.source ?? 'text');
     const minRun = (layout.stanzas || {}).acrostic_min_run ?? 2;
     const here = (cv) => cvC(cv) === chapter;
+    // a "refrain" that only introduces speech is no chorus: each time, a quote starts with the next word (textforms.py)
+    const quoteStarts = new Set(facts.filter((f) => f.kind === 'quote').map((f) => f.first));
+    const skipFrames = chorus.skip_speech_frames ?? true;
+    const introducesSpeech = (occ) => occ.length > 0 && occ.every(([, b]) => quoteStarts.has(keys.find((k) => k > b)));
 
     for (const f of facts) {
         if (f.kind !== 'form' || f.last < loKey || f.first > hiKey) continue;
         const v = f.value || '';
         if (v === 'fm.tx.refrain' && useRefrains && (f.words ?? 0) >= minWords) {
             const occ = f.occurrences || [];
+            if (skipFrames && introducesSpeech(occ)) continue;
             occ.forEach(([a, b], i) => {
                 // a refrain may run over a verse end; each verse's piece must be long enough by itself
                 const perVerse = new Map();

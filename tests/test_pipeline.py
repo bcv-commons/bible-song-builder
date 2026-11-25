@@ -171,6 +171,25 @@ class TestTextForms(unittest.TestCase):
         self.assertGreaterEqual(len(saw), 2)            # "And God saw that it was good" (the text's own refrain too)
         self.assertNotIn("Then God said,", [ln["text"] for s in ch for ln in s["lines"]])
 
+    def test_speech_frame_is_no_chorus(self):
+        """John 1: "καὶ λέγει αὐτῷ" (passage-facts calls it a refrain, 1:41, 45, 51) introduces a
+        quote each time: no chorus. 1:32: the quote starts inside the source's clause line
+        ("ὅτι Τεθέαμαι"): "I saw" is John's (plan.split_at_quote_starts). With the compact
+        alignment, as for most editions."""
+        from bible_song_builder import fetch
+        ed = fetch.pins()["editions"]["BSB"]
+        layer = ed["full_layer"]
+        ed["full_layer"] = None
+        try:
+            _, _, res = build("JHN", 1)
+        finally:
+            ed["full_layer"] = layer
+        self.assertNotIn("Chorus", [s["label"] for s in res["data"]["sections"]])
+        ls = [ln for s in res["data"]["sections"] for ln in s["lines"]]
+        saw = next(ln for ln in ls if ln["verse"] == "1:32" and "I saw" in ln["text"])
+        self.assertTrue(saw["text"].startswith("“I saw"))
+        self.assertIsNotNone(saw["speaker"])
+
     def test_acrostic_letters_start_stanzas(self):
         _, _, res = build("PSA", 119)
         starts = [s["verses"][0] for s in res["data"]["sections"] if any(ln["acrostic"] for ln in s["lines"])]
@@ -345,6 +364,28 @@ class TestConfig(unittest.TestCase):
     def test_layers(self):
         self.assertEqual(config.merge({"a": {"x": 1, "y": 2}}, {"a": {"y": 3}}), {"a": {"x": 1, "y": 3}})
         self.assertIn("text", config.layout("BSB"))
+
+    def test_line_start_by_spacing(self):
+        """layout.toml [text] line_start "spacing": a line takes the marks touching its first word,
+        and an opening mark standing alone; a closing mark, a dash and clause ends stay behind. The
+        same rule in every language."""
+        cases = [("och sade till honom: ”Vi har", "Vi", "”Vi har"), ("Messias” - det", "det", "det"),
+                 ("dit : « Nous", "Nous", "« Nous"), ("Nous » dit-il", "dit", "dit-il"),
+                 ("said, “I saw", "I", "“I saw"), ("said.” Then", "Then", "Then"), ("dijo: ¿Qué", "Qué", "¿Qué"),
+                 ("他說：「我們", "我", "「我們"), ("Und er sprach: „Kommt", "Kommt", "„Kommt"),
+                 ("You — majestic", "majestic", "majestic")]
+        rule = lines.line_start_rule({})
+        for text, word, line in cases:
+            self.assertEqual(text[lines._cut_start(text, text.rindex(word), rule):], line)
+        self.assertEqual(lines.line_start_rule({"line_start": "list"})[0], "list")
+
+    def test_split_at_quote_starts(self):
+        rows = [{"chapter": 1, "verse": 1, "seg": 1, "words": ["a", "b"], "clause_key": "a", "para_end": True},
+                {"chapter": 1, "verse": 1, "seg": 2, "words": ["c"], "quotation": "b", "speaker_id": "n1", "clause_key": "c"}]
+        got = plan.split_at_quote_starts(rows)
+        self.assertEqual([(r["words"], r.get("quotation"), r.get("speaker_id"), r.get("clause_key"), r.get("para_end"))
+                          for r in got], [(["a"], None, None, "a", None), (["b"], "b", "n1", None, True),
+                                          (["c"], "b", "n1", "c", None)])
 
     def test_count_units(self):
         self.assertEqual(lines.count_units("In the beginning, God"), 4)

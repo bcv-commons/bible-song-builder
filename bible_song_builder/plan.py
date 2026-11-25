@@ -55,6 +55,34 @@ def _row(r: dict) -> dict:
     return {k: r[k] for k in ROW_FIELDS if k in ALWAYS or r.get(k)}
 
 
+def split_at_quote_starts(rows: list[dict]) -> list[dict]:
+    """A clause row in which a quote starts after its first word (the source puts "ὅτι Τεθέαμαι" in
+    one row, the quote starting at Τεθέαμαι, John 1:32) is split there: the words from the quote's
+    first word on are their own row, sung by the quote's speaker. A quote is known by its rows'
+    ``quotation``, the key of its first word. The new row has no clause_key (it starts no clause)
+    and takes the row's paragraph end."""
+    speaker = {}
+    for r in rows:
+        if r.get("quotation"):
+            speaker.setdefault(r["quotation"], r.get("speaker_id"))
+    out = []
+    for r in rows:
+        cut = next((i for i, k in enumerate(r["words"]) if i > 0 and k in speaker and r.get("quotation") != k), None)
+        if cut is None:
+            out.append(r)
+            continue
+        a = {k: v for k, v in r.items() if k not in ("para_end", "para_end_mam")}
+        a["words"] = r["words"][:cut]
+        q = r["words"][cut]
+        b = {k: v for k, v in r.items() if k not in ("clause_key", "quotation", "speaker_id")}
+        b["words"] = r["words"][cut:]
+        b["quotation"] = q
+        if speaker[q]:
+            b["speaker_id"] = speaker[q]
+        out += [a, {k: b[k] for k in ROW_FIELDS if k in b}]
+    return out
+
+
 def _fact(n: int, f: dict, labels: dict[str, str]) -> dict:
     out = {"n": n, **{k: f[k] for k in FACT_FIELDS if f.get(k) is not None}}
     if f.get("value") == "fm.tx.refrain":
@@ -104,7 +132,7 @@ def build(book: str) -> tuple[dict, dict[int, dict]]:
     mood_facts, model_moods = moods.mood_spans(book, facts, spine, rows)
     chapters = {}
     for c in book_doc["chapters"]:
-        ch_rows = [_row(r) for r in rows if r["chapter"] == c]
+        ch_rows = split_at_quote_starts([_row(r) for r in rows if r["chapter"] == c])
         keys = [r["clause_key"] for r in ch_rows if r.get("clause_key")]
         chapters[c] = {
             "schema": SCHEMA, "kind": "chapter", "book": book, "chapter": c,

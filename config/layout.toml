@@ -11,8 +11,20 @@
 #   "characters"  letters one by one, for scripts written without spaces (Chinese, Japanese, Thai)
 count = "words"
 
-# Punctuation that belongs to the start of the next line: a line break never leaves these at
-# the end of a line (opening quotes and brackets, Spanish ¿ ¡, dashes).
+# Which punctuation at a line break goes to the next line:
+#   "spacing"  read from the spaces of the text, the same for every language: marks touching the
+#              next word are its own (”Vi, «Nous, ¿Qué, (Jesus); if they touch the word before too
+#              (scripts without spaces), only those after the last clause end. An opening mark
+#              standing alone between spaces (Unicode Ps, Pi: the French « of ": « Nous") goes too;
+#              a closing one (the » of "Nous » dit-il") or a dash stays.
+#   "list"     only the marks of line_start_punctuation, just before the word
+line_start = "spacing"
+
+# For "spacing": the marks that end a clause or sentence, which a line never takes from the line before.
+clause_end_punctuation = ".,;:!?…。，、；：！？"
+
+# For "list": the marks that belong to the start of the next line (opening quotes and brackets,
+# Spanish ¿ ¡, dashes).
 line_start_punctuation = "“‘\"'([{«‹¿¡—–-"
 
 
@@ -100,6 +112,10 @@ style = "section"
 
 # A repeated line in the Hebrew/Greek needs at least this many words to become a chorus.
 min_words = 3
+
+# true: a repeated line that only introduces speech is no chorus: each time it comes, a quote of
+# passage-facts starts with the next word ("and he said to him", καὶ λέγει αὐτῷ, John 1:41, 45, 51).
+skip_speech_frames = true
 
 # For source "lines" / "both": how often an edition line must repeat, and its least length in words.
 lines_min_repeats = 3
