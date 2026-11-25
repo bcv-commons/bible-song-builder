@@ -9,7 +9,7 @@ import { render, sections } from './render.js';
 import { chapterMarks, settingVerses } from './textforms.js';
 import { cvC, cvKey, fmtCv, pyLen, removePrefix, sortedNums } from './util.js';
 
-export const VERSION = '0.4.2';
+export const VERSION = '0.4.3';
 const PLAN_SCHEMA_MAJOR = '1';
 
 /** What half 2 reads for edition chapter c: the plans of the spine chapters spineChapters names

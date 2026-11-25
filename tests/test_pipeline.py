@@ -379,6 +379,19 @@ class TestConfig(unittest.TestCase):
             self.assertEqual(text[lines._cut_start(text, text.rindex(word), rule):], line)
         self.assertEqual(lines.line_start_rule({"line_start": "list"})[0], "list")
 
+    def test_stray_link_inside_a_quote(self):
+        """lines._strays: a short piece in another voice inside a quote goes back to the quote when a
+        stray link put it there (out of source order, no punctuation around it), not when the
+        narrator's words are set off ("“Look,” said Naomi, “your …")."""
+        def ln(text, quote, seg):
+            return lines.LyricLine((1, 15), text, 0, quote, None, seg, row={"seg": seg})
+        stray = [ln("”Det var", "q", 39), ln("om", None, 38), ln("honom jag sade:", "q", 40)]
+        self.assertEqual([x.quote for x in lines._strays(stray, 3)], ["q", "q", "q"])
+        said = [ln("“Look,”", "q", 39), ln("said Naomi,", None, 38), ln("“your sister-in-law", "q", 40)]
+        self.assertEqual([x.quote for x in lines._strays(said, 3)], ["q", None, "q"])
+        in_order = [ln("Det var", "q", 39), ln("om", None, 40), ln("honom", "q", 41)]
+        self.assertEqual([x.quote for x in lines._strays(in_order, 3)], ["q", None, "q"])
+
     def test_split_at_quote_starts(self):
         rows = [{"chapter": 1, "verse": 1, "seg": 1, "words": ["a", "b"], "clause_key": "a", "para_end": True},
                 {"chapter": 1, "verse": 1, "seg": 2, "words": ["c"], "quotation": "b", "speaker_id": "n1", "clause_key": "c"}]

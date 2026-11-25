@@ -424,6 +424,7 @@ def build_lines(bt: BookText, chapter: int, rows: list[dict], al: Alignment,
                 qq, sp = voice(r)
                 lines.append(LyricLine(cv, piece, t, qq, sp, r["seg"] if r else None,
                                        clause=structure.clause_key(r) if r else None, row=r))
+            lines[first:] = _strays(lines[first:], min_tokens, text_cfg.get("count", "words"))
             _mark(lines[first:], cv, len(v.tokens), marks)
         _opening(lines, cv, verse_rows.get(cv, []))
         for pcv, ptok in para_ends:
@@ -432,6 +433,24 @@ def build_lines(bt: BookText, chapter: int, rows: list[dict], al: Alignment,
                           default=len(lines) - 1)
                 lines[idx].para_end = True
     return merge_short(lines, min_tokens, text_cfg.get("count", "words"))
+
+
+def _strays(vlines: list[LyricLine], min_tokens: int, count: str = "words") -> list[LyricLine]:
+    """A piece of a quote that a stray link gave to another clause goes back to the quote: a line
+    of fewer than ``min_tokens`` words between two lines of the same quote, in another voice, whose
+    clause is out of the source order of the two, and which runs on from both with no punctuation
+    between, word to word (SWESFB John 1:15 "”Det var | om | honom jag sade": λέγων, "saying", which
+    the Swedish leaves out, is linked to the "om" inside the quote). A narrator's words inside a
+    speech are set off by punctuation ("“Look,” said Naomi, “your sister-in-law …") and stay."""
+    out = list(vlines)
+    for k in range(1, len(out) - 1):
+        a, b, c = out[k - 1], out[k], out[k + 1]
+        if (a.quote is not None and a.quote == c.quote and b.quote != a.quote and a.row and b.row and c.row
+                and count_units(b.text, count) < min_tokens
+                and not a.row["seg"] <= b.row["seg"] <= c.row["seg"]
+                and all(_is_word(ch) for ch in (a.text[-1], b.text[0], b.text[-1], c.text[0]))):
+            out[k] = replace(b, quote=a.quote, speaker=a.speaker, row_seg=a.row_seg, clause=None, row=a.row)
+    return out
 
 
 def _opening(lines: list[LyricLine], cv: tuple[int, int], vrows: list[dict]) -> None:

@@ -362,6 +362,7 @@ export function buildLines(cfg, bt, chapter, rows, al, speakers, vmapCv, { minTo
                 const [qq, sp] = voice(r);
                 lines.push(line(cv, piece, t, qq, sp, r ? r.seg : null, r ? clauseKey(r) : null, r || null));
             }
+            strays(lines, first, minTokens, textCfg.count || 'words');
             mark(lines.slice(first), cv, v.tokens.length, marks);
         }
         setOpening(lines, cv, verseRows.get(cv) || []);
@@ -389,6 +390,18 @@ function setOpening(lines, cv, vrows) {
 }
 
 /** Flag the lines of one verse: refrain, acrostic letter start, selah */
+/** A piece of a quote that a stray link gave to another clause goes back to the quote (lines._strays) */
+function strays(lines, first, minTokens, mode) {
+    for (let k = first + 1; k < lines.length - 1; k++) {
+        const a = lines[k - 1], b = lines[k], c = lines[k + 1];
+        if (a.quote !== null && a.quote === c.quote && b.quote !== a.quote && a.row && b.row && c.row
+            && countUnits(b.text, mode) < minTokens && !(a.row.seg <= b.row.seg && b.row.seg <= c.row.seg)
+            && [a.text[a.text.length - 1], b.text[0], b.text[b.text.length - 1], c.text[0]].every((ch) => WORD.test(ch))) {
+            lines[k] = { ...b, quote: a.quote, speaker: a.speaker, row_seg: a.row_seg, clause: null, row: a.row };
+        }
+    }
+}
+
 function mark(vlines, cv, nTokens, marks) {
     vlines.forEach((ln, k) => {
         const end = (k + 1 < vlines.length ? vlines[k + 1].first_token : nTokens) - 1;
