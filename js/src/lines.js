@@ -3,7 +3,7 @@
 // token any of its words aligned to; stanzas at source paragraph ends, acrostic letters, and
 // long runs split at the strongest source signals).
 import { voiceOf } from './config.js';
-import { count, cvC, cvKey, getOr, maxOf, minOf, mostCommon, pyStrip, stripChars, tupleLess, unique, WORD_CHAR, wordRuns } from './util.js';
+import { BOOKS, count, cvC, cvKey, getOr, maxOf, minOf, mostCommon, pyStrip, stripChars, tupleLess, unique, WORD_CHAR, wordRuns } from './util.js';
 
 const OPENING = new Set('“‘"\'([{«‹¿¡—–-');    // default; layout.toml [text] line_start_punctuation
 
@@ -118,16 +118,40 @@ export function mergeShort(lines, minTokens, mode = 'words') {
     return out;
 }
 
-/** speaker_id -> {voice, hits}: where the edition's text names each speaker, once per book
- *  (lines.speaker_hits). hits: [{part, label, n, chapter}] in plan order, part "named" (the
- *  speaker's name) or "described" (the words introducing them), chapter the edition chapter.
- *  refs: the book plan's speakers. */
-export function speakerHits(cfg, refs, al, bt) {
+/** The speaker's main naming place in the plan, the same for every edition: among the entries in
+ *  this book (word keys starting with prefix), the `named` one with the most clause rows (the
+ *  earlier on a tie), else the main `described` one; else the main `named` one in another book
+ *  (the Greek names a speaker where they are first named, also in another book); null if none.
+ *  [part, index] (lines.main_naming) */
+export function mainNaming(ref, prefix = '') {
+    for (const [part, here] of [['named', true], ['described', true], ['named', false]]) {
+        let best = null;
+        (ref[part] || []).forEach(([keys, n], i) => {
+            if (keys.length && keys[0].startsWith(prefix) === here && (best === null || n > ref[part][best][1])) best = i;
+        });
+        if (best !== null) return [part, best];
+    }
+    return null;
+}
+
+/** speaker_id -> {voice, hits, pointer}: where the edition's text names each speaker, once per book
+ *  (lines.speaker_hits). hits: [{part, label, n, chapter, main}] in plan order, part "named" (the
+ *  speaker's name) or "described" (the words introducing them), chapter the edition chapter, main:
+ *  the hit is at the speaker's main naming place (mainNaming). pointer: that place, {book, verse
+ *  (the edition's "c:v"), spine [c, v], keys (source word keys), strong (their Strong's numbers, for
+ *  this book's keys)}, or null. refs: the book plan's speakers; toEd(book, cvKey): spine -> edition
+ *  cvKey or null; lexemes: lexemeKeys() of the book (optional, for strong). */
+export function speakerHits(cfg, refs, al, bt, book = '', toEd = null, lexemes = null) {
+    const prefix = BOOKS.includes(book) ? String(BOOKS.indexOf(book) + 1).padStart(2, '0') : '';
+    toEd = toEd || ((b, cv) => cv);
+    const strongOf = new Map();
+    for (const [n, keys] of lexemes || []) for (const k of keys) strongOf.set(k, `${k.length === 11 ? 'G' : 'H'}${n}`);
     const out = new Map();
     for (const [sid, ref] of Object.entries(refs)) {
+        const main = mainNaming(ref, prefix);
         const hits = [];
         for (const part of ['named', 'described']) {
-            for (const [keys, n] of ref[part] || []) {
+            (ref[part] || []).forEach(([keys, n], i) => {
                 const perVerse = new Map();
                 for (const k of keys) {
                     const hit = al.positions(k);
@@ -138,30 +162,49 @@ export function speakerHits(cfg, refs, al, bt) {
                 }
                 for (const [cv, pos] of perVerse) {
                     const label = phrase(cfg, bt, cv, pos);
-                    if (label) hits.push({ part, label, n, chapter: cvC(cv) });
+                    if (label) hits.push({ part, label, n, chapter: cvC(cv), main: main !== null && main[0] === part && main[1] === i });
                 }
-            }
+            });
         }
-        out.set(sid, { voice: voiceOf(cfg, sid, ref.voice), hits });
+        let pointer = null;
+        if (main) {
+            const keys = ref[main[0]][main[1]][0];
+            const bn = /^[0-9]{2}/.test(keys[0]) ? parseInt(keys[0].slice(0, 2), 10) : 0;
+            const where = bn > 0 && bn <= BOOKS.length ? BOOKS[bn - 1] : book;
+            const spine = cvKey(+keys[0].slice(2, 5), +keys[0].slice(5, 8));
+            const ed = toEd(where, spine);
+            pointer = {
+                book: where, verse: ed === null ? null : `${cvC(ed)}:${ed % 1000}`, spine: [cvC(spine), spine % 1000], keys: [...keys],
+                strong: unique(keys.map((k) => strongOf.get(k)).filter(Boolean)),
+            };
+        }
+        out.set(sid, { voice: voiceOf(cfg, sid, ref.voice), hits, pointer });
     }
     return out;
 }
 
-/** speaker_id -> {id, label, voice} for one edition chapter (lines.speaker_labels). The label is
- *  the commonest of the edition's words naming the speaker in this chapter (named, else described),
- *  else none (the cast table's name is used). So a chapter gets the same label whether the client
- *  has the whole book or only the chapter. chapter null: the commonest in the book (the cast
- *  table). hits: speakerHits(). */
+/** speaker_id -> {id, label, voice, pointer?} for one edition chapter (lines.speaker_labels). The
+ *  label is the commonest of the edition's words naming the speaker in this chapter (named, else
+ *  described); where the chapter has none, the words at the speaker's main naming place, and
+ *  `pointer` says where that is, so a client with only this chapter can fetch that chapter;
+ *  else none (the cast table's name is used). Nothing depends on which other chapters the client
+ *  has, except that the pointer's chapter must be among them for its words. chapter null: the
+ *  commonest in the book (the cast table). hits: speakerHits(). */
 export function speakerLabels(hits, chapter = null) {
     const out = new Map();
-    for (const [sid, { voice, hits: hs }] of hits) {
-        const pick = (part) => {
-            const c = new Map();
-            for (const h of hs) if (h.part === part && (chapter === null || h.chapter === chapter)) count(c, h.label, h.n);
-            return c.size ? mostCommon(c) : null;
+    for (const [sid, { voice, hits: hs, pointer }] of hits) {
+        const pick = (keep) => {
+            for (const part of ['named', 'described']) {
+                const c = new Map();
+                for (const h of hs) if (h.part === part && keep(h)) count(c, h.label, h.n);
+                if (c.size) return mostCommon(c);
+            }
+            return null;
         };
-        const label = pick('named') ?? pick('described');
-        out.set(sid, speaker(sid, label, voice));
+        const own = pick((h) => chapter === null || h.chapter === chapter);
+        const sp = speaker(sid, own ?? (chapter === null ? null : pick((h) => h.main)), voice);
+        if (own === null && chapter !== null && pointer) sp.pointer = pointer;
+        out.set(sid, sp);
     }
     return out;
 }

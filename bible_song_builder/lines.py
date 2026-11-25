@@ -42,6 +42,7 @@ class Speaker:
     id: str | None
     label: str | None          # the edition's own words for the speaker's name (notes file only)
     voice: str                 # voice class from config/cast.csv
+    pointer: dict | None = None   # where the chapter has no words for the speaker: their main naming place (speaker_hits)
 
 
 @dataclass
@@ -175,16 +176,39 @@ def merge_short(lines: list[LyricLine], min_tokens: int, count: str = "words") -
     return out
 
 
-def speaker_hits(refs: dict[str, dict], al: Alignment, bt: BookText) -> dict[str, tuple[str, list[tuple[str, str, int, int]]]]:
-    """speaker_id -> (voice, hits): where the edition's text names each speaker, once per book.
-    hits: (part, label, n, edition chapter) in plan order; part "named" (the speaker's name,
-    ``speaker_name_ref``) or "described" (the words introducing them). ``refs``: the plan's
-    speakers (cast.speaker_refs); the voice is the cast table's, else the plan's ``voice``."""
+def main_naming(ref: dict, prefix: str = "") -> tuple[str, int] | None:
+    """The speaker's main naming place in the plan, the same for every edition: among the entries in
+    this book (word keys starting with ``prefix``), the ``named`` one with the most clause rows (the
+    earlier on a tie), else the main ``described`` one; else the main ``named`` one in another book
+    (the Greek names a speaker where they are first named, also in another book); None if none."""
+    for part, here in (("named", True), ("described", True), ("named", False)):
+        entries = [(i, n) for i, (keys, n) in enumerate(ref.get(part) or []) if keys
+                   and keys[0].startswith(prefix) == here]
+        if entries:
+            return part, max(entries, key=lambda e: (e[1], -e[0]))[0]
+    return None
+
+
+def speaker_hits(refs: dict[str, dict], al: Alignment, bt: BookText, book: str = "", to_ed=None,
+                 lexemes: dict[int, list[str]] | None = None) -> dict[str, tuple]:
+    """speaker_id -> (voice, hits, pointer): where the edition's text names each speaker, once per
+    book. hits: (part, label, n, edition chapter, main) in plan order; part "named" (the speaker's
+    name, ``speaker_name_ref``) or "described" (the words introducing them); main: at the speaker's
+    main naming place (main_naming). pointer: that place, {book, verse (the edition's "c:v"), spine
+    [c, v], keys (source word keys), strong (their Strong's numbers, for this book's keys)}, or
+    None. ``refs``: the plan's speakers (cast.speaker_refs); the voice is the cast table's, else the
+    plan's ``voice``; ``to_ed(book, (c, v))``: spine -> edition (c, v) or None; ``lexemes``:
+    align.lexeme_keys of the book (for strong)."""
+    from .edition import BOOKS
+    prefix = f"{BOOKS.index(book) + 1:02d}" if book in BOOKS else ""
+    to_ed = to_ed or (lambda b, cv: cv)
+    strong_of = {k: f"{'G' if len(k) == 11 else 'H'}{n}" for n, keys in (lexemes or {}).items() for k in keys}
     out = {}
     for sid, ref in refs.items():
+        main = main_naming(ref, prefix)
         hits = []
         for part in ("named", "described"):
-            for keys, n in ref.get(part, []):
+            for i, (keys, n) in enumerate(ref.get(part, [])):
                 per_verse: dict[tuple[int, int], set[int]] = {}
                 for k in keys:
                     hit = al.positions(k)
@@ -193,26 +217,41 @@ def speaker_hits(refs: dict[str, dict], al: Alignment, bt: BookText) -> dict[str
                 for cv, pos in per_verse.items():
                     label = phrase(bt, cv, pos)
                     if label:
-                        hits.append((part, label, n, cv[0]))
-        out[sid] = (cast.voice_of(sid, None, ref.get("voice")), hits)
+                        hits.append((part, label, n, cv[0], main == (part, i)))
+        pointer = None
+        if main:
+            keys = ref[main[0]][main[1]][0]
+            where = BOOKS[int(keys[0][:2]) - 1] if keys[0][:2].isdigit() and 0 < int(keys[0][:2]) <= len(BOOKS) else book
+            spine = (int(keys[0][2:5]), int(keys[0][5:8]))
+            ed = to_ed(where, spine)
+            pointer = {"book": where, "verse": f"{ed[0]}:{ed[1]}" if ed else None, "spine": list(spine),
+                       "keys": list(keys), "strong": list(dict.fromkeys(strong_of[k] for k in keys if k in strong_of))}
+        out[sid] = (cast.voice_of(sid, None, ref.get("voice")), hits, pointer)
     return out
 
 
 def speaker_labels(hits: dict, chapter: int | None = None) -> dict[str, Speaker]:
     """speaker_id -> Speaker for one edition chapter. The label is the commonest of the edition's
-    words naming the speaker in this chapter (named, else described), else None (the cast table's
-    name is used). So a chapter gets the same label whether the client has the whole book or only
-    the chapter. ``chapter`` None: the commonest in the book (the cast table). ``hits``: speaker_hits()."""
+    words naming the speaker in this chapter (named, else described); where the chapter has none,
+    the words at the speaker's main naming place, and ``pointer`` says where that is, so a client
+    with only this chapter can fetch that chapter; else None (the cast table's name is used).
+    Nothing depends on which other chapters the client has, except that the pointer's chapter must
+    be among them for its words. ``chapter`` None: the commonest in the book (the cast table).
+    ``hits``: speaker_hits()."""
     out = {}
-    for sid, (voice, hs) in hits.items():
-        def pick(part: str) -> str | None:
-            c: Counter = Counter()
-            for p, label, n, ch in hs:
-                if p == part and (chapter is None or ch == chapter):
-                    c[label] += n
-            return c.most_common(1)[0][0] if c else None
-        label = pick("named") or pick("described")
-        out[sid] = Speaker(sid, label, voice)
+    for sid, (voice, hs, pointer) in hits.items():
+        def pick(keep) -> str | None:
+            for part in ("named", "described"):
+                c: Counter = Counter()
+                for h in hs:
+                    if h[0] == part and keep(h):
+                        c[h[1]] += h[2]
+                if c:
+                    return c.most_common(1)[0][0]
+            return None
+        own = pick(lambda h: chapter is None or h[3] == chapter)
+        label = own if own is not None or chapter is None else pick(lambda h: h[4])
+        out[sid] = Speaker(sid, label, voice, pointer if own is None and chapter is not None else None)
     return out
 
 

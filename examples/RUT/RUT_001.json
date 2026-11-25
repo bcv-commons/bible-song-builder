@@ -97,7 +97,7 @@
    "licence": "CC BY-SA 4.0 (model output, claude-opus-5-5, no human check)"
   }
  },
- "bible-song-builder": "0.3.0",
+ "bible-song-builder": "0.3.1",
  "sections": [
   {
    "label": "Verse 1",
@@ -1325,8 +1325,22 @@
      "quote": "q01582",
      "speaker": {
       "id": "c0212",
-      "label": null,
-      "voice": "female_group"
+      "label": "the women",
+      "voice": "female_group",
+      "pointer": {
+       "book": "RUT",
+       "verse": "4:14",
+       "spine": [
+        4,
+        14
+       ],
+       "keys": [
+        "080040140022"
+       ],
+       "strong": [
+        "H802"
+       ]
+      }
      },
      "segment": 103,
      "refrain": null,

@@ -97,7 +97,7 @@
    "licence": "CC BY-SA 4.0 (model output, claude-opus-5-5, no human check)"
   }
  },
- "bible-song-builder": "0.3.0",
+ "bible-song-builder": "0.3.1",
  "sections": [
   {
    "label": "Verse 1",
@@ -495,7 +495,7 @@
      "quote": "42001013007",
      "speaker": {
       "id": "n0109",
-      "label": "angel",
+      "label": "Gabriel",
       "voice": "male"
      },
      "segment": 35,
@@ -510,7 +510,7 @@
      "quote": "42001013007",
      "speaker": {
       "id": "n0109",
-      "label": "angel",
+      "label": "Gabriel",
       "voice": "male"
      },
      "segment": 36,
@@ -525,7 +525,7 @@
      "quote": "42001013007",
      "speaker": {
       "id": "n0109",
-      "label": "angel",
+      "label": "Gabriel",
       "voice": "male"
      },
      "segment": 37,
@@ -540,7 +540,7 @@
      "quote": "42001013007",
      "speaker": {
       "id": "n0109",
-      "label": "angel",
+      "label": "Gabriel",
       "voice": "male"
      },
      "segment": 38,
@@ -555,7 +555,7 @@
      "quote": "42001013007",
      "speaker": {
       "id": "n0109",
-      "label": "angel",
+      "label": "Gabriel",
       "voice": "male"
      },
      "segment": 39,
@@ -570,7 +570,7 @@
      "quote": "42001013007",
      "speaker": {
       "id": "n0109",
-      "label": "angel",
+      "label": "Gabriel",
       "voice": "male"
      },
      "segment": 40,
@@ -585,7 +585,7 @@
      "quote": "42001013007",
      "speaker": {
       "id": "n0109",
-      "label": "angel",
+      "label": "Gabriel",
       "voice": "male"
      },
      "segment": 41,
@@ -600,7 +600,7 @@
      "quote": "42001013007",
      "speaker": {
       "id": "n0109",
-      "label": "angel",
+      "label": "Gabriel",
       "voice": "male"
      },
      "segment": 42,
@@ -615,7 +615,7 @@
      "quote": "42001013007",
      "speaker": {
       "id": "n0109",
-      "label": "angel",
+      "label": "Gabriel",
       "voice": "male"
      },
      "segment": 43,
@@ -643,7 +643,7 @@
      "quote": "42001013007",
      "speaker": {
       "id": "n0109",
-      "label": "angel",
+      "label": "Gabriel",
       "voice": "male"
      },
      "segment": 44,
@@ -658,7 +658,7 @@
      "quote": "42001013007",
      "speaker": {
       "id": "n0109",
-      "label": "angel",
+      "label": "Gabriel",
       "voice": "male"
      },
      "segment": 45,
@@ -673,7 +673,7 @@
      "quote": "42001013007",
      "speaker": {
       "id": "n0109",
-      "label": "angel",
+      "label": "Gabriel",
       "voice": "male"
      },
      "segment": 46,
@@ -688,7 +688,7 @@
      "quote": "42001013007",
      "speaker": {
       "id": "n0109",
-      "label": "angel",
+      "label": "Gabriel",
       "voice": "male"
      },
      "segment": 47,
@@ -703,7 +703,7 @@
      "quote": "42001013007",
      "speaker": {
       "id": "n0109",
-      "label": "angel",
+      "label": "Gabriel",
       "voice": "male"
      },
      "segment": 48,
@@ -786,7 +786,7 @@
      "quote": "42001019007",
      "speaker": {
       "id": "n0109",
-      "label": "angel",
+      "label": "Gabriel",
       "voice": "male"
      },
      "segment": 55,
@@ -812,7 +812,7 @@
      "quote": "42001019007",
      "speaker": {
       "id": "n0109",
-      "label": "angel",
+      "label": "Gabriel",
       "voice": "male"
      },
      "segment": 56,
@@ -827,7 +827,7 @@
      "quote": "42001019007",
      "speaker": {
       "id": "n0109",
-      "label": "angel",
+      "label": "Gabriel",
       "voice": "male"
      },
      "segment": 57,
@@ -842,7 +842,7 @@
      "quote": "42001019007",
      "speaker": {
       "id": "n0109",
-      "label": "angel",
+      "label": "Gabriel",
       "voice": "male"
      },
      "segment": 58,
@@ -857,7 +857,7 @@
      "quote": "42001019007",
      "speaker": {
       "id": "n0109",
-      "label": "angel",
+      "label": "Gabriel",
       "voice": "male"
      },
      "segment": 59,
@@ -872,7 +872,7 @@
      "quote": "42001019007",
      "speaker": {
       "id": "n0109",
-      "label": "angel",
+      "label": "Gabriel",
       "voice": "male"
      },
      "segment": 60,
@@ -887,7 +887,7 @@
      "quote": "42001019007",
      "speaker": {
       "id": "n0109",
-      "label": "angel",
+      "label": "Gabriel",
       "voice": "male"
      },
      "segment": 61,
@@ -902,7 +902,7 @@
      "quote": "42001019007",
      "speaker": {
       "id": "n0109",
-      "label": "angel",
+      "label": "Gabriel",
       "voice": "male"
      },
      "segment": 63,
@@ -917,7 +917,7 @@
      "quote": "42001019007",
      "speaker": {
       "id": "n0109",
-      "label": "angel",
+      "label": "Gabriel",
       "voice": "male"
      },
      "segment": 64,
@@ -932,7 +932,7 @@
      "quote": "42001019007",
      "speaker": {
       "id": "n0109",
-      "label": "angel",
+      "label": "Gabriel",
       "voice": "male"
      },
      "segment": 65,
@@ -1194,7 +1194,7 @@
      "quote": "42001028006",
      "speaker": {
       "id": "n0109",
-      "label": "angel",
+      "label": "Gabriel",
       "voice": "male"
      },
      "segment": 91,
@@ -1209,7 +1209,7 @@
      "quote": "42001028006",
      "speaker": {
       "id": "n0109",
-      "label": "angel",
+      "label": "Gabriel",
       "voice": "male"
      },
      "segment": 92,
@@ -1269,7 +1269,7 @@
      "quote": "42001030006",
      "speaker": {
       "id": "n0109",
-      "label": "angel",
+      "label": "Gabriel",
       "voice": "male"
      },
      "segment": 97,
@@ -1284,7 +1284,7 @@
      "quote": "42001030006",
      "speaker": {
       "id": "n0109",
-      "label": "angel",
+      "label": "Gabriel",
       "voice": "male"
      },
      "segment": 98,
@@ -1313,7 +1313,7 @@
      "quote": "42001030006",
      "speaker": {
       "id": "n0109",
-      "label": "angel",
+      "label": "Gabriel",
       "voice": "male"
      },
      "segment": 99,
@@ -1328,7 +1328,7 @@
      "quote": "42001030006",
      "speaker": {
       "id": "n0109",
-      "label": "angel",
+      "label": "Gabriel",
       "voice": "male"
      },
      "segment": 100,
@@ -1343,7 +1343,7 @@
      "quote": "42001030006",
      "speaker": {
       "id": "n0109",
-      "label": "angel",
+      "label": "Gabriel",
       "voice": "male"
      },
      "segment": 101,
@@ -1358,7 +1358,7 @@
      "quote": "42001030006",
      "speaker": {
       "id": "n0109",
-      "label": "angel",
+      "label": "Gabriel",
       "voice": "male"
      },
      "segment": 102,
@@ -1373,7 +1373,7 @@
      "quote": "42001030006",
      "speaker": {
       "id": "n0109",
-      "label": "angel",
+      "label": "Gabriel",
       "voice": "male"
      },
      "segment": 103,
@@ -1388,7 +1388,7 @@
      "quote": "42001030006",
      "speaker": {
       "id": "n0109",
-      "label": "angel",
+      "label": "Gabriel",
       "voice": "male"
      },
      "segment": 104,
@@ -1403,7 +1403,7 @@
      "quote": "42001030006",
      "speaker": {
       "id": "n0109",
-      "label": "angel",
+      "label": "Gabriel",
       "voice": "male"
      },
      "segment": 105,
@@ -1418,7 +1418,7 @@
      "quote": "42001030006",
      "speaker": {
       "id": "n0109",
-      "label": "angel",
+      "label": "Gabriel",
       "voice": "male"
      },
      "segment": 106,
@@ -1499,7 +1499,7 @@
      "quote": "42001035007",
      "speaker": {
       "id": "n0109",
-      "label": "angel",
+      "label": "Gabriel",
       "voice": "male"
      },
      "segment": 111,
@@ -1514,7 +1514,7 @@
      "quote": "42001035007",
      "speaker": {
       "id": "n0109",
-      "label": "angel",
+      "label": "Gabriel",
       "voice": "male"
      },
      "segment": 112,
@@ -1529,7 +1529,7 @@
      "quote": "42001035007",
      "speaker": {
       "id": "n0109",
-      "label": "angel",
+      "label": "Gabriel",
       "voice": "male"
      },
      "segment": 113,
@@ -1544,7 +1544,7 @@
      "quote": "42001035007",
      "speaker": {
       "id": "n0109",
-      "label": "angel",
+      "label": "Gabriel",
       "voice": "male"
      },
      "segment": 114,
@@ -1559,7 +1559,7 @@
      "quote": "42001035007",
      "speaker": {
       "id": "n0109",
-      "label": "angel",
+      "label": "Gabriel",
       "voice": "male"
      },
      "segment": 115,
@@ -1574,7 +1574,7 @@
      "quote": "42001035007",
      "speaker": {
       "id": "n0109",
-      "label": "angel",
+      "label": "Gabriel",
       "voice": "male"
      },
      "segment": 117,

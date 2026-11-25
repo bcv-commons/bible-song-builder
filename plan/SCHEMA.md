@@ -78,8 +78,12 @@ in narrative, the psalm's type or purpose, the commentators, the delivery).
 | `named` | [[keys, n]] | the word keys naming the speaker (`speaker_name_ref`), each different list with how many clause rows give it, in first-occurrence order |
 | `described` | [[keys, n]] | the same for the words introducing them (`speaker_ref`) |
 
-Half 2 finds the edition's words for these keys. The commonest `named` phrase (counted by `n`) is the speaker's
-label in the notes, else the commonest `described` one. Ties go to the earlier one.
+Half 2 finds the edition's words for these keys, per edition chapter: the commonest `named` phrase of the chapter
+(counted by `n`) is the speaker's label there, else the commonest `described` one; where the chapter has neither,
+the phrase at the speaker's **main naming place** (`lines.main_naming`): among the entries of this book, the `named`
+one with the largest `n`, else the `described` one; else a `named` one in another book (the Greek names a speaker
+where they are first named, also in another book). Ties go to the earlier one. Keys are lists also for the Greek
+(`speaker_name_ref` is one key there; plans before 0.3.1 split it into digits).
 
 ## The chapter file
 

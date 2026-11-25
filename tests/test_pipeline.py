@@ -25,7 +25,8 @@ def build(book, chapter):
     al = align.load("BSB", book, bt.file_hash, bt.chapter_fingerprints)
     plan.ensure(book)
     bp = plan.load_book(book)
-    sp = lines.speaker_hits(bp["speakers"], al, bt)
+    vmap = align.verse_map("BSB")
+    sp = lines.speaker_hits(bp["speakers"], al, bt, book, lambda b, cv: align.spine_to_edition(vmap, b, cv), align.lexeme_keys(book))
     args = Args()
     apply_layout_defaults(args)
     res = build_chapter(book, chapter, "BSB", bt, al, bp, plan.load_chapter(book, chapter), sp,
@@ -86,9 +87,17 @@ class TestRuth(unittest.TestCase):
         self.assertEqual(one.paragraph_starts, {cv for cv in self.bt.paragraph_starts if cv[0] == 1})
         self.assertEqual(len(one.chapter_verses(1)), 22)
         refs = plan.load_book("RUT")["speakers"]
-        whole = lines.speaker_labels(lines.speaker_hits(refs, self.al, self.bt), 1)
-        alone = lines.speaker_labels(lines.speaker_hits(refs, self.al, one), 1)
-        self.assertEqual({s: p.label for s, p in whole.items()}, {s: p.label for s, p in alone.items()})
+        lex = align.lexeme_keys("RUT")
+        labels = lambda bt: {s: (p.label, p.pointer) for s, p in lines.speaker_labels(  # noqa: E731
+            lines.speaker_hits(refs, self.al, bt, "RUT", lexemes=lex), 1).items()}
+        whole, alone = labels(self.bt), labels(one)
+        # the women of 1:19 are named only in 4:14: with chapter 1 alone, no label but the pointer
+        sid, (label, pointer) = next((s, lp) for s, lp in alone.items() if lp[1])
+        self.assertIsNone(label)
+        self.assertEqual((pointer["book"], pointer["verse"], pointer["strong"]), ("RUT", "4:14", ["H802"]))
+        self.assertIsNotNone(whole[sid][0])
+        with_4 = edition.book_text("BSB", "RUT", {k: v.text for k, v in self.bt.verses.items() if k[0] in (1, 4)})
+        self.assertEqual(labels(with_4)[sid], whole[sid])
 
     def test_reordered_clauses_get_own_lines(self):
         v6 = [ln["text"] for s in self.res["data"]["sections"] for ln in s["lines"] if ln["verse"] == "1:6"]

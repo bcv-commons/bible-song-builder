@@ -1,7 +1,7 @@
 Luke 1 · BSB · setting: prose
 Profile: folk, male lead · Suno persona: (not set: profiles.toml [profiles.folk] persona.male)
 Style: the book's (LUK.style.txt, profile folk). To change: config/books/LUK.toml, [chapters.1] (mood or style)
-Voices: [Male Vocal] angel, Zechariah; [Female Vocal] Mary, Elizabeth; [Choir] neighbors and relatives, n0114; [Lead Vocal] or no tag = the narrator (the persona)
+Voices: [Male Vocal] Gabriel, Zechariah; [Female Vocal] Mary, Elizabeth; [Choir] neighbors and relatives, n0114; [Lead Vocal] or no tag = the narrator (the persona)
 [Verse 1] 1:1-4
 [Verse 2] 1:5-7
 [Verse 3] 1:8-12  · [Mood: epic] yirah יִרְאָה (md.yare), from passage-moods-model LUK 1:10-14 (model-read)

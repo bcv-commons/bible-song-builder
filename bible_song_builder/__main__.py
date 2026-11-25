@@ -73,6 +73,7 @@ def build_chapter(book: str, chapter: int, ed: str, bt: edition.BookText, al: al
     is_nt = bp["testament"] == "nt"
     sts = lines.stanzas(lyric_lines, bt, args.max_lines, cp.signals,
                         layout.get("stanzas", {}), is_nt)
+    elsewhere = {ln.speaker.id: ln.speaker for ln in lyric_lines if ln.speaker and ln.speaker.pointer}
 
     spine_verses = sorted({(r["chapter"], r["verse"]) for r in ch_rows})
     sv = structure.setting_verses(facts, spine_verses, layout.get("setting"))
@@ -101,6 +102,13 @@ def build_chapter(book: str, chapter: int, ed: str, bt: edition.BookText, al: al
             notes.append("Heading terms (not sung): " + "; ".join(map(term, marks.heading_terms)))
         if marks.selah:
             notes.append("Selah at " + ", ".join(f"{c}:{v}" for c, v in sorted(marks.selah)))
+    if elsewhere:
+        def at(sp):
+            pt = sp.pointer
+            return (f"{sp.label or cast.cast_name(sp.id) or sp.id} at {pt['book']} {pt['verse'] or ':'.join(map(str, pt['spine']))}"
+                    + (f" ({' '.join(pt['strong'])})" if pt["strong"] else "")
+                    + ("" if sp.label else ", not loaded: the cast table's name"))
+        notes.append("Named in another chapter: " + "; ".join(map(at, elsewhere.values())))
     letter_names = config.language(fetch.pins()["editions"][ed]["iso"]).get("hebrew_letters", {})
     if marks.letters and not marks.acrostic_runs:
         # a letter per verse or line: too short for stanzas, so only noted
@@ -142,7 +150,8 @@ def build_chapter(book: str, chapter: int, ed: str, bt: edition.BookText, al: al
             "verses": [f"{c}:{v}" for c, v in s.stanza.verses],
             "lines": [{"verse": f"{ln.cv[0]}:{ln.cv[1]}", "token": ln.first_token, "text": ln.text,
                        "quote": ln.quote,
-                       "speaker": ({"id": ln.speaker.id, "label": ln.speaker.label, "voice": ln.speaker.voice}
+                       "speaker": ({"id": ln.speaker.id, "label": ln.speaker.label, "voice": ln.speaker.voice,
+                                    **({"pointer": ln.speaker.pointer} if ln.speaker.pointer else {})}
                                    if ln.speaker else None),
                        "segment": ln.row_seg, "refrain": ln.refrain, "acrostic": ln.acrostic,
                        "selah": ln.selah} for ln in s.stanza.lines],
@@ -193,10 +202,11 @@ def main(argv: list[str] | None = None) -> int:
     plans = Path(args.plans)
     plan.ensure(book, plans)
     bp = plan.load_book(book, plans)
-    speakers = lines.speaker_hits(bp["speakers"], al, bt)
     profile = profiles.for_book(args.edition, book, args.profile, args.lead)
     vmap = align.verse_map(args.edition)
-    words = moods.family_words(align.lexeme_keys(book), al, bt, bp["testament"])
+    lexemes = align.lexeme_keys(book)
+    speakers = lines.speaker_hits(bp["speakers"], al, bt, book, lambda b, cv: align.spine_to_edition(vmap, b, cv), lexemes)
+    words = moods.family_words(lexemes, al, bt, bp["testament"])
 
     chapters = sorted({c for c, _ in bt.verses}) if args.chapters == ["all"] else [int(c) for c in args.chapters]
     to_ed = lambda cv: align.spine_to_edition(vmap, book, cv)  # noqa: E731

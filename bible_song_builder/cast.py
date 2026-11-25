@@ -144,7 +144,8 @@ def speaker_refs(rows: list[dict]) -> dict[str, dict]:
             continue
         e = seen.setdefault(sid, {"named": {}, "described": {}})
         for field_, part in (("speaker_name_ref", "named"), ("speaker_ref", "described")):
-            keys = tuple(r.get(field_) or [])
+            v = r.get(field_) or []
+            keys = tuple([v] if isinstance(v, str) else v)       # the Greek speaker_name_ref is one key, a string
             if keys:
                 e[part][keys] = e[part].get(keys, 0) + 1
     return {sid: {part: [[list(k), n] for k, n in d.items()] for part, d in e.items()} for sid, e in seen.items()}

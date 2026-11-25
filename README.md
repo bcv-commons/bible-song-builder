@@ -70,7 +70,12 @@ Finding an edition in the bcv-commons/bibles catalog and fetching its text is th
 plain data instead, from any source (DBT Sofria, plain text, through the verse-text readers), for a whole book or
 only some chapters: `verses` maps `"chapter:verse"` to the verse text, the three layout facts are lists of verse
 keys, and only `verses` is needed. Tokens and fingerprints are computed in it. A chapter's song is the same either
-way: speaker labels come from the chapter's own words (else the cast table's name), never from another chapter.
+way: a speaker's label comes from the chapter's own words; where the chapter has none, from the speaker's main
+naming place (the same for every edition), else the cast table's name. A speaker named only in another chapter
+carries a `pointer` to that place (`{book, verse, spine, keys, strong}`: the edition's verse, the spine verse, the
+Hebrew/Greek word keys and their Strong's numbers), and the notes say "Named in another chapter: the women at RUT
+4:14 (H802)". A client with only the chapter can fetch the pointer's whole chapter and pass both to `bookText`: the
+song is then the whole book's.
 With only some chapters, the alignment is found per chapter (compact alignments).
 [`js/sample/client.mjs`](js/sample/client.mjs) shows the calls; [`js/src/index.js`](js/src/index.js) lists them.
 
@@ -260,7 +265,7 @@ For each chapter, in `output/<BOOK>/`:
 | `<BOOK>_<CCC>.style.txt` | only where the chapter has its own style (see below); use it instead | paste into **Style of Music** |
 | `<BOOK>_<CCC>.notes.txt` | the persona to pick, the voices (tag → speakers), the sections and their verses, psalm headings, selah, acrostic letters, length warnings, which style file applies and why, and the credits | not pasted |
 | `<BOOK>.notes.txt` | which chapters of the book have their own style, and why | not pasted |
-| `<BOOK>_<CCC>.json` | the same lyrics with every line's verse, BSB token, quotation, speaker (id, label, voice class) and clause segment; the profile, style and mood, the text fingerprint, the alignment file and the pins | |
+| `<BOOK>_<CCC>.json` | the same lyrics with every line's verse, BSB token, quotation, speaker (id, label, voice class, and `pointer` where the chapter does not name them) and clause segment; the profile, style and mood, the text fingerprint, the alignment file and the pins | |
 
 **Chapter styles.** A book keeps one style. A chapter gets its own only where the Hebrew/Greek, or a
 scholarly reading of it, says how it sounds. Its style is then the book's style plus a few words for the

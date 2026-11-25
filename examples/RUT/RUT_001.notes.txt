@@ -13,6 +13,7 @@ Voices: [Female Vocal] Naomi, Ruth; [Female Choir] two daughters-in-law, the wom
 [Verse 8] 1:18-19
 [Verse 9] 1:20-21
 [Verse 10] 1:22
+Named in another chapter: the women at RUT 4:14 (H802)
 Shortened or paraphrased: nothing; every line is the edition's text, verbatim.
 Text: BSB, Public Domain (berean.bible, 2023-04-30).
 Structure: bcv-commons/hebrew-clause-lines v0.2, passage-facts v0.3.3, clause-connectives v0.1 and clause-columns v1.2, CC BY-SA 4.0 (bcv-commons; MACULA, Clear Bible / Biblica, CC BY 4.0; MAM, unfoldingWord ULT, UBS dictionaries, CC BY-SA 4.0).

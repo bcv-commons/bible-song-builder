@@ -102,7 +102,7 @@
    "licence": "CC BY-SA 4.0 (model output, claude-opus-5-5, no human check)"
   }
  },
- "bible-song-builder": "0.3.0",
+ "bible-song-builder": "0.3.1",
  "sections": [
   {
    "label": "Verse 1",
@@ -406,8 +406,22 @@
      "quote": "q03122",
      "speaker": {
       "id": "c0560",
-      "label": null,
-      "voice": "group"
+      "label": "men",
+      "voice": "group",
+      "pointer": {
+       "book": "PSA",
+       "verse": "58:11",
+       "spine": [
+        58,
+        12
+       ],
+       "keys": [
+        "190580120021"
+       ],
+       "strong": [
+        "H120"
+       ]
+      }
      },
      "segment": 28,
      "refrain": null,
@@ -421,8 +435,22 @@
      "quote": "q03122",
      "speaker": {
       "id": "c0560",
-      "label": null,
-      "voice": "group"
+      "label": "men",
+      "voice": "group",
+      "pointer": {
+       "book": "PSA",
+       "verse": "58:11",
+       "spine": [
+        58,
+        12
+       ],
+       "keys": [
+        "190580120021"
+       ],
+       "strong": [
+        "H120"
+       ]
+      }
      },
      "segment": 29,
      "refrain": null,
@@ -436,8 +464,22 @@
      "quote": "q03122",
      "speaker": {
       "id": "c0560",
-      "label": null,
-      "voice": "group"
+      "label": "men",
+      "voice": "group",
+      "pointer": {
+       "book": "PSA",
+       "verse": "58:11",
+       "spine": [
+        58,
+        12
+       ],
+       "keys": [
+        "190580120021"
+       ],
+       "strong": [
+        "H120"
+       ]
+      }
      },
      "segment": 30,
      "refrain": null,
@@ -451,8 +493,22 @@
      "quote": "q03122",
      "speaker": {
       "id": "c0560",
-      "label": null,
-      "voice": "group"
+      "label": "men",
+      "voice": "group",
+      "pointer": {
+       "book": "PSA",
+       "verse": "58:11",
+       "spine": [
+        58,
+        12
+       ],
+       "keys": [
+        "190580120021"
+       ],
+       "strong": [
+        "H120"
+       ]
+      }
      },
      "segment": 31,
      "refrain": null,

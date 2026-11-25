@@ -9,7 +9,7 @@ import { render, sections } from './render.js';
 import { chapterMarks, settingVerses } from './textforms.js';
 import { cvC, cvKey, fmtCv, pyLen, removePrefix, sortedNums } from './util.js';
 
-export const VERSION = '0.3.0';
+export const VERSION = '0.3.1';
 const PLAN_SCHEMA_MAJOR = '1';
 
 /** What half 2 reads for edition chapter c: the plans of the spine chapters spineChapters names
@@ -56,7 +56,7 @@ export function prepareBook({ cfg, edition, book, bt, al, bookPlan, vmap, lexeme
     const toEd = (cv) => spineToEdition(vmap, book, cv);
     return {
         cfg, edition, book, bt, al, bookPlan, vmap, args, profile, toEd,
-        speakers: speakerHits(cfg, bookPlan.speakers, al, bt),
+        speakers: speakerHits(cfg, bookPlan.speakers, al, bt, book, (b, cv) => spineToEdition(vmap, b, cv), lexemes),
         moods: applyOverrides(cfg, book, editionMoods(bookPlan, toEd), profile),
         words: lexemes ? familyWords(cfg, lexemes, al, bt, bookPlan.testament) : new Map(),
     };
@@ -116,6 +116,8 @@ export function projectChapter(ctx, chapter, plan) {
         pull: pullUnaligned(layout, al),
     });
     const sts = stanzas(lyricLines, bt, args.max_lines, plan.signals, layout.stanzas || {}, bp.testament === 'nt');
+    const elsewhere = new Map();
+    for (const ln of lyricLines) if (ln.speaker && ln.speaker.pointer) elsewhere.set(ln.speaker.id, ln.speaker);
 
     const spine = sortedNums(new Set(plan.rows.map((r) => cvKey(r.chapter, r.verse))));
     const sv = settingVerses(plan.facts, spine, layout.setting);
@@ -143,6 +145,11 @@ export function projectChapter(ctx, chapter, plan) {
             notes.push('Heading terms (not sung): ' + marks.headingTerms.map(term).join('; '));
         }
         if (marks.selah.size) notes.push('Selah at ' + sortedNums(marks.selah.keys()).map(fmtCv).join(', '));
+    }
+    if (elsewhere.size) {
+        notes.push('Named in another chapter: ' + [...elsewhere.values()].map((sp) => `${sp.label || castName(cfg, sp.id) || sp.id} at `
+            + `${sp.pointer.book} ${sp.pointer.verse ?? sp.pointer.spine.join(':')}${sp.pointer.strong.length ? ` (${sp.pointer.strong.join(' ')})` : ''}`
+            + (sp.label ? '' : ", not loaded: the cast table's name")).join('; '));
     }
     const letterNames = cfg.language(edition.iso).hebrew_letters || {};
     if (marks.letters.length && !marks.acrosticRuns.size) {
@@ -179,7 +186,7 @@ export function projectChapter(ctx, chapter, plan) {
             verses: s.stanza.verses.map(fmtCv),
             lines: s.stanza.lines.map((ln) => ({
                 verse: fmtCv(ln.cv), token: ln.first_token, text: ln.text, quote: ln.quote,
-                speaker: ln.speaker ? { id: ln.speaker.id, label: ln.speaker.label, voice: ln.speaker.voice } : null,
+                speaker: ln.speaker ? { id: ln.speaker.id, label: ln.speaker.label, voice: ln.speaker.voice, ...(ln.speaker.pointer ? { pointer: ln.speaker.pointer } : {}) } : null,
                 segment: ln.row_seg, refrain: ln.refrain, acrostic: ln.acrostic, selah: ln.selah,
             })),
             starts: s.kind,

@@ -13,6 +13,7 @@ Voices: [Choir] men; [Lead Vocal] or no tag = the narrator (the persona)
 [Verse 9] 22:28-31  · [Mood: epic] yirah יִרְאָה (md.yare) “fear”, from passage-moods-model PSA 22:27-31 (model-read)
 Superscription before 22:1 (not sung): For the choirmaster. To the tune of “The Doe of the Dawn.” A Psalm of David.
 Heading terms (not sung): for the leader (למנצח); to the tune of the doe of the dawn (על אילת השחר); a psalm, a song with accompaniment (מזמור); ascribed to David (לדוד)
+Named in another chapter: men at PSA 58:11 (H120)
 Shortened or paraphrased: nothing; every line is the edition's text, verbatim.
 Text: BSB, Public Domain (berean.bible, 2023-04-30).
 Structure: bcv-commons/hebrew-clause-lines v0.2, passage-facts v0.3.3, clause-connectives v0.1 and clause-columns v1.2, CC BY-SA 4.0 (bcv-commons; MACULA, Clear Bible / Biblica, CC BY 4.0; MAM, unfoldingWord ULT, UBS dictionaries, CC BY-SA 4.0).

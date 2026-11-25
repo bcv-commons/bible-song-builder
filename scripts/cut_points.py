@@ -82,8 +82,8 @@ for book in books:
     al = align.load("BSB", book, bt.file_hash, bt.chapter_fingerprints)
     plan.ensure(book)
     bp = plan.load_book(book)
-    speakers = lines.speaker_hits(bp["speakers"], al, bt)
     vmap = align.verse_map("BSB")
+    speakers = lines.speaker_hits(bp["speakers"], al, bt, book, lambda b, cv: align.spine_to_edition(vmap, b, cv), align.lexeme_keys(book))
     prof = profiles.for_book("BSB", book)
     for c in sorted({c for c, _ in bt.verses}):
         res = build_chapter(book, c, "BSB", bt, al, bp, plan.load_chapter(book, c), speakers, vmap, args)

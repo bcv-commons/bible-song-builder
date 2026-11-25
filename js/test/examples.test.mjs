@@ -66,7 +66,7 @@ test('a compact alignment: lines start before the unlinked words of a clause', a
     assert.ok(out['RUT_001.json'].includes('"kind": "compact"'));
 });
 
-test('bookText: one chapter as plain data gives the song the whole USJ book gives', async () => {
+test('bookText: one chapter as plain data, with the chapter its speaker pointer names, gives the whole book\'s song', async () => {
     const { bookText, chapterFiles, chapterPlan, lexemeKeys, loadAlignment, loadBookText, prepareBook, projectChapter, verseMap } = await import('../src/index.js');
     const { bookPlan, cacheFiles, chapterPlanDocs, releaseUsj } = await import('../node/files.js');
     const cfg = await loadConfig(ROOT);
@@ -75,21 +75,32 @@ test('bookText: one chapter as plain data gives the song the whole USJ book give
     const vmap = await verseMap(files, edition);
     const whole = await loadBookText(cfg, edition, 'RUT', await releaseUsj(ROOT, cfg.pins, edition.text, 'RUT'));
     const k = (cv) => `${Math.floor(cv / 1000)}:${cv % 1000}`;
-    const inCh1 = (cv) => Math.floor(cv / 1000) === 1;
-    const one = await bookText(edition, 'RUT', {
-        verses: Object.fromEntries(whole.chapterVerses(1).map((v) => [`${v.chapter}:${v.verse}`, v.text])),
-        paragraphStarts: [...whole.paragraphStarts].filter(inCh1).map(k),
-        headingBefore: [...whole.headingBefore].filter(inCh1).map(k),
-        poetryVerses: [...whole.poetryVerses].filter(inCh1).map(k),
-        name: whole.name,
-    });
-    assert.equal(one.chapterFingerprints.get(1), whole.chapterFingerprints.get(1));
+    const part = async (chs) => {
+        const inChs = (cv) => chs.includes(Math.floor(cv / 1000));
+        return bookText(edition, 'RUT', {
+            verses: Object.fromEntries(chs.flatMap((c) => whole.chapterVerses(c)).map((v) => [`${v.chapter}:${v.verse}`, v.text])),
+            paragraphStarts: [...whole.paragraphStarts].filter(inChs).map(k),
+            headingBefore: [...whole.headingBefore].filter(inChs).map(k),
+            poetryVerses: [...whole.poetryVerses].filter(inChs).map(k),
+            name: whole.name,
+        });
+    };
     const song = async (bt) => {
         const al = await loadAlignment(files, edition, 'RUT', bt.fileHash, bt.chapterFingerprints);
         const ctx = prepareBook({ cfg, edition, book: 'RUT', bt, al, bookPlan: await bookPlan(ROOT, 'RUT'), vmap, lexemes: await lexemeKeys(files, 'RUT') });
-        return chapterFiles(ctx, 1, projectChapter(ctx, 1, chapterPlan(await chapterPlanDocs(ROOT, 'RUT', 1, vmap))));
+        const res = projectChapter(ctx, 1, chapterPlan(await chapterPlanDocs(ROOT, 'RUT', 1, vmap)));
+        return [chapterFiles(ctx, 1, res), res];
     };
-    const [a, b] = [await song(whole), await song(one)];
+    const one = await part([1]);
+    assert.equal(one.chapterFingerprints.get(1), whole.chapterFingerprints.get(1));
+    const [a] = await song(whole);
+    const [b, res] = await song(one);
     assert.equal(b['RUT_001.lyrics.txt'], a['RUT_001.lyrics.txt']);
-    assert.equal(b['RUT_001.notes.txt'], a['RUT_001.notes.txt']);
+    // the women of 1:19 are named only in 4:14: the pointer says so
+    const women = res.data.sections.flatMap((s) => s.lines).map((ln) => ln.speaker).find((sp) => sp && sp.pointer);
+    assert.deepEqual([women.pointer.book, women.pointer.verse, women.pointer.strong], ['RUT', '4:14', ['H802']]);
+    assert.ok(b['RUT_001.notes.txt'].includes("Named in another chapter: the women at RUT 4:14 (H802), not loaded: the cast table's name"));
+    const [c] = await song(await part([1, 4]));
+    assert.equal(c['RUT_001.notes.txt'], a['RUT_001.notes.txt']);
+    assert.equal(c['RUT_001.json'].replace(/"text_fingerprint": "[0-9a-f]+"/, ''), a['RUT_001.json'].replace(/"text_fingerprint": "[0-9a-f]+"/, ''));
 });
