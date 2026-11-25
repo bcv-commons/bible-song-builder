@@ -347,6 +347,10 @@ def source_credits(mood: Mood | None, section: list | None, pins: dict, sources:
         if "(model-read)" in mood.evidence:
             out.append(ds("hebrew-commentary-terms-model", "their statements read by a model"))
     sm = [m for m in (section or []) if m]
+    spans = [m for m in sm if "passage-mood-spans-model" in m.evidence]
+    if (mood and "passage-mood-spans-model" in mood.evidence) or spans:
+        out.append(ds("passage-mood-spans-model", "moods read by two models"))
+    sm = [m for m in sm if m not in spans]
     if sm:
         out.append("section moods: bcv-commons/passage-facts mood families (UBS dictionaries SDBH and Louw-Nida, "
                    "CC BY-SA 4.0)")
@@ -453,6 +457,33 @@ def mood_spans(book: str, facts: list[dict], spine: list[tuple[int, int]],
     return pf, model
 
 
+def reading_spans(book: str, spine: list[tuple[int, int]]) -> tuple[list[dict], list[dict]]:
+    """The mood reading of passage-mood-spans-model, as a song plan holds it: (spans, chapter
+    readings), both passes. A span: ``s`` (its index in the book), pass, mood, second, strength,
+    agree, ``first`` / ``last`` (word keys of its first and last clause line), its spine verses as
+    runs, ``unit`` and ``because``. A reading: chapter, ``mid`` (its middle verse, as for the
+    chapter moods), pass, mood (or "none"), strength, agree, because. Empty when
+    moods.toml [mood_spans] use is false."""
+    if not toml("moods.toml").get("mood_spans", {}).get("use", True):
+        return [], []
+    by_ch: dict[int, list[tuple[int, int]]] = {}
+    for cv in spine:
+        by_ch.setdefault(cv[0], []).append(cv)
+    spans, readings = [], []
+    for r in structure.mood_span_rows(book):
+        c = int(r["chapter"].split(".")[1])
+        if r["kind"] == "chapter":
+            vs = by_ch.get(c) or [(c, 1)]
+            readings.append({"chapter": c, "mid": list(vs[len(vs) // 2]), "pass": r["pass"], "mood": r["mood"],
+                             "strength": r["strength"], "agree": bool(r["agree"]), "because": r.get("because") or ""})
+            continue
+        spans.append({"s": len(spans), "pass": r["pass"], "mood": r["mood"], "second": r.get("second"),
+                      "strength": r["strength"], "agree": bool(r["agree"]), "first": r["first"], "last": r["last"],
+                      "verses": runs(_span_verses(r["first"], r["last"], spine)), "unit": r.get("unit"),
+                      "because": r.get("because") or ""})
+    return spans, readings
+
+
 def section_moods(book: str, sections_verses: list[list[tuple[int, int]]], mood_facts: list[dict],
                   model_moods: list[dict], to_ed, profile, words=None) -> list[SectionMood | None]:
     """A feeling for each section of a chapter, where the Hebrew/Greek words of most of its verses
@@ -504,6 +535,142 @@ def section_moods(book: str, sections_verses: list[list[tuple[int, int]]], mood_
         out.append(SectionMood(ws[0][0], ws[0][1], profile.family_tag.format(words=mood_words(best, n_words)),
                                "; ".join(srcs), any(m for _, _, m, _ in ws), (words or {}).get(best), best,
                                ml["moods"][best]["hebrew"]))
+    return out
+
+
+def span_config() -> dict:
+    """moods.toml [mood_spans], with its defaults."""
+    d = {"use": True, "sections": ["spans", "words"], "passes": ["a", "b"], "disagree": 0.5,
+         "strength_weights": [1.0, 2.0, 3.0], "min_marked": 0.3, "min_share": 0.5, "words_per_change": 100, "min_changes": 2,
+         "max_changes": 8, "chapter_reading": "fill", "reading_disagree": "first"}
+    return {**d, **toml("moods.toml").get("mood_spans", {})}
+
+
+def with_readings(found: dict[int, Mood], readings: list[dict], to_ed) -> dict[int, Mood]:
+    """The chapter moods with the reading's (the plan's ``readings``) laid in, as moods.toml
+    [mood_spans] chapter_reading says: "fill" where the source gives no mood, "over" everywhere
+    (a heading's instruments stay), "off". The reading of the first of ``passes``; where the two
+    passes differ, ``reading_disagree`` "first" keeps it and "none" drops it."""
+    cfg = span_config()
+    how = cfg["chapter_reading"]
+    if not cfg["use"] or how == "off":
+        return found
+    ml = mood_list()
+    out = dict(found)
+    first = cfg["passes"][0] if cfg["passes"] else "a"
+    for r in readings:
+        if r["pass"] != first or r["mood"] not in ml["moods"]:
+            continue
+        if not r["agree"] and len(cfg["passes"]) > 1 and cfg["reading_disagree"] == "none":
+            continue
+        e = to_ed(tuple(r["mid"]))
+        if e is None:
+            continue
+        old = out.get(e[0])
+        if how == "fill" and old is not None and (old.mood or old.style):
+            continue
+        ev = (f"passage-mood-spans-model pass {r['pass']}: {r['mood']} {ml['moods'][r['mood']]['hebrew']}"
+              + (f" “{r['because']}”" if r["because"] else "") + ("" if r["agree"] else " (the passes differ)")
+              + " (model-read)")
+        out[e[0]] = Mood(r["mood"], "reading", ev, old.instruments if old else ())
+    return out
+
+
+def span_section_moods(book: str, sections: list[list[tuple[dict | None, int]]], rows: list[dict],
+                       spans: list[dict], profile, words=None, to_ed=None) -> list[SectionMood | None] | None:
+    """A mood for each section from the span reading (the plan's ``mood_spans``), or None when the
+    chapter has no spans of the passes used. ``sections``: per section, its lyric lines as (the
+    plan row that starts the line, its sung words); ``rows``: the chapter plan's rows. Each line
+    takes, per pass, the mood of the shortest span over its row; a section where the reading marks at
+    least ``min_marked`` of the words takes the mood whose words, weighted by strength and agreement,
+    count most, if that is ``min_share`` of the weight of all the section's moods. Then
+    at most one change per ``words_per_change`` words: the weakest changes are dropped.
+    Settings: moods.toml [mood_spans]."""
+    cfg = span_config()
+    passes = cfg["passes"]
+    if not cfg["use"]:
+        return None
+    at = {w: i for i, r in enumerate(rows) for w in r.get("words", [])}
+    idx = {id(r): i for i, r in enumerate(rows)}
+    ranged = []
+    for sp in spans:
+        if sp["pass"] in passes and sp["first"] in at and sp["last"] in at:
+            ranged.append((at[sp["first"]], at[sp["last"]], sp))
+    if not ranged:
+        return None
+    ml = mood_list()
+    n_words = ml["use"].get("tag_words", 1)
+    sw = cfg["strength_weights"]
+
+    def inner(i: int, p: str):
+        best = None
+        for a, b, sp in ranged:
+            if sp["pass"] == p and a <= i <= b and (best is None or b - a < best[1] - best[0]):
+                best = (a, b, sp)
+        return best[2] if best else None
+
+    raw: list[tuple[str | None, float, list[dict]]] = []
+    total = 0
+    for lines_ in sections:
+        score: Counter = Counter()
+        used: dict[str, list[dict]] = {}
+        n_all = marked = 0
+        for row, n in lines_:
+            n_all += n
+            i = idx.get(id(row)) if row is not None else None
+            if i is None:
+                continue
+            for p in passes:
+                sp = inner(i, p)
+                if sp and sp["mood"] in ml["moods"]:
+                    m = sp["mood"]
+                    marked += n
+                    score[m] += n * sw[sp["strength"] - 1] * (1.0 if sp["agree"] else cfg["disagree"])
+                    if sp not in used.setdefault(m, []):
+                        used[m].append(sp)
+        total += n_all
+        best = max(score, key=lambda m: (score[m], m), default=None)
+        if (best is None or marked < cfg["min_marked"] * n_all * len(passes)
+                or score[best] < cfg["min_share"] * sum(score.values())):
+            raw.append((None, 0.0, []))
+            continue
+        raw.append((best, score[best] / max(n_all * max(sw) * len(passes), 1), used[best]))
+
+    moods_ = [m for m, _, _ in raw]
+    limit = max(cfg["min_changes"], min(cfg["max_changes"], -(-total // cfg["words_per_change"])))
+
+    def changes(ms):
+        out, cur = [], None
+        for i, m in enumerate(ms):
+            if m and m != cur:
+                out.append(i)
+                cur = m
+        return out
+    while len(changes(moods_)) > limit:
+        i = min(changes(moods_)[1:], key=lambda k: (raw[k][1], -k))
+        m = moods_[i]
+        j = i
+        while j < len(moods_) and moods_[j] in (m, None):
+            if moods_[j] == m:
+                moods_[j] = None
+            j += 1
+
+    out: list[SectionMood | None] = []
+    for (m0, _, used_), m in zip(raw, moods_):
+        if not m:
+            out.append(None)
+            continue
+        by_where: dict[str, list[dict]] = {}
+        for sp in used_:
+            if sp["verses"]:
+                by_where.setdefault(_cvs(unrun(sp["verses"])), []).append(sp)
+        where = "; ".join(
+            f"passage-mood-spans-model {book} {cv} (pass {', '.join(dict.fromkeys(x['pass'] for x in xs))})"
+            + (f" “{xs[0]['because']}”" if xs[0]["because"] else "") for cv, xs in list(by_where.items())[:2])
+        mood = ml["moods"][m]
+        out.append(SectionMood(mood.get("family", ""), mood["hebrew"],
+                               profile.family_tag.format(words=mood_words(m, n_words)), where, True,
+                               (words or {}).get(m), m, mood["hebrew"]))
     return out
 
 

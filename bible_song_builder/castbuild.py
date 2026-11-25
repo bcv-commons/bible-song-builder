@@ -58,7 +58,7 @@ def prefetch(edition_name: str = "BSB", books: list[str] | None = None, workers:
     one by one that takes many minutes). Files already in cache/ are not fetched again."""
     books = books or edition.books(edition_name)        # also unpacks the text release, once
     shared = [("passage-facts", "codes.tsv"), ("passage-facts", "sources.tsv"),
-              ("passage-moods-model", "data/moods.parquet")] + [
+              ("passage-moods-model", "data/moods.parquet"), ("passage-mood-spans-model", "data/spans.jsonl")] + [
              (d, "data/statements.parquet") for d in structure.COMMENTARY_DATASETS] + [(d, f"data/{t}.parquet") for d in structure.CLAUSE_SIGNAL_DATASETS
                                                   for t in ("hebrew", "greek-nt")]
     align.verse_map(edition_name)

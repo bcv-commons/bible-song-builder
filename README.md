@@ -299,17 +299,24 @@ commentators credits them in its notes file.
 English words a music service is given for it. Everything sent to the music service is English, in every
 edition. The words can be tuned there without touching code.
 
-**Moods inside a chapter.** Where the Hebrew/Greek words of most of a section mark a feeling, the
-section opens with a tag after its section label, such as `[Mood: desperate]`. The tag is written only
-where the feeling changes, and Suno sings the section in that mood within the chapter's style. The
-feelings come as the 9 families of passage-facts: from its `mood` facts (by rule) and from
-`passage-moods-model` (read by a model). `config/mood-list.toml` `[families]` gives each family its mood of the
-list. Fear (יָרֵא) is awe where it is fear of God or before God or an angel (a verse with the fear word names
-God, or God or an angel speaks there or in the next verse), and dread otherwise (`[families_of_god]`). The rule is
-a stopgap: it misses fear of enemies in a scene where God speaks, and Jesus does not count. Hatred (שָׂנֵא) is
-hatred also where the singer is the one hated (Psalm 22, John 15). The notes file lists each section's mood and its source, marks model readings
-"model-read", and credits the datasets. `config/profiles.toml` `family_tag` sets the tag's form;
-`config/moods.toml` `[section_moods]` turns this on or off, or turns off the model's part only.
+**Moods inside a chapter.** A section opens with a mood tag after its section label, such as
+`[Mood: desperate]`, where the mood changes; Suno sings the section in that mood within the chapter's style. A
+section without a mood goes on in the mood before it.
+
+The moods come from **passage-mood-spans-model**: two language models (claude-opus-5-5 and claude-sonnet-5-5,
+independent passes, no human check) read every chapter in Hebrew or Greek against the thirteen moods of
+`config/mood-list.toml`, with spans down to the clause, a strength (1 a colour, 2 a clear mood, 3 the main mood or a
+sharp turn), and whether the other pass agrees. Each lyric line takes, per pass, the mood of the shortest span over
+it; a section takes the mood with the most weight (words × strength, half for a span the other pass does not share);
+and a song carries at most one change per 100 sung words (2 to 8), dropping the weakest. Where the source gives a
+chapter no mood of its own (no psalm heading, song or commentary), the reading's chapter mood sets its Style (Ruth 1:
+mourning). All of it is in `config/moods.toml` `[mood_spans]`.
+
+Where the reading is switched off, the older way is used: the 9 feeling families of passage-facts, from its `mood`
+facts (by rule) and `passage-moods-model` (read by a model), `config/mood-list.toml` `[families]`, with fear split
+into awe and dread by a stopgap rule (`[families_of_god]`) and `[section_moods]` for its settings. The notes file
+lists each section's mood with the spans and their Hebrew/Greek words, marks model readings "model-read", and credits
+the datasets. `config/profiles.toml` `family_tag` sets the tag's form.
 
 The notes also name each mood in the edition's own words: its most common rendering in the book of the mood's
 Hebrew or Greek noun ("tsarah צָרָה (md.tsarah) “trouble”" in the BSB Psalms; a Spanish edition gives its Spanish
@@ -317,9 +324,9 @@ word). The edition's words come through its alignment and the lexeme index of co
 translation file is needed. Psalm heading terms are named the same way where the edition's alignment covers the
 title; the BSB's does not yet, so they keep their English gloss.
 
-**Model-made data.** Two inputs are a language model's readings with no human check:
-`hebrew-commentary-terms-model` and `passage-moods-model`. Every chapter that uses them says so in its
-notes file.
+**Model-made data.** Three inputs are language models' readings with no human check:
+`passage-mood-spans-model`, `hebrew-commentary-terms-model` and `passage-moods-model`. Every chapter that uses them
+says so in its notes file, and `config/moods.toml` switches each off.
 
 `config/moods.toml` says which cue gives a chapter which kind (lament, praise, trust …).
 `config/mood-list.toml` `[kinds]` gives each kind its mood of the list, whose words and usual energy are added

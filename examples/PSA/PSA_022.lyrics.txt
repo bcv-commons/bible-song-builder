@@ -12,7 +12,7 @@ Yet You are holy,
 enthroned on the praises of Israel.
 
 [Verse 2]
-[Mood: bitter]
+[Mood: sad]
 In You our fathers trusted;
 they trusted and You delivered them.
 They cried out to You
@@ -78,7 +78,7 @@ I will proclaim Your name to my brothers;
 I will praise You in the assembly.
 
 [Verse 7]
-[Mood: joyful]
+[Mood: triumphant]
 You who fear the LORD,
 praise Him! All descendants of Jacob,
 honor Him! All offspring of Israel, revere Him!
@@ -104,7 +104,6 @@ All the families of the nations
 will bow down before Him.
 
 [Verse 9]
-[Mood: epic]
 For dominion belongs to the LORD
 and He rules over the nations.
 All the rich of the earth will feast and worship;

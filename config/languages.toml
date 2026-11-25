@@ -21,7 +21,7 @@ label_edge_words = [
   "and", "but", "then", "so", "now", "for", "yet", "or", "to", "of",
   "from", "with", "by", "in", "her", "his", "their", "my", "your", "our",
   "its", "said", "replied", "answered", "s", "when", "at", "that", "time", "was",
-  "were", "is", "one", "day", "nevertheless", "however", ",",
+  "were", "is", "one", "day", "nevertheless", "however", ",", "why", "should",
 ]
 label_group = [
   "people", "men", "crowd", "crowds", "brothers", "sons", "Levites", "Israelites",

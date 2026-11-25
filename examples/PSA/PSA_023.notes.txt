@@ -1,8 +1,8 @@
 Psalm 23 · BSB · setting: poetry
 Profile: hymn, female lead · Suno persona: (not set: profiles.toml [profiles.hymn] persona.female)
 Style: this chapter's own (PSA_023.style.txt): trust (+ "calm, confident"), from type: Tyndale Open Study Notes: mivtach מִבְטָח over 6 of 6 verses; Scriptura: mivtach מִבְטָח over 6 of 6 verses. To change: config/books/PSA.toml, [chapters.23] (mood or style)
-[Verse 1] 23:1-4  · [Mood: calm] mivtach מִבְטָח (md.batach) “trust”, from passage-moods-model PSA 23:1-6 (model-read)
-[Verse 2] 23:5-6  · [Mood: calm] mivtach מִבְטָח (md.batach) “trust”, from passage-moods-model PSA 23:1-6 (model-read)
+[Verse 1] 23:1-4  · [Mood: calm] mivtach מִבְטָח (md.batach) “trust”, from passage-mood-spans-model PSA 23:1 (pass b) “יהוה רעי לא אחסר”; passage-mood-spans-model PSA 23:4 (pass a, b) “לא אירא רע כי אתה עמדי” (model-read)
+[Verse 2] 23:5-6  · [Mood: hopeful] tiqvah תִּקְוָה (md.batach) “hope”, from passage-mood-spans-model PSA 23:6 (pass a, b) “טוב וחסד ירדפוני כל ימי חיי” (model-read)
 Superscription before 23:1 (not sung): A Psalm of David.
 Heading terms (not sung): a psalm, a song with accompaniment (מזמור); ascribed to David (לדוד)
 Shortened or paraphrased: nothing; every line is the edition's text, verbatim.
@@ -11,5 +11,4 @@ Structure: bcv-commons/hebrew-clause-lines v0.2, passage-facts v0.3.3, clause-co
 Alignment: bcv-commons/full-alignments-manual v1.1, layer eng_BSB+manual+bsb-tables (BSB translation tables, CC0).
 Mood: Adapted from Tyndale Open Study Notes. The original work by Tyndale House Publishers is available for free at http://www.tyndaleopenresources.com. Changes: only a type code is taken from each psalm introduction, by fixed keyword rules (shoresh/macula/tyndale.py); no text is copied (CC BY-SA 4.0)
 Mood: Psalms: Layer by Layer, Scriptura, https://psalms.scriptura.org, CC BY 4.0, Overview pages as of 2026-11-18 (shoresh/macula/fetch_scriptura.py); only codes and verse ranges are taken
-Mood: section moods: bcv-commons/passage-facts mood families (UBS dictionaries SDBH and Louw-Nida, CC BY-SA 4.0)
-Mood: section moods read by a model: bcv-commons/passage-moods-model v0.1, CC BY-SA 4.0 (model output, claude-opus-5-5, no human check)
+Mood: moods read by two models: bcv-commons/passage-mood-spans-model v0.1, CC BY-SA 4.0 (model output, claude-opus-5-5 and claude-sonnet-5-5, two passes, no human check)

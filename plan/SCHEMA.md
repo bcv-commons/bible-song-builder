@@ -1,4 +1,4 @@
-# Song plan format, schema 1.0
+# Song plan format, schema 1.1
 
 A song plan is half 1 of bible-song-builder: what the Hebrew/Greek says about how a chapter is sung, keyed to the
 source and to no edition. Half 2 (the projection, `bible_song_builder/__main__.py`, later the JavaScript library)
@@ -16,6 +16,7 @@ readers may ignore; MAJOR grows when a field is removed or changes meaning.
 | Schema | Change |
 |---|---|
 | 1.0 | First version (phase 2) |
+| 1.1 | `readings` (book) and `mood_spans` (chapter): passage-mood-spans-model (bible-song-builder 0.4.0) |
 
 ## Keys and numbering
 
@@ -35,17 +36,18 @@ plan/<BOOK>/<BOOK>_<CCC>.json   one spine chapter (CCC: three digits; PSA_119)
 ```
 
 UTF-8 JSON, compact, one line. The book file is written last: if it is there, the book's plan is complete. Whole
-Bible: 1,255 files, 33 MB, about 4.1 MB gzipped; a chapter is at most 130 KB (PSA 119, 15 KB gzipped).
+Bible: 1,255 files, 39 MB, about 5.2 MB gzipped (schema 1.1, with the mood spans).
 
-**For edition chapter c, half 2 reads the chapter files c-1, c and c+1**, those that exist, and joins them: rows in
-file order, `facts`, `mood_facts` and `model_moods` by their index (`n`, `m`) with duplicates dropped, `signals` as
-one map. A verse map can move a verse into the chapter before or after, so the neighbours are needed.
+**For edition chapter c, half 2 reads the chapter files `align.spine_chapters` names** (c-1, c, c+1, and any
+chapter the verse map moves a verse from), those that exist, and joins them: rows in
+file order, `facts`, `mood_facts`, `model_moods` and `mood_spans` by their index (`n`, `m`, `s`) with duplicates dropped, `signals` as
+one map. A verse map can move a verse into another chapter, so those chapters are needed.
 
 ## The book file
 
 | Field | Type | Meaning |
 |---|---|---|
-| `schema` | string | `"1.0"` |
+| `schema` | string | `"1.1"` |
 | `kind` | string | `"book"` |
 | `book` | string | USFM code, e.g. `"PSA"` |
 | `testament` | string | `"ot"` or `"nt"` |
@@ -55,6 +57,7 @@ one map. A verse map can move a verse into the chapter before or after, so the n
 | `pins` | object | dataset → `{repo, tag, revision, licence}`, for every source dataset the plan comes from. The credit lines are written from these |
 | `chapters` | [int] | the spine chapters that have a chapter file |
 | `moods` | [object] | the chapter moods (below), in the order they were found |
+| `readings` | [object] | the chapter readings of passage-mood-spans-model, both passes (below; model output, no human check) |
 | `speakers` | object | speaker_id → speaker (below), in the order the speakers first occur |
 | `sources` | object | passage-facts `sources.tsv` id → the credit it asks for, for the scholarly sources a mood can name (`tyndale`, `scriptura`) |
 
@@ -95,6 +98,7 @@ where they are first named, also in another book). Ties go to the earlier one. K
 | `facts` | [object] | passage-facts `form` and `quote` facts whose chapters include this one |
 | `mood_facts` | [object] | passage-facts `mood` facts (`md.*`) covering a verse of this chapter |
 | `model_moods` | [object] | passage-moods-model rows covering a verse of this chapter (model output, no human check) |
+| `mood_spans` | [object] | passage-mood-spans-model spans of this chapter, both passes (below; model output, no human check) |
 
 **A row** is one clause line of hebrew-clause-lines / greek-nt-clause-lines, trimmed to what half 2 reads. Fields
 that are empty, false or zero are left out, except the first four.
@@ -128,6 +132,17 @@ poetry is a layout setting (`layout.toml [setting]`) that an edition can change.
 holding its marked words names God, or God or an angel speaks in the span or the verse after it; `moods._OfGod`),
 `verses` (runs over the whole span, also outside this chapter). **A model mood:** `m` (its row index for the book),
 `moods` (`[{family, head, of_god}]`, strongest first; half 2 weighs them by rank, `moods.toml [section_moods] model_weights`), `verses` (runs).
+
+**A reading** (book file): `chapter` (spine), `mid` (its middle verse, as for a chapter mood), `pass` (`a`
+claude-opus-5-5, `b` claude-sonnet-5-5), `mood` (an id of `config/mood-list.toml`, or `none`), `strength` (1-3),
+`agree` (the other pass reads the same chapter mood), `because` (Hebrew/Greek words of the chapter).
+
+**A mood span** (chapter file): `s` (its index in the book), `pass`, `mood`, `second` (or null), `strength` (1 a
+colour, 2 a clear mood, 3 the chapter's main mood or a sharp turn), `agree` (the other pass has a span of this mood
+over at least half of its lines), `first` and `last` (the word keys of its first and last clause line: half 2 finds
+the rows holding them), `verses` (runs), `unit` (the quotation id where the span is one speech, or null), `because`
+(words of the span). Spans nest: a speech and the shorter spans inside it. Half 2 takes, per line and pass, the
+shortest span over the line (`moods.toml [mood_spans]`). Both lists are empty when `[mood_spans] use` is false.
 
 ## What is in the plan and what is not
 

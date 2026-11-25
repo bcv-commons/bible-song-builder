@@ -89,6 +89,12 @@
    "revision": "db4ad9173bee9371a983aa105fa1f647e9a6d24a",
    "licence": "CC BY-SA 4.0 (model output, claude-opus-5-5, no human check)"
   },
+  "passage-mood-spans-model": {
+   "repo": "bcv-commons/passage-mood-spans-model",
+   "tag": "v0.1",
+   "revision": "bb912dfa8b4bb19281ee47280a5653bf597f58e3",
+   "licence": "CC BY-SA 4.0 (model output, claude-opus-5-5 and claude-sonnet-5-5, two passes, no human check)"
+  },
   "hebrew-commentary-terms": {
    "repo": "bcv-commons/hebrew-commentary-terms",
    "tag": "v0.1",
@@ -102,7 +108,7 @@
    "licence": "CC BY-SA 4.0 (model output, claude-opus-5-5, no human check)"
   }
  },
- "bible-song-builder": "0.3.1",
+ "bible-song-builder": "0.4.0",
  "sections": [
   {
    "label": "Verse 1",
@@ -114,7 +120,7 @@
     "head": "צָרָה",
     "tag": "[Mood: desperate]",
     "word": "trouble",
-    "evidence": "passage-facts PSA 22:3-10; passage-moods-model PSA 22:1-2",
+    "evidence": "passage-mood-spans-model PSA 22:2-3 (pass a) “אלי אלי למה עזבתני”; passage-mood-spans-model PSA 22:2-4 (pass b) “אלי אלי למה עזבתני”",
     "model": true
    },
    "verses": [
@@ -240,13 +246,13 @@
    "label": "Verse 2",
    "sung": true,
    "mood": {
-    "mood": "sinah",
-    "hebrew": "שִׂנְאָה",
-    "family": "md.sane",
-    "head": "שָׂנֵא",
-    "tag": "[Mood: bitter]",
-    "word": "hatred",
-    "evidence": "passage-moods-model PSA 22:3-10; passage-moods-model PSA 22:5-9",
+    "mood": "boshet",
+    "hebrew": "בֹּשֶׁת",
+    "family": "md.bosh",
+    "head": "בֹּשֶׁת",
+    "tag": "[Mood: sad]",
+    "word": "shame",
+    "evidence": "passage-mood-spans-model PSA 22:7-9 (pass a) “חרפת אדם ובזוי עם”; passage-mood-spans-model PSA 22:7-8 (pass b) “ואנכי תולעת ולא איש חרפת אדם ובזוי עם”",
     "model": true
    },
    "verses": [
@@ -387,10 +393,10 @@
     "mood": "mivtach",
     "hebrew": "מִבְטָח",
     "family": "md.batach",
-    "head": "בָּטַח",
+    "head": "מִבְטָח",
     "tag": "[Mood: calm]",
     "word": "trust",
-    "evidence": "passage-moods-model PSA 22:3-10; passage-moods-model PSA 22:5-9",
+    "evidence": "passage-mood-spans-model PSA 22:10-11 (pass a, b) “מבטן אמי אלי אתה”",
     "model": true
    },
    "verses": [
@@ -406,22 +412,8 @@
      "quote": "q03122",
      "speaker": {
       "id": "c0560",
-      "label": "men",
-      "voice": "group",
-      "pointer": {
-       "book": "PSA",
-       "verse": "58:11",
-       "spine": [
-        58,
-        12
-       ],
-       "keys": [
-        "190580120021"
-       ],
-       "strong": [
-        "H120"
-       ]
-      }
+      "label": null,
+      "voice": "group"
      },
      "segment": 28,
      "refrain": null,
@@ -435,22 +427,8 @@
      "quote": "q03122",
      "speaker": {
       "id": "c0560",
-      "label": "men",
-      "voice": "group",
-      "pointer": {
-       "book": "PSA",
-       "verse": "58:11",
-       "spine": [
-        58,
-        12
-       ],
-       "keys": [
-        "190580120021"
-       ],
-       "strong": [
-        "H120"
-       ]
-      }
+      "label": null,
+      "voice": "group"
      },
      "segment": 29,
      "refrain": null,
@@ -464,22 +442,8 @@
      "quote": "q03122",
      "speaker": {
       "id": "c0560",
-      "label": "men",
-      "voice": "group",
-      "pointer": {
-       "book": "PSA",
-       "verse": "58:11",
-       "spine": [
-        58,
-        12
-       ],
-       "keys": [
-        "190580120021"
-       ],
-       "strong": [
-        "H120"
-       ]
-      }
+      "label": null,
+      "voice": "group"
      },
      "segment": 30,
      "refrain": null,
@@ -493,22 +457,8 @@
      "quote": "q03122",
      "speaker": {
       "id": "c0560",
-      "label": "men",
-      "voice": "group",
-      "pointer": {
-       "book": "PSA",
-       "verse": "58:11",
-       "spine": [
-        58,
-        12
-       ],
-       "keys": [
-        "190580120021"
-       ],
-       "strong": [
-        "H120"
-       ]
-      }
+      "label": null,
+      "voice": "group"
      },
      "segment": 31,
      "refrain": null,
@@ -572,8 +522,8 @@
     "head": "צָרָה",
     "tag": "[Mood: desperate]",
     "word": "trouble",
-    "evidence": "passage-facts PSA 22:11-18",
-    "model": false
+    "evidence": "passage-mood-spans-model PSA 22:12 (pass a, b) “כי צרה קרובה כי אין עוזר”; passage-mood-spans-model PSA 22:13-19 (pass a) “סבבוני פרים רבים”",
+    "model": true
    },
    "verses": [
     "22:11",
@@ -716,8 +666,8 @@
     "head": "צָרָה",
     "tag": "[Mood: desperate]",
     "word": "trouble",
-    "evidence": "passage-facts PSA 22:11-18",
-    "model": false
+    "evidence": "passage-mood-spans-model PSA 22:13-19 (pass a) “סבבוני פרים רבים”; passage-mood-spans-model PSA 22:15-16 (pass b) “כמים נשפכתי ולעפר מות תשפתני”",
+    "model": true
    },
    "verses": [
     "22:15",
@@ -860,7 +810,7 @@
     "head": "צָרָה",
     "tag": "[Mood: desperate]",
     "word": "trouble",
-    "evidence": "passage-moods-model PSA 22:19-20; passage-moods-model PSA 22:21",
+    "evidence": "passage-mood-spans-model PSA 22:20-22 (pass a, b) “לעזרתי חושה”",
     "model": true
    },
    "verses": [
@@ -987,14 +937,14 @@
    "label": "Verse 7",
    "sung": true,
    "mood": {
-    "mood": "simchah",
-    "hebrew": "שִׂמְחָה",
+    "mood": "rinnah",
+    "hebrew": "רִנָּה",
     "family": "md.samach",
-    "head": "שָׂמַח",
-    "tag": "[Mood: joyful]",
-    "word": "joy",
-    "evidence": "passage-facts PSA 22:22-26",
-    "model": false
+    "head": "רִנָּה",
+    "tag": "[Mood: triumphant]",
+    "word": "cry",
+    "evidence": "passage-mood-spans-model PSA 22:24 (pass a, b) “יראי יהוה הללוהו”; passage-mood-spans-model PSA 22:23-32 (pass a) “בתוך קהל אהללך”",
+    "model": true
    },
    "verses": [
     "22:23",
@@ -1140,16 +1090,7 @@
   {
    "label": "Verse 8",
    "sung": true,
-   "mood": {
-    "mood": "simchah",
-    "hebrew": "שִׂמְחָה",
-    "family": "md.samach",
-    "head": "שָׂמַח",
-    "tag": "[Mood: joyful]",
-    "word": "joy",
-    "evidence": "passage-facts PSA 22:22-26; passage-moods-model PSA 22:27-31",
-    "model": true
-   },
+   "mood": null,
    "verses": [
     "22:26",
     "22:27"
@@ -1260,16 +1201,7 @@
   {
    "label": "Verse 9",
    "sung": true,
-   "mood": {
-    "mood": "yirah",
-    "hebrew": "יִרְאָה",
-    "family": "md.yare",
-    "head": "יָרֵא",
-    "tag": "[Mood: epic]",
-    "word": "fear",
-    "evidence": "passage-moods-model PSA 22:27-31",
-    "model": true
-   },
+   "mood": null,
    "verses": [
     "22:28",
     "22:29",

@@ -106,6 +106,14 @@ lines_min_repeats = 3
 lines_min_words = 3
 
 
+[speakers]
+# Books whose chapters are pieces of their own (the Psalms: 150 poems). There a speaker the chapter
+# does not name takes no words from another chapter where they are only described there ("enemies",
+# "men"): the source gives one speaker id to the enemies of many psalms. A speaker with a name
+# (David, the LORD) is still named from another chapter, and gets a pointer to it.
+separate_chapters = ["PSA"]
+
+
 [psalms]
 # List the psalm heading's terms (for the leader, the instruments, the tune ...) and the selahs
 # in the notes file. They are never sung.

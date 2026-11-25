@@ -114,8 +114,8 @@ export function render(bookName, chapter, editionName, setting, secs, credits, p
         const head = sectionTag(s.label, mode, numbered);
         if (head) body.push(head);
         const moodTag = s.mood ? s.mood.tag : null;
-        if (moodTag && moodTag !== curMood) body.push(moodTag);
-        curMood = moodTag;
+        if (moodTag && moodTag !== curMood) body.push(moodTag);   // a section without a mood goes on in the mood before it
+        curMood = moodTag || curMood;
         for (const ln of s.stanza.lines) {
             let key, tag;
             if (ln.refrain !== null && s.refrain.has(ln.refrain)) {

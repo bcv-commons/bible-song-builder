@@ -199,6 +199,40 @@ class TestMoods(unittest.TestCase):
         return moods.book_moods(book, structure.passage_facts(book), structure.clause_lines(book, set(range(200))),
                                 lambda cv: align.spine_to_edition(vmap, book, cv), config.layout("BSB"))
 
+    def test_span_section_moods(self):
+        """moods.span_section_moods: a line takes the shortest span over it (per pass); a mood
+        change over the song's limit is dropped, and the mood before it goes on."""
+        from bible_song_builder import moods
+        rows = [{"words": [f"w{i}"]} for i in range(8)]
+
+        def span(s, p, a, b, mood, strength=2, agree=True):
+            return {"s": s, "pass": p, "mood": mood, "strength": strength, "agree": agree, "first": f"w{a}",
+                    "last": f"w{b}", "verses": [[1, a + 1, b + 1]], "because": ""}
+        spans = [span(0, "a", 0, 7, "shalom"), span(1, "a", 2, 3, "evel", 3), span(2, "b", 0, 7, "shalom"),
+                 span(3, "b", 2, 3, "evel", 3)]
+        prof = profiles.for_book("BSB", "RUT")
+        secs = [[(rows[0], 10), (rows[1], 10)], [(rows[2], 10), (rows[3], 10)], [(rows[4], 10), (rows[5], 10)]]
+        got = moods.span_section_moods("RUT", secs, rows, spans, prof)
+        # 60 words: 2 changes at most, so the weaker one back to shalom is dropped (evel goes on)
+        self.assertEqual([m.mood if m else None for m in got], ["shalom", "evel", None])
+        long = [[(r, 100)] for r in rows[:6]]                                                    # 600 words: 6
+        self.assertEqual([m.mood if m else None for m in moods.span_section_moods("RUT", long, rows, spans, prof)],
+                         ["shalom", "shalom", "evel", "evel", "shalom", "shalom"])
+        self.assertIsNone(moods.span_section_moods("RUT", secs, rows, [], prof))               # no spans: fall back
+
+    def test_reading_fills_chapter_mood(self):
+        """The chapter reading gives Ruth 1 its mood (no source cue); a psalm keeps its heading's."""
+        from bible_song_builder import align, moods
+        vmap = align.verse_map("BSB")
+        to_ed = lambda cv: align.spine_to_edition(vmap, "RUT", cv)  # noqa: E731
+        bp = plan.load_book("RUT")
+        got = moods.with_readings(plan.edition_moods(bp, to_ed), bp["readings"], to_ed)
+        self.assertEqual((got[1].mood, got[1].basis), ("evel", "reading"))
+        self.assertIn("passage-mood-spans-model", got[1].evidence)
+        psa = plan.load_book("PSA")
+        to_p = lambda cv: align.spine_to_edition(vmap, "PSA", cv)  # noqa: E731
+        self.assertEqual(moods.with_readings(plan.edition_moods(psa, to_p), psa["readings"], to_p)[136].mood, "praise")
+
     def test_heading_moods(self):
         m = self.moods_of("PSA")
         self.assertEqual(m[17].mood, "prayer")          # תְּפִלָּה

@@ -56,6 +56,12 @@
       "revision": "db4ad9173bee9371a983aa105fa1f647e9a6d24a",
       "licence": "CC BY-SA 4.0 (model output, claude-opus-5-5, no human check)"
     },
+    "passage-mood-spans-model": {
+      "repo": "bcv-commons/passage-mood-spans-model",
+      "tag": "v0.1",
+      "revision": "bb912dfa8b4bb19281ee47280a5653bf597f58e3",
+      "licence": "CC BY-SA 4.0 (model output, claude-opus-5-5 and claude-sonnet-5-5, two passes, no human check)"
+    },
     "hebrew-commentary-terms": {
       "repo": "bcv-commons/hebrew-commentary-terms",
       "tag": "v0.1",

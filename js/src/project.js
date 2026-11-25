@@ -3,13 +3,13 @@
 // plan.ChapterPlan. Every input is passed in; nothing is fetched here.
 import { castName, profileFor } from './config.js';
 import { spineToEdition } from './align.js';
-import { buildLines, phrase, speakerHits, speakerLabels, stanzas } from './lines.js';
-import { applyOverrides, chapterStyle, editionMoods, familyWords, sectionMoods, sourceCredits } from './moods.js';
+import { buildLines, countUnits, phrase, speakerHits, speakerLabels, stanzas } from './lines.js';
+import { applyOverrides, chapterStyle, editionMoods, familyWords, sectionMoods, sourceCredits, spanConfig, spanSectionMoods, withReadings } from './moods.js';
 import { render, sections } from './render.js';
 import { chapterMarks, settingVerses } from './textforms.js';
 import { cvC, cvKey, fmtCv, pyLen, removePrefix, sortedNums } from './util.js';
 
-export const VERSION = '0.3.1';
+export const VERSION = '0.4.0';
 const PLAN_SCHEMA_MAJOR = '1';
 
 /** What half 2 reads for edition chapter c: the plans of the spine chapters spineChapters names
@@ -20,7 +20,7 @@ export function chapterPlan(docs) {
     }
     const union = (part, key) => {
         const seen = new Map();
-        for (const d of docs) for (const x of d[part]) if (!seen.has(x[key])) seen.set(x[key], x);
+        for (const d of docs) for (const x of d[part] || []) if (!seen.has(x[key])) seen.set(x[key], x);
         return sortedNums(seen.keys()).map((k) => seen.get(k));
     };
     const facts = union('facts', 'n');
@@ -30,6 +30,7 @@ export function chapterPlan(docs) {
         facts,
         moodFacts: union('mood_facts', 'n'),
         modelMoods: union('model_moods', 'm'),
+        moodSpans: union('mood_spans', 's'),        // passage-mood-spans-model (schema 1.1)
         labels: Object.fromEntries(facts.filter((f) => 'label' in f).map((f) => [f.value, f.label])),
     };
 }
@@ -57,7 +58,7 @@ export function prepareBook({ cfg, edition, book, bt, al, bookPlan, vmap, lexeme
     return {
         cfg, edition, book, bt, al, bookPlan, vmap, args, profile, toEd,
         speakers: speakerHits(cfg, bookPlan.speakers, al, bt, book, (b, cv) => spineToEdition(vmap, b, cv), lexemes),
-        moods: applyOverrides(cfg, book, editionMoods(bookPlan, toEd), profile),
+        moods: applyOverrides(cfg, book, withReadings(cfg, editionMoods(bookPlan, toEd), bookPlan.readings || [], toEd), profile),
         words: lexemes ? familyWords(cfg, lexemes, al, bt, bookPlan.testament) : new Map(),
     };
 }
@@ -128,7 +129,18 @@ export function projectChapter(ctx, chapter, plan) {
     const share = (layout.setting || {}).share ?? 0.5;
     const setting = song.size >= share * n ? 'song' : sungOrPoetic.size >= share * n ? 'poetry' : 'prose';
     const secs = sections(sts, setting, sungOrPoetic, layout.chorus);
-    const secMoods = sectionMoods(cfg, book, secs.map((s) => s.stanza.verses), plan.moodFacts, plan.modelMoods, toEd, profile, ctx.words);
+    let secMoods = null;
+    const countMode = (layout.text || {}).count || 'words';
+    for (const src of spanConfig(cfg).sections) {
+        if (src === 'spans') {
+            secMoods = spanSectionMoods(cfg, book, secs.map((s) => s.stanza.lines.map((ln) => [ln.row, countUnits(ln.text, countMode)])),
+                plan.rows, plan.moodSpans, profile, ctx.words);
+        } else if (src === 'words') {
+            secMoods = sectionMoods(cfg, book, secs.map((s) => s.stanza.verses), plan.moodFacts, plan.modelMoods, toEd, profile, ctx.words);
+        }
+        if (secMoods !== null && secMoods.some(Boolean)) break;
+    }
+    secMoods = secMoods || secs.map(() => null);
     secs.forEach((s, i) => { s.mood = secMoods[i]; });
 
     const titles = sortedNums(bt.titles.keys()).filter((k) => cvC(k) === chapter);

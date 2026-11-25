@@ -52,6 +52,19 @@ def model_moods(book: str) -> list[dict]:
     return [r for r in _model_moods() if r["book"] == book]
 
 
+@lru_cache(maxsize=1)
+def _mood_span_rows() -> list[dict]:
+    path = fetch.hf("passage-mood-spans-model", "data/spans.jsonl")
+    return [json.loads(line) for line in path.read_text(encoding="utf-8").splitlines() if line.strip()]
+
+
+def mood_span_rows(book: str) -> list[dict]:
+    """passage-mood-spans-model rows of a book, both passes, in Bible order: a chapter reading
+    (``kind`` chapter) and mood spans (``kind`` span) of each chapter. Model output, two passes,
+    no human check."""
+    return [r for r in _mood_span_rows() if r["book"] == book]
+
+
 COMMENTARY_DATASETS = ("hebrew-commentary-terms", "hebrew-commentary-terms-model")
 
 

@@ -85,8 +85,19 @@ def build_chapter(book: str, chapter: int, ed: str, bt: edition.BookText, al: al
     setting = ("song" if len(song) >= share * n else
                "poetry" if len(song | poetic) >= share * n else "prose")
     secs = render.sections(sts, setting, song | poetic, layout.get("chorus"))
-    sec_moods = moods.section_moods(book, [s.stanza.verses for s in secs], cp.mood_facts, cp.model_moods,
-                                    to_ed, profile, words)
+    sec_moods = None
+    count = layout.get("text", {}).get("count", "words")
+    for src in moods.span_config()["sections"]:
+        if src == "spans":
+            sec_moods = moods.span_section_moods(
+                book, [[(ln.row, lines.count_units(ln.text, count)) for ln in s.stanza.lines] for s in secs],
+                ch_rows, cp.mood_spans, profile, words)
+        elif src == "words":
+            sec_moods = moods.section_moods(book, [s.stanza.verses for s in secs], cp.mood_facts, cp.model_moods,
+                                            to_ed, profile, words)
+        if sec_moods is not None and any(sec_moods):
+            break
+    sec_moods = sec_moods or [None] * len(secs)
     for s, m in zip(secs, sec_moods):
         s.mood = m
 
@@ -210,7 +221,8 @@ def main(argv: list[str] | None = None) -> int:
 
     chapters = sorted({c for c, _ in bt.verses}) if args.chapters == ["all"] else [int(c) for c in args.chapters]
     to_ed = lambda cv: align.spine_to_edition(vmap, book, cv)  # noqa: E731
-    book_moods = moods.apply_overrides(book, plan.edition_moods(bp, to_ed), profile)
+    book_moods = moods.apply_overrides(book, moods.with_readings(plan.edition_moods(bp, to_ed), bp.get("readings", []),
+                                                                 to_ed), profile)
     out_dir = Path(args.out) / book
     out_dir.mkdir(parents=True, exist_ok=True)
     write_book_files(out_dir, book, profile, book_moods, args)

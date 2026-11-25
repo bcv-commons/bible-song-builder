@@ -165,9 +165,9 @@ def render(book_name: str, chapter: int, edition_name: str, setting: str, secs: 
         if head:
             body.append(head)
         mood_tag = s.mood.tag if s.mood else None
-        if mood_tag and mood_tag != cur_mood:      # a mood tag where the feeling changes
-            body.append(mood_tag)
-        cur_mood = mood_tag
+        if mood_tag and mood_tag != cur_mood:      # a mood tag where the feeling changes; a section
+            body.append(mood_tag)                  # without a mood goes on in the mood before it
+        cur_mood = mood_tag or cur_mood
         for ln in s.stanza.lines:
             is_refrain = ln.refrain is not None and ln.refrain in s.refrain
             if is_refrain:

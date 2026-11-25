@@ -2,4 +2,7 @@ RUT · profile country, female lead · settings: config/books/RUT.toml
 Style for every chapter: RUT.style.txt — except the chapters below, which have their own
 <chapter>.style.txt (the same style with a mood the Hebrew/Greek gives the chapter).
 
-(no chapter of this book has its own style)
+RUT 1: evel (+ "mournful, melancholic, slow, sparse"), from reading: passage-mood-spans-model pass a: evel אֵבֶל “כי המר שדי לי מאד” (model-read)
+RUT 2: ahavah (+ "tender, intimate, slow, sparse"), from reading: passage-mood-spans-model pass a: ahavah אַהֲבָה “אשר לא־עזב חסדו את־החיים ואת־המתים” (model-read)
+RUT 3: tiqvah (+ "hopeful, yearning, building intensity"), from reading: passage-mood-spans-model pass a: tiqvah תִּקְוָה “ופרשת כנפך על־אמתך כי גאל אתה” (the passes differ) (model-read)
+RUT 4: simchah (+ "joyful, uplifting"), from reading: passage-mood-spans-model pass a: simchah שִׂמְחָה “ברוך יהוה אשר לא השבית לך גאל היום” (model-read)

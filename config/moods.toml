@@ -114,6 +114,54 @@ min_share = 0.5
 model_weights = [1.0, 0.5, 0.33]
 
 
+[mood_spans]
+# The mood reading of passage-mood-spans-model (pins.json): two language models (pass a, pass b)
+# read every chapter in Hebrew/Greek against mood-list.toml, with spans down to the clause.
+# Model output, no human check; every chapter that uses it says so in its notes.
+# false = the plans hold no spans and no readings, and everything below is off.
+use = true
+
+# Where a section's mood comes from, the first that gives the chapter any:
+#   "spans"  the span reading (below)
+#   "words"  the mood words of the text ([section_moods]: passage-facts by rule, passage-moods-model)
+sections = ["spans", "words"]
+
+# Which passes count: "a" (claude-opus-5-5), "b" (claude-sonnet-5-5). The first also gives the
+# chapter reading.
+passes = ["a", "b"]
+
+# How much a span counts that the other pass does not share (agree false), against 1.
+disagree = 0.5
+
+# How much a span of strength 1 (a colour), 2 (a clear mood) and 3 (the chapter's main mood or a
+# sharp turn) counts.
+strength_weights = [1.0, 2.0, 3.0]
+
+# Each line takes, per pass, the mood of the shortest span over it; narration with no mood is not
+# marked. A section gets a mood when the reading marks at least min_marked of its words (counted per
+# pass), and the mood's weight (words x strength x agreement) is at least min_share of the weight
+# of all the moods marked in it.
+min_marked = 0.3
+min_share = 0.5
+
+# How many mood changes a song can carry: one per this many sung words, at least min_changes and at
+# most max_changes. Over that, the weakest change is dropped (never the first), and the mood
+# before it goes on.
+words_per_change = 100
+min_changes = 2
+max_changes = 8
+
+# The chapter's own mood from the reading:
+#   "fill"  only where the source gives the chapter no mood (a psalm heading, a song, a commentary …)
+#   "over"  the reading wins everywhere (instruments of a heading stay)
+#   "off"
+chapter_reading = "fill"
+
+# Where the two passes give the chapter different moods: "first" takes the first pass of
+# `passes`, "none" gives the chapter no mood from the reading.
+reading_disagree = "first"
+
+
 [delivery]
 # A chapter gets the mood when speech delivered that way covers at least this share of its verses.
 min_share = 0.4

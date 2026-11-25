@@ -110,7 +110,10 @@ export function sourceCredits(mood, section, pins, sources) {
             + ' (commentaries from Sefaria, https://www.sefaria.org, Public Domain or CC0)');
         if (mood.evidence.includes('(model-read)')) out.push(ds('hebrew-commentary-terms-model', 'their statements read by a model'));
     }
-    const sm = (section || []).filter(Boolean);
+    let sm = (section || []).filter(Boolean);
+    const spans = sm.filter((m) => m.evidence.includes('passage-mood-spans-model'));
+    if ((mood && mood.evidence.includes('passage-mood-spans-model')) || spans.length) out.push(ds('passage-mood-spans-model', 'moods read by two models'));
+    sm = sm.filter((m) => !spans.includes(m));
     if (sm.length) {
         out.push('section moods: bcv-commons/passage-facts mood families (UBS dictionaries SDBH and Louw-Nida, CC BY-SA 4.0)');
         if (sm.some((m) => m.model)) out.push(ds('passage-moods-model', 'section moods read by a model'));
@@ -173,6 +176,128 @@ export function sectionMoods(cfg, book, sectionsVerses, moodFacts, modelMoods, t
             family: ws[0][0], head: ws[0][1], tag: profile.family_tag.replace('{words}', moodWords(ml, best, nWords)),
             evidence: unique(ws.map((x) => x[3])).join('; '), model: ws.some((x) => x[2]),
             word: (words && words.get(best)) ?? null,
+        };
+    });
+}
+
+/** moods.toml [mood_spans], with its defaults (moods.span_config) */
+export function spanConfig(cfg) {
+    return {
+        use: true, sections: ['spans', 'words'], passes: ['a', 'b'], disagree: 0.5, strength_weights: [1.0, 2.0, 3.0],
+        min_marked: 0.3, min_share: 0.5, words_per_change: 100, min_changes: 2, max_changes: 8,
+        chapter_reading: 'fill', reading_disagree: 'first', ...(cfg.toml('moods.toml').mood_spans || {}),
+    };
+}
+
+/** The chapter moods with the reading's (the book plan's readings) laid in, as moods.toml
+ *  [mood_spans] chapter_reading says (moods.with_readings). found: editionMoods(). */
+export function withReadings(cfg, found, readings, toEd) {
+    const c = spanConfig(cfg);
+    const how = c.chapter_reading;
+    if (!c.use || how === 'off') return found;
+    const ml = moodList(cfg);
+    const out = new Map(found);
+    const first = c.passes.length ? c.passes[0] : 'a';
+    for (const r of readings || []) {
+        if (r.pass !== first || !(r.mood in ml.moods)) continue;
+        if (!r.agree && c.passes.length > 1 && c.reading_disagree === 'none') continue;
+        const e = toEd(cvKey(r.mid[0], r.mid[1]));
+        if (e === null) continue;
+        const old = out.get(cvC(e));
+        if (how === 'fill' && old && (old.mood || old.style)) continue;
+        const ev = `passage-mood-spans-model pass ${r.pass}: ${r.mood} ${ml.moods[r.mood].hebrew}`
+            + (r.because ? ` “${r.because}”` : '') + (r.agree ? '' : ' (the passes differ)') + ' (model-read)';
+        out.set(cvC(e), new Mood(r.mood, 'reading', ev, old ? old.instruments : []));
+    }
+    return out;
+}
+
+/** A mood for each section from the span reading (the plan's moodSpans), or null when the chapter
+ *  has no spans of the passes used (moods.span_section_moods). sections: per section, its lyric
+ *  lines as [the plan row that starts the line, its sung words]; rows: the chapter plan's rows. */
+export function spanSectionMoods(cfg, book, sections, rows, spans, profile, words = null) {
+    const c = spanConfig(cfg);
+    const passes = c.passes;
+    if (!c.use) return null;
+    const at = new Map();
+    rows.forEach((r, i) => { for (const w of r.words || []) at.set(w, i); });
+    const idx = new Map(rows.map((r, i) => [r, i]));
+    const ranged = [];
+    for (const sp of spans || []) {
+        if (passes.includes(sp.pass) && at.has(sp.first) && at.has(sp.last)) ranged.push([at.get(sp.first), at.get(sp.last), sp]);
+    }
+    if (!ranged.length) return null;
+    const ml = moodList(cfg);
+    const nWords = ml.use.tag_words ?? 1;
+    const sw = c.strength_weights;
+    const maxW = Math.max(...sw);
+    const inner = (i, p) => {
+        let best = null;
+        for (const x of ranged) if (x[2].pass === p && x[0] <= i && i <= x[1] && (best === null || x[1] - x[0] < best[1] - best[0])) best = x;
+        return best ? best[2] : null;
+    };
+    const raw = [];
+    let total = 0;
+    for (const lines of sections) {
+        const score = new Map(), used = new Map();
+        let nAll = 0, marked = 0;
+        for (const [row, n] of lines) {
+            nAll += n;
+            const i = row !== null && row !== undefined ? idx.get(row) : undefined;
+            if (i === undefined) continue;
+            for (const p of passes) {
+                const sp = inner(i, p);
+                if (sp && sp.mood in ml.moods) {
+                    const m = sp.mood;
+                    marked += n;
+                    score.set(m, (score.get(m) || 0) + n * sw[sp.strength - 1] * (sp.agree ? 1.0 : c.disagree));
+                    if (!used.has(m)) used.set(m, []);
+                    if (!used.get(m).includes(sp)) used.get(m).push(sp);
+                }
+            }
+        }
+        total += nAll;
+        let best = null;
+        for (const [m, v] of score) if (best === null || v > score.get(best) || (v === score.get(best) && m > best)) best = m;
+        let sum = 0;
+        for (const v of score.values()) sum += v;
+        if (best === null || marked < c.min_marked * nAll * passes.length || score.get(best) < c.min_share * sum) {
+            raw.push([null, 0.0, []]);
+            continue;
+        }
+        raw.push([best, score.get(best) / Math.max(nAll * maxW * passes.length, 1), used.get(best)]);
+    }
+    const ms = raw.map((x) => x[0]);
+    const limit = Math.max(c.min_changes, Math.min(c.max_changes, Math.ceil(total / c.words_per_change)));
+    const changes = (xs) => {
+        const out = [];
+        let cur = null;
+        xs.forEach((m, i) => { if (m && m !== cur) { out.push(i); cur = m; } });
+        return out;
+    };
+    for (let ch = changes(ms); ch.length > limit; ch = changes(ms)) {
+        let i = null;
+        for (const k of ch.slice(1)) if (i === null || raw[k][1] < raw[i][1] || (raw[k][1] === raw[i][1] && k > i)) i = k;
+        const m = ms[i];
+        for (let j = i; j < ms.length && (ms[j] === m || ms[j] === null); j++) if (ms[j] === m) ms[j] = null;
+    }
+    return raw.map(([, , usedBest], k) => {
+        const m = ms[k];
+        if (!m) return null;
+        const byWhere = new Map();
+        for (const sp of usedBest) {
+            if (!sp.verses.length) continue;
+            const w = cvs(unrun(sp.verses));
+            if (!byWhere.has(w)) byWhere.set(w, []);
+            byWhere.get(w).push(sp);
+        }
+        const where = [...byWhere].slice(0, 2).map(([w, xs]) => `passage-mood-spans-model ${book} ${w} (pass ${unique(xs.map((x) => x.pass)).join(', ')})`
+            + (xs[0].because ? ` “${xs[0].because}”` : '')).join('; ');
+        const mood = ml.moods[m];
+        return {
+            mood: m, hebrew: mood.hebrew, family: mood.family ?? '', head: mood.hebrew,
+            tag: profile.family_tag.replace('{words}', moodWords(ml, m, nWords)),
+            evidence: where, model: true, word: (words && words.get(m)) ?? null,
         };
     });
 }

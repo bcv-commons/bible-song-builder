@@ -1,4 +1,5 @@
 [Verse 1]
+[Mood: triumphant]
 Then Moses and the Israelites sang this song to the LORD:
 [Choir]
 “I will sing to the LORD,
@@ -31,6 +32,7 @@ You unleashed Your burning wrath;
 it consumed them like stubble.
 
 [Verse 4]
+[Mood: angry]
 At the blast of Your nostrils the waters piled up;
 like a wall the currents stood firm;
 the depths congealed in the heart of the sea.
@@ -57,6 +59,7 @@ You have redeemed;
 with Your strength You will guide them to Your holy dwelling.
 
 [Verse 6]
+[Mood: dark]
 The nations will hear
 and tremble; anguish will grip the dwellers of Philistia.
 Then the chiefs of Edom will be dismayed;
@@ -70,6 +73,7 @@ O LORD, until the people
 You have bought pass by.
 
 [Verse 7]
+[Mood: hopeful]
 You will bring them in
 and plant them on the mountain of Your inheritance —
 the place, O LORD,
@@ -85,6 +89,7 @@ the LORD brought the waters of the sea back over them.
 But the Israelites walked through the sea on dry ground.
 
 [Verse 8]
+[Mood: triumphant]
 Then Miriam the prophetess, Aaron’s sister, took a tambourine in her hand,
 and all the women followed her with tambourines and dancing.
 And Miriam sang back to them:
@@ -96,6 +101,7 @@ for He is highly exalted;
 the horse and rider He has thrown into the sea.”
 
 [Verse 9]
+[Mood: desperate]
 [Lead Vocal]
 Then Moses led Israel from the Red Sea,
 and they went out into the Desert of Shur.
@@ -120,6 +126,7 @@ There the LORD made for them a statute and an ordinance,
 and there He tested them,
 
 [Verse 11]
+[Mood: peaceful]
 saying,
 [Deep Male Vocal]
 “If you will listen carefully to the voice of the LORD your God,

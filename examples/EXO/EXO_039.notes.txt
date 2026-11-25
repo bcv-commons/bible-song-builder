@@ -15,15 +15,16 @@ Style: the book's (EXO.style.txt, profile folk). To change: config/books/EXO.tom
 [Chorus] 39:26
 [Verse 8] 39:27-29
 [Chorus] 39:29
-[Verse 9] 39:30-31
+[Verse 9] 39:30-31  · [Mood: epic] yirah יִרְאָה (md.yare), from passage-mood-spans-model EXO 39:30 (pass a, b) “קדש ליהוה” (model-read)
 [Verse 10] 39:32
 [Chorus] 39:32
 [Verse 11] 39:33-40
 [Verse 12] 39:41-42
 [Chorus] 39:42
-[Verse 13] 39:43
+[Verse 13] 39:43  · [Mood: joyful] simchah שִׂמְחָה (md.samach), from passage-mood-spans-model EXO 39:43 (pass a, b) “ויברך אתם משה” (model-read)
 Shortened or paraphrased: nothing; every line is the edition's text, verbatim.
-Length: 5351 characters, over 5000; shorten before use and list the cuts here.
+Length: 5379 characters, over 5000; shorten before use and list the cuts here.
 Text: BSB, Public Domain (berean.bible, 2023-04-30).
 Structure: bcv-commons/hebrew-clause-lines v0.2, passage-facts v0.3.3, clause-connectives v0.1 and clause-columns v1.2, CC BY-SA 4.0 (bcv-commons; MACULA, Clear Bible / Biblica, CC BY 4.0; MAM, unfoldingWord ULT, UBS dictionaries, CC BY-SA 4.0).
 Alignment: bcv-commons/full-alignments-manual v1.1, layer eng_BSB+manual+bsb-tables (BSB translation tables, CC0).
+Mood: moods read by two models: bcv-commons/passage-mood-spans-model v0.1, CC BY-SA 4.0 (model output, claude-opus-5-5 and claude-sonnet-5-5, two passes, no human check)

@@ -84,6 +84,12 @@
    "revision": "db4ad9173bee9371a983aa105fa1f647e9a6d24a",
    "licence": "CC BY-SA 4.0 (model output, claude-opus-5-5, no human check)"
   },
+  "passage-mood-spans-model": {
+   "repo": "bcv-commons/passage-mood-spans-model",
+   "tag": "v0.1",
+   "revision": "bb912dfa8b4bb19281ee47280a5653bf597f58e3",
+   "licence": "CC BY-SA 4.0 (model output, claude-opus-5-5 and claude-sonnet-5-5, two passes, no human check)"
+  },
   "hebrew-commentary-terms": {
    "repo": "bcv-commons/hebrew-commentary-terms",
    "tag": "v0.1",
@@ -97,7 +103,7 @@
    "licence": "CC BY-SA 4.0 (model output, claude-opus-5-5, no human check)"
   }
  },
- "bible-song-builder": "0.3.1",
+ "bible-song-builder": "0.4.0",
  "sections": [
   {
    "label": "Verse 1",
@@ -1003,7 +1009,16 @@
   {
    "label": "Verse 9",
    "sung": false,
-   "mood": null,
+   "mood": {
+    "mood": "yirah",
+    "hebrew": "יִרְאָה",
+    "family": "md.yare",
+    "head": "יִרְאָה",
+    "tag": "[Mood: epic]",
+    "word": null,
+    "evidence": "passage-mood-spans-model EXO 39:30 (pass a, b) “קדש ליהוה”",
+    "model": true
+   },
    "verses": [
     "39:30",
     "39:31"
@@ -1342,7 +1357,16 @@
   {
    "label": "Verse 13",
    "sung": false,
-   "mood": null,
+   "mood": {
+    "mood": "simchah",
+    "hebrew": "שִׂמְחָה",
+    "family": "md.samach",
+    "head": "שִׂמְחָה",
+    "tag": "[Mood: joyful]",
+    "word": null,
+    "evidence": "passage-mood-spans-model EXO 39:43 (pass a, b) “ויברך אתם משה”",
+    "model": true
+   },
    "verses": [
     "39:43"
    ],

@@ -26,7 +26,7 @@ from pathlib import Path
 from . import __version__, cast, config, fetch, moods, structure, textforms
 from .edition import BOOKS
 
-SCHEMA = "1.0"
+SCHEMA = "1.1"
 ROOT = Path(__file__).resolve().parent.parent
 PLAN_DIR = ROOT / "plan"
 
@@ -78,8 +78,10 @@ def build(book: str) -> tuple[dict, dict[int, dict]]:
     facts = structure.passage_facts(book)
     hf = fetch.pins()["huggingface"]
     lines_ds = structure.lines_dataset(book)
+    spine = sorted({(r["chapter"], r["verse"]) for r in rows})
+    span_rows, readings = moods.reading_spans(book, spine)
     used = [lines_ds, "passage-facts", "clause-connectives", "clause-columns", "passage-moods-model",
-            *structure.COMMENTARY_DATASETS]
+            *structure.COMMENTARY_DATASETS, *(["passage-mood-spans-model"] if span_rows or readings else [])]
     infos = cast.gather(rows, facts)
     speakers = {sid: {"voice": cast.rule_voice(infos.get(sid) or cast.SpeakerInfo())[0], **refs}
                 for sid, refs in cast.speaker_refs(rows).items()}
@@ -92,13 +94,13 @@ def build(book: str) -> tuple[dict, dict[int, dict]]:
         "moods": [{"chapter": c, "mid": list(mid), "mood": m.mood, "basis": m.basis, "evidence": m.evidence,
                    "instruments": list(m.instruments)}
                   for c, mid, m in moods.chapter_moods(book, facts, rows, config.toml("layout.toml"))],
+        "readings": readings,
         "speakers": speakers,
         "sources": moods.scholarly_sources(),
     }
 
     labels = textforms.codes()
     signals = structure.clause_signals(book)
-    spine = sorted({(r["chapter"], r["verse"]) for r in rows})
     mood_facts, model_moods = moods.mood_spans(book, facts, spine, rows)
     chapters = {}
     for c in book_doc["chapters"]:
@@ -113,6 +115,7 @@ def build(book: str) -> tuple[dict, dict[int, dict]]:
                       if f.get("kind") in ("form", "quote") and _touches(f, c)],
             "mood_facts": [m for m in mood_facts if _runs_touch(m["verses"], c)],
             "model_moods": [m for m in model_moods if _runs_touch(m["verses"], c)],
+            "mood_spans": [m for m in span_rows if _runs_touch(m["verses"], c)],
         }
     return book_doc, chapters
 
@@ -166,6 +169,7 @@ class ChapterPlan:
         self.facts = _union(docs, "facts", "n")
         self.mood_facts = _union(docs, "mood_facts", "n")
         self.model_moods = _union(docs, "model_moods", "m")
+        self.mood_spans = _union(docs, "mood_spans", "s")     # passage-mood-spans-model (schema 1.1)
         # descriptions of the psalm-heading codes (passage-facts codes.tsv)
         self.labels = {f["value"]: f["label"] for f in self.facts if "label" in f}
 
@@ -173,7 +177,7 @@ class ChapterPlan:
 def _union(docs: list[dict], part: str, key: str) -> list[dict]:
     seen: dict[int, dict] = {}
     for d in docs:
-        for x in d[part]:
+        for x in d.get(part, []):
             seen.setdefault(x[key], x)
     return [seen[k] for k in sorted(seen)]
 

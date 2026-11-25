@@ -1,34 +1,33 @@
 Luke 1 · BSB · setting: prose
 Profile: folk, male lead · Suno persona: (not set: profiles.toml [profiles.folk] persona.male)
-Style: the book's (LUK.style.txt, profile folk). To change: config/books/LUK.toml, [chapters.1] (mood or style)
+Style: this chapter's own (LUK_001.style.txt): simchah (+ "joyful, uplifting"), from reading: passage-mood-spans-model pass a: simchah שִׂמְחָה “εσται χαρα σοι και αγαλλιασις” (model-read). To change: config/books/LUK.toml, [chapters.1] (mood or style)
 Voices: [Male Vocal] Gabriel, Zechariah; [Female Vocal] Mary, Elizabeth; [Choir] neighbors and relatives, n0114; [Lead Vocal] or no tag = the narrator (the persona)
 [Verse 1] 1:1-4
 [Verse 2] 1:5-7
-[Verse 3] 1:8-12  · [Mood: epic] yirah יִרְאָה (md.yare), from passage-moods-model LUK 1:10-14 (model-read)
-[Verse 4] 1:13-15  · [Mood: epic] yirah יִרְאָה (md.yare), from passage-moods-model LUK 1:10-14 (model-read)
-[Verse 5] 1:16-18
+[Verse 3] 1:8-12  · [Mood: epic] yirah יִרְאָה (md.yare), from passage-mood-spans-model LUK 1:11-12 (pass a, b) “φοβος επεπεσεν επ αυτον” (model-read)
+[Verse 4] 1:13-15  · [Mood: joyful] simchah שִׂמְחָה (md.samach) “joy”, from passage-mood-spans-model LUK 1:13-17 (pass a, b) “εσται χαρα σοι και αγαλλιασις” (model-read)
+[Verse 5] 1:16-18  · [Mood: joyful] simchah שִׂמְחָה (md.samach) “joy”, from passage-mood-spans-model LUK 1:13-17 (pass a, b) “εσται χαρα σοι και αγαλλιασις” (model-read)
 [Verse 6] 1:19-20
 [Verse 7] 1:21-22
-[Verse 8] 1:23-25
+[Verse 8] 1:23-25  · [Mood: joyful] simchah שִׂמְחָה (md.samach) “joy”, from passage-mood-spans-model LUK 1:24-25 (pass b) “ἀφελεῖν ὄνειδός μου ἐν ἀνθρώποις”; passage-mood-spans-model LUK 1:25 (pass a) “αφελειν ονειδος μου εν ανθρωποις” (model-read)
 [Verse 9] 1:26-28
 [Verse 10] 1:29-30
-[Verse 11] 1:31-34
-[Verse 12] 1:35-38
+[Verse 11] 1:31-34  · [Mood: hopeful] tiqvah תִּקְוָה (md.batach), from passage-mood-spans-model LUK 1:30-33 (pass a, b) “της βασιλειας αυτου ουκ εσται τελος” (model-read)
+[Verse 12] 1:35-38  · [Mood: epic] yirah יִרְאָה (md.yare), from passage-mood-spans-model LUK 1:35-37 (pass a, b) “δυναμις Υψιστου επισκιασει σοι” (model-read)
 [Verse 13] 1:39-40
 [Verse 14] 1:41-45
-[Bridge] 1:46-49
-[Bridge] 1:50-55
-[Verse 15] 1:56-58
+[Bridge] 1:46-49  · [Mood: triumphant] rinnah רִנָּה (md.samach) “delight”, from passage-mood-spans-model LUK 1:46-55 (pass a) “ηγαλλιασεν το πνευμα μου”; passage-mood-spans-model LUK 1:46-48 (pass b) “ἠγαλλίασεν τὸ πνεῦμά μου ἐπὶ τῷ Θεῷ τῷ Σωτῆρί μου” (model-read)
+[Bridge] 1:50-55  · [Mood: triumphant] rinnah רִנָּה (md.samach) “delight”, from passage-mood-spans-model LUK 1:51-53 (pass a, b) “καθειλεν δυναστας απο θρονων”; passage-mood-spans-model LUK 1:46-55 (pass a) “ηγαλλιασεν το πνευμα μου” (model-read)
+[Verse 15] 1:56-58  · [Mood: joyful] simchah שִׂמְחָה (md.samach) “joy”, from passage-mood-spans-model LUK 1:57-58 (pass a) “συνεχαιρον αυτη”; passage-mood-spans-model LUK 1:58 (pass b) “καὶ συνέχαιρον αὐτῇ” (model-read)
 [Verse 16] 1:59-61
 [Verse 17] 1:62-64
 [Verse 18] 1:65-69
 [Bridge] 1:70-75
-[Bridge] 1:76-79
+[Bridge] 1:76-79  · [Mood: hopeful] tiqvah תִּקְוָה (md.batach), from passage-mood-spans-model LUK 1:76-79 (pass a) “επισκεψεται ημας ανατολη εξ υψους”; passage-mood-spans-model LUK 1:76-77 (pass b) “προφήτης Ὑψίστου κληθήσῃ” (model-read)
 [Verse 19] 1:80
 Shortened or paraphrased: nothing; every line is the edition's text, verbatim.
-Length: 8429 characters, over 5000; shorten before use and list the cuts here.
+Length: 8523 characters, over 5000; shorten before use and list the cuts here.
 Text: BSB, Public Domain (berean.bible, 2023-04-30).
 Structure: bcv-commons/greek-nt-clause-lines v0.2, passage-facts v0.3.3, clause-connectives v0.1 and clause-columns v1.2, CC BY-SA 4.0 (bcv-commons; MACULA, Clear Bible / Biblica, CC BY 4.0; MAM, unfoldingWord ULT, UBS dictionaries, CC BY-SA 4.0).
 Alignment: bcv-commons/full-alignments-manual v1.1, layer eng_BSB+manual+bsb-tables (BSB translation tables, CC0).
-Mood: section moods: bcv-commons/passage-facts mood families (UBS dictionaries SDBH and Louw-Nida, CC BY-SA 4.0)
-Mood: section moods read by a model: bcv-commons/passage-moods-model v0.1, CC BY-SA 4.0 (model output, claude-opus-5-5, no human check)
+Mood: moods read by two models: bcv-commons/passage-mood-spans-model v0.1, CC BY-SA 4.0 (model output, claude-opus-5-5 and claude-sonnet-5-5, two passes, no human check)

@@ -89,6 +89,12 @@
    "revision": "db4ad9173bee9371a983aa105fa1f647e9a6d24a",
    "licence": "CC BY-SA 4.0 (model output, claude-opus-5-5, no human check)"
   },
+  "passage-mood-spans-model": {
+   "repo": "bcv-commons/passage-mood-spans-model",
+   "tag": "v0.1",
+   "revision": "bb912dfa8b4bb19281ee47280a5653bf597f58e3",
+   "licence": "CC BY-SA 4.0 (model output, claude-opus-5-5 and claude-sonnet-5-5, two passes, no human check)"
+  },
   "hebrew-commentary-terms": {
    "repo": "bcv-commons/hebrew-commentary-terms",
    "tag": "v0.1",
@@ -102,12 +108,21 @@
    "licence": "CC BY-SA 4.0 (model output, claude-opus-5-5, no human check)"
   }
  },
- "bible-song-builder": "0.3.1",
+ "bible-song-builder": "0.4.0",
  "sections": [
   {
    "label": "Verse 1",
    "sung": true,
-   "mood": null,
+   "mood": {
+    "mood": "simchah",
+    "hebrew": "שִׂמְחָה",
+    "family": "md.samach",
+    "head": "שִׂמְחָה",
+    "tag": "[Mood: joyful]",
+    "word": "joy",
+    "evidence": "passage-mood-spans-model PSA 136:1-3 (pass a, b) “הודו ליהוה כי טוב”",
+    "model": true
+   },
    "verses": [
     "136:1",
     "136:2",
@@ -197,7 +212,16 @@
   {
    "label": "Verse 2",
    "sung": true,
-   "mood": null,
+   "mood": {
+    "mood": "yirah",
+    "hebrew": "יִרְאָה",
+    "family": "md.yare",
+    "head": "יִרְאָה",
+    "tag": "[Mood: epic]",
+    "word": "fear",
+    "evidence": "passage-mood-spans-model PSA 136:4-9 (pass a, b) “לעשה נפלאות גדלות לבדו”",
+    "model": true
+   },
    "verses": [
     "136:4",
     "136:5"
@@ -253,7 +277,16 @@
   {
    "label": "Verse 3",
    "sung": true,
-   "mood": null,
+   "mood": {
+    "mood": "yirah",
+    "hebrew": "יִרְאָה",
+    "family": "md.yare",
+    "head": "יִרְאָה",
+    "tag": "[Mood: epic]",
+    "word": "fear",
+    "evidence": "passage-mood-spans-model PSA 136:4-9 (pass a, b) “לעשה נפלאות גדלות לבדו”",
+    "model": true
+   },
    "verses": [
     "136:6",
     "136:7",
@@ -355,7 +388,16 @@
   {
    "label": "Verse 4",
    "sung": true,
-   "mood": null,
+   "mood": {
+    "mood": "rinnah",
+    "hebrew": "רִנָּה",
+    "family": "md.samach",
+    "head": "רִנָּה",
+    "tag": "[Mood: triumphant]",
+    "word": "cry",
+    "evidence": "passage-mood-spans-model PSA 136:10-22 (pass a) “ונער פרעה וחילו בים סוף”; passage-mood-spans-model PSA 136:10-15 (pass b) “ונער פרעה וחילו בים סוף”",
+    "model": true
+   },
    "verses": [
     "136:10",
     "136:11",
@@ -434,7 +476,16 @@
   {
    "label": "Verse 5",
    "sung": true,
-   "mood": null,
+   "mood": {
+    "mood": "rinnah",
+    "hebrew": "רִנָּה",
+    "family": "md.samach",
+    "head": "רִנָּה",
+    "tag": "[Mood: triumphant]",
+    "word": "cry",
+    "evidence": "passage-mood-spans-model PSA 136:10-22 (pass a) “ונער פרעה וחילו בים סוף”; passage-mood-spans-model PSA 136:10-15 (pass b) “ונער פרעה וחילו בים סוף”",
+    "model": true
+   },
    "verses": [
     "136:13",
     "136:14",
@@ -513,7 +564,16 @@
   {
    "label": "Verse 6",
    "sung": true,
-   "mood": null,
+   "mood": {
+    "mood": "rinnah",
+    "hebrew": "רִנָּה",
+    "family": "md.samach",
+    "head": "רִנָּה",
+    "tag": "[Mood: triumphant]",
+    "word": "cry",
+    "evidence": "passage-mood-spans-model PSA 136:10-22 (pass a) “ונער פרעה וחילו בים סוף”; passage-mood-spans-model PSA 136:16-22 (pass b) “ויהרג מלכים אדירים”",
+    "model": true
+   },
    "verses": [
     "136:16",
     "136:17",
@@ -592,7 +652,16 @@
   {
    "label": "Verse 7",
    "sung": true,
-   "mood": null,
+   "mood": {
+    "mood": "rinnah",
+    "hebrew": "רִנָּה",
+    "family": "md.samach",
+    "head": "רִנָּה",
+    "tag": "[Mood: triumphant]",
+    "word": "cry",
+    "evidence": "passage-mood-spans-model PSA 136:10-22 (pass a) “ונער פרעה וחילו בים סוף”; passage-mood-spans-model PSA 136:16-22 (pass b) “ויהרג מלכים אדירים”",
+    "model": true
+   },
    "verses": [
     "136:19",
     "136:20",
@@ -694,7 +763,16 @@
   {
    "label": "Verse 8",
    "sung": true,
-   "mood": null,
+   "mood": {
+    "mood": "ahavah",
+    "hebrew": "אַהֲבָה",
+    "family": "md.ahav",
+    "head": "אַהֲבָה",
+    "tag": "[Mood: tender]",
+    "word": "love",
+    "evidence": "passage-mood-spans-model PSA 136:23-24 (pass a) “שבשפלנו זכר לנו”; passage-mood-spans-model PSA 136:23-25 (pass b) “שבשפלנו זכר לנו”",
+    "model": true
+   },
    "verses": [
     "136:23",
     "136:24",

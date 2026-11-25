@@ -89,6 +89,12 @@
    "revision": "db4ad9173bee9371a983aa105fa1f647e9a6d24a",
    "licence": "CC BY-SA 4.0 (model output, claude-opus-5-5, no human check)"
   },
+  "passage-mood-spans-model": {
+   "repo": "bcv-commons/passage-mood-spans-model",
+   "tag": "v0.1",
+   "revision": "bb912dfa8b4bb19281ee47280a5653bf597f58e3",
+   "licence": "CC BY-SA 4.0 (model output, claude-opus-5-5 and claude-sonnet-5-5, two passes, no human check)"
+  },
   "hebrew-commentary-terms": {
    "repo": "bcv-commons/hebrew-commentary-terms",
    "tag": "v0.1",
@@ -102,7 +108,7 @@
    "licence": "CC BY-SA 4.0 (model output, claude-opus-5-5, no human check)"
   }
  },
- "bible-song-builder": "0.3.1",
+ "bible-song-builder": "0.4.0",
  "sections": [
   {
    "label": "Verse 1",
@@ -111,10 +117,10 @@
     "mood": "mivtach",
     "hebrew": "מִבְטָח",
     "family": "md.batach",
-    "head": "בָּטַח",
+    "head": "מִבְטָח",
     "tag": "[Mood: calm]",
     "word": "trust",
-    "evidence": "passage-moods-model PSA 23:1-6",
+    "evidence": "passage-mood-spans-model PSA 23:1 (pass b) “יהוה רעי לא אחסר”; passage-mood-spans-model PSA 23:4 (pass a, b) “לא אירא רע כי אתה עמדי”",
     "model": true
    },
    "verses": [
@@ -252,13 +258,13 @@
    "label": "Verse 2",
    "sung": true,
    "mood": {
-    "mood": "mivtach",
-    "hebrew": "מִבְטָח",
+    "mood": "tiqvah",
+    "hebrew": "תִּקְוָה",
     "family": "md.batach",
-    "head": "בָּטַח",
-    "tag": "[Mood: calm]",
-    "word": "trust",
-    "evidence": "passage-moods-model PSA 23:1-6",
+    "head": "תִּקְוָה",
+    "tag": "[Mood: hopeful]",
+    "word": "hope",
+    "evidence": "passage-mood-spans-model PSA 23:6 (pass a, b) “טוב וחסד ירדפוני כל ימי חיי”",
     "model": true
    },
    "verses": [

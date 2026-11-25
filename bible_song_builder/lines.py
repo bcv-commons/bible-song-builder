@@ -60,6 +60,7 @@ class LyricLine:
     clause: str | None = None    # key of the clause that starts the line (clause-connectives / -columns)
     opening: list[str] | None = None  # at a verse start: the verse's first clause in source order and
                                       # its first top-level clause (what break_strength reads)
+    row: dict | None = field(default=None, repr=False, compare=False)   # the plan row that starts the line
 
 
 @dataclass
@@ -176,12 +177,15 @@ def merge_short(lines: list[LyricLine], min_tokens: int, count: str = "words") -
     return out
 
 
-def main_naming(ref: dict, prefix: str = "") -> tuple[str, int] | None:
+def main_naming(ref: dict, prefix: str = "", named_only: bool = False) -> tuple[str, int] | None:
     """The speaker's main naming place in the plan, the same for every edition: among the entries in
     this book (word keys starting with ``prefix``), the ``named`` one with the most clause rows (the
     earlier on a tie), else the main ``described`` one; else the main ``named`` one in another book
-    (the Greek names a speaker where they are first named, also in another book); None if none."""
+    (the Greek names a speaker where they are first named, also in another book); None if none.
+    ``named_only``: never a ``described`` one (layout.toml [speakers] separate_chapters)."""
     for part, here in (("named", True), ("described", True), ("named", False)):
+        if named_only and part == "described":
+            continue
         entries = [(i, n) for i, (keys, n) in enumerate(ref.get(part) or []) if keys
                    and keys[0].startswith(prefix) == here]
         if entries:
@@ -199,13 +203,15 @@ def speaker_hits(refs: dict[str, dict], al: Alignment, bt: BookText, book: str =
     None. ``refs``: the plan's speakers (cast.speaker_refs); the voice is the cast table's, else the
     plan's ``voice``; ``to_ed(book, (c, v))``: spine -> edition (c, v) or None; ``lexemes``:
     align.lexeme_keys of the book (for strong)."""
+    from . import config
     from .edition import BOOKS
     prefix = f"{BOOKS.index(book) + 1:02d}" if book in BOOKS else ""
+    named_only = book in config.layout(bt.edition).get("speakers", {}).get("separate_chapters", [])
     to_ed = to_ed or (lambda b, cv: cv)
     strong_of = {k: f"{'G' if len(k) == 11 else 'H'}{n}" for n, keys in (lexemes or {}).items() for k in keys}
     out = {}
     for sid, ref in refs.items():
-        main = main_naming(ref, prefix)
+        main = main_naming(ref, prefix, named_only)
         hits = []
         for part in ("named", "described"):
             for i, (keys, n) in enumerate(ref.get(part, [])):
@@ -327,7 +333,7 @@ def build_lines(bt: BookText, chapter: int, rows: list[dict], al: Alignment,
             q = by_words.most_common(1)[0][0] if by_words else None
             r0 = next((r for r in vr if r.get("quotation") == q), None)
             qq, sp = voice(r0)
-            lines.append(LyricLine(cv, v.text, 0, qq, sp, r0["seg"] if r0 else None))
+            lines.append(LyricLine(cv, v.text, 0, qq, sp, r0["seg"] if r0 else None, row=r0))
         else:
             base = set(cand)
             hb = marks.half_b.get(cv)
@@ -357,7 +363,7 @@ def build_lines(bt: BookText, chapter: int, rows: list[dict], al: Alignment,
                 prev_row = r
                 qq, sp = voice(r)
                 lines.append(LyricLine(cv, piece, t, qq, sp, r["seg"] if r else None,
-                                       clause=structure.clause_key(r) if r else None))
+                                       clause=structure.clause_key(r) if r else None, row=r))
             _mark(lines[first:], cv, len(v.tokens), marks)
         _opening(lines, cv, verse_rows.get(cv, []))
         for pcv, ptok in para_ends:

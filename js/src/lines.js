@@ -18,10 +18,11 @@ export const clauseKey = (row) => row.clause_key || row.first || null;
 
 const speaker = (id, label, voice) => ({ id, label, voice });
 
-function line(cv, text, firstToken, quote, sp, rowSeg, clause = null) {
+function line(cv, text, firstToken, quote, sp, rowSeg, clause = null, row = null) {
     return {
         cv, text, first_token: firstToken, quote, speaker: sp, row_seg: rowSeg,
         para_end: false, refrain: null, acrostic: null, selah: false, clause, opening: null,
+        row,                                  // the plan row that starts the line
     };
 }
 
@@ -122,9 +123,11 @@ export function mergeShort(lines, minTokens, mode = 'words') {
  *  this book (word keys starting with prefix), the `named` one with the most clause rows (the
  *  earlier on a tie), else the main `described` one; else the main `named` one in another book
  *  (the Greek names a speaker where they are first named, also in another book); null if none.
+ *  namedOnly: never a `described` one (layout.toml [speakers] separate_chapters).
  *  [part, index] (lines.main_naming) */
-export function mainNaming(ref, prefix = '') {
+export function mainNaming(ref, prefix = '', namedOnly = false) {
     for (const [part, here] of [['named', true], ['described', true], ['named', false]]) {
+        if (namedOnly && part === 'described') continue;
         let best = null;
         (ref[part] || []).forEach(([keys, n], i) => {
             if (keys.length && keys[0].startsWith(prefix) === here && (best === null || n > ref[part][best][1])) best = i;
@@ -143,12 +146,13 @@ export function mainNaming(ref, prefix = '') {
  *  cvKey or null; lexemes: lexemeKeys() of the book (optional, for strong). */
 export function speakerHits(cfg, refs, al, bt, book = '', toEd = null, lexemes = null) {
     const prefix = BOOKS.includes(book) ? String(BOOKS.indexOf(book) + 1).padStart(2, '0') : '';
+    const namedOnly = ((cfg.layout(bt.edition).speakers || {}).separate_chapters || []).includes(book);
     toEd = toEd || ((b, cv) => cv);
     const strongOf = new Map();
     for (const [n, keys] of lexemes || []) for (const k of keys) strongOf.set(k, `${k.length === 11 ? 'G' : 'H'}${n}`);
     const out = new Map();
     for (const [sid, ref] of Object.entries(refs)) {
-        const main = mainNaming(ref, prefix);
+        const main = mainNaming(ref, prefix, namedOnly);
         const hits = [];
         for (const part of ['named', 'described']) {
             (ref[part] || []).forEach(([keys, n], i) => {
@@ -270,7 +274,7 @@ export function buildLines(cfg, bt, chapter, rows, al, speakers, vmapCv, { minTo
             const q = byWords.size ? mostCommon(byWords) : null;
             const r0 = vr.find((r) => (r.quotation ?? null) === q) ?? null;
             const [qq, sp] = voice(r0);
-            lines.push(line(cv, v.text, 0, qq, sp, r0 ? r0.seg : null));
+            lines.push(line(cv, v.text, 0, qq, sp, r0 ? r0.seg : null, null, r0));
         } else {
             let base = new Set(cand.keys());
             const hb = marks.halfB.get(cv);
@@ -300,7 +304,7 @@ export function buildLines(cfg, bt, chapter, rows, al, speakers, vmapCv, { minTo
                 const r = cand.get(moved.has(t) ? moved.get(t) : t) || (owner.get(cv) || new Map()).get(t) || prevRow;
                 prevRow = r;
                 const [qq, sp] = voice(r);
-                lines.push(line(cv, piece, t, qq, sp, r ? r.seg : null, r ? clauseKey(r) : null));
+                lines.push(line(cv, piece, t, qq, sp, r ? r.seg : null, r ? clauseKey(r) : null, r || null));
             }
             mark(lines.slice(first), cv, v.tokens.length, marks);
         }

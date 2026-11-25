@@ -18,9 +18,14 @@
    "refrain": "[Choir]"
   }
  },
- "style": "acoustic folk ballad, 90 BPM, fingerpicked guitar, soft strings, storytelling",
- "own_style": false,
- "mood": null,
+ "style": "acoustic folk ballad, 90 BPM, fingerpicked guitar, soft strings, storytelling, joyful, uplifting",
+ "own_style": true,
+ "mood": {
+  "mood": "simchah",
+  "basis": "reading",
+  "evidence": "passage-mood-spans-model pass a: simchah שִׂמְחָה “εσται χαρα σοι και αγαλλιασις” (model-read)",
+  "instruments": []
+ },
  "text_fingerprint": "3dacdd5e2a0c871f38cf7c29ae9c98538e2abe5deb40ab7c524ae6af4431418b",
  "superscription": null,
  "alignment": {
@@ -84,6 +89,12 @@
    "revision": "db4ad9173bee9371a983aa105fa1f647e9a6d24a",
    "licence": "CC BY-SA 4.0 (model output, claude-opus-5-5, no human check)"
   },
+  "passage-mood-spans-model": {
+   "repo": "bcv-commons/passage-mood-spans-model",
+   "tag": "v0.1",
+   "revision": "bb912dfa8b4bb19281ee47280a5653bf597f58e3",
+   "licence": "CC BY-SA 4.0 (model output, claude-opus-5-5 and claude-sonnet-5-5, two passes, no human check)"
+  },
   "hebrew-commentary-terms": {
    "repo": "bcv-commons/hebrew-commentary-terms",
    "tag": "v0.1",
@@ -97,7 +108,7 @@
    "licence": "CC BY-SA 4.0 (model output, claude-opus-5-5, no human check)"
   }
  },
- "bible-song-builder": "0.3.1",
+ "bible-song-builder": "0.4.0",
  "sections": [
   {
    "label": "Verse 1",
@@ -342,10 +353,10 @@
     "mood": "yirah",
     "hebrew": "יִרְאָה",
     "family": "md.yare",
-    "head": "φοβέω",
+    "head": "יִרְאָה",
     "tag": "[Mood: epic]",
     "word": null,
-    "evidence": "passage-moods-model LUK 1:10-14",
+    "evidence": "passage-mood-spans-model LUK 1:11-12 (pass a, b) “φοβος επεπεσεν επ αυτον”",
     "model": true
    },
    "verses": [
@@ -462,13 +473,13 @@
    "label": "Verse 4",
    "sung": false,
    "mood": {
-    "mood": "yirah",
-    "hebrew": "יִרְאָה",
-    "family": "md.yare",
-    "head": "φοβέω",
-    "tag": "[Mood: epic]",
-    "word": null,
-    "evidence": "passage-moods-model LUK 1:10-14",
+    "mood": "simchah",
+    "hebrew": "שִׂמְחָה",
+    "family": "md.samach",
+    "head": "שִׂמְחָה",
+    "tag": "[Mood: joyful]",
+    "word": "joy",
+    "evidence": "passage-mood-spans-model LUK 1:13-17 (pass a, b) “εσται χαρα σοι και αγαλλιασις”",
     "model": true
    },
    "verses": [
@@ -629,7 +640,16 @@
   {
    "label": "Verse 5",
    "sung": false,
-   "mood": null,
+   "mood": {
+    "mood": "simchah",
+    "hebrew": "שִׂמְחָה",
+    "family": "md.samach",
+    "head": "שִׂמְחָה",
+    "tag": "[Mood: joyful]",
+    "word": "joy",
+    "evidence": "passage-mood-spans-model LUK 1:13-17 (pass a, b) “εσται χαρα σοι και αγαλλιασις”",
+    "model": true
+   },
    "verses": [
     "1:16",
     "1:17",
@@ -1035,7 +1055,16 @@
   {
    "label": "Verse 8",
    "sung": false,
-   "mood": null,
+   "mood": {
+    "mood": "simchah",
+    "hebrew": "שִׂמְחָה",
+    "family": "md.samach",
+    "head": "שִׂמְחָה",
+    "tag": "[Mood: joyful]",
+    "word": "joy",
+    "evidence": "passage-mood-spans-model LUK 1:24-25 (pass b) “ἀφελεῖν ὄνειδός μου ἐν ἀνθρώποις”; passage-mood-spans-model LUK 1:25 (pass a) “αφελειν ονειδος μου εν ανθρωποις”",
+    "model": true
+   },
    "verses": [
     "1:23",
     "1:24",
@@ -1298,7 +1327,16 @@
   {
    "label": "Verse 11",
    "sung": false,
-   "mood": null,
+   "mood": {
+    "mood": "tiqvah",
+    "hebrew": "תִּקְוָה",
+    "family": "md.batach",
+    "head": "תִּקְוָה",
+    "tag": "[Mood: hopeful]",
+    "word": null,
+    "evidence": "passage-mood-spans-model LUK 1:30-33 (pass a, b) “της βασιλειας αυτου ουκ εσται τελος”",
+    "model": true
+   },
    "verses": [
     "1:31",
     "1:32",
@@ -1473,7 +1511,16 @@
   {
    "label": "Verse 12",
    "sung": false,
-   "mood": null,
+   "mood": {
+    "mood": "yirah",
+    "hebrew": "יִרְאָה",
+    "family": "md.yare",
+    "head": "יִרְאָה",
+    "tag": "[Mood: epic]",
+    "word": null,
+    "evidence": "passage-mood-spans-model LUK 1:35-37 (pass a, b) “δυναμις Υψιστου επισκιασει σοι”",
+    "model": true
+   },
    "verses": [
     "1:35",
     "1:36",
@@ -1886,7 +1933,16 @@
   {
    "label": "Bridge",
    "sung": true,
-   "mood": null,
+   "mood": {
+    "mood": "rinnah",
+    "hebrew": "רִנָּה",
+    "family": "md.samach",
+    "head": "רִנָּה",
+    "tag": "[Mood: triumphant]",
+    "word": "delight",
+    "evidence": "passage-mood-spans-model LUK 1:46-55 (pass a) “ηγαλλιασεν το πνευμα μου”; passage-mood-spans-model LUK 1:46-48 (pass b) “ἠγαλλίασεν τὸ πνεῦμά μου ἐπὶ τῷ Θεῷ τῷ Σωτῆρί μου”",
+    "model": true
+   },
    "verses": [
     "1:46",
     "1:47",
@@ -2001,7 +2057,16 @@
   {
    "label": "Bridge",
    "sung": true,
-   "mood": null,
+   "mood": {
+    "mood": "rinnah",
+    "hebrew": "רִנָּה",
+    "family": "md.samach",
+    "head": "רִנָּה",
+    "tag": "[Mood: triumphant]",
+    "word": "delight",
+    "evidence": "passage-mood-spans-model LUK 1:51-53 (pass a, b) “καθειλεν δυναστας απο θρονων”; passage-mood-spans-model LUK 1:46-55 (pass a) “ηγαλλιασεν το πνευμα μου”",
+    "model": true
+   },
    "verses": [
     "1:50",
     "1:51",
@@ -2197,7 +2262,16 @@
   {
    "label": "Verse 15",
    "sung": false,
-   "mood": null,
+   "mood": {
+    "mood": "simchah",
+    "hebrew": "שִׂמְחָה",
+    "family": "md.samach",
+    "head": "שִׂמְחָה",
+    "tag": "[Mood: joyful]",
+    "word": "joy",
+    "evidence": "passage-mood-spans-model LUK 1:57-58 (pass a) “συνεχαιρον αυτη”; passage-mood-spans-model LUK 1:58 (pass b) “καὶ συνέχαιρον αὐτῇ”",
+    "model": true
+   },
    "verses": [
     "1:56",
     "1:57",
@@ -2868,7 +2942,16 @@
   {
    "label": "Bridge",
    "sung": true,
-   "mood": null,
+   "mood": {
+    "mood": "tiqvah",
+    "hebrew": "תִּקְוָה",
+    "family": "md.batach",
+    "head": "תִּקְוָה",
+    "tag": "[Mood: hopeful]",
+    "word": null,
+    "evidence": "passage-mood-spans-model LUK 1:76-79 (pass a) “επισκεψεται ημας ανατολη εξ υψους”; passage-mood-spans-model LUK 1:76-77 (pass b) “προφήτης Ὑψίστου κληθήσῃ”",
+    "model": true
+   },
    "verses": [
     "1:76",
     "1:77",

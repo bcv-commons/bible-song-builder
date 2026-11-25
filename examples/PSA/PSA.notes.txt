@@ -25,6 +25,7 @@ PSA 20: royal (+ "stately, majestic"), from type: Tyndale Open Study Notes: mele
 PSA 21: prayer (+ "slower, intimate, prayerful"), from commentary: Hebrew commentators: Meiri (model-read): והתפלל
 PSA 22: lament (+ "desperate, pleading, building intensity"), from type: Tyndale Open Study Notes: tefillah_tsarah תְּפִלָּה בְּצָרָה over 21 of 32 verses; Hebrew commentators: Rashi (model-read): תפלה
 PSA 23: trust (+ "calm, confident"), from type: Tyndale Open Study Notes: mivtach מִבְטָח over 6 of 6 verses; Scriptura: mivtach מִבְטָח over 6 of 6 verses
+PSA 24: rinnah (+ "triumphant, anthemic, high energy, driving"), from reading: passage-mood-spans-model pass a: rinnah רִנָּה “יהוה גבור מלחמה” (model-read)
 PSA 25: lament (+ "desperate, pleading, building intensity"), from type: Tyndale Open Study Notes: tefillat_tsibbur תְּפִלַּת צִבּוּר over 22 of 22 verses; Tyndale Open Study Notes: tefillah_tsarah תְּפִלָּה בְּצָרָה over 22 of 22 verses; Scriptura: tefillah תְּפִלָּה over 22 of 22 verses; Hebrew commentators: Meiri (model-read): הפליג בתפלה
 PSA 26: lament (+ "desperate, pleading, building intensity"), from type: Tyndale Open Study Notes: tefillah_tsarah תְּפִלָּה בְּצָרָה over 12 of 12 verses; Hebrew commentators: Malbim (model-read): בתפלה זו
 PSA 27: lament (+ "desperate, pleading, building intensity"), from type: Tyndale Open Study Notes: tefillah_tsarah תְּפִלָּה בְּצָרָה over 8 of 14 verses; Hebrew commentators: Meiri: תפלה, Meiri (model-read): תפלה, Malbim (model-read): מתפלל
@@ -50,16 +51,22 @@ PSA 46: praise (+ "triumphant, anthemic, high energy, driving"), from type: Tynd
 PSA 47: royal (+ "stately, majestic"), from type: Tyndale Open Study Notes: malkhut מַלְכוּת over 10 of 10 verses
 PSA 48: praise (+ "triumphant, anthemic, high energy, driving"), from type: Tyndale Open Study Notes: tsiyyon צִיּוֹן over 15 of 15 verses; Hebrew commentators: Radak (model-read): שבח ירושלים, Ibn Ezra (model-read): שבח ירושלם
 PSA 49: wisdom (+ "thoughtful, measured"), from type: Tyndale Open Study Notes: chokhmah חָכְמָה over 21 of 21 verses
+PSA 50: af (+ "angry, aggressive, high energy, driving"), from reading: passage-mood-spans-model pass a: af אַף “אוכיחך ואערכה לעיניך” (model-read)
 PSA 51: prayer (+ "slower, intimate, prayerful"), from commentary: Hebrew commentators: Meiri (model-read): לתפלה
+PSA 52: af (+ "angry, aggressive, high energy, driving"), from reading: passage-mood-spans-model pass a: af אַף “מה תתהלל ברעה הגבור” (model-read)
+PSA 53: af (+ "angry, aggressive, high energy, driving"), from reading: passage-mood-spans-model pass a: af אַף “אין עשה טוב” (model-read)
 PSA 54: lament (+ "desperate, pleading, building intensity, with harp and strings"), from type: Tyndale Open Study Notes: tefillah_tsarah תְּפִלָּה בְּצָרָה over 9 of 9 verses; with stringed instruments (בנגינות); Hebrew commentators: Meiri (model-read): לתפלה ולהודות
-PSA 55: instruments (+ "with harp and strings"), from heading: with stringed instruments (בנגינות)
+PSA 55: tsarah (+ "desperate, pleading, building intensity, with harp and strings"), from reading: passage-mood-spans-model pass a: tsarah צָרָה “לבי יחיל בקרבי” (model-read)
 PSA 56: lament (+ "desperate, pleading, building intensity"), from type: Tyndale Open Study Notes: tefillah_tsarah תְּפִלָּה בְּצָרָה over 14 of 14 verses
 PSA 57: prayer (+ "slower, intimate, prayerful"), from commentary: Hebrew commentators: Metzudat David (model-read): התפלל, Malbim (model-read): תפלה
+PSA 58: af (+ "angry, aggressive, high energy, driving"), from reading: passage-mood-spans-model pass a: af אַף “הרס שנימו בפימו” (model-read)
 PSA 59: lament (+ "desperate, pleading, building intensity"), from type: Tyndale Open Study Notes: tefillah_tsarah תְּפִלָּה בְּצָרָה over 18 of 18 verses; Hebrew commentators: Malbim (model-read): ומתפלל
 PSA 60: lament (+ "desperate, pleading, building intensity"), from type: Tyndale Open Study Notes: tefillah_tsarah תְּפִלָּה בְּצָרָה over 14 of 14 verses
 PSA 61: prayer (+ "slower, intimate, prayerful, with harp and strings"), from commentary: Hebrew commentators: Meiri (model-read): מתפלל, Malbim (model-read): מתפלל; with stringed instruments (בנגינות)
+PSA 62: mivtach (+ "calm, confident"), from reading: passage-mood-spans-model pass a: mivtach מִבְטָח “אך אל אלהים דומיה נפשי” (model-read)
 PSA 63: prayer (+ "slower, intimate, prayerful"), from commentary: Hebrew commentators: Meiri (model-read): מתפלל
 PSA 64: lament (+ "desperate, pleading, building intensity"), from type: Tyndale Open Study Notes: tefillah_tsarah תְּפִלָּה בְּצָרָה over 11 of 11 verses; Hebrew commentators: Meiri (model-read): מתפלל ומתחנן, Rashi (model-read): והתפלל עליו
+PSA 65: simchah (+ "joyful, uplifting"), from reading: passage-mood-spans-model pass a: simchah שִׂמְחָה “וגיל גבעות תחגרנה” (the passes differ) (model-read)
 PSA 66: praise (+ "triumphant, anthemic, high energy, driving"), from type: Tyndale Open Study Notes: tehillah תְּהִלָּה over 20 of 20 verses; Hebrew commentators: Malbim (model-read): תפלתו
 PSA 67: prayer (+ "slower, intimate, prayerful, with harp and strings"), from type: Tyndale Open Study Notes: tefillah תְּפִלָּה over 8 of 8 verses; with stringed instruments (בנגינות); Scriptura: tefillah תְּפִלָּה over 8 of 8 verses
 PSA 68: prayer (+ "slower, intimate, prayerful"), from type: Tyndale Open Study Notes: tefillah תְּפִלָּה over 36 of 36 verses; Scriptura: tehillah תְּהִלָּה over 36 of 36 verses
@@ -75,7 +82,10 @@ PSA 77: lament (+ "desperate, pleading, building intensity"), from type: Tyndale
 PSA 78: wisdom (+ "thoughtful, measured"), from type: Tyndale Open Study Notes: chokhmah חָכְמָה over 72 of 72 verses
 PSA 79: lament (+ "desperate, pleading, building intensity"), from type: Tyndale Open Study Notes: tefillah_tsarah תְּפִלָּה בְּצָרָה over 13 of 13 verses; Hebrew commentators: Ibn Ezra (model-read): קינות, Rashi (model-read): קינה
 PSA 80: lament (+ "desperate, pleading, building intensity"), from type: Tyndale Open Study Notes: tefillah_tsarah תְּפִלָּה בְּצָרָה over 20 of 20 verses; Hebrew commentators: Rashi (model-read): והתפלל עליהם, Malbim (model-read): מתפלל
+PSA 81: rinnah (+ "triumphant, anthemic, high energy, driving"), from reading: passage-mood-spans-model pass a: rinnah רִנָּה “הרנינו לאלהים עוזנו” (model-read)
+PSA 82: af (+ "angry, aggressive, high energy, driving"), from reading: passage-mood-spans-model pass a: af אַף “עד מתי תשפטו עול” (model-read)
 PSA 83: lament (+ "desperate, pleading, building intensity"), from type: Tyndale Open Study Notes: tefillat_tsibbur תְּפִלַּת צִבּוּר over 19 of 19 verses
+PSA 84: ahavah (+ "tender, intimate, slow, sparse"), from reading: passage-mood-spans-model pass a: ahavah אַהֲבָה “מה ידידות משכנותיך” (model-read)
 PSA 85: lament (+ "desperate, pleading, building intensity"), from type: Tyndale Open Study Notes: tefillah_tsarah תְּפִלָּה בְּצָרָה over 14 of 14 verses; Hebrew commentators: Meiri (model-read): תפלה, Malbim (model-read): והתפלל
 PSA 86: prayer (+ "slower, intimate, prayerful"), from heading: a prayer (תפלה); Tyndale Open Study Notes: tefillah_tsarah תְּפִלָּה בְּצָרָה over 17 of 17 verses; Hebrew commentators: Radak (model-read): תפלה, Meiri (model-read): ומתפלל, Ibn Ezra (model-read): זאת התפלה, Malbim (model-read): תפלה
 PSA 87: praise (+ "triumphant, anthemic, high energy, driving"), from commentary: Hebrew commentators: Radak: שבח, Radak (model-read): שבח ציון, Meiri (model-read): לשבח ירושלם, Metzudat David (model-read): במהללי הררי קדש, Malbim (model-read): בשבח ציון
@@ -88,7 +98,9 @@ PSA 93: praise (+ "triumphant, anthemic, high energy, driving"), from purpose: S
 PSA 94: lament (+ "desperate, pleading, building intensity"), from type: Tyndale Open Study Notes: tefillat_tsibbur תְּפִלַּת צִבּוּר over 23 of 23 verses; Tyndale Open Study Notes: tefillah_tsarah תְּפִלָּה בְּצָרָה over 23 of 23 verses; Hebrew commentators: Radak (model-read): מתפלל, Meiri (model-read): ולהתפלל
 PSA 95: wisdom (+ "thoughtful, measured"), from purpose: Scriptura: musar מוּסָר over 11 of 11 verses
 PSA 96: royal (+ "stately, majestic"), from type: Tyndale Open Study Notes: malkhut מַלְכוּת over 13 of 13 verses
+PSA 97: simchah (+ "joyful, uplifting"), from reading: passage-mood-spans-model pass a: simchah שִׂמְחָה “תגל הארץ ישמחו איים רבים” (model-read)
 PSA 98: royal (+ "stately, majestic"), from type: Tyndale Open Study Notes: malkhut מַלְכוּת over 9 of 9 verses; Scriptura: musar מוּסָר over 9 of 9 verses
+PSA 99: yirah (+ "epic, solemn, slow, sparse"), from reading: passage-mood-spans-model pass a: yirah יִרְאָה “קדוש הוא” (model-read)
 PSA 100: thanksgiving (+ "joyful, uplifting"), from heading: for the thank offering (לתודה); Hebrew commentators: Meiri (model-read): להודות לו, Malbim (model-read): הודאה של נס
 PSA 101: praise (+ "triumphant, anthemic, high energy, driving"), from type: Tyndale Open Study Notes: tehillah תְּהִלָּה over 8 of 8 verses
 PSA 102: prayer (+ "slower, intimate, prayerful"), from heading: a prayer (תפלה); Hebrew commentators: Radak (model-read): תפלתו, Meiri (model-read): תפלה, Ibn Ezra (model-read): התפלה, Malbim (model-read): תפלה
@@ -97,14 +109,17 @@ PSA 104: praise (+ "triumphant, anthemic, high energy, driving"), from heading: 
 PSA 105: praise (+ "triumphant, anthemic, high energy, driving"), from heading: praise the LORD (הללו יה); Tyndale Open Study Notes: tehillah תְּהִלָּה over 45 of 45 verses; Hebrew commentators: Meiri: הודאה, Meiri (model-read): הודאה לאל, Malbim (model-read): הודאה
 PSA 106: praise (+ "triumphant, anthemic, high energy, driving"), from heading: praise the LORD (הללו יה); Hebrew commentators: Radak (model-read): שיהללו יה, Ibn Ezra (model-read): הללו את השם והודוהו
 PSA 107: praise (+ "triumphant, anthemic, high energy, driving"), from type: Tyndale Open Study Notes: tehillah תְּהִלָּה over 43 of 43 verses; Hebrew commentators: Radak (model-read): להודות
+PSA 108: rinnah (+ "triumphant, anthemic, high energy, driving"), from reading: passage-mood-spans-model pass a: rinnah רִנָּה “אשירה ואזמרה” (the passes differ) (model-read)
 PSA 109: lament (+ "desperate, pleading, building intensity"), from type: Tyndale Open Study Notes: tefillah_tsarah תְּפִלָּה בְּצָרָה over 31 of 31 verses
 PSA 110: trust (+ "calm, confident"), from purpose: Scriptura: mivtach מִבְטָח over 7 of 7 verses
 PSA 111: praise (+ "triumphant, anthemic, high energy, driving"), from heading: praise the LORD (הללו יה); Tyndale Open Study Notes: chokhmah חָכְמָה over 10 of 10 verses; Scriptura: tehillah תְּהִלָּה over 10 of 10 verses; Hebrew commentators: Rashi (model-read): בשבחו
 PSA 112: praise (+ "triumphant, anthemic, high energy, driving"), from heading: praise the LORD (הללו יה); Tyndale Open Study Notes: chokhmah חָכְמָה over 10 of 10 verses; Scriptura: tehillah תְּהִלָּה over 10 of 10 verses
 PSA 113: praise (+ "triumphant, anthemic, high energy, driving"), from heading: praise the LORD (הללו יה); Tyndale Open Study Notes: tehillah תְּהִלָּה over 9 of 9 verses
+PSA 114: yirah (+ "epic, solemn, slow, sparse"), from reading: passage-mood-spans-model pass a: yirah יִרְאָה “מלפני אדון חולי ארץ” (model-read)
 PSA 115: praise (+ "triumphant, anthemic, high energy, driving"), from heading: praise the LORD (הללו יה); Tyndale Open Study Notes: todah תּוֹדָה over 18 of 18 verses; Hebrew commentators: Meiri (model-read): והתפלל לאל
 PSA 116: praise (+ "triumphant, anthemic, high energy, driving"), from heading: praise the LORD (הללו יה); Tyndale Open Study Notes: todah תּוֹדָה over 19 of 19 verses
 PSA 117: praise (+ "triumphant, anthemic, high energy, driving"), from heading: praise the LORD (הללו יה)
+PSA 118: simchah (+ "joyful, uplifting"), from reading: passage-mood-spans-model pass a: simchah שִׂמְחָה “נגילה ונשמחה בו” (the passes differ) (model-read)
 PSA 119: prayer (+ "slower, intimate, prayerful"), from commentary: Hebrew commentators: Meiri (model-read): תפלה, Malbim (model-read): התפלה
 PSA 120: pilgrimage (+ "hopeful, yearning, building intensity"), from heading: a song of ascents (שיר המעלות); Tyndale Open Study Notes: tefillah_tsarah תְּפִלָּה בְּצָרָה over 7 of 7 verses; Hebrew commentators: Malbim (model-read): התפלל
 PSA 121: pilgrimage (+ "hopeful, yearning, building intensity"), from heading: a song of ascents (שיר המעלות); Scriptura: musar מוּסָר over 8 of 8 verses
