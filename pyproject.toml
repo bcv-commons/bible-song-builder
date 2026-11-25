@@ -1,6 +1,6 @@
 [project]
 name = "bible-song-builder"
-version = "0.4.0"
+version = "0.4.1"
 description = "Suno lyrics from any Bible edition, with line breaks, voices, moods and setting from bcv-commons clause lines and passage facts"
 readme = "README.md"
 license = { file = "LICENSE" }

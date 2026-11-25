@@ -1,7 +1,7 @@
 Luke 1 · BSB · setting: prose
 Profile: folk, male lead · Suno persona: (not set: profiles.toml [profiles.folk] persona.male)
 Style: this chapter's own (LUK_001.style.txt): simchah (+ "joyful, uplifting"), from reading: passage-mood-spans-model pass a: simchah שִׂמְחָה “εσται χαρα σοι και αγαλλιασις” (model-read). To change: config/books/LUK.toml, [chapters.1] (mood or style)
-Voices: [Male Vocal] Gabriel, Zechariah; [Female Vocal] Mary, Elizabeth; [Choir] neighbors and relatives, n0114; [Lead Vocal] or no tag = the narrator (the persona)
+Voices: [Male Vocal] Gabriel, Zechariah; [Female Vocal] Mary, Elizabeth; [Choir] neighbors and relatives, unnamed; [Lead Vocal] or no tag = the narrator (the persona)
 [Verse 1] 1:1-4
 [Verse 2] 1:5-7
 [Verse 3] 1:8-12  · [Mood: epic] yirah יִרְאָה (md.yare), from passage-mood-spans-model LUK 1:11-12 (pass a, b) “φοβος επεπεσεν επ αυτον” (model-read)

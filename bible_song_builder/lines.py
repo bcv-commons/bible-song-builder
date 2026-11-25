@@ -119,6 +119,11 @@ def edge_words(edition: str) -> set[str]:
     return {w.lower() for w in config.language(iso).get("label_edge_words", [])}
 
 
+def label_stops(edition: str) -> list[str]:
+    """layout.toml [speakers] label_stops: marks between words at which a speaker's label ends."""
+    return config.layout(edition).get("speakers", {}).get("label_stops", [":", ";", "—", "–", "«", "“", "\""])
+
+
 def phrase(bt: BookText, cv: tuple[int, int], pos: set[int], max_tokens: int = 6) -> str | None:
     """The edition's words at these token positions of a verse (a name, a term), trimmed of the
     language's edge words and endings; None if too long."""
@@ -131,6 +136,11 @@ def phrase(bt: BookText, cv: tuple[int, int], pos: set[int], max_tokens: int = 6
     edge = edge_words(bt.edition)
     while a <= b and v.tokens[a].lower() in edge:
         a += 1
+    stops = set(label_stops(bt.edition))
+    for k in range(a, b):        # a name ends where the text speaks: "All answered: — Yes, we are"
+        if stops & set(v.text[v.spans[k][1]:v.spans[k + 1][0]]):
+            b = max((p for p in pos if a <= p <= k), default=k)     # back to its last own word
+            break
     while b >= a and v.tokens[b].lower() in edge:
         b -= 1
     if a > b:
@@ -238,7 +248,8 @@ def speaker_hits(refs: dict[str, dict], al: Alignment, bt: BookText, book: str =
 
 def speaker_labels(hits: dict, chapter: int | None = None) -> dict[str, Speaker]:
     """speaker_id -> Speaker for one edition chapter. The label is the commonest of the edition's
-    words naming the speaker in this chapter (named, else described); where the chapter has none,
+    words naming the speaker in this chapter (named, else described): the wording of the most
+    naming places, then of the most clause rows; where the chapter has none,
     the words at the speaker's main naming place, and ``pointer`` says where that is, so a client
     with only this chapter can fetch that chapter; else None (the cast table's name is used).
     Nothing depends on which other chapters the client has, except that the pointer's chapter must
@@ -248,12 +259,14 @@ def speaker_labels(hits: dict, chapter: int | None = None) -> dict[str, Speaker]
     for sid, (voice, hs, pointer) in hits.items():
         def pick(keep) -> str | None:
             for part in ("named", "described"):
-                c: Counter = Counter()
+                c: dict[str, list[int]] = {}      # label -> [places, clause rows]
                 for h in hs:
                     if h[0] == part and keep(h):
-                        c[h[1]] += h[2]
+                        e = c.setdefault(h[1], [0, 0])
+                        e[0] += 1
+                        e[1] += h[2]
                 if c:
-                    return c.most_common(1)[0][0]
+                    return max(c, key=lambda k: c[k])
             return None
         own = pick(lambda h: chapter is None or h[3] == chapter)
         label = own if own is not None or chapter is None else pick(lambda h: h[4])

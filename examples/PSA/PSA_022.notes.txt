@@ -9,7 +9,7 @@ Voices: [Choir] men; [Lead Vocal] or no tag = the narrator (the persona)
 [Verse 5] 22:15-18  · [Mood: desperate] tsarah צָרָה (md.tsarah) “trouble”, from passage-mood-spans-model PSA 22:13-19 (pass a) “סבבוני פרים רבים”; passage-mood-spans-model PSA 22:15-16 (pass b) “כמים נשפכתי ולעפר מות תשפתני” (model-read)
 [Verse 6] 22:19-22  · [Mood: desperate] tsarah צָרָה (md.tsarah) “trouble”, from passage-mood-spans-model PSA 22:20-22 (pass a, b) “לעזרתי חושה” (model-read)
 [Verse 7] 22:23-25  · [Mood: triumphant] rinnah רִנָּה (md.samach) “cry”, from passage-mood-spans-model PSA 22:24 (pass a, b) “יראי יהוה הללוהו”; passage-mood-spans-model PSA 22:23-32 (pass a) “בתוך קהל אהללך” (model-read)
-[Verse 8] 22:26-27
+[Verse 8] 22:26-27  · [Mood: joyful] simchah שִׂמְחָה (md.samach) “joy”, from passage-mood-spans-model PSA 22:27 (pass a, b) “יאכלו ענוים וישבעו” (model-read)
 [Verse 9] 22:28-31
 Superscription before 22:1 (not sung): For the choirmaster. To the tune of “The Doe of the Dawn.” A Psalm of David.
 Heading terms (not sung): for the leader (למנצח); to the tune of the doe of the dawn (על אילת השחר); a psalm, a song with accompaniment (מזמור); ascribed to David (לדוד)

@@ -108,7 +108,7 @@
    "licence": "CC BY-SA 4.0 (model output, claude-opus-5-5, no human check)"
   }
  },
- "bible-song-builder": "0.4.0",
+ "bible-song-builder": "0.4.1",
  "sections": [
   {
    "label": "Verse 1",
@@ -538,16 +538,7 @@
   {
    "label": "Verse 4",
    "sung": true,
-   "mood": {
-    "mood": "af",
-    "hebrew": "אַף",
-    "family": "md.aph",
-    "head": "אַף",
-    "tag": "[Mood: angry]",
-    "word": "anger",
-    "evidence": "passage-mood-spans-model EXO 15:7-8 (pass b) “תשלח חרנך יאכלמו כקש”; passage-mood-spans-model EXO 15:9 (pass a, b) “אריק חרבי”",
-    "model": true
-   },
+   "mood": null,
    "verses": [
     "15:8",
     "15:9"
@@ -709,7 +700,16 @@
   {
    "label": "Verse 5",
    "sung": true,
-   "mood": null,
+   "mood": {
+    "mood": "rinnah",
+    "hebrew": "רִנָּה",
+    "family": "md.samach",
+    "head": "רִנָּה",
+    "tag": "[Mood: triumphant]",
+    "word": null,
+    "evidence": "passage-mood-spans-model EXO 15:1-18 (pass a) “אשירה ליהוה כי גאה גאה”; passage-mood-spans-model EXO 15:10 (pass b) “נשפת ברוחך כסמו ים”",
+    "model": true
+   },
    "verses": [
     "15:10",
     "15:11",

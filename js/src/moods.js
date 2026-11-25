@@ -184,7 +184,7 @@ export function sectionMoods(cfg, book, sectionsVerses, moodFacts, modelMoods, t
 export function spanConfig(cfg) {
     return {
         use: true, sections: ['spans', 'words'], passes: ['a', 'b'], disagree: 0.5, strength_weights: [1.0, 2.0, 3.0],
-        min_marked: 0.3, min_share: 0.5, words_per_change: 100, min_changes: 2, max_changes: 8,
+        min_marked: 0.3, min_share: 0.5, share_by: 'family', keep_share: 0.25, words_per_change: 100, min_changes: 2, max_changes: 8,
         chapter_reading: 'fill', reading_disagree: 'first', ...(cfg.toml('moods.toml').mood_spans || {}),
     };
 }
@@ -236,8 +236,10 @@ export function spanSectionMoods(cfg, book, sections, rows, spans, profile, word
         for (const x of ranged) if (x[2].pass === p && x[0] <= i && i <= x[1] && (best === null || x[1] - x[0] < best[1] - best[0])) best = x;
         return best ? best[2] : null;
     };
+    const group = c.share_by === 'family' ? (m) => ml.moods[m].family || m : (m) => m;
     const raw = [];
     let total = 0;
+    let prev = null;
     for (const lines of sections) {
         const score = new Map(), used = new Map();
         let nAll = 0, marked = 0;
@@ -257,15 +259,23 @@ export function spanSectionMoods(cfg, book, sections, rows, spans, profile, word
             }
         }
         total += nAll;
-        let best = null;
-        for (const [m, v] of score) if (best === null || v > score.get(best) || (v === score.get(best) && m > best)) best = m;
+        const fam = new Map();
         let sum = 0;
-        for (const v of score.values()) sum += v;
-        if (best === null || marked < c.min_marked * nAll * passes.length || score.get(best) < c.min_share * sum) {
+        for (const [m, v] of score) { fam.set(group(m), (fam.get(group(m)) || 0) + v); sum += v; }
+        let top = null;
+        for (const [g, v] of fam) if (top === null || v > fam.get(top) || (v === fam.get(top) && g > top)) top = g;
+        if (top === null || marked < c.min_marked * nAll * passes.length) {
             raw.push([null, 0.0, []]);
             continue;
         }
-        raw.push([best, score.get(best) / Math.max(nAll * maxW * passes.length, 1), used.get(best)]);
+        if (fam.get(top) < c.min_share * sum && prev !== null && (fam.get(group(prev)) || 0) >= c.keep_share * sum) {
+            raw.push([null, 0.0, []]);      // no clear mood, and the one before still holds: it goes on
+            continue;
+        }
+        let best = null;
+        for (const [m, v] of score) if (group(m) === top && (best === null || v > score.get(best) || (v === score.get(best) && m > best))) best = m;
+        raw.push([best, fam.get(top) / Math.max(nAll * maxW * passes.length, 1), used.get(best)]);
+        prev = best;
     }
     const ms = raw.map((x) => x[0]);
     const limit = Math.max(c.min_changes, Math.min(c.max_changes, Math.ceil(total / c.words_per_change)));

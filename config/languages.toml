@@ -21,7 +21,7 @@ label_edge_words = [
   "and", "but", "then", "so", "now", "for", "yet", "or", "to", "of",
   "from", "with", "by", "in", "her", "his", "their", "my", "your", "our",
   "its", "said", "replied", "answered", "s", "when", "at", "that", "time", "was",
-  "were", "is", "one", "day", "nevertheless", "however", ",", "why", "should",
+  "were", "is", "one", "day", "nevertheless", "however", ",", "why", "should", "this",
 ]
 label_group = [
   "people", "men", "crowd", "crowds", "brothers", "sons", "Levites", "Israelites",
@@ -59,3 +59,12 @@ label_female_group = [
 "ר" = "Resh"
 "ש" = "Shin"
 "ת" = "Taw"
+
+
+# Only the conjunctions a Hebrew/Greek name word often carries ("וּבֹעַז", "E Boaz"); to be
+# extended by a speaker of the language.
+[por]
+label_edge_words = ["e", "mas", "então", "pois"]
+
+[spa]
+label_edge_words = ["y", "e", "pero", "entonces", "pues"]

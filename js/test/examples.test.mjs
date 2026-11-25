@@ -83,10 +83,15 @@ test('bookText: one chapter as plain data, with the chapter its speaker pointer 
             headingBefore: [...whole.headingBefore].filter(inChs).map(k),
             poetryVerses: [...whole.poetryVerses].filter(inChs).map(k),
             name: whole.name,
+            partial: true,
         });
     };
     const song = async (bt) => {
-        const al = await loadAlignment(files, edition, 'RUT', bt.fileHash, bt.chapterFingerprints);
+        const asked = [];
+        const seen = { json: (ds, path) => { asked.push(path); return files.json(ds, path); }, text: (ds, path) => files.text(ds, path) };
+        const al = await loadAlignment(seen, edition, 'RUT', bt.fileHash, bt.chapterFingerprints, { partial: bt.partial });
+        // a partial text has no alignment file of its own: it is not asked for
+        if (bt.partial) assert.ok(!asked.some((p) => p.endsWith(`RUT_${bt.fileHash}.json`)), asked.join(' '));
         const ctx = prepareBook({ cfg, edition, book: 'RUT', bt, al, bookPlan: await bookPlan(ROOT, 'RUT'), vmap, lexemes: await lexemeKeys(files, 'RUT') });
         const res = projectChapter(ctx, 1, chapterPlan(await chapterPlanDocs(ROOT, 'RUT', 1, vmap)));
         return [chapterFiles(ctx, 1, res), res];

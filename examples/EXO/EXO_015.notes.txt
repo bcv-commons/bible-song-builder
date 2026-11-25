@@ -6,8 +6,8 @@ Voices: [Choir] Moses and the Israelites, the people; [Female Vocal] Miriam; [De
 [Chorus] 15:1  · [Mood: triumphant] rinnah רִנָּה (md.samach), from passage-mood-spans-model EXO 15:1-2 (pass a) “עזי וזמרת יה”; passage-mood-spans-model EXO 15:1-3 (pass b) “עזי וזמרת יה ויהי לי לישועה” (model-read)
 [Verse 2] 15:2-3  · [Mood: triumphant] rinnah רִנָּה (md.samach), from passage-mood-spans-model EXO 15:1-2 (pass a) “עזי וזמרת יה”; passage-mood-spans-model EXO 15:1-3 (pass b) “עזי וזמרת יה ויהי לי לישועה” (model-read)
 [Verse 3] 15:4-7  · [Mood: triumphant] rinnah רִנָּה (md.samach), from passage-mood-spans-model EXO 15:3-8 (pass a) “יהוה איש מלחמה”; passage-mood-spans-model EXO 15:4-5 (pass b) “ומבחר שלשיו טבעו בים סוף” (model-read)
-[Verse 4] 15:8-9  · [Mood: angry] af אַף (md.aph) “anger”, from passage-mood-spans-model EXO 15:7-8 (pass b) “תשלח חרנך יאכלמו כקש”; passage-mood-spans-model EXO 15:9 (pass a, b) “אריק חרבי” (model-read)
-[Verse 5] 15:10-13
+[Verse 4] 15:8-9
+[Verse 5] 15:10-13  · [Mood: triumphant] rinnah רִנָּה (md.samach), from passage-mood-spans-model EXO 15:1-18 (pass a) “אשירה ליהוה כי גאה גאה”; passage-mood-spans-model EXO 15:10 (pass b) “נשפת ברוחך כסמו ים” (model-read)
 [Verse 6] 15:14-16  · [Mood: dark] pachad פַּחַד (md.yare) “dread”, from passage-mood-spans-model EXO 15:14-16 (pass a, b) “תפל עליהם אימתה ופחד” (model-read)
 [Verse 7] 15:17-19  · [Mood: hopeful] tiqvah תִּקְוָה (md.batach), from passage-mood-spans-model EXO 15:16-18 (pass a) “תבאמו ותטעמו בהר נחלתך”; passage-mood-spans-model EXO 15:17 (pass b) “תבאמו ותטעמו בהר נחלתך” (model-read)
 [Verse 8] 15:20-21  · [Mood: triumphant] rinnah רִנָּה (md.samach), from passage-mood-spans-model EXO 15:20-21 (pass b) “ותצאן כל הנשים אחריה בתפים”; passage-mood-spans-model EXO 15:21 (pass a, b) “שירו ליהוה” (model-read)

@@ -102,16 +102,18 @@ def published_fingerprints(edition: str, book: str) -> tuple[str, dict[int, str]
     return None
 
 
-def load(edition: str, book: str, file_hash: str, chapter_fps: dict[int, str] | None = None) -> Alignment:
+def load(edition: str, book: str, file_hash: str, chapter_fps: dict[int, str] | None = None,
+         partial: bool = False) -> Alignment:
     """The alignment of exactly this text. If the book's fingerprint has no file, the latest
     aligned version is used for the chapters whose chapter fingerprint matches ours, and the
-    others are marked ``chapters_off`` (compact-alignments README, "Client rule")."""
-    al = _load(edition, book, file_hash)
-    if al.kind != "none" or not chapter_fps:
+    others are marked ``chapters_off`` (compact-alignments README, "Client rule"). ``partial``
+    (BookText.partial: only some chapters): the book's fingerprint is not looked up first."""
+    al = None if partial and chapter_fps else _load(edition, book, file_hash)
+    if al is not None and (al.kind != "none" or not chapter_fps):
         return al
     pub = published_fingerprints(edition, book)
     if not pub or pub[0] == file_hash:
-        return al
+        return al if al is not None else _load(edition, book, file_hash)
     al = _load(edition, book, pub[0])
     al.chapters_off = {c for c, fp in chapter_fps.items() if pub[1].get(c) != fp[:5]}
     if al.chapters_off:

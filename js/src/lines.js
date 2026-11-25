@@ -78,6 +78,16 @@ export function phrase(cfg, bt, cv, pos, maxTokens = 6) {
     const lang = cfg.language(bt.edition.iso);
     const edge = new Set((lang.label_edge_words || []).map((w) => w.toLowerCase()));
     while (a <= b && edge.has(v.tokens[a].toLowerCase())) a++;
+    const sp = cfg.layout(bt.edition).speakers || {};
+    const stops = new Set(sp.label_stops ?? [':', ';', '—', '–', '«', '“', '"']);
+    for (let k = a; k < b; k++) {       // a name ends where the text speaks (lines.phrase)
+        if ([...v.text.slice(v.spans[k][1], v.spans[k + 1][0])].some((ch) => stops.has(ch))) {
+            let last = null;
+            for (const p of pos) if (a <= p && p <= k && (last === null || p > last)) last = p;
+            b = last ?? k;
+            break;
+        }
+    }
     while (b >= a && edge.has(v.tokens[b].toLowerCase())) b--;
     if (a > b) return null;
     let s = v.text.slice(v.spans[a][0], v.spans[b][1]);
@@ -199,9 +209,17 @@ export function speakerLabels(hits, chapter = null) {
     for (const [sid, { voice, hits: hs, pointer }] of hits) {
         const pick = (keep) => {
             for (const part of ['named', 'described']) {
-                const c = new Map();
-                for (const h of hs) if (h.part === part && keep(h)) count(c, h.label, h.n);
-                if (c.size) return mostCommon(c);
+                const c = new Map();       // label -> [places, clause rows]
+                for (const h of hs) {
+                    if (h.part !== part || !keep(h)) continue;
+                    if (!c.has(h.label)) c.set(h.label, [0, 0]);
+                    const e = c.get(h.label);
+                    e[0] += 1;
+                    e[1] += h.n;
+                }
+                let best = null;
+                for (const [k, e] of c) if (best === null || e[0] > c.get(best)[0] || (e[0] === c.get(best)[0] && e[1] > c.get(best)[1])) best = k;
+                if (best !== null) return best;
             }
             return null;
         };

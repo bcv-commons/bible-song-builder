@@ -1,6 +1,6 @@
 {
   "name": "bible-song-builder",
-  "version": "0.4.0",
+  "version": "0.4.1",
   "description": "Song lyrics from any Bible edition: a song plan (Hebrew/Greek) laid onto an edition's text through its alignment. The JS library: no UI, no network access.",
   "type": "module",
   "license": "MIT",

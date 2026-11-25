@@ -66,7 +66,7 @@ A client fetches five things and passes them in: the config (`dist/config.json`)
 Finding an edition in the bcv-commons/bibles catalog and fetching its text is the client's job.
 
 **The text, in any format.** `loadBookText(cfg, edition, book, usj)` reads a book's USJ.
-`bookText(edition, book, {verses, paragraphStarts, headingBefore, poetryVerses, titles, name})` takes the text as
+`bookText(edition, book, {verses, paragraphStarts, headingBefore, poetryVerses, titles, name, partial})` takes the text as
 plain data instead, from any source (DBT Sofria, plain text, through the verse-text readers), for a whole book or
 only some chapters: `verses` maps `"chapter:verse"` to the verse text, the three layout facts are lists of verse
 keys, and only `verses` is needed. Tokens and fingerprints are computed in it. A chapter's song is the same either
@@ -76,7 +76,9 @@ carries a `pointer` to that place (`{book, verse, spine, keys, strong}`: the edi
 Hebrew/Greek word keys and their Strong's numbers), and the notes say "Named in another chapter: the women at RUT
 4:14 (H802)". A client with only the chapter can fetch the pointer's whole chapter and pass both to `bookText`: the
 song is then the whole book's.
-With only some chapters, the alignment is found per chapter (compact alignments).
+With only some chapters, the alignment is found per chapter (compact alignments): pass `partial: true` to
+`bookText` and `{partial: bt.partial}` to `loadAlignment`, and the book's own alignment file (which a partial
+text never has) is not asked for.
 [`js/sample/client.mjs`](js/sample/client.mjs) shows the calls; [`js/src/index.js`](js/src/index.js) lists them.
 
 **Releases.** A client installs the library from a tag, `github:bcv-commons/bible-song-builder#vX.Y.Z` (the root

@@ -177,7 +177,7 @@ def render(book_name: str, chapter: int, edition_name: str, setting: str, secs: 
                 key = None if v == "narrator" else (ln.speaker.id if ln.speaker and ln.speaker.id else ln.quote)
                 tag = tags.get(v, "")
                 if v != "narrator" and ln.speaker:
-                    who = (names(ln.speaker) if names else None) or ln.speaker.label or ln.speaker.id or "unnamed"
+                    who = (names(ln.speaker) if names else None) or ln.speaker.label or "unnamed"
                     lst = cast_used.setdefault(tag, [])
                     if who not in lst:
                         lst.append(who)

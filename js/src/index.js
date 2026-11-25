@@ -5,7 +5,7 @@
 //   const cfg = new Config(configBundle);                       // dist/config.json
 //   const bt = await loadBookText(cfg, edition, book, usj);      // the edition's USJ of the book,
 //   //   or from text in any format: await bookText(edition, book, { verses, paragraphStarts, headingBefore, poetryVerses, titles, name })
-//   const al = await loadAlignment(files, edition, book, bt.fileHash, bt.chapterFingerprints);
+//   const al = await loadAlignment(files, edition, book, bt.fileHash, bt.chapterFingerprints, { partial: bt.partial });
 //   const vmap = await verseMap(files, edition);
 //   const ctx = prepareBook({ cfg, edition, book, bt, al, bookPlan, vmap });
 //   const docs = spineChapters(vmap, book, 23).map(...);        // the plan files it needs

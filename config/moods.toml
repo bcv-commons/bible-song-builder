@@ -144,6 +144,16 @@ strength_weights = [1.0, 2.0, 3.0]
 min_marked = 0.3
 min_share = 0.5
 
+# What min_share is counted over: "family" (the moods of one family of mood-list.toml count
+# together, e.g. rinnah and simchah: the section takes the family's mood with the most weight) or
+# "mood" (each mood alone).
+share_by = "family"
+
+# A marked section where no family reaches min_share goes on in the mood before it only if that
+# mood's family holds at least this share of its weight; else it takes its family with the most
+# weight (so a lament's "desperate" does not run on into the praise that follows it).
+keep_share = 0.25
+
 # How many mood changes a song can carry: one per this many sung words, at least min_changes and at
 # most max_changes. Over that, the weakest change is dropped (never the first), and the mood
 # before it goes on.

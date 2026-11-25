@@ -45,6 +45,7 @@ class BookText:
     poetry_verses: set[tuple[int, int]] = field(default_factory=set)     # the edition sets the verse in poetic lines
     name: str = ""                                                        # the book's short name (\\toc2)
     titles: dict[tuple[int, int], str] = field(default_factory=dict)       # superscription before this verse
+    partial: bool = False                                                 # only some chapters of the book (align.load)
 
     @property
     def file_hash(self) -> str:
@@ -112,17 +113,18 @@ def usj_layout(usj: dict) -> dict[str, set[tuple[int, int]]]:
 
 def book_text(edition: str, book: str, verses: dict[tuple[int, int], str],
               paragraph_starts=(), heading_before=(), poetry_verses=(),
-              titles: dict[tuple[int, int], str] | None = None, name: str = "") -> BookText:
+              titles: dict[tuple[int, int], str] | None = None, name: str = "", partial: bool = False) -> BookText:
     """A BookText from the text as plain data, in any source format: ``verses`` {(chapter, verse):
     text}, for a whole book or only some chapters, as the vendored verse-text readers give it
     (extract_usj, extract_sofria, extract_plain). The layout facts are optional sets of (chapter,
     verse): a prose paragraph opens there, a heading stands before it, it is set in poetic lines.
-    ``titles``: a superscription before the verse (not sung); ``name``: the book's short name.
-    Tokens, spans and fingerprints are computed here, the way the alignments were built."""
+    ``titles``: a superscription before the verse (not sung); ``name``: the book's short name;
+    ``partial``: the verses are only some chapters of the book (align.load then looks up the
+    alignment by chapter only, as a partial text's book fingerprint has no file). Tokens, spans and fingerprints are computed here, the way the alignments were built."""
     vs = {(int(c), int(v)): Verse(int(c), int(v), t, tokenize(t), token_spans(t)) for (c, v), t in sorted(verses.items())}
     fp, ch_fps = fingerprints({k: v.text for k, v in vs.items()})
     return BookText(edition, book, vs, fp, ch_fps, set(paragraph_starts), set(heading_before), set(poetry_verses),
-                    name or book, dict(titles or {}))
+                    name or book, dict(titles or {}), partial)
 
 
 BOOKS = ("GEN EXO LEV NUM DEU JOS JDG RUT 1SA 2SA 1KI 2KI 1CH 2CH EZR NEH EST JOB PSA PRO ECC SNG ISA JER "

@@ -113,6 +113,11 @@ lines_min_words = 3
 # (David, the LORD) is still named from another chapter, and gets a pointer to it.
 separate_chapters = ["PSA"]
 
+# Marks between two words at which a speaker's name, as read from the text, ends: the words of the
+# name then end at the last word aligned to it before the mark. Where an edition renders the naming
+# words around a speech ("All answered: — Yes, we are"), the label is "All", not the whole clause.
+label_stops = [":", ";", "—", "–", "«", "“", "\""]
+
 
 [psalms]
 # List the psalm heading's terms (for the leader, the instruments, the tune ...) and the selahs

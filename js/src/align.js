@@ -91,12 +91,13 @@ async function publishedFingerprints(files, edition, book) {
 
 /** The alignment of exactly this text (book fingerprint ``fileHash``). If it has no file, the
  *  latest aligned version is used for the chapters whose chapter fingerprint matches, and the
- *  others are marked chaptersOff. chapterFps: Map chapter -> 64-hex. */
-export async function loadAlignment(files, edition, book, fileHash, chapterFps = null) {
-    let al = await load(files, edition, book, fileHash);
-    if (al.kind !== 'none' || !chapterFps) return al;
+ *  others are marked chaptersOff. chapterFps: Map chapter -> 64-hex. partial (bt.partial: the
+ *  text is only some chapters): the book fingerprint is not looked up first. align.load */
+export async function loadAlignment(files, edition, book, fileHash, chapterFps = null, { partial = false } = {}) {
+    let al = partial && chapterFps ? null : await load(files, edition, book, fileHash);
+    if (al !== null && (al.kind !== 'none' || !chapterFps)) return al;
     const pub = await publishedFingerprints(files, edition, book);
-    if (!pub || pub[0] === fileHash) return al;
+    if (!pub || pub[0] === fileHash) return al ?? await load(files, edition, book, fileHash);
     al = await load(files, edition, book, pub[0]);
     al.chaptersOff = new Set([...chapterFps].filter(([c, fp]) => pub[1].get(c) !== fp.slice(0, 5)).map(([c]) => c));
     if (al.chaptersOff.size) {

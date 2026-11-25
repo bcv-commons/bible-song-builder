@@ -541,7 +541,7 @@ def section_moods(book: str, sections_verses: list[list[tuple[int, int]]], mood_
 def span_config() -> dict:
     """moods.toml [mood_spans], with its defaults."""
     d = {"use": True, "sections": ["spans", "words"], "passes": ["a", "b"], "disagree": 0.5,
-         "strength_weights": [1.0, 2.0, 3.0], "min_marked": 0.3, "min_share": 0.5, "words_per_change": 100, "min_changes": 2,
+         "strength_weights": [1.0, 2.0, 3.0], "min_marked": 0.3, "min_share": 0.5, "share_by": "family", "keep_share": 0.25, "words_per_change": 100, "min_changes": 2,
          "max_changes": 8, "chapter_reading": "fill", "reading_disagree": "first"}
     return {**d, **toml("moods.toml").get("mood_spans", {})}
 
@@ -582,10 +582,12 @@ def span_section_moods(book: str, sections: list[list[tuple[dict | None, int]]],
     chapter has no spans of the passes used. ``sections``: per section, its lyric lines as (the
     plan row that starts the line, its sung words); ``rows``: the chapter plan's rows. Each line
     takes, per pass, the mood of the shortest span over its row; a section where the reading marks at
-    least ``min_marked`` of the words takes the mood whose words, weighted by strength and agreement,
-    count most, if that is ``min_share`` of the weight of all the section's moods. Then
-    at most one change per ``words_per_change`` words: the weakest changes are dropped.
-    Settings: moods.toml [mood_spans]."""
+    least ``min_marked`` of the words takes the mood family (mood-list.toml) whose words, weighted by
+    strength and agreement, count most, if that is ``min_share`` of the weight of all the section's
+    moods, and of that family its mood with the most weight (``share_by`` "mood": moods alone).
+    A marked section with no such family goes on in the mood before it only where that mood holds
+    ``keep_share`` of its weight; else it takes its family with the most weight. Then at most one
+    change per ``words_per_change`` words: the weakest changes are dropped. Settings: moods.toml [mood_spans]."""
     cfg = span_config()
     passes = cfg["passes"]
     if not cfg["use"]:
@@ -609,8 +611,10 @@ def span_section_moods(book: str, sections: list[list[tuple[dict | None, int]]],
                 best = (a, b, sp)
         return best[2] if best else None
 
+    group = (lambda m: ml["moods"][m].get("family") or m) if cfg["share_by"] == "family" else (lambda m: m)
     raw: list[tuple[str | None, float, list[dict]]] = []
     total = 0
+    prev = None
     for lines_ in sections:
         score: Counter = Counter()
         used: dict[str, list[dict]] = {}
@@ -629,12 +633,20 @@ def span_section_moods(book: str, sections: list[list[tuple[dict | None, int]]],
                     if sp not in used.setdefault(m, []):
                         used[m].append(sp)
         total += n_all
-        best = max(score, key=lambda m: (score[m], m), default=None)
-        if (best is None or marked < cfg["min_marked"] * n_all * len(passes)
-                or score[best] < cfg["min_share"] * sum(score.values())):
+        fam: Counter = Counter()
+        for m, v in score.items():
+            fam[group(m)] += v
+        top = max(fam, key=lambda g: (fam[g], g), default=None)
+        all_ = sum(score.values())
+        if top is None or marked < cfg["min_marked"] * n_all * len(passes):
             raw.append((None, 0.0, []))
             continue
-        raw.append((best, score[best] / max(n_all * max(sw) * len(passes), 1), used[best]))
+        if fam[top] < cfg["min_share"] * all_ and prev is not None and fam[group(prev)] >= cfg["keep_share"] * all_:
+            raw.append((None, 0.0, []))      # no clear mood, and the one before still holds: it goes on
+            continue
+        best = max((m for m in score if group(m) == top), key=lambda m: (score[m], m))
+        raw.append((best, fam[top] / max(n_all * max(sw) * len(passes), 1), used[best]))
+        prev = best
 
     moods_ = [m for m, _, _ in raw]
     limit = max(cfg["min_changes"], min(cfg["max_changes"], -(-total // cfg["words_per_change"])))

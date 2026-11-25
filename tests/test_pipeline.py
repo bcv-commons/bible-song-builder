@@ -98,6 +98,11 @@ class TestRuth(unittest.TestCase):
         self.assertIsNotNone(whole[sid][0])
         with_4 = edition.book_text("BSB", "RUT", {k: v.text for k, v in self.bt.verses.items() if k[0] in (1, 4)})
         self.assertEqual(labels(with_4)[sid], whole[sid])
+        # a partial text: found by its chapter fingerprints alone
+        part = edition.book_text("BSB", "RUT", {k: v.text for k, v in self.bt.verses.items() if k[0] == 1}, partial=True)
+        al = align.load("BSB", "RUT", part.file_hash, part.chapter_fingerprints, partial=part.partial)
+        self.assertNotEqual(al.kind, "none")
+        self.assertNotIn(1, al.chapters_off)
 
     def test_reordered_clauses_get_own_lines(self):
         v6 = [ln["text"] for s in self.res["data"]["sections"] for ln in s["lines"] if ln["verse"] == "1:6"]
@@ -219,6 +224,25 @@ class TestMoods(unittest.TestCase):
         self.assertEqual([m.mood if m else None for m in moods.span_section_moods("RUT", long, rows, spans, prof)],
                          ["shalom", "shalom", "evel", "evel", "shalom", "shalom"])
         self.assertIsNone(moods.span_section_moods("RUT", secs, rows, [], prof))               # no spans: fall back
+
+    def test_span_moods_by_family(self):
+        """A section's share is counted by family (rinnah and simchah are both joy), and a section
+        with no clear mood goes on in the one before only where that still holds keep_share of it
+        (Psalm 22: "desperate" does not run on into the praise)."""
+        from bible_song_builder import moods
+        order = (["tsarah"] * 2 + ["rinnah", "rinnah", "simchah", "yirah", "yirah"]
+                 + ["rinnah", "rinnah", "mivtach", "mivtach", "mivtach", "tsarah", "tsarah", "yirah"]
+                 + ["mivtach"] * 3 + ["tsarah"] * 2 + ["yirah"] * 2)
+        rows = [{"words": [f"w{i}"]} for i in range(len(order))]
+        spans = [{"s": 2 * i + j, "pass": p, "mood": m, "strength": 2, "agree": True, "first": f"w{i}",
+                  "last": f"w{i}", "verses": [[1, i + 1, i + 1]], "because": ""}
+                 for i, m in enumerate(order) for j, p in enumerate("ab")]
+        cuts = [0, 2, 7, 15, len(order)]
+        secs = [[(r, 100) for r in rows[a:b]] for a, b in zip(cuts, cuts[1:])]
+        got = moods.span_section_moods("PSA", secs, rows, spans, profiles.for_book("BSB", "PSA"))
+        # joy 3/5 (rinnah 2/5 alone); then joy keeps 2/8 (no family has half): it goes on;
+        # then joy has nothing left: trust, the family with the most
+        self.assertEqual([m.mood if m else None for m in got], ["tsarah", "rinnah", None, "mivtach"])
 
     def test_reading_fills_chapter_mood(self):
         """The chapter reading gives Ruth 1 its mood (no source cue); a psalm keeps its heading's."""

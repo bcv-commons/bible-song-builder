@@ -126,7 +126,7 @@ export function render(bookName, chapter, editionName, setting, secs, credits, p
                 key = v === 'narrator' ? null : (ln.speaker && ln.speaker.id ? ln.speaker.id : ln.quote);
                 tag = tags[v] ?? '';
                 if (v !== 'narrator' && ln.speaker) {
-                    const who = (names ? names(ln.speaker) : null) || ln.speaker.label || ln.speaker.id || 'unnamed';
+                    const who = (names ? names(ln.speaker) : null) || ln.speaker.label || 'unnamed';
                     if (!castUsed.has(tag)) castUsed.set(tag, []);
                     if (!castUsed.get(tag).includes(who)) castUsed.get(tag).push(who);
                 }

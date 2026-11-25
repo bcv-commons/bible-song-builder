@@ -25,6 +25,7 @@ export class BookText {
         this.poetryVerses = new Set();     // the edition sets the verse in poetic lines
         this.name = '';                    // the book's short name (\toc2)
         this.titles = new Map();           // cvKey -> superscription before this verse
+        this.partial = false;              // only some chapters of the book (loadAlignment)
     }
 
     get fileHash() {
@@ -214,7 +215,7 @@ const entries = (m) => (m instanceof Map ? [...m] : Object.entries(m || {}));
  *  titles (optional): Map or object, verse key -> superscription before it (not sung);
  *  name (optional): the book's short name. Tokens, spans and fingerprints are computed here, the
  *  way the alignments were built. Async (the fingerprints use WebCrypto). */
-export async function bookText(edition, book, { verses, paragraphStarts = [], headingBefore = [], poetryVerses = [], titles = null, name = '' }) {
+export async function bookText(edition, book, { verses, paragraphStarts = [], headingBefore = [], poetryVerses = [], titles = null, name = '', partial = false }) {
     const vs = new Map();
     for (const [k, text] of entries(verses).map(([k, t]) => [anyCv(k), t]).sort((a, b) => a[0] - b[0])) {
         vs.set(k, { chapter: cvC(k), verse: k % 1000, text, tokens: tokenize(text), spans: tokenSpans(text) });
@@ -223,6 +224,7 @@ export async function bookText(edition, book, { verses, paragraphStarts = [], he
     const bt = new BookText(edition, book, vs, fp.book,
         new Map(Object.entries(fp.chapters).map(([c, h]) => [parseInt(c, 10), h])));
     bt.name = name || book;
+    bt.partial = partial;
     bt.titles = new Map(entries(titles).map(([k, t]) => [anyCv(k), t]));
     bt.paragraphStarts = new Set([...paragraphStarts].map(anyCv));
     bt.headingBefore = new Set([...headingBefore].map(anyCv));
