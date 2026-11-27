@@ -23,6 +23,12 @@ line_start = "spacing"
 # For "spacing": the marks that end a clause or sentence, which a line never takes from the line before.
 clause_end_punctuation = ".,;:!?…。，、；：！？"
 
+# The clause ends of clause_end_punctuation that are only a pause (commas). Where a clause line
+# starts inside a run of unlinked words (lines.pull_unaligned), it starts after the strongest mark
+# in the run: a mark the next word takes (”Amen, «Nous), else a clause end other than these, else a
+# comma or another mark.
+comma_punctuation = ",，、"
+
 # For "list": the marks that belong to the start of the next line (opening quotes and brackets,
 # Spanish ¿ ¡, dashes).
 line_start_punctuation = "“‘\"'([{«‹¿¡—–-"

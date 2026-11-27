@@ -133,6 +133,65 @@ def line_start_rule(text_cfg: dict) -> tuple:
     return "spacing", set(text_cfg.get("clause_end_punctuation", "")) or CLAUSE_END
 
 
+COMMAS = set(",，、")   # default of layout.toml [text] comma_punctuation
+
+
+def _pull_start(v: Verse, t: int, lo: int, own, rule: tuple, ends: set, commas: set) -> int:
+    """Where a clause line starts when its first linked word is token ``t``: somewhere in the run
+    of unlinked words before it (after token ``lo``, the line before, and after the last linked
+    word). The break goes at the strongest mark between two of those words: a mark the next word
+    takes (”Amen, «Nous, (and), see _cut_start), else a clause end other than a comma (: ; . ! ?),
+    else any other mark (a comma, a dash); between marks of the same strength, the one nearest
+    ``t``. With no mark at all the line takes the whole run ("when the | judges" -> "| when the
+    judges"). SWESFB John 1:51 'sade till honom: ”Amen, amen säger': only "säger" is linked; the
+    quote starts at ”Amen, not at the comma after it."""
+    s0 = t
+    while s0 - 1 > lo and s0 - 1 not in own:
+        s0 -= 1
+    best, at = 0, s0
+    for i in range(s0, t + 1):
+        if i == 0:
+            continue                                   # the verse start is no mark
+        a = v.spans[i][0]
+        gap = v.text[v.spans[i - 1][1]:a]
+        if _cut_start(v.text, a, rule) < a:
+            k = 3
+        elif any(c in ends and c not in commas for c in gap):
+            k = 2
+        elif gap.strip():
+            k = 1
+        else:
+            k = 0
+        if k and k >= best:
+            best, at = k, i
+    return at
+
+
+def _is_quote_mark(c: str) -> bool:
+    return unicodedata.category(c) in ("Pi", "Pf") or c in "\"'«»‹›„‚"
+
+
+def _quote_open(v: Verse, t: int, lo: int, rule: tuple) -> int | None:
+    """The token after ``lo`` nearest to ``t`` (a quote's first linked word) that opens with a
+    quotation mark the word takes (”Amen, «Nous, “Do), with no quotation mark between it and
+    ``t`` other than inside a word (man’s); None if there is none. A word the narrator's clause
+    is linked to inside the quote does not keep the quote's first words with the narrator:
+    BSB Matthew 10:5 'instructions: “Do | not go' (λέγων, "saying", which BSB leaves out, is
+    linked to "Do")."""
+    text = v.text
+    for i in range(t, max(lo, 0) - 1, -1):
+        a = v.spans[i][0]
+        if i < t:
+            for j in range(a, v.spans[i + 1][0]):
+                if (_is_quote_mark(text[j]) and not (0 < j < len(text) - 1
+                                                     and _is_word(text[j - 1]) and _is_word(text[j + 1]))):
+                    return None
+        b = _cut_start(text, a, rule)
+        if b < a and any(_is_quote_mark(c) for c in text[b:a]):
+            return i
+    return None
+
+
 def _slice(v: Verse, starts: list[int], rule: tuple = ("spacing", CLAUSE_END)) -> list[tuple[int, str]]:
     assert v.spans is not None
     chars = [_cut_start(v.text, v.spans[t][0], rule) for t in starts]
@@ -329,11 +388,13 @@ def build_lines(bt: BookText, chapter: int, rows: list[dict], al: Alignment,
     ("halves"), or only at the clauses ("clauses").
 
     ``pull``: a clause's line start moves back over the unaligned words just before it ("when the |
-    judges ruled" -> "| when the judges ruled"), up to punctuation, an aligned word or the line
-    before. For alignments of content words only (compact), where function words have no link."""
+    judges ruled" -> "| when the judges ruled"), up to an aligned word or the line before; where
+    the run holds punctuation, the line starts at its strongest mark (_pull_start). For alignments of content words only (compact), where function words have no link."""
     marks = marks or Marks()
     text_cfg = text_cfg or {}
     opening = line_start_rule(text_cfg)
+    ends = set(text_cfg.get("clause_end_punctuation", "")) or CLAUSE_END
+    commas = set(text_cfg.get("comma_punctuation", "")) or COMMAS
     verses = bt.chapter_verses(chapter)
     # break candidates per edition verse: token -> the first clause row (source order) breaking there
     breaks: dict[tuple[int, int], dict[int, dict]] = {}
@@ -405,11 +466,17 @@ def build_lines(bt: BookText, chapter: int, rows: list[dict], al: Alignment,
                     if t == 0 and t not in cand and t not in fixed:
                         continue           # the verse start: a clause may pull its line back to it
                     s = t
+                    lo = new[-1] if new else -1
                     if t in cand and t not in fixed:
-                        lo = new[-1] if new else -1
-                        while (s - 1 > lo and s - 1 not in own
-                               and not v.text[v.spans[s - 1][1]:v.spans[s][0]].strip()):
-                            s -= 1
+                        s = _pull_start(v, t, lo, own, opening, ends, commas)
+                    if t in cand:          # also a refrain's start: "“Truly, truly, I tell you"
+                        before = (cand.get(moved.get(lo, lo)) or own.get(lo)) if lo >= 0 else None
+                        if cand[t].get("quotation") and not (before or {}).get("quotation"):
+                            i = _quote_open(v, t, lo, opening)
+                            if i is not None and i < s and not (i <= lo and lo in fixed):
+                                s = i
+                                if new and i <= lo:
+                                    new.pop()      # the narrator's line was only the quote's first words
                     new.append(s)
                     moved[s] = t
                 if not new or new[0] != 0:
@@ -425,7 +492,7 @@ def build_lines(bt: BookText, chapter: int, rows: list[dict], al: Alignment,
                 lines.append(LyricLine(cv, piece, t, qq, sp, r["seg"] if r else None,
                                        clause=structure.clause_key(r) if r else None, row=r))
             lines[first:] = _strays(lines[first:], min_tokens, text_cfg.get("count", "words"))
-            _mark(lines[first:], cv, len(v.tokens), marks)
+            _mark(lines[first:], cv, len(v.tokens), marks, moved)
         _opening(lines, cv, verse_rows.get(cv, []))
         for pcv, ptok in para_ends:
             if pcv == cv:
@@ -466,16 +533,19 @@ def _opening(lines: list[LyricLine], cv: tuple[int, int], vrows: list[dict]) -> 
     first.opening = [k for k in dict.fromkeys(keys) if k]
 
 
-def _mark(vlines: list[LyricLine], cv: tuple[int, int], n_tokens: int, marks: Marks) -> None:
-    """Flag the lines of one verse: refrain, acrostic letter start, selah."""
+def _mark(vlines: list[LyricLine], cv: tuple[int, int], n_tokens: int, marks: Marks,
+          moved: dict[int, int] | None = None) -> None:
+    """Flag the lines of one verse: refrain, acrostic letter start, selah. ``moved``: a line start
+    the pull moved back -> the token it was (a refrain that opens with a quote's first words)."""
     for k, ln in enumerate(vlines):
         end = (vlines[k + 1].first_token if k + 1 < len(vlines) else n_tokens) - 1
+        first = (moved or {}).get(ln.first_token, ln.first_token)
         best = -1
         for lo, hi, rid, n in marks.refrains.get(cv, []):
-            if lo <= ln.first_token and end <= hi and n > best:
+            if lo <= first and end <= hi and n > best:
                 ln.refrain, best = rid, n
         for (mcv, tok), letter in marks.acrostic_runs.items():
-            if mcv == cv and ln.first_token == tok:
+            if mcv == cv and first == tok:
                 ln.acrostic = letter
         if any(ln.first_token <= t <= end for t in marks.selah.get(cv, ())):
             ln.selah = True

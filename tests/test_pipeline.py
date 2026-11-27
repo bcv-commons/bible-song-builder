@@ -392,6 +392,36 @@ class TestConfig(unittest.TestCase):
         in_order = [ln("Det var", "q", 39), ln("om", None, 40), ln("honom", "q", 41)]
         self.assertEqual([x.quote for x in lines._strays(in_order, 3)], ["q", None, "q"])
 
+    def test_pull_to_the_strongest_mark(self):
+        """lines._pull_start: a clause line starts at the strongest mark in the unlinked words before
+        its first linked word: a mark the word takes, then a clause end, then a comma; with no mark,
+        the whole run. lines._quote_open: a quote starts at its opening mark even past a word the
+        narrator's clause is linked to."""
+        import re
+        from bible_song_builder.edition import Verse
+
+        def verse(text):
+            sp = [m.span() for m in re.finditer(r"[^\W\d_]+", text)]
+            return Verse(1, 1, text, [text[a:b] for a, b in sp], sp)
+
+        def tok(v, w):
+            return v.tokens.index(w)
+
+        rule, ends, commas = lines.line_start_rule({}), lines.CLAUSE_END, lines.COMMAS
+        v = verse("Sedan sade han till honom: ”Amen, amen säger jag er")
+        own = {tok(v, "sade"), tok(v, "säger")}
+        self.assertEqual(lines._pull_start(v, tok(v, "säger"), 0, own, rule, ends, commas), tok(v, "Amen"))
+        v = verse("Sedan sade han till honom: Amen, amen säger jag er")
+        self.assertEqual(lines._pull_start(v, tok(v, "säger"), 0, own, rule, ends, commas), tok(v, "Amen"))
+        v = verse("In the days when the judges ruled")
+        self.assertEqual(lines._pull_start(v, tok(v, "judges"), 0, {2, 5}, rule, ends, commas), 3)
+        v = verse("instructions: “Do not go onto the road")
+        self.assertEqual(lines._quote_open(v, tok(v, "go"), 0, rule), tok(v, "Do"))
+        v = verse("“Look,” said Naomi, your sister")
+        self.assertIsNone(lines._quote_open(v, tok(v, "your"), 0, rule))
+        v = verse("“Do not touch the man’s son")
+        self.assertEqual(lines._quote_open(v, tok(v, "son"), 0, rule), 0)
+
     def test_split_at_quote_starts(self):
         rows = [{"chapter": 1, "verse": 1, "seg": 1, "words": ["a", "b"], "clause_key": "a", "para_end": True},
                 {"chapter": 1, "verse": 1, "seg": 2, "words": ["c"], "quotation": "b", "speaker_id": "n1", "clause_key": "c"}]

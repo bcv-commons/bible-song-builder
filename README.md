@@ -87,7 +87,11 @@ pushed (`.github/workflows/release.yml`). The tag must equal the version in `pac
 `bible_song_builder/__init__.py`.
 
 **Compact alignments** link only an edition's content words. A clause's line then starts at the unlinked words just
-before its first linked word ("when the judges ruled"); `layout.toml [lines] pull_unaligned` sets this.
+before its first linked word ("when the judges ruled"); `layout.toml [lines] pull_unaligned` sets this. Where those
+unlinked words hold punctuation, the line starts after the strongest mark among them: a mark the next word takes
+(”Amen, «Nous), else a clause end other than a comma, else a comma or a dash (`[text] comma_punctuation`). A quote
+starts at its opening quotation mark even when the narrator's clause has a stray link inside it (λέγων, "saying",
+which many editions leave out, linked to the quote's first word). No function-word links are needed for either.
 
 The library is a port of the Python projection (`bible_song_builder/__main__.py` and the modules it calls), kept
 identical: `make test-js` builds `examples/` with it byte for byte. It uses the vendored JavaScript of

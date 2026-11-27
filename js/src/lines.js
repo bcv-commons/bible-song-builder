@@ -90,6 +90,46 @@ export function lineStartRule(textCfg) {
     return ['spacing', own.size ? own : CLAUSE_END];
 }
 
+const COMMAS = new Set(',，、');   // default of layout.toml [text] comma_punctuation
+
+/** Where a clause line starts when its first linked word is token t: at the strongest mark in the
+ *  run of unlinked words before it (lines._pull_start) */
+function pullStart(v, t, lo, own, rule, ends, commas) {
+    let s0 = t;
+    while (s0 - 1 > lo && !own.has(s0 - 1)) s0--;
+    let best = 0, at = s0;
+    for (let i = s0; i <= t; i++) {
+        if (i === 0) continue;                       // the verse start is no mark
+        const a = v.spans[i][0];
+        const gap = v.text.slice(v.spans[i - 1][1], a);
+        let k = 0;
+        if (cutStart(v.text, a, rule) < a) k = 3;
+        else if ([...gap].some((c) => ends.has(c) && !commas.has(c))) k = 2;
+        else if (pyStrip(gap)) k = 1;
+        if (k && k >= best) { best = k; at = i; }
+    }
+    return at;
+}
+
+const isQuoteMark = (c) => /^[\p{Pi}\p{Pf}]$/u.test(c) || '"\'«»‹›„‚'.includes(c);
+
+/** The token after lo nearest to t (a quote's first linked word) that opens with a quotation mark
+ *  the word takes, with no quotation mark between it and t other than inside a word (lines._quote_open) */
+function quoteOpen(v, t, lo, rule) {
+    const text = v.text;
+    for (let i = t; i >= Math.max(lo, 0); i--) {
+        const a = v.spans[i][0];
+        if (i < t) {
+            for (let j = a; j < v.spans[i + 1][0]; j++) {
+                if (isQuoteMark(text[j]) && !(j > 0 && j < text.length - 1 && WORD.test(text[j - 1]) && WORD.test(text[j + 1]))) return null;
+            }
+        }
+        const b = cutStart(text, a, rule);
+        if (b < a && [...text.slice(b, a)].some(isQuoteMark)) return i;
+    }
+    return null;
+}
+
 function slice(v, starts, opening) {
     const chars = starts.map((t) => cutStart(v.text, v.spans[t][0], opening));
     chars[0] = 0;
@@ -269,6 +309,10 @@ export function speakerLabels(hits, chapter = null) {
 export function buildLines(cfg, bt, chapter, rows, al, speakers, vmapCv, { minTokens = 3, marks, poetry = 'clauses+halves', textCfg = null, pull = false } = {}) {
     textCfg = textCfg || {};
     const opening = lineStartRule(textCfg);
+    const ownEnds = new Set(textCfg.clause_end_punctuation || '');
+    const ends = ownEnds.size ? ownEnds : CLAUSE_END;
+    const ownCommas = new Set(textCfg.comma_punctuation || '');
+    const commas = ownCommas.size ? ownCommas : COMMAS;
     const verses = bt.chapterVerses(chapter);
     const breaks = new Map(), owner = new Map(), verseRows = new Map();
     const paraEnds = [];
@@ -341,9 +385,17 @@ export function buildLines(cfg, bt, chapter, rows, al, speakers, vmapCv, { minTo
                 for (const t of starts) {
                     if (t === 0 && !cand.has(t) && !fixed.has(t)) continue;   // the verse start: a clause may pull its line back to it
                     let s = t;
-                    if (cand.has(t) && !fixed.has(t)) {
-                        const lo = next.length ? next[next.length - 1] : -1;
-                        while (s - 1 > lo && !own.has(s - 1) && !pyStrip(v.text.slice(v.spans[s - 1][1], v.spans[s][0]))) s--;
+                    const lo = next.length ? next[next.length - 1] : -1;
+                    if (cand.has(t) && !fixed.has(t)) s = pullStart(v, t, lo, own, opening, ends, commas);
+                    if (cand.has(t)) {          // also a refrain's start: "“Truly, truly, I tell you"
+                        const before = lo >= 0 ? (cand.get(moved.has(lo) ? moved.get(lo) : lo) || own.get(lo) || null) : null;
+                        if (cand.get(t).quotation && !(before && before.quotation)) {
+                            const i = quoteOpen(v, t, lo, opening);
+                            if (i !== null && i < s && !(i <= lo && fixed.has(lo))) {
+                                s = i;
+                                if (next.length && i <= lo) next.pop();   // the narrator's line was only the quote's first words
+                            }
+                        }
                     }
                     next.push(s);
                     moved.set(s, t);
@@ -363,7 +415,7 @@ export function buildLines(cfg, bt, chapter, rows, al, speakers, vmapCv, { minTo
                 lines.push(line(cv, piece, t, qq, sp, r ? r.seg : null, r ? clauseKey(r) : null, r || null));
             }
             strays(lines, first, minTokens, textCfg.count || 'words');
-            mark(lines.slice(first), cv, v.tokens.length, marks);
+            mark(lines.slice(first), cv, v.tokens.length, marks, moved);
         }
         setOpening(lines, cv, verseRows.get(cv) || []);
         for (const [pcv, ptok] of paraEnds) {
@@ -402,18 +454,19 @@ function strays(lines, first, minTokens, mode) {
     }
 }
 
-function mark(vlines, cv, nTokens, marks) {
+function mark(vlines, cv, nTokens, marks, moved = new Map()) {
     vlines.forEach((ln, k) => {
         const end = (k + 1 < vlines.length ? vlines[k + 1].first_token : nTokens) - 1;
+        const first = moved.has(ln.first_token) ? moved.get(ln.first_token) : ln.first_token;
         let best = -1;
         for (const [lo, hi, rid, n] of marks.refrains.get(cv) || []) {
-            if (lo <= ln.first_token && end <= hi && n > best) {
+            if (lo <= first && end <= hi && n > best) {
                 ln.refrain = rid;
                 best = n;
             }
         }
         for (const { cv: mcv, tok, letter } of marks.acrosticRuns.values()) {
-            if (mcv === cv && ln.first_token === tok) ln.acrostic = letter;
+            if (mcv === cv && first === tok) ln.acrostic = letter;
         }
         if ([...(marks.selah.get(cv) || [])].some((t) => ln.first_token <= t && t <= end)) ln.selah = true;
     });
